@@ -3,5 +3,6 @@ services:
   app:
     image: node:14
     working_dir: /app
+    command: "npm run dev"
     volumes:
       - ./app:/app
