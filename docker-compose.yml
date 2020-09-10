@@ -4,5 +4,8 @@ services:
     image: node:14
     working_dir: /app
     command: "npm run dev"
+    ports:
+      - 5000:5000
+      - 5005:5005
     volumes:
       - ./app:/app
