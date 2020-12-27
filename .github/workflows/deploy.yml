@@ -35,7 +35,7 @@ jobs:
 #           now-args: "--prod" #Optional
 #           now-org-id: ${{ secrets.NOW_ORG_ID}} #Required
 #           now-project-id: ${{ secrets.NOW_PROJECT_ID}} #Required
-#           working-directory: ./public
+#           working-directory: ./app/public
 #       - run: |
 #           echo ${{ steps.now.outputs.preview-url }}
 
@@ -43,5 +43,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./app/public
   
