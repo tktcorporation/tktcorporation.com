@@ -15,4 +15,4 @@ EXPOSE 1111
 
 # ENTRYPOINT [ "/usr/bin/zola" ]
 
-CMD ["bin", "-c", "zola serve --interface 0.0.0.0"]
+CMD ["/bin/sh", "-c", "zola serve --interface 0.0.0.0"]
