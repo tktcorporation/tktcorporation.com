@@ -1,11 +1,8 @@
----
-title: RX8 で音声のノイズをとる
-published: 2020-10-24T25:00:00.000Z
-author: tktcorporation
-summary: |  
-  録音にノイズが混じっていたので RX8 を使ってノイズをとってみた
-layout: blog
----
++++
+title = "RX8 で音声のノイズをとる"
+description = "録音にノイズが混じっていたので RX8 を使ってノイズをとってみた"
+date = 2020-10-25T01:00:00Z
++++
 
 <!-- TOC -->
 
