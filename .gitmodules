@@ -1,0 +1,3 @@
+[submodule "app/themes/sam"]
+	path = app/themes/sam
+	url = git@github.com:janbaudisch/zola-sam.git
