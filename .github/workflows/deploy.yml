@@ -4,10 +4,10 @@ on:
     branches:
       - master
 
-defaults:
-  run:
-    shell: bash
-    working-directory: ./app
+# defaults:
+#   run:
+#     shell: bash
+#     working-directory: ./app
 
 jobs:
   deploy:
@@ -26,7 +26,7 @@ jobs:
           submodules: 'recursive'
 
       - name: build
-        run: docker-compose run --rm app /bin/sh -c "zola build"
+        run: cd app && docker-compose run --rm app /bin/sh -c "zola build"
 
       - uses: amondnet/now-deployment@v2
         id: now
@@ -35,6 +35,6 @@ jobs:
           now-args: "--prod" #Optional
           now-org-id: ${{ secrets.NOW_ORG_ID}} #Required
           now-project-id: ${{ secrets.NOW_PROJECT_ID}} #Required
-          working-directory: ./public
+          working-directory: ./app/public
       - run: |
           echo ${{ steps.now.outputs.preview-url }}
