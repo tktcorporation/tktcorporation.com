@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: build
-        run: docker run -it j1mc/docker-zola build
+        run: docker-compose run --rm app /bin/sh -c "zola build"
 
       - uses: amondnet/now-deployment@v2
         id: now
