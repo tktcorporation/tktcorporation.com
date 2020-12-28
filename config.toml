@@ -41,11 +41,7 @@ include_content = true
 [extra]
 # Put all your custom variables here
 
-sam_menu = [
-    { text = "posts", link = "/posts" },
-    { text = "about", link = "/about" },
-    { text = "github", link = "https://github.com/tktcorporation" },
-]
+sam_menu = [{ text = "about", link = "/about" }, { text = "posts", link = "/posts" }]
 
 sam_bottom_menu = true
 
