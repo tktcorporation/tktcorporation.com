@@ -4,23 +4,18 @@ description = "録音にノイズが混じっていたので RX8 を使ってノ
 date = 2020-10-25T01:00:00Z
 +++
 
+録音にノイズが混じっていたので RX8 を使ってノイズをとってみた
+
 <!-- TOC -->
 
-- [{title}](#title)
-    - [やったこと](#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8)
-    - [使うプラグイン](#%E4%BD%BF%E3%81%86%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3)
-        - [Repair Assistant](#repair-assistant)
-        - [Spectal De-noise](#spectal-de-noise)
-        - [Declip](#declip)
-    - [まとめ](#%E3%81%BE%E3%81%A8%E3%82%81)
+- [やったこと](#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8)
+- [使うプラグイン](#%E4%BD%BF%E3%81%86%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3)
+    - [Repair Assistant](#repair-assistant)
+    - [Spectal De-noise](#spectal-de-noise)
+    - [Declip](#declip)
+- [まとめ](#%E3%81%BE%E3%81%A8%E3%82%81)
 
 <!-- /TOC -->
-
----
-
-# {title}
-
-録音にノイズが混じっていたので RX8 を使ってノイズをとってみた
 
 ## やったこと
 
