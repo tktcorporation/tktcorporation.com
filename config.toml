@@ -19,7 +19,7 @@ theme = "sam"
 sam_menu = [
     { text = "posts", link = "/posts" },
     { text = "about", link = "/about" },
-    { text = "github", link = "https://github.com" }
+    { text = "github", link = "https://github.com/tktcorporation" },
 ]
 
 sam_bottom_menu = true
@@ -27,4 +27,4 @@ sam_bottom_menu = true
 show_reading_time = true
 
 [extra.sam_footer]
-text = "Some footer text."
+text = "©︎ 2020 tktcorporation"
