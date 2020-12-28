@@ -2,8 +2,9 @@ version: "3.7"
 services:
   app:
     build: .
+    command: "/bin/sh -c 'zola serve --interface 0.0.0.0'"
     working_dir: /app
     ports:
       - 1111:1111
     volumes:
-      - ./app:/app
+      - .:/app
