@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="jp">
+	<title>Blog tktcorporation</title>
+	<subtitle>なんでも置き場</subtitle>
+	<link href="https://blog.tktcorporation.com/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://blog.tktcorporation.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2020-12-27T03:20:00+00:00</updated>
+	<id>https://blog.tktcorporation.com/atom.xml</id>
+	<entry xml:lang="jp">
+		<title>mp3 がインポートできない問題の解決方法</title>
+		<published>2020-12-27T03:20:00+00:00</published>
+		<updated>2020-12-27T03:20:00+00:00</updated>
+		<link href="https://blog.tktcorporation.com/posts/cant-import-mp3/" type="text/html"/>
+		<id>https://blog.tktcorporation.com/posts/cant-import-mp3/</id>
+		<content type="html">&lt;!-- TOC --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;cant-import-mp3&#x2F;#%E5%95%8F%E9%A1%8C&quot;&gt;問題&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;cant-import-mp3&#x2F;#%E7%8A%B6%E6%B3%81%E6%8A%8A%E6%8F%A1&quot;&gt;状況把握&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;cant-import-mp3&#x2F;#%E8%A7%A3%E6%B1%BA%E7%AD%96&quot;&gt;解決策&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;!-- &#x2F;TOC --&gt;
+&lt;h2 id=&quot;wen-ti&quot;&gt;問題&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;mp3 ファイルが Cubase Audacity にもインポートできない&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;zhuang-kuang-ba-wo&quot;&gt;状況把握&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;再生はできる&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;jie-jue-ce&quot;&gt;解決策&lt;&#x2F;h2&gt;
+&lt;p&gt;形式変換系のソフトで mp3 -&amp;gt; mp3 の変換をかける&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="jp">
+		<title>RX8 で音声のノイズをとる</title>
+		<published>2020-10-25T01:00:00+00:00</published>
+		<updated>2020-10-25T01:00:00+00:00</updated>
+		<link href="https://blog.tktcorporation.com/posts/rx8-denoise/" type="text/html"/>
+		<id>https://blog.tktcorporation.com/posts/rx8-denoise/</id>
+		<content type="html">&lt;p&gt;録音にノイズが混じっていたので RX8 を使ってノイズをとってみた&lt;&#x2F;p&gt;
+&lt;!-- TOC --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;rx8-denoise&#x2F;#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8&quot;&gt;やったこと&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;rx8-denoise&#x2F;#%E4%BD%BF%E3%81%86%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3&quot;&gt;使うプラグイン&lt;&#x2F;a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;rx8-denoise&#x2F;#repair-assistant&quot;&gt;Repair Assistant&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;rx8-denoise&#x2F;#spectal-de-noise&quot;&gt;Spectal De-noise&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;rx8-denoise&#x2F;#declip&quot;&gt;Declip&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.tktcorporation.com&#x2F;posts&#x2F;rx8-denoise&#x2F;#%E3%81%BE%E3%81%A8%E3%82%81&quot;&gt;まとめ&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;!-- &#x2F;TOC --&gt;
+&lt;h2 id=&quot;yatutakoto&quot;&gt;やったこと&lt;&#x2F;h2&gt;
+&lt;p&gt;VRC で動画を撮ったものの、音にノイズが乗ったりしてしまっていたので、それを iZotope の RX8 を使って軽減した。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;shi-upuraguin&quot;&gt;使うプラグイン&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Repair Assistant
+&lt;ul&gt;
+&lt;li&gt;Declip&lt;&#x2F;li&gt;
+&lt;li&gt;Dehum&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Spectal De-noise&lt;&#x2F;li&gt;
+&lt;li&gt;Declip&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;repair-assistant&quot;&gt;Repair Assistant&lt;&#x2F;h3&gt;
+&lt;p&gt;とりあえず全体に Repair Assistant を適用させておいた。
+変わってるのかはよく分からない。&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;spectal-de-noise&quot;&gt;Spectal De-noise&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;ノイズのみ鳴っている範囲を選択して解析&lt;&#x2F;li&gt;
+&lt;li&gt;解析したノイズがかかっている範囲全体を選択&lt;&#x2F;li&gt;
+&lt;li&gt;適用&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;指定したノイズがかなり綺麗に消えた。&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;declip&quot;&gt;Declip&lt;&#x2F;h3&gt;
+&lt;p&gt;範囲を選択して適用すると、音割れしてる部分を軽減してくれる。
+いい感じな気がする。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;matome&quot;&gt;まとめ&lt;&#x2F;h2&gt;
+&lt;p&gt;いいかんじ
+iZotope 強い&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>
