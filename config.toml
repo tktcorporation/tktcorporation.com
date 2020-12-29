@@ -1,8 +1,8 @@
 # The URL the site will be built for
-base_url = "https://blog.tktcorporation.com"
+base_url = "https://tktcorporation.com"
 
 # The site title and description; used in feeds by default.
-title = "Blog tktcorporation"
+title = "tktcorporation"
 description = "なんでも置き場"
 
 # The default language; used in feeds.
