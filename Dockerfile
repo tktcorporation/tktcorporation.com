@@ -1,18 +1,27 @@
-FROM bitnami/minideb AS builder
-ENV ZOLA_VERSION v0.12.2
-RUN install_packages python-pip curl tar python-setuptools rsync binutils
-RUN pip install dockerize
-RUN mkdir -p /workdir
-WORKDIR /workdir
-RUN curl -L https://github.com/getzola/zola/releases/download/$ZOLA_VERSION/zola-$ZOLA_VERSION-x86_64-unknown-linux-gnu.tar.gz | tar xz
-RUN mv zola /usr/bin
-RUN dockerize -n --verbose -o /workdir /usr/bin/zola
+FROM node:18.2.0-bullseye-slim
 
+EXPOSE 3000
 
-FROM rust:alpine
-COPY --from=builder /workdir .
-EXPOSE 1111
+ENV LC_ALL=C.UTF-8
 
-# ENTRYPOINT [ "/usr/bin/zola" ]
+RUN apt-get update && \
+  apt-get install -y \
+  apt-utils \
+  curl \
+  jq \
+  git \
+  sudo
 
-CMD ["/bin/sh", "-c", "zola serve --interface 0.0.0.0"]
+RUN npm install -g npm@8.11.0
+RUN curl -sSL https://bina.egoist.sh/egoist/dum | sh
+
+ENV UNAME=docker
+ENV GID=1000
+ENV UID=1001
+
+RUN groupadd -g $GID -o $UNAME
+RUN useradd -m -u $UID -g $GID -G sudo -o -s /bin/bash $UNAME
+RUN echo "$UNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER $UNAME
