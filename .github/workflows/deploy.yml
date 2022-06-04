@@ -16,6 +16,9 @@ jobs:
       - name: Chackout
         uses: actions/checkout@master
 
+      - name: chmod
+        run: sudo chmod a+w -R .
+
       - name: build
         run: docker-compose run --rm app /bin/bash -c "dum i && dum build"
 
