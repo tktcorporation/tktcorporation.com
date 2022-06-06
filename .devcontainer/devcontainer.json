@@ -3,17 +3,27 @@
   "image": "mcr.microsoft.com/vscode/devcontainers/universal:linux",
 
   // Set *default* container specific settings.json values on container create.
-  "settings": {},
+  "settings": {
+    "runOnSave.commands": [
+      {
+        "globMatch": "**/*",
+        "command": "docker-compose exec -T app /bin/bash -c \"dum format\"",
+        "runIn": "backend",
+        "runningStatusMessage": "dum format",
+        "finishStatusMessage": "dum format completed"
+      }
+    ]
+  },
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-	"ms-azuretools.vscode-docker",
-	"GitHub.copilot",
-	"donjayamanne.githistory",
-	"eamodio.gitlens",
-	"mhutchie.git-graph",
-	"steoates.autoimport"
-],
+    "ms-azuretools.vscode-docker",
+    "GitHub.copilot",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "steoates.autoimport"
+  ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],

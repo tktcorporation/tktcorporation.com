@@ -1,15 +1,15 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { useEffect } from 'react'
-import { analytics } from '../firebase'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { useEffect } from "react";
+import { analytics } from "../firebase";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // firebase
   useEffect(() => {
-    analytics.app.automaticDataCollectionEnabled = true
-  }, [])
+    analytics.app.automaticDataCollectionEnabled = true;
+  }, []);
 
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;
