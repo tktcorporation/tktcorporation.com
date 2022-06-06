@@ -1,104 +1,115 @@
 export const About = () => {
   return (
     <div className="">
-      <h1 className="text-3xl font-bold">Hi 👋, I'm tkt.</h1>
-      <h3 className="text-xl">I'm a web application developer from Japan.</h3>
+      <h1 className="text-6xl font-bold">Hi 👋, I'm tkt.</h1>
+      <h3 className="text-3xl mt-16">
+        I'm a web application developer from Japan.
+      </h3>
 
-      <div>
-        <a href="https://twitter.com/tktcorporation" target="blank">
-          <img
-            src="https://img.shields.io/twitter/follow/tktcorporation?logo=twitter&style=for-the-badge"
-            alt="tktcorporation"
-          />
-        </a>
+      <h3 className="text-3xl mt-16">Connect with me:</h3>
+
+      <div className="flex flex-row mt-8">
+        <LinkIcon
+          className="mr-4"
+          href={"https://lapras.com/public/BKFXEQC"}
+          src="https://assets.lapras.com/static/assets/bundles/media/logo-symbol.5c8467f1.svg"
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://github.com/tktcorporation"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg"
+          }
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://twitter.com/tktcorporation"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg"
+          }
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://qiita.com/tktcorporation"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/qiita.svg"
+          }
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://zenn.dev/tktcorporation"}
+          src={"https://simpleicons.org/icons/zenn.svg"}
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://stackoverflow.com/users/12852199"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/stackoverflow.svg"
+          }
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://instagram.com/tktcorporation"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg"
+          }
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://medium.com/@tktcorporation"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/medium.svg"
+          }
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://dev.to/tktcorporation"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/dev-dot-to.svg"
+          }
+        />
+        <LinkIcon
+          className="mr-4"
+          href={"https://linkedin.com/in/tktcorporation"}
+          src={
+            "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg"
+          }
+        />
       </div>
-
-      <h3 className="text-xl">Connect with me:</h3>
-
-      <div className="flex flex-row">
-        <a href="https://lapras.com/public/BKFXEQC" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://assets.lapras.com/static/assets/bundles/media/logo-symbol.5c8467f1.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://github.com/tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://twitter.com/tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://qiita.com/tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/qiita.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://zenn.dev/tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://simpleicons.org/icons/zenn.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://stackoverflow.com/users/12852199" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/stackoverflow.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://instagram.com/tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://medium.com/@tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/medium.svg"
-            alt="@tktcorporation"
-          />
-        </a>
-        <a href="https://dev.to/tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/dev-dot-to.svg"
-            alt="tktcorporation"
-          />
-        </a>
-        <a href="https://linkedin.com/in/tktcorporation" target="blank">
-          <img
-          className="h-10 w-10 md:h-16 md:w-16 mr-2"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg"
-            alt="tktcorporation"
-          />
-        </a>
-      </div>
-
-      <h3 className="text-xl">Support:</h3>
-      <div>
+      <h3 className="text-3xl mt-16">Support:</h3>
+      <div className="mt-8">
         <a href="https://www.buymeacoffee.com/tktcorporation">
-          {" "}
           <img
+            className="w-64"
             src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-            alt="tktcorporation"
-            height="100"
+            alt="buymeacoffee for tktcorporation"
           />
         </a>
       </div>
     </div>
+  );
+};
+
+const LinkIcon = ({
+  href,
+  src,
+  className,
+}: {
+  href: string;
+  src: string;
+  className: string;
+}) => {
+  return (
+    <a href={href} target="blank" className={className}>
+      <img
+        className="h-10 w-10 md:h-16 md:w-16"
+        style={{
+          filter:
+            "invert(88%) sepia(61%) saturate(0%) hue-rotate(229deg) brightness(107%) contrast(101%)",
+        }}
+        src={src}
+        alt={href}
+      />
+    </a>
   );
 };

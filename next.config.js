@@ -9,7 +9,7 @@ const nextConfig = {
       src: path.join(__dirname, "src/"),
     };
     return config;
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
