@@ -1,0 +1,22 @@
+name: auto-merge
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: install, lint, build
+        run: |
+          docker-compose run --rm app /bin/bash -c "yarn && yarn lint && yarn build"
+  auto-merge:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          target: patch
+          github-token: ${{ secrets.GITHUB_TOKEN }}
