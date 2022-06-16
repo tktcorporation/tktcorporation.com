@@ -6,6 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - name: install, lint, build
@@ -13,6 +14,7 @@ jobs:
           docker-compose run --rm app /bin/bash -c "yarn && yarn lint && yarn build"
   auto-merge:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: test
     steps:
       - uses: actions/checkout@v2
