@@ -11,7 +11,7 @@ export const About = () => {
       <div className="flex flex-row mt-8">
         <LinkIcon
           className="mr-4"
-          href={"https://lapras.com/public/BKFXEQC"}
+          href={"https://lapras.com/public/tktcorporation"}
           src="https://assets.lapras.com/static/assets/bundles/media/logo-symbol.5c8467f1.svg"
         />
         <LinkIcon
