@@ -1,9 +1,12 @@
+// import Image form next
+import Image from "next/image";
+
 export const About = () => {
   return (
     <div className="">
-      <h1 className="text-6xl font-bold">Hi 👋, I'm tkt.</h1>
+      <h1 className="text-6xl font-bold">{"Hi 👋, I'm tkt."}</h1>
       <h3 className="text-3xl mt-16">
-        I'm a web application developer from Japan.
+        {"I'm a web application developer from Japan."}
       </h3>
 
       <h3 className="text-3xl mt-16">Connect with me:</h3>
@@ -79,7 +82,7 @@ export const About = () => {
       <h3 className="text-3xl mt-16">Support:</h3>
       <div className="mt-8">
         <a href="https://www.buymeacoffee.com/tktcorporation">
-          <img
+          <Image
             className="w-64"
             src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
             alt="buymeacoffee for tktcorporation"
@@ -101,7 +104,7 @@ const LinkIcon = ({
 }) => {
   return (
     <a href={href} target="blank" className={className}>
-      <img
+      <Image
         className="h-10 w-10 md:h-16 md:w-16"
         style={{
           filter:
