@@ -3,6 +3,12 @@ const path = require("path");
 
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    images: {
+      // settings for static builds
+      unoptimized: true,
+    }
+  },
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
