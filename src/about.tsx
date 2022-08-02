@@ -8,7 +8,7 @@ export const About = () => {
 
       <h3 className="text-3xl mt-16">Connect with me:</h3>
 
-      <div className="flex flex-row mt-8">
+      <div className="flex flex-row mt-8 flex-wrap">
         <LinkIcon
           className="mr-4"
           href={"https://lapras.com/public/tktcorporation"}
