@@ -1,6 +1,3 @@
-// import Image form next
-import ExportedImage from "next-image-export-optimizer";
-
 export const About = () => {
   return (
     <div className="">
@@ -81,12 +78,9 @@ export const About = () => {
       </div>
       <h3 className="text-3xl mt-16">Support:</h3>
       <div className="mt-8">
-        <a href="https://www.buymeacoffee.com/tktcorporation">
-          <ExportedImage
+      <a href="https://www.buymeacoffee.com/tktcorporation">
+          <img
             className="w-64"
-            height={72}
-            width={272}
-            layout="intrinsic"
             src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
             alt="buymeacoffee for tktcorporation"
           />
@@ -107,14 +101,12 @@ const LinkIcon = ({
 }) => {
   return (
     <a href={href} target="blank" className={className}>
-      <ExportedImage
+      <img
         className="h-10 w-10 md:h-16 md:w-16"
         style={{
           filter:
             "invert(88%) sepia(61%) saturate(0%) hue-rotate(229deg) brightness(107%) contrast(101%)",
         }}
-        width={64}
-        height={64}
         src={src}
         alt={href}
       />
