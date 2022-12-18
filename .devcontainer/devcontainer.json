@@ -7,10 +7,10 @@
     "runOnSave.commands": [
       {
         "globMatch": "**/*",
-        "command": "docker-compose exec -T app /bin/bash -c \"dum format\"",
+        "command": "docker-compose exec -T app /bin/bash -c \"npm run format\"",
         "runIn": "backend",
-        "runningStatusMessage": "dum format",
-        "finishStatusMessage": "dum format completed"
+        "runningStatusMessage": "npm run format",
+        "finishStatusMessage": "npm run format completed"
       }
     ]
   },
