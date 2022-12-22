@@ -1,6 +1,6 @@
 {
-  "name": "universal linux",
-  "image": "mcr.microsoft.com/devcontainers/universal:linux",
+  "name": "base image",
+  "image": "mcr.microsoft.com/devcontainers/base:focal",
 
   // Set *default* container specific settings.json values on container create.
   "settings": {
@@ -8,15 +8,14 @@
       {
         "globMatch": "**/*",
         "command": "docker-compose exec -T app /bin/bash -c \"npm run format\"",
-        "runIn": "backend",
-        "runningStatusMessage": "npm run format",
-        "finishStatusMessage": "npm run format completed"
+        "runIn": "backend"
       }
     ]
   },
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
+    "GitHub.vscode-pull-request-github",
     "ms-azuretools.vscode-docker",
     "GitHub.copilot",
     "donjayamanne.githistory",
@@ -31,6 +30,16 @@
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "",
 
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "features": {}
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18",
+      "additionalVersions": "16"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    }
+  }
 }
