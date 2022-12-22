@@ -1,5 +1,5 @@
 name: auto-merge
-on: pull_request_target
+on: push
 
 permissions:
   pull-requests: write
