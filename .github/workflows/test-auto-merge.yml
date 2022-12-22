@@ -29,8 +29,19 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Enable auto-merge for Dependabot PRs
+        id: merge
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor' }}
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: |
+          result=$(gh pr merge --auto --merge "$PR_URL")
+          echo "::set-output name=merge_result::$result"
+        continue-on-error: true
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comment failed reasons
+        if: ${{ steps.merge.outcome != 'success' }}
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            Auto-merge failed for this PR.
+            Message: ${{ steps.merge.outputs.merge_result }}
