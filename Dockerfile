@@ -1,4 +1,4 @@
-FROM node:18.2.0-bullseye-slim
+FROM node:18.12.1-bullseye-slim
 
 EXPOSE 3000
 
@@ -12,8 +12,7 @@ RUN apt-get update && \
   git \
   sudo
 
-RUN npm install -g npm@8.11.0
-RUN curl -sSL https://bina.egoist.sh/egoist/dum | sh
+RUN npm install -g npm@9
 
 ENV UNAME=docker
 ENV GID=1000

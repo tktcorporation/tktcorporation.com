@@ -1,5 +1,7 @@
 name: auto-merge
-on: pull_request_target
+on:
+  pull_request_target:
+  workflow_dispatch:
 
 permissions:
   pull-requests: write
@@ -13,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: install, lint, build
         run: |
-          docker-compose run --rm app /bin/bash -c "yarn && yarn lint && yarn build"
+          docker-compose run --rm app /bin/bash -c "npm i && npm run lint && npm run build"
 
   dependabot:
     runs-on: ubuntu-latest

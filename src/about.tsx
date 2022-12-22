@@ -1,4 +1,5 @@
 import ExportedImage from "next-image-export-optimizer";
+import bmcButton from "./assets/bmc-button.svg";
 
 export const About = () => {
   return (
@@ -80,12 +81,12 @@ export const About = () => {
       </div>
       <h3 className="text-3xl mt-16">Support:</h3>
       <div className="mt-8">
-      <a href="https://www.buymeacoffee.com/tktcorporation">
+        <a href="https://www.buymeacoffee.com/tktcorporation" target="blank">
           <ExportedImage
             className="w-64"
             height={72}
             width={272}
-            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+            src={bmcButton}
             alt="buymeacoffee for tktcorporation"
           />
         </a>
