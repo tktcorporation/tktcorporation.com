@@ -12,7 +12,7 @@ RUN apt-get update && \
   git \
   sudo
 
-RUN npm install -g npm@9
+RUN npm install -g npm@9 @antfu/ni
 
 ENV UNAME=docker
 ENV GID=1000

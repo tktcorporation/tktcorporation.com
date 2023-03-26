@@ -1,45 +1,35 @@
 {
   "name": "base image",
-  "image": "mcr.microsoft.com/devcontainers/base:focal",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "runOnSave.commands": [
-      {
-        "globMatch": "**/*",
-        "command": "docker-compose exec -T app /bin/bash -c \"npm run format\"",
-        "runIn": "backend"
+  "customizations": {
+    "codespaces": {
+      "vs-code": {
+        "extensions": [
+          "GitHub.vscode-pull-request-github",
+          "ms-azuretools.vscode-docker",
+          "GitHub.copilot",
+          "donjayamanne.githistory",
+          "eamodio.gitlens",
+          "mhutchie.git-graph",
+          "steoates.autoimport"
+        ]
+      },
+      "settings": {
+        "runOnSave.commands": [
+          {
+            "globMatch": "**/*",
+            "command": "docker-compose exec -T app /bin/bash -c \"npm run format\"",
+            "runIn": "backend"
+          }
+        ]
       }
-    ]
-  },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "GitHub.vscode-pull-request-github",
-    "ms-azuretools.vscode-docker",
-    "GitHub.copilot",
-    "donjayamanne.githistory",
-    "eamodio.gitlens",
-    "mhutchie.git-graph",
-    "steoates.autoimport"
-  ],
+    }
+  }
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "",
-
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "18",
-      "additionalVersions": "16"
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "latest"
-    }
-  }
 }
