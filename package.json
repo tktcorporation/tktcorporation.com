@@ -10,7 +10,7 @@
     "format": "prettier -w --write ."
   },
   "dependencies": {
-    "firebase": "9.21.0",
+    "firebase": "9.22.0",
     "next": "13.4.2",
     "next-image-export-optimizer": "1.6.1",
     "react": "18.2.0",
