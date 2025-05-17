@@ -28,9 +28,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pr-screenshot
-          path: pr-screenshot.png
-      - name: Comment link
+          path: pr-screenshot.jpg
+      - name: Encode screenshot
+        id: encode
+        run: echo "base64=$(base64 -w0 pr-screenshot.jpg)" >> "$GITHUB_OUTPUT"
+      - name: Comment screenshot
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: |
-            :camera: [Download screenshot](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          message: "![](data:image/jpeg;base64,${{ steps.encode.outputs.base64 }})"
