@@ -19,7 +19,9 @@ const Home: NextPage = () => {
         <About />
       </main>
 
-      <footer className={styles.footer}>©︎ 2020 tktcorporation</footer>
+      <footer className={styles.footer}>
+  © {new Date().getFullYear()} tktcorporation
+</footer>
     </div>
   );
 };

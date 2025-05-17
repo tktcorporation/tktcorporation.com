@@ -8,6 +8,12 @@ export const About = () => {
       <h3 className="text-3xl mt-16">
         {"I'm a web application developer from Japan."}
       </h3>
+      <p className="text-xl mt-4">
+        {"I enjoy building apps with TypeScript, React, and serverless technologies."}
+      </p>
+      <p className="text-xl mt-2">
+        {"I also contribute to open source and write technical articles on Qiita and Zenn."}
+      </p>
 
       <h3 className="text-3xl mt-16">Connect with me:</h3>
 
