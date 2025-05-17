@@ -1,0 +1,40 @@
+name: screenshot
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Install browsers
+        run: npx playwright install --with-deps
+      - name: Take screenshot
+        run: npm run screenshot
+      - name: Upload image for comment
+        id: upload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url=$(gh api \
+            -H "Content-Type: image/png" \
+            "/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments/attachments?name=pr-screenshot.png" \
+            --input pr-screenshot.png \
+            --jq .url)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+      - name: Comment screenshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "![Screenshot](${{ steps.upload.outputs.url }})"
