@@ -4,12 +4,12 @@ import bmcButton from "./assets/bmc-button.svg";
 export const About = () => {
   return (
     <div className="">
-      <h1 className="text-6xl font-bold">{"Hi 👋, I'm tkt."}</h1>
-      <h3 className="text-3xl mt-16">
+      <h1 className="text-6xl font-bold text-white">{"Hi 👋, I'm tkt."}</h1>
+      <h3 className="text-3xl mt-16 text-slate-300">
         {"I'm a web application developer from Japan."}
       </h3>
 
-      <h3 className="text-3xl mt-16">Connect with me:</h3>
+      <h3 className="text-3xl mt-16 text-slate-200">Connect with me:</h3>
 
       <div className="flex flex-row mt-8 flex-wrap">
         <LinkIcon
@@ -79,7 +79,7 @@ export const About = () => {
           }
         />
       </div>
-      <h3 className="text-3xl mt-16">Support:</h3>
+      <h3 className="text-3xl mt-16 text-slate-200">Support:</h3>
       <div className="mt-8">
         <a href="https://www.buymeacoffee.com/tktcorporation" target="blank">
           <ExportedImage
