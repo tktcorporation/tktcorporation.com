@@ -7,7 +7,8 @@
     "build": "next build && next export && next-image-export-optimizer",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier -w --write ."
+    "format": "prettier -w --write .",
+    "screenshot": "node scripts/screenshot.js"
   },
   "dependencies": {
     "firebase": "9.23.0",
@@ -24,6 +25,8 @@
     "autoprefixer": "10.4.16",
     "eslint": "8.54.0",
     "eslint-config-next": "13.5.6",
+    "http-server": "14.1.1",
+    "playwright": "1.39.0",
     "postcss": "8.4.31",
     "prettier": "3.1.0",
     "tailwindcss": "3.3.5",
