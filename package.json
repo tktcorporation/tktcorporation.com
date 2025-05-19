@@ -11,7 +11,7 @@
     "screenshot": "node scripts/screenshot.js"
   },
   "dependencies": {
-    "firebase": "9.23.0",
+    "firebase": "11.7.3",
     "next": "13.5.6",
     "next-image-export-optimizer": "1.10.0",
     "react": "18.2.0",
