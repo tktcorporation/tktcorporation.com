@@ -2,6 +2,7 @@
 const path = require("path");
 
 const nextConfig = {
+  output: 'export',
   reactStrictMode: true,
   images: {
     loader: "custom",
@@ -12,8 +13,8 @@ const nextConfig = {
   env: {
     nextImageExportOptimizer_imageFolderPath: "public/images",
     nextImageExportOptimizer_exportFolderPath: "out",
-    nextImageExportOptimizer_quality: 75,
-    nextImageExportOptimizer_storePicturesInWEBP: true,
+    nextImageExportOptimizer_quality: "75",
+    nextImageExportOptimizer_storePicturesInWEBP: "true",
     nextImageExportOptimizer_exportFolderPath: "nextImageExportOptimizer",
 
     // If you do not want to use blurry placeholder images, then you can set
@@ -23,7 +24,7 @@ const nextConfig = {
     // If nextImageExportOptimizer_generateAndUseBlurImages is false and you
     // forget to set `placeholder="empty"`, you'll see 404 errors for the missing
     // placeholder images in the console.
-    nextImageExportOptimizer_generateAndUseBlurImages: true,
+    nextImageExportOptimizer_generateAndUseBlurImages: "true",
   },
   webpack(config) {
     config.resolve.alias = {
