@@ -8,7 +8,8 @@
     "start": "astro preview",
     "lint": "eslint .",
     "format": "prettier -w --write .",
-    "screenshot": "node scripts/screenshot.js"
+    "screenshot": "node scripts/screenshot.js",
+    "test": "node scripts/test-display.js"
   },
   "dependencies": {
     "astro": "^5.8.2",
