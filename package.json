@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "start": "astro preview",
-    "lint": "biome check . && tsc --noEmit",
+    "lint": "biome check . && node-actionlint && tsc --noEmit",
     "lint:biome": "biome check .",
     "format": "biome format --write .",
     "lint:fix": "biome check --write .",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@tktco/node-actionlint": "^1.5.2",
     "@types/node": "20.9.1",
     "autoprefixer": "10.4.16",
     "http-server": "^14.1.1",
