@@ -6,9 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "start": "astro preview",
-    "lint": "biome check .",
+    "lint": "biome check . && tsc --noEmit",
+    "lint:biome": "biome check .",
     "format": "biome format --write .",
     "lint:fix": "biome check --write .",
+    "typecheck": "tsc",
     "screenshot": "node scripts/screenshot.js",
     "test": "node scripts/test-display.js"
   },

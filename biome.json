@@ -64,8 +64,15 @@
         "rules": {
           "correctness": {
             "noUnusedVariables": "off"
+          },
+          "style": {
+            "useConst": "off"
           }
         }
+      },
+      "formatter": {
+        "indentWidth": 2,
+        "indentStyle": "space"
       }
     }
   ]
