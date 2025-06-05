@@ -48,7 +48,7 @@ jobs:
       - name: Comment screenshot
         env:
           BRANCH: pr-screenshot-${{ github.event.pull_request.number }}-${{ github.run_id }}
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
             ![](https://raw.githubusercontent.com/${{ github.repository }}/${{ env.BRANCH }}/pr-screenshot.jpg)
