@@ -2,7 +2,7 @@
 const path = require("path");
 
 const nextConfig = {
-  output: 'export',
+  output: "export",
   reactStrictMode: true,
   images: {
     loader: "custom",
