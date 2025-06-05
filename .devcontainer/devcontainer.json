@@ -1,35 +1,25 @@
 {
-  "name": "base image",
-  "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
-
-  "customizations": {
-    "codespaces": {
-      "vs-code": {
-        "extensions": [
-          "GitHub.vscode-pull-request-github",
-          "ms-azuretools.vscode-docker",
-          "GitHub.copilot",
-          "donjayamanne.githistory",
-          "eamodio.gitlens",
-          "mhutchie.git-graph",
-          "steoates.autoimport"
-        ]
-      },
-      "settings": {
-        "runOnSave.commands": [
-          {
-            "globMatch": "**/*",
-            "command": "docker compose exec -T app /bin/bash -c \"npm run format\"",
-            "runIn": "backend"
-          }
-        ]
-      }
-    }
-  }
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-
-  // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "",
+	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+	},
+	"forwardPorts": [5173, 8787],
+	"portsAttributes": {
+		"5173": {
+			"label": "vite"
+		}
+	},
+	"runArgs": ["--env-file", ".devcontainer/devcontainer.env"],
+	"customizations": {
+		"vscode": {
+			"extensions": ["mhutchie.git-graph", "WakaTime.vscode-wakatime"],
+			"files.watcherExclude": {
+				"**/.git/*/**": true,
+				"**/node_modules/*/**": true
+			}
+		}
+	},
+	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential fzf ripgrep"
 }
