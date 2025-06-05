@@ -2,7 +2,7 @@ const httpServer = require("http-server");
 const { chromium } = require("playwright");
 const path = require("node:path");
 
-const outDir = path.join(__dirname, "..", "out");
+const outDir = path.join(__dirname, "..", "dist");
 const output = path.join(__dirname, "..", "pr-screenshot.jpg");
 
 const server = httpServer.createServer({ root: outDir });
