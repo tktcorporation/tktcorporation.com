@@ -1,5 +1,5 @@
-const { execSync } = require("child_process");
-const { readFileSync } = require("fs");
+const { execSync } = require("node:child_process");
+const { readFileSync } = require("node:fs");
 
 // build site
 execSync("npm run build", { stdio: "inherit" });

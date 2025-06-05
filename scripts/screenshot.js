@@ -1,6 +1,6 @@
 const httpServer = require("http-server");
 const { chromium } = require("playwright");
-const path = require("path");
+const path = require("node:path");
 
 const outDir = path.join(__dirname, "..", "out");
 const output = path.join(__dirname, "..", "pr-screenshot.jpg");
