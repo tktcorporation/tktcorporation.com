@@ -1,0 +1,20 @@
+---
+import '../styles/globals.css';
+import About from '../components/About.astro';
+const year = new Date().getFullYear();
+---
+<html lang="en">
+  <head>
+    <title>About me</title>
+    <meta name="description" content="Hi , I'm tkt. I'm a web application developer from Japan." />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-slate-200">
+      <main class="container px-4 py-8">
+        <About />
+      </main>
+      <footer class="mt-8 text-sm">© {year} tkt</footer>
+    </div>
+  </body>
+</html>
