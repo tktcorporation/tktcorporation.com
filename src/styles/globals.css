@@ -18,8 +18,8 @@ body {
     Fira Sans,
     Helvetica Neue,
     sans-serif;
-  color: rgb(226 232 240);
-  background: linear-gradient(to bottom right, #1e293b, #0f172a);
+  color: rgb(241 245 249);
+  background: linear-gradient(to bottom right, #1e40af, #9333ea, #0f172a);
 }
 
 a {
