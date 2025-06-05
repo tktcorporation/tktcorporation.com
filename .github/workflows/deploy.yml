@@ -13,8 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Chackout
-        uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: chmod
         run: sudo chmod a+w -R .
@@ -27,4 +27,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           cname: tktcorporation.com
-          publish_dir: ./out
+          publish_dir: ./dist
