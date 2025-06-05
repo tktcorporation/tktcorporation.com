@@ -1,4 +1,3 @@
-import ExportedImage from "next-image-export-optimizer";
 import bmcButton from "./assets/bmc-button.svg";
 
 export const About = () => {
@@ -82,11 +81,11 @@ export const About = () => {
       <h3 className="text-3xl mt-16 text-slate-200">Support:</h3>
       <div className="mt-8">
         <a href="https://www.buymeacoffee.com/tktcorporation" target="blank">
-          <ExportedImage
+          <img
             className="w-64"
             height={72}
             width={272}
-            src={bmcButton}
+            src={bmcButton.src}
             alt="buymeacoffee for tktcorporation"
           />
         </a>
@@ -106,7 +105,7 @@ const LinkIcon = ({
 }) => {
   return (
     <a href={href} target="blank" className={className}>
-      <ExportedImage
+      <img
         className="h-10 w-10 md:h-16 md:w-16"
         style={{
           filter:
