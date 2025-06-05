@@ -17,7 +17,7 @@
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.8.2",
-    "firebase": "9.23.0"
+    "firebase": "11.8.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
