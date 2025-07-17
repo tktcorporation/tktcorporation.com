@@ -20,7 +20,7 @@
     "firebase": "9.23.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.1.2",
     "@types/node": "20.9.1",
     "autoprefixer": "10.4.21",
     "http-server": "^14.1.1",
