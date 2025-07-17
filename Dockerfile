@@ -1,4 +1,4 @@
-FROM node:20.8.1-bullseye-slim
+FROM node:24.4.1-bullseye-slim
 
 EXPOSE 3000
 
