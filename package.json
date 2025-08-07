@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
-    "astro": "^5.11.0",
+    "astro": "^5.12.8",
     "firebase": "9.23.0"
   },
   "devDependencies": {
