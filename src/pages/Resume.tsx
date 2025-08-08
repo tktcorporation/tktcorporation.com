@@ -47,14 +47,16 @@ function Resume() {
     const techRegex =
       /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
 
-    exps.forEach((exp) => {
+    for (const exp of exps) {
       if (exp.description) {
         const matches = exp.description.match(techRegex);
         if (matches) {
-          matches.forEach((skill) => skillSet.add(skill));
+          for (const skill of matches) {
+            skillSet.add(skill);
+          }
         }
       }
-    });
+    }
 
     return Array.from(skillSet);
   };
@@ -88,29 +90,30 @@ function Resume() {
 
         if (line.startsWith("●") || line.startsWith("*")) {
           return (
-            <li key={index} className="ml-4 list-disc">
+            <li key={`${index}-disc`} className="ml-4 list-disc">
               {line.substring(1).trim()}
             </li>
           );
-        } else if (line.startsWith("　　■") || line.startsWith("    *")) {
+        }
+        if (line.startsWith("　　■") || line.startsWith("    *")) {
           return (
-            <li key={index} className="ml-8 text-sm list-circle">
+            <li key={`${index}-sub`} className="ml-8 text-sm list-circle">
               {line.replace(/^[　■\s*]+/, "")}
             </li>
           );
-        } else if (line.startsWith("　○") || line.startsWith("  *")) {
+        }
+        if (line.startsWith("　○") || line.startsWith("  *")) {
           return (
-            <li key={index} className="ml-6 list-circle">
+            <li key={`${index}-circle`} className="ml-6 list-circle">
               {line.replace(/^[　○\s*]+/, "")}
             </li>
           );
-        } else {
-          return (
-            <p key={index} className="mb-1">
-              {trimmedLine}
-            </p>
-          );
         }
+        return (
+          <p key={`${index}-para`} className="mb-1">
+            {trimmedLine}
+          </p>
+        );
       })
       .filter(Boolean) as React.ReactElement[];
   };
@@ -157,19 +160,19 @@ function Resume() {
                     key={i}
                     className="rounded-lg p-6 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
                   >
-                    <div className="h-6 bg-white/10 rounded w-1/3 mb-4"></div>
-                    <div className="h-4 bg-white/10 rounded w-1/2 mb-2"></div>
-                    <div className="h-4 bg-white/10 rounded w-full"></div>
+                    <div className="h-6 bg-white/10 rounded w-1/3 mb-4" />
+                    <div className="h-4 bg-white/10 rounded w-1/2 mb-2" />
+                    <div className="h-4 bg-white/10 rounded w-full" />
                   </div>
                 ))}
               </div>
             ) : (
               <div className="relative">
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent"></div>
+                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
                 <div className="space-y-8">
                   {experiences.map((exp, index) => (
                     <div key={exp.id} className="relative">
-                      <div className="absolute left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50"></div>
+                      <div className="absolute left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50" />
                       <div
                         className="ml-16 rounded-lg p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1"
                         style={{ animationDelay: `${index * 0.1}s` }}

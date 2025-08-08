@@ -23,7 +23,8 @@
       },
       "suspicious": {
         "noExplicitAny": "warn",
-        "noDuplicateFontNames": "off"
+        "noDuplicateFontNames": "off",
+        "noArrayIndexKey": "off"
       }
     }
   },
