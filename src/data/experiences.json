@@ -1,0 +1,289 @@
+{
+  "experience_list": [
+    {
+      "id": 77809,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2025,
+      "start_month": 8,
+      "end_year": null,
+      "end_month": null,
+      "description": "AWS / Docker / Python / Django / TypeScript / Vue\n\n* C向けプロダクト開発\n    * 目標に対しての企画、効果測定",
+      "updated_at": "2025-08-04T23:43:36.854437+00:00"
+    },
+    {
+      "id": 69190,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2024,
+      "start_month": 11,
+      "end_year": 2025,
+      "end_month": 7,
+      "description": "AWS / Docker / Python / Django / TypeScript / Vue\n\n* C向けプロダクト開発\n    * アジャイル\n    * 開発チームのリード\n        * 要件のすり合わせからタスク整理、実装リリース\n* 開発改善\n    * GitHub Actions の追加改修\n    * MyPyなど開発環境の整備\n* frontend課題に向き合うチームの運営\n    * 課題の優先度付\n    * vitest browser-mode 導入\n    * パフォーマンス改善",
+      "updated_at": "2025-08-04T23:43:36.862201+00:00"
+    },
+    {
+      "id": 57892,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2023,
+      "start_month": 1,
+      "end_year": 2023,
+      "end_month": 10,
+      "description": "AWS / Docker / Python / Django / TypeScript / Vue\n\n* チーム\n    * PdM: 1\n    * 開発者: 2\n* 企業向けプロダクト開発\n  * 開発目標の認識合わせ、チーム内イベントの設定\n  * スプリントの開発計画立て\n  * 開発業務 backend\n* frontend課題への課題に向き合うチームの運営",
+      "updated_at": "2025-08-04T23:43:36.877472+00:00"
+    },
+    {
+      "id": 57891,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2023,
+      "start_month": 11,
+      "end_year": 2024,
+      "end_month": 4,
+      "description": "AWS / Docker / Python / Django / TypeScript / Vue\n\n* 企業向けプロダクト開発\n    * チーム\n        * PdM: 2人\n        * 開発者: 業務委託メンバー含め5人\n    * 責務\n        * 開発要件の明瞭化からチケット化\n        * 開発の見積もりと計画づくり\n        * 実装\n        * 開発タスク配分、調整\n        * チームイベント実施\n* frontend課題に向き合うチームの運営\n    * 課題の優先度付\n    * 社内へのtest啓蒙活動",
+      "updated_at": "2025-08-04T23:43:36.870320+00:00"
+    },
+    {
+      "id": 47772,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2022,
+      "start_month": 10,
+      "end_year": 0,
+      "end_month": 0,
+      "description": "AWS / Docker / Python / Django / TypeScript / Vue\n開発もしつつ、チームの動きを考えたりこぼれた玉を拾う動きが多いポジションに移動\n* 企業向けプロダクト開発チームにて\n  * 開発目標の認識合わせ、チーム内イベントの設定\n  * 開発業務(front/back)\n* frontend課題への課題に向き合うチームの運営",
+      "updated_at": "2025-08-04T23:43:36.883559+00:00"
+    },
+    {
+      "id": 38877,
+      "organization_name": "株式会社ニコシス",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 8,
+          "job_position_name": "モバイルエンジニア"
+        }
+      ],
+      "position_name": "モバイルエンジニア",
+      "start_year": 2019,
+      "start_month": 5,
+      "end_year": 2019,
+      "end_month": 10,
+      "description": "既存モバイルアプリのプッシュ通知システム\n\n●プロジェクト概要\n　○既存アプリのプッシュ通知システム開発、それに関連するアプリ内機能改修\n\n●チーム\n　○10名\n\n●担当業務\n　○バックエンド\n　　■設計\n　　■Api開発\n　○フロントエンド\n　　■web\n　　■設計\n　　■基盤部分の作成\n　　■ネイティブ\n　　■iOS, Android\n　　　■API通信周りの追加実装\n　　　■プッシュ通知のSubscribe機能追加\n　○インフラ\n　　■設計, 環境準備, デプロイ\n　○環境\n　　■言語\n　　　■ TypeScript (Node10.x), Swift, Java(Android)\n　　■DB\n　　　■MySQL5.7(AWS RDS)\n　　■周辺技術\n　　　■フロントエンド\n　　　　■Vue.js (VueCli)\n　　　■バックエンド\n　　　　■AWS SAM\n　　　■O/R Mapper\n　　　　■TypeORM\n　　　■CI/CD\n　　　　■CircleCI\n　　　■インフラ\n　　　　■AWS\n　　　　　■SNS, S3, CloudFormation, CloudFront, Route53, Lambda, ApiGateway,\nCognito, Route53, CertificationManager\n　　■プロジェクト管理\n　　　■BackLog, BitBucket",
+      "updated_at": "2025-08-04T23:43:36.956127+00:00"
+    },
+    {
+      "id": 38876,
+      "organization_name": "株式会社ニコシス",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "エンジニア",
+      "start_year": 2019,
+      "start_month": 11,
+      "end_year": 2020,
+      "end_month": 2,
+      "description": "Webクロール,スクレイピングシステム\n\n●プロジェクト概要\n　○Webクロール,スクレイピングシステム開発,またそのデータを利用したWebアプリケーション開発\n\n●担当業務\n　○バックエンド\n　　■Webクロール,スクレイピングシステム開発\n　○インフラ\n　　■環境準備\n　　■バックエンド,フロントエンドアプリケーションのデプロイ\n●チーム\n　○15名\n●環境\n　○言語\n　　■Crystal\n　○DB\n　　■MySQL5.7(AWS RDS)\n　　■AWS DynamoDB\n　○周辺技術\n　　■クローリング/スクレイピング\n　　　■Selenium\n　■インフラ\n　　■AWS\n　　　■S3, CloudFormation, CloudFront, Route53, Lambda, ECR, ECS, Route53,\nCertificationManager\n　■プロジェクト管理\n　　■BackLog, Github\n　■CI/CD\n　　■Github Actions",
+      "updated_at": "2025-08-04T23:43:36.940944+00:00"
+    },
+    {
+      "id": 38875,
+      "organization_name": "株式会社ニコシス",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "エンジニア",
+      "start_year": 2020,
+      "start_month": 3,
+      "end_year": 2020,
+      "end_month": 4,
+      "description": "社内リソース管理システム\n\n●プロジェクト概要\n　○社内リソース管理システムの開発\n\n●チーム\n　○3名\n\n●担当業務\n　○開発基盤の構築\n\n●環境\n　○言語\n　　■ TypeScript\n　○フレームワーク\n　　■NestJS\n　○DB\n　　■MySQL5.7(AWS RDS)\n　　■AWS DynamoDB\n　○周辺技術\n　　■インフラ\n　　　■AWS\n　　　　■S3, CloudFormation, CloudFront, Route53, Lambda, ECR, ECS, Route53,\nCertificationManager\n　　■プロジェクト管理\n　　　■BackLog, Github\n　　■CI/CD\n　　　■Github Actions",
+      "updated_at": "2025-08-04T23:43:36.934297+00:00"
+    },
+    {
+      "id": 38874,
+      "organization_name": "株式会社ニコシス",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "エンジニア",
+      "start_year": 2020,
+      "start_month": 4,
+      "end_year": 2020,
+      "end_month": 5,
+      "description": "IoT設備監視システム\n\n●プロジェクト概要\n　○IoT設備監視システムの開発\n\n●担当業務\n　○RestAPIの追加開発\n　○インフラ環境の整備、コード化\n\n●チーム\n　○10名\n\n●環境\n　○言語\n　　■ TypeScript(ES2019)\n　○DB\n　　■ PostgreSQL11\n　　■ AWS DynamoDB\n　○周辺技術\n　　■インフラ\n　　　■ AWS\n　　　　■ S3, CloudFormation, Lambda, ApiGateway, Cognito, ECR, ECS, SecretsManager,SQS\n　　■プロジェクト管理\n　　　■Bitbucket, Jira\n　　　■CI/CD\n　　　　■Bitbucket Pipelines",
+      "updated_at": "2025-08-04T23:43:36.928271+00:00"
+    },
+    {
+      "id": 38873,
+      "organization_name": "株式会社ニコシス",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "エンジニア",
+      "start_year": 2020,
+      "start_month": 5,
+      "end_year": 2020,
+      "end_month": 8,
+      "description": "店舗業務効率化システム\n\n●プロジェクト概要\n　○店舗業務効率化システム\n●担当業務\n　○バックエンドRestAPIの開発\n　○インフラ環境の整理\n●チーム\n　○全体\n　　■30名ほど\n　○バックエンドチーム\n　　■6名ほど\n●環境\n　○言語\n　　■Typescript(ES2019)\n　○フレームワーク\n　　■NestJS\n　○DB\n　　■PostgreSQL11\n　○周辺技術\n　　■インフラ\n　　　■AWS\n　　　　■S3, CloudFormation, ECR, ECS, SecretsManager\n　　■プロジェクト管理\n　　　■Github\n　　■CI/CD\n　　　■Github Actions",
+      "updated_at": "2025-08-04T23:43:36.921422+00:00"
+    },
+    {
+      "id": 35740,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": true,
+      "client_company_name": "フリーランス",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2021,
+      "start_month": 2,
+      "end_year": 2021,
+      "end_month": 7,
+      "description": "週2稼働\nAWS / Docker / Python / TypeScript / Vue",
+      "updated_at": "2025-08-04T23:43:36.906799+00:00"
+    },
+    {
+      "id": 35739,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": true,
+      "client_company_name": "フリーランス",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2021,
+      "start_month": 7,
+      "end_year": 2022,
+      "end_month": 1,
+      "description": "フルタイム業務委託\nLAPRAS, LAPRAS SCOUT のバックエンド及びフロントエンド開発。",
+      "updated_at": "2025-08-04T23:43:36.899209+00:00"
+    },
+    {
+      "id": 28864,
+      "organization_name": "個人事業主",
+      "is_client_work": true,
+      "client_company_name": "株式会社ニコシス",
+      "positions": [
+        {
+          "id": 6,
+          "job_position_name": "Android アプリエンジニア"
+        }
+      ],
+      "position_name": "Androidエンジニア",
+      "start_year": 2021,
+      "start_month": 1,
+      "end_year": 2021,
+      "end_month": 6,
+      "description": "Kotlin / Android\n\n店舗券売機システム\n\n●プロジェクト概要\n　○店舗券売機システム開発\n\n●担当業務\n　○要件定義(ハード、OS仕様調査含む)\n　○基本設計(画面設計含む)\n　○詳細設計\n\n●チーム\n　○10名ほど\n\n●環境\n　○ハード\n　　■Thinker Board S\n　　■独自OS(Androidベース)搭載端末\n　○言語\n　　■Kotlin(Android)\n　○周辺技術\n　　■インフラ\n　　　■AWS\n　　■UIデザイン\n　　　■Figma\n　　■プロジェクト管理\n　　　■GitLab\n　　■CI/CD\n　　　■GitLab",
+      "updated_at": "2025-08-04T23:43:36.912527+00:00"
+    },
+    {
+      "id": 21993,
+      "organization_name": "LAPRAS株式会社",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "ソフトウェアエンジニア",
+      "start_year": 2022,
+      "start_month": 1,
+      "end_year": 2022,
+      "end_month": 10,
+      "description": "AWS / Docker / Python / Django / TypeScript / Vue\n主にプロダクトのスクラムチームで活動",
+      "updated_at": "2025-08-04T23:43:36.890352+00:00"
+    },
+    {
+      "id": 21303,
+      "organization_name": "株式会社ニコシス",
+      "is_client_work": false,
+      "client_company_name": "",
+      "positions": [
+        {
+          "id": 3,
+          "job_position_name": "Webアプリケーションエンジニア"
+        }
+      ],
+      "position_name": "WEBエンジニア",
+      "start_year": 2019,
+      "start_month": 5,
+      "end_year": 2020,
+      "end_month": 12,
+      "description": "新規機能開発 / AWS / Docker / TypeScript / Node.js /  Vue.js",
+      "updated_at": "2025-08-04T23:43:36.948961+00:00"
+    }
+  ]
+}
