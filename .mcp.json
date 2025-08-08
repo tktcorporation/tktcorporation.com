@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "lapras": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@lapras-inc/lapras-mcp-server"],
+      "env": {
+        "LAPRAS_API_KEY": "${LAPRAS_API_KEY}"
+      }
+    }
+  }
+}
