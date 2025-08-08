@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tkt - Web Application Developer</title>
+    <meta name="description" content="Hi, I'm tkt. I'm a web application developer from Japan." />
+    <link rel="icon" href="/favicon.ico" />
+    <script>
+      // GitHub Pages SPA redirect workaround
+      const pathSegmentsToKeep = 0;
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+      
+      // Redirect to index.html with the path as a query parameter
+      window.location.replace(
+        window.location.protocol + '//' + 
+        window.location.hostname + 
+        (window.location.port ? ':' + window.location.port : '') +
+        path.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/' +
+        '?redirect=' + encodeURIComponent(path.slice(1) + search + hash)
+      );
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
