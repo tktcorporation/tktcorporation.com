@@ -1,7 +1,7 @@
+import { copyFileSync } from "node:fs";
+import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import { copyFileSync } from "fs";
-import { resolve } from "path";
 
 export default defineConfig({
   plugins: [
@@ -12,7 +12,7 @@ export default defineConfig({
         // Copy 404.html to dist after build
         copyFileSync(
           resolve(__dirname, "public/404.html"),
-          resolve(__dirname, "dist/404.html"),
+          resolve(__dirname, "dist/404.html")
         );
       },
     },
