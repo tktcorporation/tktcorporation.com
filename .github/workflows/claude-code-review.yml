@@ -2,21 +2,23 @@ name: Claude Code Review
 
 on:
   pull_request:
-    types: [opened, synchronize]
-    # Optional: Only run on specific file changes
-    # paths:
-    #   - "src/**/*.ts"
-    #   - "src/**/*.tsx"
-    #   - "src/**/*.js"
-    #   - "src/**/*.jsx"
+    types: [opened]  # Only run on initial PR creation
+  workflow_dispatch:  # Allow manual triggering
+  issue_comment:
+    types: [created]
 
 jobs:
   claude-review:
-    # Optional: Filter by PR author
-    # if: |
-    #   github.event.pull_request.user.login == 'external-contributor' ||
-    #   github.event.pull_request.user.login == 'new-developer' ||
-    #   github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
+    # Run on:
+    # 1. Initial PR creation (opened event)
+    # 2. Manual workflow dispatch
+    # 3. When someone comments "/claude-review" in a PR
+    if: |
+      github.event_name == 'pull_request' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issue_comment' && 
+       github.event.issue.pull_request && 
+       contains(github.event.comment.body, '/claude-review'))
     
     runs-on: ubuntu-latest
     permissions:
@@ -50,6 +52,9 @@ jobs:
             - Test coverage
             
             Be constructive and helpful in your feedback.
+            
+            Note: This automatic review runs only on new PRs. 
+            To trigger another review, comment "/claude-review" on the PR.
 
           # Optional: Use sticky comments to make Claude reuse the same comment on subsequent pushes to the same PR
           # use_sticky_comment: true
