@@ -1,6 +1,6 @@
 FROM node:20.8.1-bullseye-slim
 
-EXPOSE 3000
+EXPOSE 5173
 
 ENV LC_ALL=C.UTF-8
 
@@ -22,5 +22,8 @@ RUN groupadd -g $GID -o $UNAME
 RUN useradd -m -u $UID -g $GID -G sudo -o -s /bin/bash $UNAME
 RUN echo "$UNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Create app directory and set ownership
+RUN mkdir -p /app && chown -R $UNAME:$UNAME /app
 
 USER $UNAME
