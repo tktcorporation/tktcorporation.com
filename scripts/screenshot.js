@@ -1,6 +1,10 @@
-const httpServer = require("http-server");
-const { chromium } = require("playwright");
-const path = require("node:path");
+import httpServer from "http-server";
+import { chromium } from "playwright";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const outDir = path.join(__dirname, "..", "dist");
 const output = path.join(__dirname, "..", "pr-screenshot.jpg");
