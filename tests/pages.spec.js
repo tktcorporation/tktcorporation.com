@@ -164,6 +164,15 @@ test.describe("Page Navigation", () => {
   test("should navigate between pages without errors", async ({
     page: playwright,
   }) => {
+    // エラーをキャッチするためのリスナーを設定（テスト全体で一度だけ設定）
+    const errors = [];
+
+    const errorHandler = (error) => {
+      errors.push(error);
+    };
+
+    playwright.on("pageerror", errorHandler);
+
     // ホームページから開始
     await playwright.goto("/");
 
@@ -179,18 +188,20 @@ test.describe("Page Navigation", () => {
         await linkElement.click();
         await playwright.waitForURL(`**${link.expectedPath}`);
 
-        // エラーがないかチェック
-        const errors = [];
-        playwright.on("pageerror", (error) => {
-          errors.push(error);
-        });
-
-        expect(errors).toHaveLength(0);
         console.log(`✅ Successfully navigated to ${link.expectedPath}`);
 
         // ホームに戻る
         await playwright.goto("/");
       }
     }
+
+    // エラーリスナーをクリーンアップ
+    playwright.off("pageerror", errorHandler);
+
+    // ナビゲーション中にエラーがないかチェック
+    expect(
+      errors,
+      `Navigation errors found: ${errors.map((e) => e.message).join(", ")}`
+    ).toHaveLength(0);
   });
 });
