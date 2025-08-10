@@ -1,5 +1,5 @@
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import experiencesData from "../data/experiences.json";
 
@@ -28,21 +28,7 @@ function Resume() {
   const [skills, setSkills] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const sortedExperiences = [...experiencesData.experience_list].sort(
-      (a, b) => {
-        const aDate = a.start_year * 12 + a.start_month;
-        const bDate = b.start_year * 12 + b.start_month;
-        return bDate - aDate;
-      }
-    );
-
-    setExperiences(sortedExperiences);
-    setSkills(extractSkills(sortedExperiences));
-    setLoading(false);
-  }, []);
-
-  const extractSkills = (exps: Experience[]): string[] => {
+  const extractSkills = useCallback((exps: Experience[]): string[] => {
     const skillSet = new Set<string>();
     const techRegex =
       /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
@@ -59,7 +45,21 @@ function Resume() {
     }
 
     return Array.from(skillSet);
-  };
+  }, []);
+
+  useEffect(() => {
+    const sortedExperiences = [...experiencesData.experience_list].sort(
+      (a, b) => {
+        const aDate = a.start_year * 12 + a.start_month;
+        const bDate = b.start_year * 12 + b.start_month;
+        return bDate - aDate;
+      }
+    );
+
+    setExperiences(sortedExperiences);
+    setSkills(extractSkills(sortedExperiences));
+    setLoading(false);
+  }, [extractSkills]);
 
   const formatDate = (
     year: number,
