@@ -124,11 +124,11 @@ function Resume() {
         <div className="container mx-auto flex justify-between items-center">
           <Link
             to="/"
-            className="text-xl font-bold hover:text-purple-400 transition-colors flex items-center gap-2"
+            className="text-lg font-bold hover:text-purple-400 transition-colors flex items-center gap-2"
           >
             <span>←</span> Back to Home
           </Link>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Resume
           </h1>
         </div>
@@ -137,19 +137,19 @@ function Resume() {
       <main className="container mx-auto px-4 py-12 flex-grow">
         <div className="max-w-5xl mx-auto">
           <header className="mb-12 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
               tkt
             </h1>
-            <p className="text-2xl text-purple-300 animate-fade-in animation-delay-100">
+            <p className="text-xl text-purple-300 animate-fade-in animation-delay-100">
               Web Application Developer
             </p>
-            <p className="text-lg text-slate-400 mt-2 animate-fade-in animation-delay-200">
+            <p className="text-base text-slate-400 mt-2 animate-fade-in animation-delay-200">
               Japan 🇯🇵
             </p>
           </header>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Professional Experience
             </h2>
 
@@ -179,10 +179,10 @@ function Resume() {
                       >
                         <div className="flex flex-col md:flex-row md:justify-between mb-4">
                           <div>
-                            <h3 className="text-xl font-bold text-white">
+                            <h3 className="text-lg font-bold text-white">
                               {exp.position_name}
                             </h3>
-                            <p className="text-lg text-purple-300">
+                            <p className="text-base text-purple-300">
                               {exp.organization_name}
                               {exp.is_client_work &&
                                 exp.client_company_name && (
@@ -225,7 +225,7 @@ function Resume() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
             <div className="flex flex-wrap gap-3">
