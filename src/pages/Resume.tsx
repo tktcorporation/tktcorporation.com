@@ -3,6 +3,11 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import experiencesData from "../data/experiences.json";
 
+// Constants
+const TECH_REGEX = /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
+const MAX_CONSECUTIVE_GAP = 1; // Maximum gap allowed between periods to be considered consecutive (1 month)
+const PROGRESS_BAR_MAX_MONTHS = 24; // 2 years maximum for progress bar calculation
+
 interface Position {
   id: number;
   job_position_name: string;
@@ -54,8 +59,7 @@ function Resume() {
         string,
         Array<{ start: number; end: number }>
       > = new Map();
-      const techRegex =
-        /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
+      // Use the global tech regex pattern
 
       const currentDate = new Date();
       const currentYearMonth =
@@ -63,11 +67,11 @@ function Resume() {
 
       for (const exp of exps) {
         if (exp.description) {
-          const matches = exp.description.match(techRegex);
+          const matches = exp.description.match(TECH_REGEX);
           if (matches) {
             const startMonth = exp.start_year * 12 + exp.start_month;
             const endMonth = exp.end_year
-              ? exp.end_year * 12 + (exp.end_month || 12)
+              ? exp.end_year * 12 + (exp.end_month ?? 12)
               : currentYearMonth;
 
             const uniqueSkills = Array.from(
@@ -170,8 +174,7 @@ function Resume() {
       }
 
       const groupedResults: GroupedExperience[] = [];
-      // Maximum gap allowed between periods to be considered consecutive (1 month)
-      const MAX_CONSECUTIVE_GAP = 1;
+      // Use the global constant for consecutive gap
 
       for (const [_key, groupExps] of Object.entries(groups)) {
         // 各グループ内で日付順にソート
@@ -201,7 +204,7 @@ function Resume() {
             isConsecutive = false;
           } else {
             // Previous period has ended - check if current period starts within gap tolerance
-            const prevEndDate = prev.end_year * 12 + (prev.end_month || 0);
+            const prevEndDate = prev.end_year * 12 + (prev.end_month ?? 12);
             const gap = currentStartDate - prevEndDate;
 
             // Only consider consecutive if current period starts after previous ends
@@ -266,10 +269,7 @@ function Resume() {
 
   const extractTechTags = useCallback((description: string): string[] => {
     if (!description) return [];
-    const techRegex =
-      /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
-
-    const matches = description.match(techRegex);
+    const matches = description.match(TECH_REGEX);
     if (matches) {
       return Array.from(
         new Set(
@@ -405,12 +405,12 @@ function Resume() {
                       <div
                         className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-700"
                         style={{
-                          width: `${Math.min(100, ((skill.years * 12 + skill.months) / 24) * 100)}%`,
+                          width: `${Math.min(100, ((skill.years * 12 + skill.months) / PROGRESS_BAR_MAX_MONTHS) * 100)}%`,
                         }}
                       />
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
-                      {skill.years * 12 + skill.months > 24
+                      {skill.years * 12 + skill.months > PROGRESS_BAR_MAX_MONTHS
                         ? "2年以上"
                         : `合計${skill.years * 12 + skill.months}ヶ月`}
                     </p>
