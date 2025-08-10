@@ -61,6 +61,18 @@ function Resume() {
     return Array.from(skillSet);
   }, []);
 
+  /**
+   * Groups experiences by organization and consecutive time periods.
+   *
+   * This function performs the following steps:
+   * 1. Groups experiences by organization name, client work status, and client company name
+   * 2. Within each organization group, sorts experiences by start date
+   * 3. Identifies consecutive periods (max 1 month gap) and groups them together
+   * 4. Handles ongoing employment without creating overlapping periods
+   *
+   * @param exps - Array of Experience objects to group
+   * @returns Array of GroupedExperience objects sorted by start date (newest first)
+   */
   const groupExperiences = useCallback(
     (exps: Experience[]): GroupedExperience[] => {
       const groups: { [key: string]: Experience[] } = {};
@@ -75,6 +87,8 @@ function Resume() {
       }
 
       const groupedResults: GroupedExperience[] = [];
+      // Maximum gap allowed between periods to be considered consecutive (1 month)
+      const MAX_CONSECUTIVE_GAP = 1;
 
       for (const [_key, groupExps] of Object.entries(groups)) {
         // 各グループ内で日付順にソート
@@ -92,17 +106,25 @@ function Resume() {
           const prev = currentSubGroup[currentSubGroup.length - 1];
           const current = groupExps[i];
 
-          const prevEndDate = prev.end_year
-            ? prev.end_year * 12 + (prev.end_month || 0)
-            : Infinity;
           const currentStartDate =
             current.start_year * 12 + current.start_month;
 
-          // 前の期間の終了と現在の期間の開始が連続している（1ヶ月以内の差）
-          const isConsecutive =
-            Math.abs(prevEndDate - currentStartDate) <= 1 ||
-            (prev.end_year === null &&
-              currentStartDate >= prev.start_year * 12 + prev.start_month);
+          // Calculate if periods are consecutive
+          let isConsecutive = false;
+
+          if (prev.end_year === null) {
+            // Previous period is ongoing - we don't group overlapping periods
+            // so any period that starts while another is ongoing is not consecutive
+            isConsecutive = false;
+          } else {
+            // Previous period has ended - check if current period starts within gap tolerance
+            const prevEndDate = prev.end_year * 12 + (prev.end_month || 0);
+            const gap = currentStartDate - prevEndDate;
+
+            // Only consider consecutive if current period starts after previous ends
+            // and within the allowed gap (no overlapping periods)
+            isConsecutive = gap >= 0 && gap <= MAX_CONSECUTIVE_GAP;
+          }
 
           if (isConsecutive) {
             currentSubGroup.push(current);
