@@ -3,6 +3,12 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import experiencesData from "../data/experiences.json";
 
+// Constants
+const TECH_REGEX =
+  /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
+const MAX_CONSECUTIVE_GAP = 1; // Maximum gap allowed between periods to be considered consecutive (1 month)
+const PROGRESS_BAR_MAX_MONTHS = 24; // 2 years maximum for progress bar calculation
+
 interface Position {
   id: number;
   job_position_name: string;
@@ -34,32 +40,114 @@ interface GroupedExperience {
   experiences: Experience[];
 }
 
+interface SkillWithYears {
+  name: string;
+  years: number;
+  months: number;
+}
+
 function Resume() {
   const [_experiences, setExperiences] = useState<Experience[]>([]);
   const [groupedExperiences, setGroupedExperiences] = useState<
     GroupedExperience[]
   >([]);
-  const [skills, setSkills] = useState<string[]>([]);
+  const [skillsWithYears, setSkillsWithYears] = useState<SkillWithYears[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const extractSkills = useCallback((exps: Experience[]): string[] => {
-    const skillSet = new Set<string>();
-    const techRegex =
-      /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
+  const calculateSkillsWithYears = useCallback(
+    (exps: Experience[]): SkillWithYears[] => {
+      const skillPeriods: Map<
+        string,
+        Array<{ start: number; end: number }>
+      > = new Map();
+      // Use the global tech regex pattern
 
-    for (const exp of exps) {
-      if (exp.description) {
-        const matches = exp.description.match(techRegex);
-        if (matches) {
-          for (const skill of matches) {
-            skillSet.add(skill);
+      const currentDate = new Date();
+      const currentYearMonth =
+        currentDate.getFullYear() * 12 + (currentDate.getMonth() + 1);
+
+      for (const exp of exps) {
+        if (exp.description) {
+          const matches = exp.description.match(TECH_REGEX);
+          if (matches) {
+            const startMonth = exp.start_year * 12 + exp.start_month;
+            const endMonth = exp.end_year
+              ? exp.end_year * 12 + (exp.end_month ?? 12)
+              : currentYearMonth;
+
+            const uniqueSkills = Array.from(
+              new Set(matches.map((s) => s.toLowerCase()))
+            );
+
+            for (const skill of uniqueSkills) {
+              const normalizedSkill =
+                skill.charAt(0).toUpperCase() + skill.slice(1).toLowerCase();
+              if (!skillPeriods.has(normalizedSkill)) {
+                skillPeriods.set(normalizedSkill, []);
+              }
+              const periods = skillPeriods.get(normalizedSkill);
+              if (periods) {
+                periods.push({
+                  start: startMonth,
+                  end: endMonth,
+                });
+              }
+            }
           }
         }
       }
-    }
 
-    return Array.from(skillSet);
-  }, []);
+      // Merge overlapping periods and calculate total months for each skill
+      const skillsWithYears: SkillWithYears[] = [];
+
+      for (const [skillName, periods] of skillPeriods) {
+        // Sort periods by start date
+        periods.sort((a, b) => a.start - b.start);
+
+        // Merge overlapping periods
+        const mergedPeriods: Array<{ start: number; end: number }> = [];
+        let current = periods[0];
+
+        for (let i = 1; i < periods.length; i++) {
+          const next = periods[i];
+          if (next.start <= current.end) {
+            // Overlapping or adjacent, merge
+            current.end = Math.max(current.end, next.end);
+          } else {
+            // No overlap, add current and move to next
+            mergedPeriods.push(current);
+            current = next;
+          }
+        }
+        mergedPeriods.push(current);
+
+        // Calculate total months
+        const totalMonths = mergedPeriods.reduce((sum, period) => {
+          return sum + (period.end - period.start);
+        }, 0);
+
+        const years = Math.floor(totalMonths / 12);
+        const months = totalMonths % 12;
+
+        skillsWithYears.push({
+          name: skillName,
+          years,
+          months,
+        });
+      }
+
+      // Sort by total experience (years + months), then by name
+      return skillsWithYears.sort((a, b) => {
+        const totalA = a.years * 12 + a.months;
+        const totalB = b.years * 12 + b.months;
+        if (totalB !== totalA) {
+          return totalB - totalA; // Descending by total experience
+        }
+        return a.name.localeCompare(b.name); // Ascending by name
+      });
+    },
+    []
+  );
 
   /**
    * Groups experiences by organization and consecutive time periods.
@@ -87,8 +175,7 @@ function Resume() {
       }
 
       const groupedResults: GroupedExperience[] = [];
-      // Maximum gap allowed between periods to be considered consecutive (1 month)
-      const MAX_CONSECUTIVE_GAP = 1;
+      // Use the global constant for consecutive gap
 
       for (const [_key, groupExps] of Object.entries(groups)) {
         // 各グループ内で日付順にソート
@@ -118,7 +205,7 @@ function Resume() {
             isConsecutive = false;
           } else {
             // Previous period has ended - check if current period starts within gap tolerance
-            const prevEndDate = prev.end_year * 12 + (prev.end_month || 0);
+            const prevEndDate = prev.end_year * 12 + (prev.end_month ?? 12);
             const gap = currentStartDate - prevEndDate;
 
             // Only consider consecutive if current period starts after previous ends
@@ -173,12 +260,28 @@ function Resume() {
     );
 
     const grouped = groupExperiences(sortedExperiences);
+    const skills = calculateSkillsWithYears(sortedExperiences);
 
     setExperiences(sortedExperiences);
     setGroupedExperiences(grouped);
-    setSkills(extractSkills(sortedExperiences));
+    setSkillsWithYears(skills);
     setLoading(false);
-  }, [extractSkills, groupExperiences]);
+  }, [calculateSkillsWithYears, groupExperiences]);
+
+  const extractTechTags = useCallback((description: string): string[] => {
+    if (!description) return [];
+    const matches = description.match(TECH_REGEX);
+    if (matches) {
+      return Array.from(
+        new Set(
+          matches.map(
+            (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
+          )
+        )
+      );
+    }
+    return [];
+  }, []);
 
   const formatDate = (
     year: number,
@@ -266,6 +369,57 @@ function Resume() {
               Japan 🇯🇵
             </p>
           </header>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Skills & Technologies
+            </h2>
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div
+                    key={i}
+                    className="rounded-lg p-4 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
+                  >
+                    <div className="h-5 bg-white/10 rounded w-2/3 mb-2" />
+                    <div className="h-4 bg-white/10 rounded w-1/3" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {skillsWithYears.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="rounded-lg p-4 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1"
+                  >
+                    <div className="flex justify-between items-center mb-2">
+                      <h3 className="font-semibold text-purple-200">
+                        {skill.name}
+                      </h3>
+                      <span className="px-2 py-1 text-xs bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-purple-200 rounded-full border border-purple-500/40">
+                        {skill.years > 0 && `${skill.years}年`}
+                        {skill.months > 0 && `${skill.months}ヶ月`}
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-700 rounded-full h-2">
+                      <div
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-700"
+                        style={{
+                          width: `${Math.min(100, ((skill.years * 12 + skill.months) / PROGRESS_BAR_MAX_MONTHS) * 100)}%`,
+                        }}
+                      />
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      {skill.years * 12 + skill.months > PROGRESS_BAR_MAX_MONTHS
+                        ? "2年以上"
+                        : `合計${skill.years * 12 + skill.months}ヶ月`}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
 
           <section className="mb-12">
             <h2 className="text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -361,9 +515,23 @@ function Resume() {
                                   </p>
                                 </div>
                                 {exp.description && (
-                                  <div className="text-slate-300 space-y-1 text-sm">
-                                    {formatDescription(exp.description)}
-                                  </div>
+                                  <>
+                                    <div className="flex flex-wrap gap-2 mb-3">
+                                      {extractTechTags(exp.description).map(
+                                        (tech) => (
+                                          <span
+                                            key={tech}
+                                            className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30"
+                                          >
+                                            {tech}
+                                          </span>
+                                        )
+                                      )}
+                                    </div>
+                                    <div className="text-slate-300 space-y-1 text-sm">
+                                      {formatDescription(exp.description)}
+                                    </div>
+                                  </>
                                 )}
                               </div>
                             ))}
@@ -374,11 +542,25 @@ function Resume() {
                               {group.experiences[0].position_name}
                             </h4>
                             {group.experiences[0].description && (
-                              <div className="text-slate-300 space-y-1 text-sm">
-                                {formatDescription(
-                                  group.experiences[0].description
-                                )}
-                              </div>
+                              <>
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                  {extractTechTags(
+                                    group.experiences[0].description
+                                  ).map((tech) => (
+                                    <span
+                                      key={tech}
+                                      className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30"
+                                    >
+                                      {tech}
+                                    </span>
+                                  ))}
+                                </div>
+                                <div className="text-slate-300 space-y-1 text-sm">
+                                  {formatDescription(
+                                    group.experiences[0].description
+                                  )}
+                                </div>
+                              </>
                             )}
                           </>
                         )}
@@ -388,22 +570,6 @@ function Resume() {
                 </div>
               </div>
             )}
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Skills & Technologies
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-4 py-2 rounded-full text-sm text-purple-200 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 backdrop-blur-lg hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 hover:scale-105"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
           </section>
         </div>
       </main>
