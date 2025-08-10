@@ -56,12 +56,12 @@ function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-950 text-slate-200">
       <main className="container px-4 py-8">
         <div>
-          <h1 className="text-6xl font-bold text-white">Hi 👋, I'm tkt.</h1>
-          <h3 className="text-3xl mt-16 text-slate-300">
+          <h1 className="text-4xl font-bold text-white">Hi 👋, I'm tkt.</h1>
+          <h3 className="text-xl mt-16 text-slate-300">
             I'm a web application developer from Japan.
           </h3>
 
-          <h3 className="text-3xl mt-16 text-slate-200">Connect with me:</h3>
+          <h3 className="text-xl mt-16 text-slate-200">Connect with me:</h3>
 
           <div className="flex flex-row mt-8 flex-wrap">
             {socialLinks.map((link) => (
@@ -87,7 +87,7 @@ function Home() {
             ))}
           </div>
 
-          <h3 className="text-3xl mt-16 text-slate-200">Support:</h3>
+          <h3 className="text-xl mt-16 text-slate-200">Support:</h3>
           <div className="mt-8">
             <a
               href="https://www.buymeacoffee.com/tktcorporation"
