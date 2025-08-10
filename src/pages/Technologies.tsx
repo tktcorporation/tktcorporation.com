@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./Technologies.css";
 
 interface GitHubRepository {
   id: number;
@@ -14,6 +15,8 @@ interface GitHubRepository {
   languages: Array<{ name: string; bytes: number }>;
   contributions: number;
   contributions_url: string;
+  created_at?: string;
+  pushed_at?: string;
 }
 
 interface QiitaArticle {
@@ -57,6 +60,17 @@ interface TechnologyTimeline {
   months: number;
 }
 
+// 定数の定義
+const MONTHS_PER_YEAR = 12;
+const MAX_EXPERIENCE_MONTHS = 24;
+const DEFAULT_PROJECT_DURATION_MONTHS = 3;
+const LAPRAS_API_URL = "https://lapras.com/public/tktcorporation.json";
+
+// エラータイプの判定
+const isNetworkError = (error: unknown): boolean => {
+  return error instanceof TypeError && error.message.includes("fetch");
+};
+
 function Technologies() {
   const [laprasData, setLaprasData] = useState<LaprasData | null>(null);
   const [technologies, setTechnologies] = useState<TechnologyTimeline[]>([]);
@@ -66,9 +80,13 @@ function Technologies() {
   const extractTechnologiesFromRepositories = useCallback(
     (repos: GitHubRepository[]): TechnologyTimeline[] => {
       const techMap = new Map<string, TechnologyTimeline>();
+      const currentDate = new Date();
 
       for (const repo of repos) {
-        const repoDate = new Date();
+        // 実際のリポジトリ作成日時を使用、フォールバックで現在日時
+        const repositoryDate = new Date(
+          repo.created_at || repo.pushed_at || currentDate
+        );
         const languages = repo.languages || [];
 
         if (repo.language) {
@@ -90,7 +108,7 @@ function Technologies() {
           const tech = techMap.get(techName);
           if (!tech) continue;
           tech.periods.push({
-            start: repoDate,
+            start: repositoryDate,
             end: null,
             source: "repository",
             project: repo.title,
@@ -99,16 +117,22 @@ function Technologies() {
         }
       }
 
+      // 実際の経験期間に基づく計算
       for (const tech of techMap.values()) {
-        const totalMonths = tech.periods.length * 6;
-        tech.totalMonths = totalMonths;
-        tech.years = Math.floor(totalMonths / 12);
-        tech.months = totalMonths % 12;
+        // プロジェクト数ベースの概算（プロジェクトあたりデフォルト3ヶ月）
+        const estimatedTotalMonths = Math.min(
+          tech.periods.length * DEFAULT_PROJECT_DURATION_MONTHS,
+          MAX_EXPERIENCE_MONTHS
+        );
+
+        tech.totalMonths = estimatedTotalMonths;
+        tech.years = Math.floor(estimatedTotalMonths / MONTHS_PER_YEAR);
+        tech.months = estimatedTotalMonths % MONTHS_PER_YEAR;
       }
 
       return Array.from(techMap.values()).sort((a, b) => {
-        const totalA = a.years * 12 + a.months;
-        const totalB = b.years * 12 + b.months;
+        const totalA = a.years * MONTHS_PER_YEAR + a.months;
+        const totalB = b.years * MONTHS_PER_YEAR + b.months;
         if (totalB !== totalA) {
           return totalB - totalA;
         }
@@ -118,32 +142,44 @@ function Technologies() {
     []
   );
 
-  useEffect(() => {
-    const fetchLaprasData = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          "https://lapras.com/public/tktcorporation.json"
+  const fetchLaprasData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(LAPRAS_API_URL);
+      if (!response.ok) {
+        throw new Error(
+          `サーバーエラー: ${response.status} ${response.statusText}`
         );
-        if (!response.ok) {
-          throw new Error("Failed to fetch LAPRAS data");
-        }
-        const data: LaprasData = await response.json();
-        setLaprasData(data);
-
-        const techTimeline = extractTechnologiesFromRepositories(
-          data.github_repositories
-        );
-        setTechnologies(techTimeline);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setLoading(false);
       }
-    };
+      const data: LaprasData = await response.json();
+      setLaprasData(data);
 
-    fetchLaprasData();
+      const techTimeline = extractTechnologiesFromRepositories(
+        data.github_repositories
+      );
+      setTechnologies(techTimeline);
+    } catch (err) {
+      if (isNetworkError(err)) {
+        setError("ネットワークエラー: インターネット接続を確認してください");
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("不明なエラーが発生しました");
+      }
+    } finally {
+      setLoading(false);
+    }
   }, [extractTechnologiesFromRepositories]);
+
+  const handleRetry = useCallback(() => {
+    setError(null);
+    setLoading(true);
+    fetchLaprasData();
+  }, [fetchLaprasData]);
+
+  useEffect(() => {
+    fetchLaprasData();
+  }, [fetchLaprasData]);
 
   const formatDate = (date: Date): string => {
     return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}`;
@@ -178,22 +214,27 @@ function Technologies() {
 
           {loading && (
             <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-400" />
-              <p className="mt-4 text-slate-400">
-                Loading technologies data...
+              <div
+                className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-400"
+                role="status"
+                aria-label="データを読み込み中"
+              />
+              <p className="mt-4 text-slate-400" aria-live="polite">
+                技術データを読み込み中...
               </p>
             </div>
           )}
 
           {error && (
-            <div className="text-center py-12">
-              <p className="text-red-400 mb-4">Error: {error}</p>
+            <div className="text-center py-12" role="alert">
+              <p className="text-red-400 mb-4">エラー: {error}</p>
               <button
                 type="button"
-                onClick={() => window.location.reload()}
+                onClick={handleRetry}
                 className="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                aria-label="データの再読み込み"
               >
-                Retry
+                再試行
               </button>
             </div>
           )}
@@ -218,20 +259,35 @@ function Technologies() {
                         {tech.months > 0 && `${tech.months}ヶ月`}
                       </span>
                     </div>
-                    <div className="w-full bg-slate-700 rounded-full h-2 mb-2">
+                    <div
+                      className="w-full bg-slate-700 rounded-full h-2 mb-2"
+                      role="progressbar"
+                      aria-label={`${tech.name}の経験レベル`}
+                    >
                       <div
                         className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-700"
                         style={{
-                          width: `${Math.min(100, (tech.totalMonths / 24) * 100)}%`,
+                          width: `${Math.min(100, (tech.totalMonths / MAX_EXPERIENCE_MONTHS) * 100)}%`,
                         }}
                       />
+                    </div>
+                    <div className="text-xs text-slate-300 mb-1">
+                      経験レベル:{" "}
+                      {tech.totalMonths < 6
+                        ? "初級"
+                        : tech.totalMonths < 18
+                          ? "中級"
+                          : "上級"}
                     </div>
                     <p className="text-xs text-slate-400 mb-2">
                       プロジェクト数: {tech.periods.length}個
                     </p>
 
                     <details className="mt-2">
-                      <summary className="text-xs text-purple-300 cursor-pointer hover:text-purple-200 transition-colors">
+                      <summary
+                        className="text-xs text-purple-300 cursor-pointer hover:text-purple-200 transition-colors"
+                        aria-label={`${tech.name}の使用プロジェクト詳細を表示`}
+                      >
                         使用プロジェクト ({tech.periods.length})
                       </summary>
                       <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
@@ -420,28 +476,6 @@ function Technologies() {
           </a>
         </p>
       </footer>
-
-      <style>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.6s ease-out forwards;
-        }
-        
-        .animation-delay-100 {
-          animation-delay: 0.1s;
-          opacity: 0;
-        }
-      `}</style>
     </div>
   );
 }
