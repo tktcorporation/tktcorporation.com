@@ -12,14 +12,22 @@
     <script>
       // Handle redirect from 404.html for GitHub Pages SPA
       (function() {
-        var l = window.location;
-        if (l.search[1] === '/') {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+        try {
+          var l = window.location;
+          if (l.search[1] === '/') {
+            var decoded = l.search.slice(1).split('&').map(function(s) { 
+              return s.replace(/~and~/g, '&')
+            }).join('?');
+            
+            // Validate decoded URL format before applying
+            var newPath = l.pathname.slice(0, -1) + decoded + l.hash;
+            if (newPath && newPath.length > 0) {
+              window.history.replaceState(null, null, newPath);
+            }
+          }
+        } catch (e) {
+          // Silently fail if URL decoding fails - let React Router handle the original URL
+          console.warn('SPA redirect failed:', e);
         }
       })();
     </script>
