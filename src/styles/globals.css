@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@config "../../tailwind.config.js";
 
 html,
 body {
@@ -16,11 +16,10 @@ body {
     Ubuntu,
     Cantarell,
     Fira Sans,
-    Droid Sans,
     Helvetica Neue,
     sans-serif;
-  color: rgb(226 232 240);
-  background: linear-gradient(to bottom right, #1e293b, #0f172a);
+  color: rgb(241 245 249);
+  background: linear-gradient(to bottom right, #1e40af, #9333ea, #0f172a);
 }
 
 a {

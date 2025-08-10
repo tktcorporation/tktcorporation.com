@@ -2,32 +2,43 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export && next-image-export-optimizer",
-    "start": "next start",
-    "lint": "next lint",
-    "format": "prettier -w --write .",
-    "screenshot": "node scripts/screenshot.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "biome check . && tsc --noEmit && npm run lint:actions",
+    "lint:biome": "biome check .",
+    "lint:actions": "node-actionlint",
+    "format": "biome format --write .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "tsc",
+    "screenshot": "tsx scripts/screenshot.ts",
+    "test": "tsx scripts/test-display.ts"
   },
   "dependencies": {
-    "firebase": "9.23.0",
-    "next": "13.5.6",
-    "next-image-export-optimizer": "1.10.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-markdown": "8.0.7"
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^5.0.0",
+    "firebase": "12.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.8.0"
   },
   "devDependencies": {
-    "@types/node": "20.9.1",
-    "@types/react": "18.2.37",
-    "@types/react-dom": "18.2.16",
-    "autoprefixer": "10.4.16",
-    "eslint": "8.54.0",
-    "eslint-config-next": "13.5.6",
-    "postcss": "8.4.31",
-    "prettier": "3.1.0",
-    "tailwindcss": "3.3.5",
-    "typescript": "5.3.3"
+    "@biomejs/biome": "^2.1.4",
+    "@tktco/node-actionlint": "^1.6.0",
+    "@types/http-server": "^0.12.4",
+    "@types/node": "24.2.1",
+    "http-server": "^14.1.1",
+    "playwright": "^1.54.2",
+    "tsx": "^4.20.3",
+    "typescript": "5.9.2",
+    "vite": "^5.4.11"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }

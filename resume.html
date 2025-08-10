@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tkt - Resume</title>
+    <meta name="description" content="Professional experience and resume of tkt, web application developer from Japan" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles/globals.css" />
+    <style>
+      .experience-card {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      .experience-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(139, 92, 246, 0.3);
+      }
+      .skill-tag {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        backdrop-filter: blur(10px);
+      }
+      .timeline-line {
+        background: linear-gradient(180deg, rgba(139, 92, 246, 0.5) 0%, rgba(99, 102, 241, 0.1) 100%);
+      }
+      .loading-shimmer {
+        background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #a78bfa 0%, #c084fc 50%, #e879f9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-950 text-slate-200">
+      <nav class="p-6 border-b border-white/10">
+        <div class="container mx-auto flex justify-between items-center">
+          <a href="/" class="text-xl font-bold hover:text-purple-400 transition-colors">← Back to Home</a>
+          <h1 class="text-2xl font-bold gradient-text">Resume</h1>
+        </div>
+      </nav>
+      
+      <main class="container mx-auto px-4 py-12 flex-grow">
+        <div class="max-w-5xl mx-auto">
+          <header class="mb-12 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">tkt</h1>
+            <p class="text-2xl text-purple-300">Web Application Developer</p>
+            <p class="text-lg text-slate-400 mt-2">Japan 🇯🇵</p>
+          </header>
+
+          <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">Professional Experience</h2>
+            <div id="experience-container" class="relative">
+              <div class="absolute left-8 top-0 bottom-0 w-0.5 timeline-line"></div>
+              <div id="experience-list" class="space-y-8">
+                <div class="experience-card rounded-lg p-6 ml-16 loading-shimmer h-48"></div>
+                <div class="experience-card rounded-lg p-6 ml-16 loading-shimmer h-48"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 gradient-text">Skills & Technologies</h2>
+            <div id="skills-container" class="flex flex-wrap gap-3">
+              <span class="skill-tag px-4 py-2 rounded-full text-sm">Loading...</span>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="mt-auto py-6 text-center text-sm text-slate-400 border-t border-white/10">
+        <p>© <span id="year"></span> tkt | Data from <a href="https://lapras.com" target="_blank" class="text-purple-400 hover:text-purple-300">LAPRAS</a></p>
+      </footer>
+    </div>
+
+    <script type="module">
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      function formatDate(year, month, endYear, endMonth) {
+        if (!year) return '';
+        
+        const startDate = `${year}/${String(month).padStart(2, '0')}`;
+        
+        if (!endYear || endYear === 0) {
+          return `${startDate} - Present`;
+        }
+        
+        const endDate = `${endYear}/${String(endMonth).padStart(2, '0')}`;
+        return `${startDate} - ${endDate}`;
+      }
+
+      function formatDescription(description) {
+        if (!description) return '';
+        
+        return description
+          .split('\n')
+          .map(line => {
+            if (line.startsWith('●') || line.startsWith('*')) {
+              return `<li class="ml-4">${line.substring(1).trim()}</li>`;
+            } else if (line.startsWith('　　■') || line.startsWith('    *')) {
+              return `<li class="ml-8 text-sm">${line.trim().replace(/^[　■\s*]+/, '')}</li>`;
+            } else if (line.startsWith('　○') || line.startsWith('  *')) {
+              return `<li class="ml-6">${line.trim().replace(/^[　○\s*]+/, '')}</li>`;
+            } else if (line.trim()) {
+              return `<p>${line}</p>`;
+            }
+            return '';
+          })
+          .filter(line => line)
+          .join('');
+      }
+
+      function extractSkills(experiences) {
+        const skills = new Set();
+        const techRegex = /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira)\b/gi;
+        
+        experiences.forEach(exp => {
+          if (exp.description) {
+            const matches = exp.description.match(techRegex);
+            if (matches) {
+              matches.forEach(skill => skills.add(skill));
+            }
+          }
+        });
+        
+        return Array.from(skills);
+      }
+
+      async function loadExperiences() {
+        try {
+          const response = await fetch('/src/data/experiences.json');
+          const data = await response.json();
+          const experiences = data.experience_list;
+          
+          experiences.sort((a, b) => {
+            const aDate = a.start_year * 12 + a.start_month;
+            const bDate = b.start_year * 12 + b.start_month;
+            return bDate - aDate;
+          });
+
+          const experienceHtml = experiences.map((exp, index) => `
+            <div class="relative">
+              <div class="absolute left-[-48px] w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900"></div>
+              <div class="experience-card rounded-lg p-6 ml-0" style="animation-delay: ${index * 0.1}s">
+                <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold text-white">${exp.position_name}</h3>
+                    <p class="text-lg text-purple-300">
+                      ${exp.organization_name}
+                      ${exp.is_client_work && exp.client_company_name ? `<span class="text-sm text-slate-400">(${exp.client_company_name})</span>` : ''}
+                    </p>
+                    ${exp.positions.map(pos => `
+                      <span class="inline-block mt-2 px-3 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">
+                        ${pos.job_position_name}
+                      </span>
+                    `).join('')}
+                  </div>
+                  <p class="text-sm text-slate-400 mt-2 md:mt-0">${formatDate(exp.start_year, exp.start_month, exp.end_year, exp.end_month)}</p>
+                </div>
+                ${exp.description ? `
+                  <div class="text-slate-300 space-y-2 text-sm">
+                    ${formatDescription(exp.description)}
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          `).join('');
+
+          document.getElementById('experience-list').innerHTML = experienceHtml;
+
+          const skills = extractSkills(experiences);
+          const skillsHtml = skills.map(skill => `
+            <span class="skill-tag px-4 py-2 rounded-full text-sm text-purple-200">
+              ${skill}
+            </span>
+          `).join('');
+          
+          document.getElementById('skills-container').innerHTML = skillsHtml;
+
+        } catch (error) {
+          console.error('Error loading experiences:', error);
+          document.getElementById('experience-list').innerHTML = `
+            <div class="experience-card rounded-lg p-6 ml-16">
+              <p class="text-red-400">Failed to load experience data. Please try again later.</p>
+            </div>
+          `;
+        }
+      }
+
+      loadExperiences();
+    </script>
+  </body>
+</html>

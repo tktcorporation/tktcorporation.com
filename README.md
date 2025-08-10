@@ -1,34 +1,107 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# tktcorporation.com
 
-## Getting Started
+tktの個人サイト - プロフィール情報と職歴を表示するWebアプリケーション
 
-First, run the development server:
+## 概要
+
+このプロジェクトは、Webアプリケーション開発者であるtktの個人サイトです。メインページではプロフィールとソーシャルリンクを表示し、履歴書ページではLAPRASと連携した職歴情報を提供しています。
+
+### 主な機能
+
+- **ホームページ**: プロフィール情報、ソーシャルメディアリンク、サポートリンク
+- **履歴書ページ**: LAPRAS連携による職歴の自動表示、スキル抽出、レスポンシブデザイン
+- **モダンUI**: グラデーション背景、アニメーション効果、ダークテーマ
+
+## 技術スタック
+
+- **フレームワーク**: React 19 + TypeScript
+- **ビルドツール**: Vite
+- **スタイリング**: Tailwind CSS
+- **ルーティング**: React Router
+- **ホスティング**: Firebase
+- **データソース**: LAPRAS API (MCP統合)
+- **コード品質**: Biome (linting & formatting)
+
+## セットアップ
+
+### 必要な環境
+- Node.js >= 24.0.0
+- npm
+
+### インストールと起動
 
 ```bash
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動（http://localhost:3000）
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 開発コマンド
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 基本コマンド
+```bash
+npm run dev        # 開発サーバー起動
+npm run build      # 本番ビルド
+npm run preview    # ビルド結果のプレビュー
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### コード品質
+```bash
+npm run lint         # 全てのlintチェック実行
+npm run lint:biome   # Biome linter実行
+npm run typecheck    # TypeScript型チェック
+npm run format       # コードフォーマット
+npm run lint:fix     # 自動修正可能なlint問題を修正
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### テスト・スクリーンショット
+```bash
+npm run test         # 表示テスト実行
+npm run screenshot   # PRスクリーンショット生成
+```
 
-## Learn More
+## プロジェクト構成
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── pages/           # ページコンポーネント
+│   ├── Home.tsx     # ホームページ
+│   └── Resume.tsx   # 履歴書ページ
+├── data/            # データファイル
+│   └── experiences.json # 職歴データ（LAPRAS連携）
+├── types/           # TypeScript型定義
+└── styles/          # スタイルファイル
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## LAPRAS連携
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+このサイトは[LAPRAS](https://lapras.com/)のAPIと連携し、職歴データを自動的に取得・表示します。MCPプロトコルを使用してデータの同期を行っています。
 
-## Deploy on Vercel
+## デプロイ
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+このサイトはFirebaseにホスティングされており、GitHub Actionsを通じて自動デプロイされます。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 開発について
+
+### コード規約
+- インデント: 2スペース
+- 行の長さ: 80文字
+- クォート: ダブルクォート使用
+- セミコロン: 必須
+
+### TypeScript設定
+- strict mode有効
+- ES2020ターゲット
+- React JSX transform使用
+
+## ライセンス
+
+© 2025 tkt - 個人使用
+
+## お問い合わせ
+
+- Website: https://tktcorporation.com
+- GitHub: [@tktcorporation](https://github.com/tktcorporation)
+- LAPRAS: https://lapras.com/public/tktcorporation
