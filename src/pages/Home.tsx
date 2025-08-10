@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const socialLinks = [
   {
     href: "https://lapras.com/public/tktcorporation",
@@ -85,6 +87,22 @@ function Home() {
                 />
               </a>
             ))}
+          </div>
+
+          <h3 className="text-xl mt-16 text-slate-200">Pages:</h3>
+          <div className="flex flex-col gap-3 mt-8">
+            <Link
+              to="/resume"
+              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 w-fit"
+            >
+              📄 Resume
+            </Link>
+            <Link
+              to="/technologies"
+              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 w-fit"
+            >
+              💻 Technology Timeline
+            </Link>
           </div>
 
           <h3 className="text-xl mt-16 text-slate-200">Support:</h3>
