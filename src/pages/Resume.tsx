@@ -23,8 +23,22 @@ interface Experience {
   updated_at: string;
 }
 
+interface GroupedExperience {
+  organization_name: string;
+  is_client_work: boolean;
+  client_company_name: string;
+  total_start_year: number;
+  total_start_month: number;
+  total_end_year: number | null;
+  total_end_month: number | null;
+  experiences: Experience[];
+}
+
 function Resume() {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [_experiences, setExperiences] = useState<Experience[]>([]);
+  const [groupedExperiences, setGroupedExperiences] = useState<
+    GroupedExperience[]
+  >([]);
   const [skills, setSkills] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,6 +61,108 @@ function Resume() {
     return Array.from(skillSet);
   }, []);
 
+  /**
+   * Groups experiences by organization and consecutive time periods.
+   *
+   * This function performs the following steps:
+   * 1. Groups experiences by organization name, client work status, and client company name
+   * 2. Within each organization group, sorts experiences by start date
+   * 3. Identifies consecutive periods (max 1 month gap) and groups them together
+   * 4. Handles ongoing employment without creating overlapping periods
+   *
+   * @param exps - Array of Experience objects to group
+   * @returns Array of GroupedExperience objects sorted by start date (newest first)
+   */
+  const groupExperiences = useCallback(
+    (exps: Experience[]): GroupedExperience[] => {
+      const groups: { [key: string]: Experience[] } = {};
+
+      // まず、会社名とクライアント作業の組み合わせでグループ化
+      for (const exp of exps) {
+        const key = `${exp.organization_name}|${exp.is_client_work}|${exp.client_company_name || ""}`;
+        if (!groups[key]) {
+          groups[key] = [];
+        }
+        groups[key].push(exp);
+      }
+
+      const groupedResults: GroupedExperience[] = [];
+      // Maximum gap allowed between periods to be considered consecutive (1 month)
+      const MAX_CONSECUTIVE_GAP = 1;
+
+      for (const [_key, groupExps] of Object.entries(groups)) {
+        // 各グループ内で日付順にソート
+        groupExps.sort((a, b) => {
+          const aDate = a.start_year * 12 + a.start_month;
+          const bDate = b.start_year * 12 + b.start_month;
+          return aDate - bDate; // 古い順
+        });
+
+        // 連続する期間を見つけてサブグループ化
+        const subGroups: Experience[][] = [];
+        let currentSubGroup: Experience[] = [groupExps[0]];
+
+        for (let i = 1; i < groupExps.length; i++) {
+          const prev = currentSubGroup[currentSubGroup.length - 1];
+          const current = groupExps[i];
+
+          const currentStartDate =
+            current.start_year * 12 + current.start_month;
+
+          // Calculate if periods are consecutive
+          let isConsecutive = false;
+
+          if (prev.end_year === null) {
+            // Previous period is ongoing - we don't group overlapping periods
+            // so any period that starts while another is ongoing is not consecutive
+            isConsecutive = false;
+          } else {
+            // Previous period has ended - check if current period starts within gap tolerance
+            const prevEndDate = prev.end_year * 12 + (prev.end_month || 0);
+            const gap = currentStartDate - prevEndDate;
+
+            // Only consider consecutive if current period starts after previous ends
+            // and within the allowed gap (no overlapping periods)
+            isConsecutive = gap >= 0 && gap <= MAX_CONSECUTIVE_GAP;
+          }
+
+          if (isConsecutive) {
+            currentSubGroup.push(current);
+          } else {
+            subGroups.push(currentSubGroup);
+            currentSubGroup = [current];
+          }
+        }
+        subGroups.push(currentSubGroup);
+
+        // 各サブグループをGroupedExperienceに変換
+        for (const subGroup of subGroups) {
+          const firstExp = subGroup[0];
+          const lastExp = subGroup[subGroup.length - 1];
+
+          groupedResults.push({
+            organization_name: firstExp.organization_name,
+            is_client_work: firstExp.is_client_work,
+            client_company_name: firstExp.client_company_name,
+            total_start_year: firstExp.start_year,
+            total_start_month: firstExp.start_month,
+            total_end_year: lastExp.end_year,
+            total_end_month: lastExp.end_month,
+            experiences: subGroup,
+          });
+        }
+      }
+
+      // 最終的に新しい順にソート
+      return groupedResults.sort((a, b) => {
+        const aDate = a.total_start_year * 12 + a.total_start_month;
+        const bDate = b.total_start_year * 12 + b.total_start_month;
+        return bDate - aDate;
+      });
+    },
+    []
+  );
+
   useEffect(() => {
     const sortedExperiences = [...experiencesData.experience_list].sort(
       (a, b) => {
@@ -56,10 +172,13 @@ function Resume() {
       }
     );
 
+    const grouped = groupExperiences(sortedExperiences);
+
     setExperiences(sortedExperiences);
+    setGroupedExperiences(grouped);
     setSkills(extractSkills(sortedExperiences));
     setLoading(false);
-  }, [extractSkills]);
+  }, [extractSkills, groupExperiences]);
 
   const formatDate = (
     year: number,
@@ -170,8 +289,11 @@ function Resume() {
               <div className="relative">
                 <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
                 <div className="space-y-8">
-                  {experiences.map((exp, index) => (
-                    <div key={exp.id} className="relative">
+                  {groupedExperiences.map((group, index) => (
+                    <div
+                      key={`${group.organization_name}-${group.total_start_year}-${group.total_start_month}`}
+                      className="relative"
+                    >
                       <div className="absolute left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50" />
                       <div
                         className="ml-16 rounded-lg p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1"
@@ -180,41 +302,85 @@ function Resume() {
                         <div className="flex flex-col md:flex-row md:justify-between mb-4">
                           <div>
                             <h3 className="text-lg font-bold text-white">
-                              {exp.position_name}
-                            </h3>
-                            <p className="text-base text-purple-300">
-                              {exp.organization_name}
-                              {exp.is_client_work &&
-                                exp.client_company_name && (
-                                  <span className="text-sm text-slate-400 ml-2">
-                                    ({exp.client_company_name})
+                              {group.organization_name}
+                              {group.is_client_work &&
+                                group.client_company_name && (
+                                  <span className="text-sm text-slate-400 ml-2 font-normal">
+                                    ({group.client_company_name})
                                   </span>
                                 )}
-                            </p>
+                            </h3>
                             <div className="mt-2 flex flex-wrap gap-2">
-                              {exp.positions.map((pos) => (
+                              {Array.from(
+                                new Set(
+                                  group.experiences.flatMap((exp) =>
+                                    exp.positions.map(
+                                      (pos) => pos.job_position_name
+                                    )
+                                  )
+                                )
+                              ).map((positionName) => (
                                 <span
-                                  key={pos.id}
+                                  key={positionName}
                                   className="inline-block px-3 py-1 text-xs bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30"
                                 >
-                                  {pos.job_position_name}
+                                  {positionName}
                                 </span>
                               ))}
                             </div>
                           </div>
                           <p className="text-sm text-slate-400 mt-2 md:mt-0 font-mono">
                             {formatDate(
-                              exp.start_year,
-                              exp.start_month,
-                              exp.end_year,
-                              exp.end_month
+                              group.total_start_year,
+                              group.total_start_month,
+                              group.total_end_year,
+                              group.total_end_month
                             )}
                           </p>
                         </div>
-                        {exp.description && (
-                          <div className="text-slate-300 space-y-1 text-sm">
-                            {formatDescription(exp.description)}
+
+                        {/* グループ内の個別の経験を表示 */}
+                        {group.experiences.length > 1 ? (
+                          <div className="space-y-4 mt-4">
+                            {group.experiences.map((exp, _expIndex) => (
+                              <div
+                                key={exp.id}
+                                className="border-l-2 border-purple-500/30 pl-4"
+                              >
+                                <div className="flex flex-col md:flex-row md:justify-between mb-2">
+                                  <h4 className="text-base font-semibold text-purple-200">
+                                    {exp.position_name}
+                                  </h4>
+                                  <p className="text-xs text-slate-400 font-mono">
+                                    {formatDate(
+                                      exp.start_year,
+                                      exp.start_month,
+                                      exp.end_year,
+                                      exp.end_month
+                                    )}
+                                  </p>
+                                </div>
+                                {exp.description && (
+                                  <div className="text-slate-300 space-y-1 text-sm">
+                                    {formatDescription(exp.description)}
+                                  </div>
+                                )}
+                              </div>
+                            ))}
                           </div>
+                        ) : (
+                          <>
+                            <h4 className="text-base font-semibold text-purple-200 mb-2">
+                              {group.experiences[0].position_name}
+                            </h4>
+                            {group.experiences[0].description && (
+                              <div className="text-slate-300 space-y-1 text-sm">
+                                {formatDescription(
+                                  group.experiences[0].description
+                                )}
+                              </div>
+                            )}
+                          </>
                         )}
                       </div>
                     </div>
