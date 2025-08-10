@@ -1,4 +1,4 @@
-import { type Browser, type Page, chromium } from "playwright";
+import { type Browser, chromium, type Page } from "playwright";
 
 const testDisplay = async (): Promise<void> => {
   let browser: Browser | null = null;

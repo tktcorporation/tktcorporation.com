@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const socialLinks = [
   {
     href: "https://lapras.com/public/tktcorporation",
@@ -56,17 +54,6 @@ const socialLinks = [
 function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-950 text-slate-200">
-      <nav className="absolute top-0 left-0 right-0 p-6">
-        <div className="container mx-auto flex justify-end gap-6">
-          <Link
-            to="/resume"
-            className="px-6 py-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 rounded-lg transition-all duration-300 hover:scale-105"
-          >
-            Resume
-          </Link>
-        </div>
-      </nav>
-
       <main className="container px-4 py-8">
         <div>
           <h1 className="text-6xl font-bold text-white">Hi 👋, I'm tkt.</h1>
