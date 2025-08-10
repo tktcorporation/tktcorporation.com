@@ -17,7 +17,7 @@
     "test": "tsx scripts/test-display.ts"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "@types/react-router-dom": "^5.3.3",
@@ -32,10 +32,8 @@
     "@tktco/node-actionlint": "^1.6.0",
     "@types/http-server": "^0.12.4",
     "@types/node": "24.2.1",
-    "autoprefixer": "10.4.21",
     "http-server": "^14.1.1",
     "playwright": "^1.54.2",
-    "postcss": "8.5.6",
     "tsx": "^4.20.3",
     "typescript": "5.9.2",
     "vite": "^5.4.11"
