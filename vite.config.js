@@ -1,11 +1,13 @@
 import { copyFileSync } from "node:fs";
 import { resolve } from "node:path";
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     {
       name: "copy-404",
       closeBundle() {
@@ -26,8 +28,5 @@ export default defineConfig({
     rollupOptions: {
       input: "index.html",
     },
-  },
-  css: {
-    postcss: "./postcss.config.js",
   },
 });
