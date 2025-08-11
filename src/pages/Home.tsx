@@ -5,137 +5,164 @@
  *
  * Context:
  * - 個人のポートフォリオサイトのエントリーポイント
- * - シンプルで直感的なナビゲーションを重視
- * - ソーシャルメディアでのプレゼンスを可視化
+ * - モダンでインパクトのあるデザインで訪問者の注目を集める
+ * - セクション分けによる明確な情報階層
+ * - Lucide Iconsを活用した統一感のあるUI
  */
 
-import { Link } from "react-router-dom";
+import {
+  SiBluesky,
+  SiGithub,
+  SiInstagram,
+  SiQiita,
+  SiX,
+  SiZenn,
+} from "@icons-pack/react-simple-icons";
+import { Coffee, Globe, Mail } from "lucide-react";
+import { TechnologyTimelineSection } from "@/components/TechnologyTimelineSection";
+import { Button } from "@/components/ui/button";
+
+// LinkedInアイコン（ブランドガイドラインの問題でsimple-iconsから削除されたためカスタム）
+const LinkedInIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="LinkedIn"
+  >
+    <title>LinkedIn</title>
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
 
 const socialLinks = [
   {
-    href: "https://lapras.com/public/tktcorporation",
-    icon: "https://assets.lapras.com/static/assets/bundles/media/logo-symbol.5c8467f1.svg",
-    alt: "LAPRAS",
-  },
-  {
     href: "https://github.com/tktcorporation",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg",
+    Icon: SiGithub,
     alt: "GitHub",
+    label: "GitHub",
+    color: "hover:text-gray-400",
   },
   {
     href: "https://twitter.com/tktcorporation",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg",
-    alt: "Twitter",
-  },
-  {
-    href: "https://qiita.com/tktcorporation",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/qiita.svg",
-    alt: "Qiita",
-  },
-  {
-    href: "https://zenn.dev/tktcorporation",
-    icon: "https://simpleicons.org/icons/zenn.svg",
-    alt: "Zenn",
-  },
-  {
-    href: "https://stackoverflow.com/users/12852199",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/stackoverflow.svg",
-    alt: "Stack Overflow",
-  },
-  {
-    href: "https://instagram.com/tktcorporation",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg",
-    alt: "Instagram",
-  },
-  {
-    href: "https://medium.com/@tktcorporation",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/medium.svg",
-    alt: "Medium",
-  },
-  {
-    href: "https://dev.to/tktcorporation",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/dev-dot-to.svg",
-    alt: "Dev.to",
+    Icon: SiX,
+    alt: "X",
+    label: "X (Twitter)",
+    color: "hover:text-gray-300",
   },
   {
     href: "https://linkedin.com/in/tktcorporation",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg",
+    Icon: LinkedInIcon,
     alt: "LinkedIn",
+    label: "LinkedIn",
+    color: "hover:text-blue-600",
+  },
+  {
+    href: "https://qiita.com/tktcorporation",
+    Icon: SiQiita,
+    alt: "Qiita",
+    label: "Qiita",
+    color: "hover:text-green-500",
+  },
+  {
+    href: "https://zenn.dev/tktcorporation",
+    Icon: SiZenn,
+    alt: "Zenn",
+    label: "Zenn",
+    color: "hover:text-blue-500",
+  },
+  {
+    href: "https://bsky.app/profile/tkt.bsky.social",
+    Icon: SiBluesky,
+    alt: "Bluesky",
+    label: "Bluesky",
+    color: "hover:text-sky-500",
+  },
+  {
+    href: "https://instagram.com/tktcorporation",
+    Icon: SiInstagram,
+    alt: "Instagram",
+    label: "Instagram",
+    color: "hover:text-pink-500",
   },
 ];
 
 function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-950 text-slate-200">
-      <main className="container px-4 py-8">
-        <div>
-          <h1 className="text-4xl font-bold text-white">Hi 👋, I'm tkt.</h1>
-          <h3 className="text-xl mt-16 text-slate-300">
-            I'm a web application developer from Japan.
-          </h3>
+    <div className="min-h-screen">
+      {/* ヒーローセクション - 全要素を統合 */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
+        <div className="relative z-10 text-center max-w-4xl mx-auto">
+          {/* メインタイトル */}
+          <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-6 animate-gradient">
+            tktcorporation
+          </h1>
 
-          <h3 className="text-xl mt-16 text-slate-200">Connect with me:</h3>
+          <p className="text-xl md:text-2xl text-slate-300 mb-4">
+            Web Application Developer
+          </p>
 
-          <div className="flex flex-row mt-8 flex-wrap">
-            {socialLinks.map((link) => (
-              <a
-                key={link.alt}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mr-4 hover:transform hover:scale-110 transition-transform duration-200"
+          <p className="text-lg text-slate-400 mb-12 flex items-center justify-center gap-2">
+            <Globe className="w-5 h-5" />
+            Based in Japan
+          </p>
+
+          {/* ソーシャルリンク */}
+          <div className="flex justify-center gap-6 mb-12">
+            {socialLinks.map((link) => {
+              const Icon = link.Icon;
+              return (
+                <a
+                  key={link.alt}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-slate-400 transition-colors duration-300 ${link.color}`}
+                  title={link.label}
+                >
+                  <Icon className="w-6 h-6" />
+                </a>
+              );
+            })}
+          </div>
+
+          {/* アクションボタン */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="mailto:contact@tktcorporation.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
               >
-                <img
-                  className="h-10 w-10 md:h-16 md:w-16"
-                  style={{
-                    filter:
-                      "invert(88%) sepia(61%) saturate(0%) hue-rotate(229deg) brightness(107%) contrast(101%)",
-                  }}
-                  width="64"
-                  height="64"
-                  src={link.icon}
-                  alt={link.alt}
-                />
-              </a>
-            ))}
-          </div>
+                <Mail className="w-5 h-5 mr-2" />
+                Contact Me
+              </Button>
+            </a>
 
-          <h3 className="text-xl mt-16 text-slate-200">Pages:</h3>
-          <div className="flex flex-col gap-3 mt-8">
-            <Link
-              to="/resume"
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 w-fit"
-            >
-              📄 Resume
-            </Link>
-            <Link
-              to="/technologies"
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 w-fit"
-            >
-              💻 Technology Timeline
-            </Link>
-          </div>
-
-          <h3 className="text-xl mt-16 text-slate-200">Support:</h3>
-          <div className="mt-8">
             <a
               href="https://www.buymeacoffee.com/tktcorporation"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                className="w-64"
-                height="72"
-                width="272"
-                src="/bmc-button.svg"
-                alt="Buy me a coffee"
-              />
+              <Button
+                size="lg"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+              >
+                <Coffee className="w-5 h-5 mr-2" />
+                Buy me a coffee
+              </Button>
             </a>
           </div>
         </div>
-      </main>
+      </section>
 
-      <footer className="mt-8 text-sm">© {new Date().getFullYear()} tkt</footer>
+      {/* Technology Timeline セクション */}
+      <TechnologyTimelineSection />
     </div>
   );
 }

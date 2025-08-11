@@ -1,0 +1,17 @@
+{
+  "name": "tkt - Web Application Developer",
+  "short_name": "tkt",
+  "description": "Hi, I'm tkt. I'm a web application developer from Japan.",
+  "theme_color": "#1e293b",
+  "background_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}

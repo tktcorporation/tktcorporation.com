@@ -11,6 +11,7 @@
  */
 
 import { useCallback, useEffect, useState } from "react";
+import { getNormalizedName } from "@/utils/languageMap";
 import type { GitHubRepository, LaprasData } from "../data/laprasSchema";
 
 export type TimeSpan = "1month" | "6months" | "1year";
@@ -209,27 +210,18 @@ export function useLaprasActivities(data: LaprasData | null) {
             });
             entry.articleCount++;
 
-            // タグから言語を推測
+            // タグから言語を推測（linguist-languagesを使用）
             for (const tag of article.tags) {
-              const langMap: Record<string, string> = {
-                typescript: "TypeScript",
-                javascript: "JavaScript",
-                python: "Python",
-                ruby: "Ruby",
-                rust: "Rust",
-                go: "Go",
-                java: "Java",
-                kotlin: "Kotlin",
-              };
-
-              const lowerTag = tag.toLowerCase();
-              for (const [key, lang] of Object.entries(langMap)) {
-                if (lowerTag.includes(key)) {
-                  entry.languages.set(
-                    lang,
-                    (entry.languages.get(lang) || 0) + 1
-                  );
-                }
+              const normalizedLang = getNormalizedName(tag);
+              // 正規化された名前が元のタグと異なる場合は、言語として認識された
+              if (
+                normalizedLang !==
+                tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
+              ) {
+                entry.languages.set(
+                  normalizedLang,
+                  (entry.languages.get(normalizedLang) || 0) + 1
+                );
               }
             }
           }
