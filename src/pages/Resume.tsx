@@ -14,11 +14,10 @@
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getDeviconClass, isDeviconSupported } from "@/utils/devicon";
+import { extractTechnologies } from "@/utils/languageMap";
 import experiencesData from "../data/experiences.json";
 
-// Constants
-const TECH_REGEX =
-  /\b(AWS|Docker|Python|Django|TypeScript|Vue|React|Node\.js|JavaScript|Kotlin|Android|iOS|Swift|Java|Crystal|NestJS|MySQL|PostgreSQL|DynamoDB|Redis|MongoDB|Elasticsearch|BigQuery|Lambda|S3|CloudFormation|CloudFront|Route53|ECR|ECS|CircleCI|GitHub Actions|GitLab|Bitbucket|Selenium|Terraform|Kubernetes|Firebase|Figma|Jira|Vite|Tailwind CSS)\b/gi;
 const MAX_CONSECUTIVE_GAP = 1; // Maximum gap allowed between periods to be considered consecutive (1 month)
 const PROGRESS_BAR_MAX_MONTHS = 24; // 2 years maximum for progress bar calculation
 
@@ -81,24 +80,21 @@ function Resume() {
 
       for (const exp of exps) {
         if (exp.description) {
-          const matches = exp.description.match(TECH_REGEX);
-          if (matches) {
+          const matches = extractTechnologies(exp.description);
+          if (matches.length > 0) {
             const startMonth = exp.start_year * 12 + exp.start_month;
             const endMonth = exp.end_year
               ? exp.end_year * 12 + (exp.end_month ?? 12)
               : currentYearMonth;
 
-            const uniqueSkills = Array.from(
-              new Set(matches.map((s) => s.toLowerCase()))
-            );
+            // matchesは既に正規化された技術名の配列（重複を除去）
+            const uniqueSkills = Array.from(new Set(matches));
 
             for (const skill of uniqueSkills) {
-              const normalizedSkill =
-                skill.charAt(0).toUpperCase() + skill.slice(1).toLowerCase();
-              if (!skillPeriods.has(normalizedSkill)) {
-                skillPeriods.set(normalizedSkill, []);
+              if (!skillPeriods.has(skill)) {
+                skillPeriods.set(skill, []);
               }
-              const periods = skillPeriods.get(normalizedSkill);
+              const periods = skillPeriods.get(skill);
               if (periods) {
                 periods.push({
                   start: startMonth,
@@ -283,17 +279,8 @@ function Resume() {
 
   const extractTechTags = useCallback((description: string): string[] => {
     if (!description) return [];
-    const matches = description.match(TECH_REGEX);
-    if (matches) {
-      return Array.from(
-        new Set(
-          matches.map(
-            (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
-          )
-        )
-      );
-    }
-    return [];
+    // languageMap の extractTechnologies を使用
+    return extractTechnologies(description);
   }, []);
 
   const formatDate = (
@@ -361,7 +348,7 @@ function Resume() {
             to="/"
             className="text-lg font-bold hover:text-purple-400 transition-colors flex items-center gap-2"
           >
-            <span>←</span> Back to Home
+            Home
           </Link>
           <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Resume
@@ -373,61 +360,50 @@ function Resume() {
         <div className="max-w-5xl mx-auto">
           <header className="mb-12 text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
-              tkt
+              Resume
             </h1>
-            <p className="text-xl text-purple-300 animate-fade-in animation-delay-100">
-              Web Application Developer
-            </p>
-            <p className="text-base text-slate-400 mt-2 animate-fade-in animation-delay-200">
-              Japan 🇯🇵
-            </p>
           </header>
 
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <section className="mb-8 md:mb-12">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
             {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <div
                     key={i}
-                    className="rounded-lg p-4 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
+                    className="rounded-md p-2 md:p-3 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
                   >
-                    <div className="h-5 bg-white/10 rounded w-2/3 mb-2" />
-                    <div className="h-4 bg-white/10 rounded w-1/3" />
+                    <div className="h-4 bg-white/10 rounded w-2/3 mb-1" />
+                    <div className="h-3 bg-white/10 rounded w-1/3" />
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
                 {skillsWithYears.map((skill) => (
                   <div
                     key={skill.name}
-                    className="rounded-lg p-4 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1"
+                    className="rounded-md p-2 md:p-3 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 md:hover:shadow-lg md:hover:shadow-purple-500/20 md:hover:-translate-y-1"
                   >
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="font-semibold text-purple-200">
+                    <div className="flex flex-col gap-1">
+                      <h3 className="text-xs md:text-sm font-semibold text-purple-200 truncate">
                         {skill.name}
                       </h3>
-                      <span className="px-2 py-1 text-xs bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-purple-200 rounded-full border border-purple-500/40">
+                      <span className="text-[10px] md:text-xs text-purple-300">
                         {skill.years > 0 && `${skill.years}年`}
                         {skill.months > 0 && `${skill.months}ヶ月`}
                       </span>
                     </div>
-                    <div className="w-full bg-slate-700 rounded-full h-2">
+                    <div className="w-full bg-slate-700 rounded-full h-1 md:h-1.5 mt-1.5">
                       <div
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-700"
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-700"
                         style={{
                           width: `${Math.min(100, ((skill.years * 12 + skill.months) / PROGRESS_BAR_MAX_MONTHS) * 100)}%`,
                         }}
                       />
                     </div>
-                    <p className="text-xs text-slate-400 mt-1">
-                      {skill.years * 12 + skill.months > PROGRESS_BAR_MAX_MONTHS
-                        ? "2年以上"
-                        : `合計${skill.years * 12 + skill.months}ヶ月`}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -435,18 +411,18 @@ function Resume() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Professional Experience
             </h2>
 
             {loading ? (
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 {[1, 2].map((i) => (
                   <div
                     key={i}
-                    className="rounded-lg p-6 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
+                    className="rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
                   >
-                    <div className="h-6 bg-white/10 rounded w-1/3 mb-4" />
+                    <div className="h-5 md:h-6 bg-white/10 rounded w-1/3 mb-3 md:mb-4" />
                     <div className="h-4 bg-white/10 rounded w-1/2 mb-2" />
                     <div className="h-4 bg-white/10 rounded w-full" />
                   </div>
@@ -454,30 +430,30 @@ function Resume() {
               </div>
             ) : (
               <div className="relative">
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
-                <div className="space-y-8">
+                <div className="absolute left-2 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
+                <div className="space-y-6 md:space-y-8">
                   {groupedExperiences.map((group, index) => (
                     <div
                       key={`${group.organization_name}-${group.total_start_year}-${group.total_start_month}`}
                       className="relative"
                     >
-                      <div className="absolute left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50" />
+                      <div className="absolute left-0 md:left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50" />
                       <div
-                        className="ml-16 rounded-lg p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1"
+                        className="ml-8 md:ml-16 rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 md:hover:shadow-lg md:hover:shadow-purple-500/20 md:hover:-translate-y-1"
                         style={{ animationDelay: `${index * 0.1}s` }}
                       >
-                        <div className="flex flex-col md:flex-row md:justify-between mb-4">
-                          <div>
-                            <h3 className="text-lg font-bold text-white">
+                        <div className="flex flex-col md:flex-row md:justify-between mb-3 md:mb-4">
+                          <div className="flex-1">
+                            <h3 className="text-base md:text-lg font-bold text-white">
                               {group.organization_name}
                               {group.is_client_work &&
                                 group.client_company_name && (
-                                  <span className="text-sm text-slate-400 ml-2 font-normal">
+                                  <span className="text-xs md:text-sm text-slate-400 ml-1 md:ml-2 font-normal">
                                     ({group.client_company_name})
                                   </span>
                                 )}
                             </h3>
-                            <div className="mt-2 flex flex-wrap gap-2">
+                            <div className="mt-2 flex flex-wrap gap-1 md:gap-2">
                               {Array.from(
                                 new Set(
                                   group.experiences.flatMap((exp) =>
@@ -489,14 +465,14 @@ function Resume() {
                               ).map((positionName) => (
                                 <span
                                   key={positionName}
-                                  className="inline-block px-3 py-1 text-xs bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30"
+                                  className="inline-block px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30"
                                 >
                                   {positionName}
                                 </span>
                               ))}
                             </div>
                           </div>
-                          <p className="text-sm text-slate-400 mt-2 md:mt-0 font-mono">
+                          <p className="text-xs md:text-sm text-slate-400 mt-2 md:mt-0 font-mono">
                             {formatDate(
                               group.total_start_year,
                               group.total_start_month,
@@ -508,17 +484,17 @@ function Resume() {
 
                         {/* グループ内の個別の経験を表示 */}
                         {group.experiences.length > 1 ? (
-                          <div className="space-y-4 mt-4">
+                          <div className="space-y-3 md:space-y-4 mt-3 md:mt-4">
                             {group.experiences.map((exp, _expIndex) => (
                               <div
                                 key={exp.id}
-                                className="border-l-2 border-purple-500/30 pl-4"
+                                className="border-l-2 border-purple-500/30 pl-3 md:pl-4"
                               >
                                 <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                                  <h4 className="text-base font-semibold text-purple-200">
+                                  <h4 className="text-sm md:text-base font-semibold text-purple-200">
                                     {exp.position_name}
                                   </h4>
-                                  <p className="text-xs text-slate-400 font-mono">
+                                  <p className="text-[10px] md:text-xs text-slate-400 font-mono">
                                     {formatDate(
                                       exp.start_year,
                                       exp.start_month,
@@ -529,19 +505,31 @@ function Resume() {
                                 </div>
                                 {exp.description && (
                                   <>
-                                    <div className="flex flex-wrap gap-2 mb-3">
+                                    <div className="flex flex-wrap gap-1 md:gap-2 mb-2 md:mb-3">
                                       {extractTechTags(exp.description).map(
-                                        (tech) => (
-                                          <span
-                                            key={tech}
-                                            className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30"
-                                          >
-                                            {tech}
-                                          </span>
-                                        )
+                                        (tech) => {
+                                          const isSupported =
+                                            isDeviconSupported(tech);
+                                          return (
+                                            <span
+                                              key={tech}
+                                              className="px-1.5 md:px-2 py-0.5 md:py-1 text-[10px] md:text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30 inline-flex items-center gap-1"
+                                            >
+                                              {isSupported && (
+                                                <i
+                                                  className={`${getDeviconClass(
+                                                    tech,
+                                                    "plain"
+                                                  )} text-xs md:text-sm`}
+                                                />
+                                              )}
+                                              {tech}
+                                            </span>
+                                          );
+                                        }
                                       )}
                                     </div>
-                                    <div className="text-slate-300 space-y-1 text-sm">
+                                    <div className="text-slate-300 space-y-1 text-xs md:text-sm">
                                       {formatDescription(exp.description)}
                                     </div>
                                   </>
@@ -551,24 +539,36 @@ function Resume() {
                           </div>
                         ) : (
                           <>
-                            <h4 className="text-base font-semibold text-purple-200 mb-2">
+                            <h4 className="text-sm md:text-base font-semibold text-purple-200 mb-2">
                               {group.experiences[0].position_name}
                             </h4>
                             {group.experiences[0].description && (
                               <>
-                                <div className="flex flex-wrap gap-2 mb-3">
+                                <div className="flex flex-wrap gap-1 md:gap-2 mb-2 md:mb-3">
                                   {extractTechTags(
                                     group.experiences[0].description
-                                  ).map((tech) => (
-                                    <span
-                                      key={tech}
-                                      className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30"
-                                    >
-                                      {tech}
-                                    </span>
-                                  ))}
+                                  ).map((tech) => {
+                                    const isSupported =
+                                      isDeviconSupported(tech);
+                                    return (
+                                      <span
+                                        key={tech}
+                                        className="px-1.5 md:px-2 py-0.5 md:py-1 text-[10px] md:text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30 inline-flex items-center gap-1"
+                                      >
+                                        {isSupported && (
+                                          <i
+                                            className={`${getDeviconClass(
+                                              tech,
+                                              "plain"
+                                            )} text-xs md:text-sm`}
+                                          />
+                                        )}
+                                        {tech}
+                                      </span>
+                                    );
+                                  })}
                                 </div>
-                                <div className="text-slate-300 space-y-1 text-sm">
+                                <div className="text-slate-300 space-y-1 text-xs md:text-sm">
                                   {formatDescription(
                                     group.experiences[0].description
                                   )}

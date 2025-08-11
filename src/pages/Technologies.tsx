@@ -70,7 +70,7 @@ function Technologies() {
             to="/"
             className="text-lg font-bold hover:text-purple-400 transition-colors flex items-center gap-2"
           >
-            <span>←</span> Back to Home
+            Home
           </Link>
           <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Technology Timeline
