@@ -1,3 +1,16 @@
+/**
+ * Purpose:
+ * 職務経歴書を表示するページ。
+ * LAPRASから取得した経験データを基に、視覚的に分かりやすい形で
+ * キャリアの経歴とスキルセットを提示する。
+ *
+ * Context:
+ * - 経験を組織別・期間別にグループ化して表示
+ * - 技術スタックを自動的に抽出してハイライト
+ * - スキルの習熟度を期間ベースで計算・可視化
+ * - レスポンシブデザインで様々なデバイスに対応
+ */
+
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";

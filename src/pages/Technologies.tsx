@@ -1,3 +1,16 @@
+/**
+ * Purpose:
+ * 技術スタックの使用履歴をタイムライン形式で可視化するページ。
+ * LAPRASのGitHubリポジトリデータを解析し、各技術の使用期間と
+ * プロジェクトを時系列で表示することで、技術経験を俯瞰できるようにする。
+ *
+ * Context:
+ * - GitHubリポジトリから言語・技術情報を自動抽出
+ * - 使用期間をビジュアルなタイムラインで表示
+ * - 技術ごとの総経験期間を計算・表示
+ * - レスポンシブデザインでモバイル対応
+ */
+
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getLaprasDataSafe } from "../data/laprasData";

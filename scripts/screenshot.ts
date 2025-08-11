@@ -1,3 +1,16 @@
+/**
+ * Purpose:
+ * プルリクエスト用のスクリーンショットを自動生成する。
+ * ビルド済みのアプリケーションを起動してPlaywrightで
+ * キャプチャし、PRレビューで視覚的な確認を可能にする。
+ *
+ * Context:
+ * - CI/CDパイプラインでのPRプレビュー生成
+ * - ローカルHTTPサーバーでビルド成果物を配信
+ * - Playwrightによる高品質なスクリーンショット生成
+ * - エラーハンドリングと適切なリソースクリーンアップ
+ */
+
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import httpServer from "http-server";
