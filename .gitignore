@@ -39,3 +39,8 @@ yarn-error.log*
 *.tsbuildinfo
 test-results/
 .claude/settings.local.json
+
+# Serena MCP
+.serena/cache/
+.serena/*.log
+.serena/.tmp/

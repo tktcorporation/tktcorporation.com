@@ -5,6 +5,7 @@
 jq = "latest"
 
 node = "{{ exec(command='jq -r .engines.node package.json') | default(value='lts') }}"
+uv = "latest"
 
 # Node.js global packages
 "npm:@anthropic-ai/claude-code" = "latest"
