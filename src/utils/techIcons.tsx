@@ -52,6 +52,7 @@ import {
 } from "react-icons/di";
 
 import {
+  SiAmazon,
   SiAuth0,
   SiBabel,
   SiC,
@@ -166,7 +167,7 @@ const iconMap: Record<string, IconType> = {
   GitHub: DiGithubBadge,
   GitLab: SiGitlab,
   Jenkins: SiJetbrains,
-  AWS: SiGooglecloud,
+  AWS: SiAmazon,
   Azure: DiWindows,
   "Google Cloud": SiGooglecloud,
   Firebase: SiGooglecloud,
