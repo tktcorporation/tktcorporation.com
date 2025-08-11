@@ -1,12 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getLaprasDataSafe } from "../data/laprasData";
-import type {
-  LaprasData,
-  GitHubRepository,
-  QiitaArticle,
-  ZennArticle,
-} from "../data/laprasSchema";
+import type { GitHubRepository, LaprasData } from "../data/laprasSchema";
 import "./Technologies.css";
 
 interface TechnologyTimeline {
@@ -103,11 +98,11 @@ function Technologies() {
     try {
       setLoading(true);
       const data = getLaprasDataSafe();
-      
+
       if (!data) {
         throw new Error("LAPRASデータの読み込みに失敗しました");
       }
-      
+
       setLaprasData(data);
 
       const techTimeline = extractTechnologiesFromRepositories(

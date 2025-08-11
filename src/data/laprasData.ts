@@ -1,5 +1,5 @@
-import { LaprasDataSchema, type LaprasData } from "./laprasSchema";
 import laprasDataJson from "../../public/lapras-data.json";
+import { type LaprasData, LaprasDataSchema } from "./laprasSchema";
 
 /**
  * Get validated LAPRAS data

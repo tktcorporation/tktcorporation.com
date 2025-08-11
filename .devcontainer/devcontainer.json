@@ -24,7 +24,16 @@
     "update-apt": ["sudo", "apt-get", "update"]
   },
   "updateContentCommand": {
-    "install-packages": ["sudo", "apt-get", "install", "-y", "ripgrep", "bc", "build-essential", "fzf"],
+    "install-packages": [
+      "sudo",
+      "apt-get",
+      "install",
+      "-y",
+      "ripgrep",
+      "bc",
+      "build-essential",
+      "fzf"
+    ],
     "add-new-node-gpg-key": [
       "bash",
       "-c",

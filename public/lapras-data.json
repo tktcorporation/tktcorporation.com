@@ -9,57 +9,35 @@
     {
       "title": "bundle install 時、mysql2でエラー",
       "url": "https://qiita.com/tktcorporation/items/0ef8c930fc18ce72c301",
-      "tags": [
-        "Ruby",
-        "Rails",
-        "Gem",
-        "環境構築",
-        "Rails5"
-      ],
+      "tags": ["Ruby", "Rails", "Gem", "環境構築", "Rails5"],
       "stockers_count": 179,
       "updated_at": "2019-07-25T14:19:33"
     },
     {
       "title": "マルコフ連鎖を使って自分らしい文章を生成する(Python3)",
       "url": "https://qiita.com/tktcorporation/items/19d60e2859aff3e2020b",
-      "tags": [
-        "Python",
-        "Python3"
-      ],
+      "tags": ["Python", "Python3"],
       "stockers_count": 102,
       "updated_at": "2019-06-02T01:40:40"
     },
     {
       "title": "Object等の呼び出しでkeyに動的な変数を使う [TypeScript]",
       "url": "https://qiita.com/tktcorporation/items/051bb03bb4d72930d8e9",
-      "tags": [
-        "JavaScript",
-        "TypeScript",
-        "ECMAScript"
-      ],
+      "tags": ["JavaScript", "TypeScript", "ECMAScript"],
       "stockers_count": 55,
       "updated_at": "2021-08-23T15:50:03"
     },
     {
       "title": "AWS S3で「Access Denied」を解決する",
       "url": "https://qiita.com/tktcorporation/items/ec2dbc2fe540e313f917",
-      "tags": [
-        "Rails",
-        "AWS",
-        "S3",
-        "carrierwave",
-        "Rails5"
-      ],
+      "tags": ["Rails", "AWS", "S3", "carrierwave", "Rails5"],
       "stockers_count": 20,
       "updated_at": "2019-03-20T19:04:58"
     },
     {
       "title": "複数モデル、複数レコードの一括更新(Rails)",
       "url": "https://qiita.com/tktcorporation/items/7ba7d67b8de970a91bba",
-      "tags": [
-        "Rails",
-        "Rails5"
-      ],
+      "tags": ["Rails", "Rails5"],
       "stockers_count": 15,
       "updated_at": "2018-12-14T17:37:44"
     }

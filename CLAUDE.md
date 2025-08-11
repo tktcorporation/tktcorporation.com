@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## IMPORTANT: Required Checks Before Completing Tasks
+
+**ALWAYS run the following commands after making code changes:**
+
+```bash
+npm run lint      # Check code formatting and linting
+npm run typecheck # Check TypeScript types
+npm run test      # Run tests (if applicable)
+```
+
+If any of these checks fail, you MUST fix the issues before considering the task complete. This ensures code quality and prevents CI/CD failures.
+
 ## Project Overview
 
 This is a personal website built with React, TypeScript, and Vite. It includes a main homepage and a resume page with LAPRAS integration for displaying work experiences.
