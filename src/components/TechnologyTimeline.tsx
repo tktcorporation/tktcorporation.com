@@ -41,53 +41,88 @@ export function TechnologyTimeline({
   onTimeSpanChange,
 }: TechnologyTimelineProps) {
   const formatPeriod = (start: Date, end: Date, index: number): string => {
-    // 最初のエントリーは「現在」として表示
-    if (index === 0) {
-      const now = new Date();
-      const currentMonth = now.getMonth() + 1;
-      const currentYear = now.getFullYear();
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
 
-      // 現在の月と一致する場合は「現在」と表示
-      const endMonth = end.getMonth() + 1;
-      const endYear = end.getFullYear();
+    const startYear = start.getFullYear();
+    const startMonth = start.getMonth();
+    const endYear = end.getFullYear();
+    const endMonth = end.getMonth();
+
+    // 最初のエントリーで現在と一致する場合の特別な表示
+    if (index === 0) {
+      // 現在の月と一致する場合
       if (endYear === currentYear && endMonth === currentMonth) {
-        return "現在";
+        switch (timeSpan) {
+          case "1month":
+            return "This month";
+          case "6months": {
+            // 6ヶ月期間の場合、開始月を確認
+            const monthsDiff =
+              currentMonth - startMonth + (currentYear - startYear) * 12;
+            if (monthsDiff <= 1) {
+              return "This month";
+            } else if (monthsDiff <= 3) {
+              return "Past 3 months";
+            } else {
+              return "Past 6 months";
+            }
+          }
+          case "1year":
+            return "This year";
+          default:
+            return "This month";
+        }
+      }
+
+      // 現在の年と一致する場合（月は異なる）
+      if (endYear === currentYear && timeSpan === "1year") {
+        return "This year";
       }
     }
 
-    const startYear = start.getFullYear();
-    const startMonth = start.getMonth() + 1;
-    const endYear = end.getFullYear();
-    const endMonth = end.getMonth() + 1;
+    // 月の名前配列
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
 
     // 期間に応じた表示形式
     switch (timeSpan) {
       case "1month":
-        // 1ヶ月表示の場合は月のみ
-        if (startYear === endYear && startMonth === endMonth) {
-          return `${startMonth}月`;
-        }
-        return `${startMonth}月`;
+        // 1ヶ月表示の場合は月名と年
+        return `${monthNames[startMonth]} ${startYear}`;
 
       case "6months":
         // 6ヶ月表示の場合は期間表示
         if (startYear === endYear) {
           if (startMonth === endMonth) {
-            return `${startYear}年${startMonth}月`;
+            return `${monthNames[startMonth]} ${startYear}`;
           }
-          return `${startMonth}月〜${endMonth}月`;
+          return `${monthNames[startMonth]} - ${monthNames[endMonth]} ${startYear}`;
         }
-        return `${startYear}年${startMonth}月〜`;
+        return `${monthNames[startMonth]} ${startYear} - ${monthNames[endMonth]} ${endYear}`;
 
       case "1year":
-        // 1年表示の場合は年を強調
+        // 1年表示の場合は年のみ
         if (startYear === endYear) {
-          return `${startYear}年`;
+          return `${startYear}`;
         }
-        return `${startYear}年〜`;
+        return `${startYear} - ${endYear}`;
 
       default:
-        return `${startYear}年${startMonth}月`;
+        return `${monthNames[startMonth]} ${startYear}`;
     }
   };
 

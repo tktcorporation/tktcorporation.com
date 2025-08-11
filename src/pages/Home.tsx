@@ -18,8 +18,7 @@ import {
   SiX,
   SiZenn,
 } from "@icons-pack/react-simple-icons";
-import { Coffee, Globe, Mail, Monitor } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Coffee, Globe, Mail } from "lucide-react";
 import { TechnologyTimelineSection } from "@/components/TechnologyTimelineSection";
 import { Button } from "@/components/ui/button";
 
@@ -98,7 +97,7 @@ function Home() {
         <div className="relative z-10 text-center max-w-4xl mx-auto">
           {/* メインタイトル */}
           <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-6 animate-gradient">
-            Hi, I'm tkt
+            tktcorporation
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-300 mb-4">
@@ -144,17 +143,6 @@ function Home() {
                 Contact Me
               </Button>
             </a>
-
-            <Link to="/technologies">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-blue-600 text-blue-200 hover:bg-blue-800/20"
-              >
-                <Monitor className="w-5 h-5 mr-2" />
-                Technology Timeline
-              </Button>
-            </Link>
 
             <a
               href="https://www.buymeacoffee.com/tktcorporation"
