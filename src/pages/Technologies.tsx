@@ -82,11 +82,8 @@ function Technologies() {
         <div className="max-w-5xl mx-auto">
           <header className="mb-8 text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
-              技術活動タイムライン
+              Activities
             </h1>
-            <p className="text-lg text-purple-300 animate-fade-in animation-delay-100 mb-2">
-              最近の開発活動と技術的興味の変遷
-            </p>
             {laprasData && (
               <div className="flex justify-center gap-4 text-sm text-slate-400 mt-4">
                 <span>
@@ -98,7 +95,6 @@ function Technologies() {
                     laprasData.zenn_articles.length}{" "}
                   articles
                 </span>
-                <span>🎯 E-Score: {laprasData.e_score}</span>
               </div>
             )}
           </header>

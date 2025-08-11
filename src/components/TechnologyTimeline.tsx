@@ -8,9 +8,25 @@
  * - 職歴表示と同様の縦型タイムラインデザイン
  * - 期間ごとの活動サマリと詳細の両方を表示
  * - 言語の使用頻度を視覚的に表現
+ * - Lucide Reactアイコンを使用した視覚的表現
  */
 
-import type { TimelineEntry, TimeSpan } from "../hooks/useLaprasActivities";
+import {
+  Calendar,
+  Code2,
+  FileText,
+  GitBranch,
+  GitPullRequest,
+  Globe,
+  Mic2,
+  Package,
+} from "lucide-react";
+import type { ReactNode } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import type { TimelineEntry, TimeSpan } from "@/hooks/useLaprasActivities";
+import { cn } from "@/lib/utils";
 
 interface TechnologyTimelineProps {
   entries: TimelineEntry[];
@@ -23,19 +39,55 @@ export function TechnologyTimeline({
   timeSpan,
   onTimeSpanChange,
 }: TechnologyTimelineProps) {
-  const formatPeriod = (start: Date, end: Date): string => {
+  const formatPeriod = (start: Date, end: Date, index: number): string => {
+    // 最初のエントリーは「現在」として表示
+    if (index === 0) {
+      const now = new Date();
+      const currentMonth = now.getMonth() + 1;
+      const currentYear = now.getFullYear();
+
+      // 現在の月と一致する場合は「現在」と表示
+      const endMonth = end.getMonth() + 1;
+      const endYear = end.getFullYear();
+      if (endYear === currentYear && endMonth === currentMonth) {
+        return "現在";
+      }
+    }
+
     const startYear = start.getFullYear();
     const startMonth = start.getMonth() + 1;
     const endYear = end.getFullYear();
     const endMonth = end.getMonth() + 1;
 
-    if (startYear === endYear) {
-      if (startMonth === endMonth) {
+    // 期間に応じた表示形式
+    switch (timeSpan) {
+      case "1month":
+        // 1ヶ月表示の場合は月のみ
+        if (startYear === endYear && startMonth === endMonth) {
+          return `${startMonth}月`;
+        }
+        return `${startMonth}月`;
+
+      case "6months":
+        // 6ヶ月表示の場合は期間表示
+        if (startYear === endYear) {
+          if (startMonth === endMonth) {
+            return `${startYear}年${startMonth}月`;
+          }
+          return `${startMonth}月〜${endMonth}月`;
+        }
+        return `${startYear}年${startMonth}月〜`;
+
+      case "1year":
+        // 1年表示の場合は年を強調
+        if (startYear === endYear) {
+          return `${startYear}年`;
+        }
+        return `${startYear}年〜`;
+
+      default:
         return `${startYear}年${startMonth}月`;
-      }
-      return `${startYear}年${startMonth}月〜${endMonth}月`;
     }
-    return `${startYear}年${startMonth}月〜${endYear}年${endMonth}月`;
   };
 
   const getTopLanguages = (languages: Map<string, number>, limit = 3) => {
@@ -46,18 +98,18 @@ export function TechnologyTimeline({
 
   const getActivityIcon = (
     type: "github" | "github_pr" | "article" | "event"
-  ) => {
+  ): ReactNode => {
     switch (type) {
       case "github":
-        return "🔧";
+        return <GitBranch className="w-4 h-4" />;
       case "github_pr":
-        return "🔄";
+        return <GitPullRequest className="w-4 h-4" />;
       case "article":
-        return "✍️";
+        return <FileText className="w-4 h-4" />;
       case "event":
-        return "🎤";
+        return <Mic2 className="w-4 h-4" />;
       default:
-        return "📌";
+        return <Code2 className="w-4 h-4" />;
     }
   };
 
@@ -86,276 +138,234 @@ export function TechnologyTimeline({
     return repoActivities + entry.articles.length + entry.events.length;
   };
 
+  const timeSpanLabels = {
+    "1month": "1ヶ月",
+    "6months": "6ヶ月",
+    "1year": "1年",
+  } as const;
+
   return (
     <div className="w-full max-w-5xl mx-auto">
       {/* 期間切り替えボタン */}
       <div className="flex justify-center gap-2 mb-8">
         {(["1month", "6months", "1year"] as const).map((span) => (
-          <button
+          <Button
             key={span}
-            type="button"
             onClick={() => onTimeSpanChange(span)}
-            className={`px-4 py-2 rounded-lg transition-all ${
-              timeSpan === span
-                ? "bg-purple-600 text-white"
-                : "bg-white/10 text-purple-300 hover:bg-white/20"
-            }`}
+            variant={timeSpan === span ? "default" : "outline"}
+            size="sm"
+            className={cn(
+              "transition-all",
+              timeSpan === span && "bg-purple-600 hover:bg-purple-700"
+            )}
           >
-            {span === "1month" ? "月次" : span === "6months" ? "半期" : "年次"}
-          </button>
+            <Calendar className="w-4 h-4 mr-2" />
+            {timeSpanLabels[span]}
+          </Button>
         ))}
       </div>
 
       {/* タイムライン */}
       <div className="relative">
         {/* 縦線 */}
-        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-purple-400 to-transparent" />
+        <div className="absolute left-32 top-0 bottom-0 w-0.5 bg-gray-600" />
 
-        {entries.map((entry, index) => {
-          const topLangs = getTopLanguages(entry.languages);
-          const isRecent = index === 0;
-
-          return (
-            <div key={index} className="relative flex gap-8 mb-8">
-              {/* タイムラインポイント */}
+        {entries.map((entry, index) => (
+          <div key={index} className="relative flex gap-6 mb-12">
+            {/* 期間ラベル（左側に配置） */}
+            <div className="w-24 text-right flex-shrink-0">
               <div
-                className={`absolute left-6 w-5 h-5 rounded-full border-2 ${
-                  isRecent
-                    ? "bg-purple-500 border-purple-300 animate-pulse"
-                    : "bg-slate-700 border-slate-500"
-                } z-10`}
+                className={cn(
+                  "text-sm font-medium mt-1",
+                  index === 0 ? "text-purple-400" : "text-gray-400"
+                )}
+              >
+                {formatPeriod(entry.startDate, entry.endDate, index)}
+              </div>
+            </div>
+
+            {/* タイムラインポイント */}
+            <div className="relative flex-shrink-0">
+              <div
+                className={cn(
+                  "w-5 h-5 rounded-full border-4 border-gray-800 z-10",
+                  index === 0
+                    ? "bg-purple-500 ring-2 ring-purple-500/30"
+                    : "bg-purple-500"
+                )}
               />
+            </div>
 
-              {/* コンテンツ */}
-              <div className="ml-16 flex-1">
-                <div
-                  className={`bg-white/5 backdrop-blur-lg border rounded-lg p-6 ${
-                    isRecent
-                      ? "border-purple-500/50 shadow-lg shadow-purple-500/20"
-                      : "border-white/10"
-                  } hover:bg-white/10 transition-all`}
-                >
-                  {/* ヘッダー */}
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-lg font-bold text-purple-200 mb-1">
-                        {formatPeriod(entry.startDate, entry.endDate)}
-                      </h3>
+            {/* コンテンツカード */}
+            <Card className="flex-1 bg-gray-800/50 border-gray-700 -mt-2">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="space-y-2">
+                    {/* 主要言語 */}
+                    <div className="flex gap-2">
+                      {getTopLanguages(entry.languages).map(([lang, count]) => (
+                        <Badge
+                          key={lang}
+                          variant="secondary"
+                          className="bg-blue-500/20 text-blue-200 border-blue-500/30"
+                        >
+                          <Code2 className="w-3 h-3 mr-1" />
+                          {lang} ({count})
+                        </Badge>
+                      ))}
+                    </div>
 
-                      {/* 主要言語 */}
-                      {topLangs.length > 0 && (
-                        <div className="flex gap-2 mb-2">
-                          {topLangs.map(([lang, count]) => (
-                            <span
-                              key={lang}
-                              className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-200 rounded-full border border-blue-500/30"
-                            >
-                              {lang}
-                              <span className="ml-1 opacity-70">({count})</span>
-                            </span>
-                          ))}
-                        </div>
-                      )}
+                    {/* リポジトリ数 */}
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <Package className="w-4 h-4" />
+                        {entry.repositories.size} repos
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Globe className="w-4 h-4" />
+                        {entry.languages.size} languages
+                      </span>
+                    </div>
+                  </div>
 
-                      {/* 統計情報 */}
-                      <div className="flex gap-4 text-xs text-slate-400">
-                        {entry.totalContributions > 0 && (
-                          <span>💻 {entry.totalContributions} commits</span>
+                  {/* アクティビティ数バッジ */}
+                  <Badge className="bg-purple-500/20 text-purple-200 border-purple-500/30">
+                    {getTotalActivities(entry)} activities
+                  </Badge>
+                </div>
+              </CardHeader>
+
+              <CardContent className="space-y-4">
+                {/* リポジトリグループ */}
+                {entry.repositoryGroups.slice(0, 3).map((group, gIdx) => (
+                  <div
+                    key={gIdx}
+                    className="border-l-2 border-gray-600 pl-4 space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-medium text-gray-200">
+                        {group.repository}
+                      </h4>
+                      <div className="flex items-center gap-2 text-xs text-gray-400">
+                        {group.language && (
+                          <Badge variant="outline" className="text-xs">
+                            {group.language}
+                          </Badge>
                         )}
-                        {entry.prCount > 0 && (
-                          <span>🔄 {entry.prCount} PRs</span>
-                        )}
-                        {entry.articleCount > 0 && (
-                          <span>✍️ {entry.articleCount} articles</span>
-                        )}
-                        {entry.eventCount > 0 && (
-                          <span>🎤 {entry.eventCount} events</span>
+                        <span className="flex items-center gap-1">
+                          <GitBranch className="w-3 h-3" />
+                          {group.contributions}
+                        </span>
+                        {group.prCount > 0 && (
+                          <span className="flex items-center gap-1">
+                            <GitPullRequest className="w-3 h-3" />
+                            {group.prCount}
+                          </span>
                         )}
                       </div>
                     </div>
 
-                    {/* アクティビティ数バッジ */}
-                    <span className="px-3 py-1 text-sm bg-purple-500/20 text-purple-200 rounded-full border border-purple-500/30">
-                      {getTotalActivities(entry)} activities
-                    </span>
-                  </div>
-
-                  {/* アクティビティリスト */}
-                  <details className="mt-4">
-                    <summary className="text-sm text-purple-300 cursor-pointer hover:text-purple-200 transition-colors">
-                      詳細を表示
-                    </summary>
-                    <div className="mt-3 space-y-4">
-                      {/* リポジトリグループ */}
-                      {entry.repositoryGroups.length > 0 && (
-                        <div>
-                          <h4 className="text-xs font-semibold text-slate-400 mb-2">
-                            📦 リポジトリ活動
-                          </h4>
-                          <div className="space-y-3">
-                            {entry.repositoryGroups
-                              .slice(0, 5)
-                              .map((group, idx) => (
-                                <div
-                                  key={idx}
-                                  className="bg-black/20 rounded-lg p-3 border border-white/5"
-                                >
-                                  <div className="flex items-start justify-between mb-2">
-                                    <h5 className="text-sm font-medium text-blue-300">
-                                      {group.repository}
-                                    </h5>
-                                    <div className="flex gap-2 text-xs text-slate-500">
-                                      {group.language && (
-                                        <span className="px-2 py-0.5 bg-blue-500/10 text-blue-300 rounded">
-                                          {group.language}
-                                        </span>
-                                      )}
-                                      {group.contributions > 0 && (
-                                        <span>
-                                          💻 {group.contributions} commits
-                                        </span>
-                                      )}
-                                      {group.prCount > 0 && (
-                                        <span>🔄 {group.prCount} PRs</span>
-                                      )}
-                                    </div>
-                                  </div>
-                                  <div className="space-y-1">
-                                    {group.activities
-                                      .slice(0, 3)
-                                      .map((activity, actIdx) => (
-                                        <div
-                                          key={actIdx}
-                                          className="flex items-center gap-2 text-xs"
-                                        >
-                                          <span>
-                                            {getActivityIcon(activity.type)}
-                                          </span>
-                                          <a
-                                            href={activity.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={`hover:underline ${getActivityColor(activity.type)}`}
-                                          >
-                                            {activity.type === "github_pr"
-                                              ? "Pull Request"
-                                              : "Commit"}
-                                          </a>
-                                          <span className="text-slate-600">
-                                            {activity.date.toLocaleDateString(
-                                              "ja-JP"
-                                            )}
-                                          </span>
-                                        </div>
-                                      ))}
-                                    {group.activities.length > 3 && (
-                                      <p className="text-xs text-slate-500 mt-1">
-                                        他 {group.activities.length - 3}{" "}
-                                        件の活動
-                                      </p>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
-                            {entry.repositoryGroups.length > 5 && (
-                              <p className="text-xs text-slate-400">
-                                他 {entry.repositoryGroups.length - 5}{" "}
-                                リポジトリ
-                              </p>
-                            )}
+                    {/* アクティビティ */}
+                    <div className="space-y-1">
+                      {group.activities.slice(0, 2).map((activity, aIdx) => (
+                        <a
+                          key={aIdx}
+                          href={activity.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block group"
+                        >
+                          <div className="flex items-start gap-2 text-xs hover:bg-gray-700/30 rounded p-1 transition-colors">
+                            <span
+                              className={cn(
+                                "mt-0.5",
+                                getActivityColor(activity.type)
+                              )}
+                            >
+                              {getActivityIcon(activity.type)}
+                            </span>
+                            <span className="text-gray-300 group-hover:text-gray-100 transition-colors line-clamp-1">
+                              {activity.title}
+                            </span>
                           </div>
-                        </div>
-                      )}
-
-                      {/* 記事 */}
-                      {entry.articles.length > 0 && (
-                        <div>
-                          <h4 className="text-xs font-semibold text-slate-400 mb-2">
-                            ✍️ 執筆記事
-                          </h4>
-                          <div className="space-y-2">
-                            {entry.articles.slice(0, 5).map((article, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-start gap-2 text-sm"
-                              >
-                                <span className="mt-1">
-                                  {getActivityIcon(article.type)}
-                                </span>
-                                <div className="flex-1">
-                                  <a
-                                    href={article.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`hover:underline ${getActivityColor(article.type)}`}
-                                  >
-                                    {article.title}
-                                  </a>
-                                  <div className="text-xs text-slate-500 mt-0.5">
-                                    {article.date.toLocaleDateString("ja-JP")}
-                                    <span className="ml-2">
-                                      {article.source === "qiita"
-                                        ? "Qiita"
-                                        : "Zenn"}
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                            {entry.articles.length > 5 && (
-                              <p className="text-xs text-slate-400">
-                                他 {entry.articles.length - 5} 件の記事
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* イベント */}
-                      {entry.events.length > 0 && (
-                        <div>
-                          <h4 className="text-xs font-semibold text-slate-400 mb-2">
-                            🎤 イベント参加
-                          </h4>
-                          <div className="space-y-2">
-                            {entry.events.map((event, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-start gap-2 text-sm"
-                              >
-                                <span className="mt-1">
-                                  {getActivityIcon(event.type)}
-                                </span>
-                                <div className="flex-1">
-                                  <a
-                                    href={event.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`hover:underline ${getActivityColor(event.type)}`}
-                                  >
-                                    {event.title}
-                                  </a>
-                                  <div className="text-xs text-slate-500 mt-0.5">
-                                    {event.date.toLocaleDateString("ja-JP")}
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
+                        </a>
+                      ))}
+                      {group.activities.length > 2 && (
+                        <div className="text-xs text-gray-500 pl-6">
+                          他 {group.activities.length - 2} 件のアクティビティ
                         </div>
                       )}
                     </div>
-                  </details>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+                  </div>
+                ))}
 
-        {/* タイムライン終端 */}
-        {entries.length > 0 && (
-          <div className="absolute left-6 bottom-0 w-5 h-5 rounded-full bg-slate-800 border-2 border-slate-600" />
-        )}
+                {/* 記事 */}
+                {entry.articles.length > 0 && (
+                  <div className="border-l-2 border-purple-600 pl-4 space-y-2">
+                    <h4 className="text-sm font-medium text-gray-200 flex items-center gap-2">
+                      <FileText className="w-4 h-4" />
+                      記事 ({entry.articles.length})
+                    </h4>
+                    <div className="space-y-1">
+                      {entry.articles.slice(0, 2).map((article, aIdx) => (
+                        <a
+                          key={aIdx}
+                          href={article.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block group"
+                        >
+                          <div className="flex items-start gap-2 text-xs hover:bg-gray-700/30 rounded p-1 transition-colors">
+                            <Badge variant="outline" className="text-xs">
+                              {article.source}
+                            </Badge>
+                            <span className="text-gray-300 group-hover:text-gray-100 transition-colors line-clamp-1">
+                              {article.title}
+                            </span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* イベント */}
+                {entry.events.length > 0 && (
+                  <div className="border-l-2 border-yellow-600 pl-4 space-y-2">
+                    <h4 className="text-sm font-medium text-gray-200 flex items-center gap-2">
+                      <Mic2 className="w-4 h-4" />
+                      イベント ({entry.events.length})
+                    </h4>
+                    <div className="space-y-1">
+                      {entry.events.map((event, eIdx) => (
+                        <a
+                          key={eIdx}
+                          href={event.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block group"
+                        >
+                          <div className="text-xs text-gray-300 hover:text-gray-100 hover:bg-gray-700/30 rounded p-1 transition-colors line-clamp-1">
+                            {event.title}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* もっと見るリンク */}
+                {entry.repositoryGroups.length > 3 && (
+                  <div className="text-center pt-2">
+                    <span className="text-xs text-gray-500">
+                      他 {entry.repositoryGroups.length - 3} 件のリポジトリ
+                    </span>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        ))}
       </div>
     </div>
   );
