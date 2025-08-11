@@ -27,13 +27,19 @@ const GitHubRepositorySchema = z.object({
   is_fork: z.boolean(),
   is_owner: z.boolean(),
   description: z.string(),
-  stargazers_count: z.number(),
+  stargazers_count: z
+    .union([z.number(), z.string()])
+    .transform((val) =>
+      typeof val === "string" ? parseInt(val, 10) || 0 : val
+    ),
   language: z.string(),
   languages: z.array(GitHubLanguageSchema),
   contributions: z.number(),
   contributions_url: z.string(),
-  created_at: z.string().optional(),
-  pushed_at: z.string().optional(),
+  contributors_count: z.number().optional(),
+  contributors_url: z.string().optional(),
+  forks: z.number().optional(),
+  stargazers_url: z.string().optional(),
 });
 
 // Qiita Article
@@ -43,6 +49,7 @@ const QiitaArticleSchema = z.object({
   tags: z.array(z.string()),
   stockers_count: z.number(),
   updated_at: z.string(),
+  headlines: z.array(z.string()).optional(),
 });
 
 // Zenn Article
@@ -53,6 +60,60 @@ const ZennArticleSchema = z.object({
   posted_at: z.string(),
 });
 
+// Activity
+const ActivitySchema = z.object({
+  title: z.string(),
+  url: z.string(),
+  date: z.string(),
+  type: z.string(), // More flexible to handle various types
+});
+
+// Event
+const EventSchema = z.object({
+  title: z.string(),
+  url: z.string(),
+  date: z.string(),
+  is_organizer: z.boolean().optional(),
+  is_presenter: z.boolean().optional(),
+  status: z.number().optional(),
+});
+
+// Blog Article
+const BlogArticleSchema = z.object({
+  title: z.string(),
+  url: z.string(),
+  tags: z.array(z.string()),
+  posted_at: z.string(),
+});
+
+// Note Article
+const NoteArticleSchema = z.object({
+  title: z.string(),
+  url: z.string(),
+  tags: z.array(z.string()),
+  published_at: z.string(),
+  like_count: z.number().optional(),
+});
+
+// Speaker Deck Slide
+const SpeakerDeckSlideSchema = z.object({
+  title: z.string(),
+  url: z.string(),
+  description: z.string().optional(),
+  presentation_date: z.string().optional(),
+  star_count: z.number().optional(),
+  view_count: z.number().optional(),
+});
+
+// Teratail Reply
+const TeratailReplySchema = z.object({
+  title: z.string(),
+  url: z.string(),
+  tags: z.array(z.string()),
+  created_at: z.string(),
+  is_best_answer: z.boolean().optional(),
+});
+
 // Main LAPRAS Data Schema
 export const LaprasDataSchema = z.object({
   name: z.string(),
@@ -61,9 +122,16 @@ export const LaprasDataSchema = z.object({
   b_score: z.number(),
   i_score: z.number(),
   iconimage_url: z.string(),
-  qiita_articles: z.array(QiitaArticleSchema),
-  zenn_articles: z.array(ZennArticleSchema),
-  github_repositories: z.array(GitHubRepositorySchema),
+  qiita_articles: z.array(QiitaArticleSchema).default([]),
+  zenn_articles: z.array(ZennArticleSchema).default([]),
+  github_repositories: z.array(GitHubRepositorySchema).default([]),
+  activities: z.array(ActivitySchema).default([]),
+  events: z.array(EventSchema).default([]),
+  blog_articles: z.array(BlogArticleSchema).default([]),
+  note_articles: z.array(NoteArticleSchema).default([]),
+  speaker_deck_slides: z.array(SpeakerDeckSlideSchema).default([]),
+  teratail_replies: z.array(TeratailReplySchema).default([]),
+  hatena_articles: z.array(BlogArticleSchema).default([]),
 });
 
 // Type exports
@@ -71,3 +139,5 @@ export type LaprasData = z.infer<typeof LaprasDataSchema>;
 export type GitHubRepository = z.infer<typeof GitHubRepositorySchema>;
 export type QiitaArticle = z.infer<typeof QiitaArticleSchema>;
 export type ZennArticle = z.infer<typeof ZennArticleSchema>;
+export type Activity = z.infer<typeof ActivitySchema>;
+export type Event = z.infer<typeof EventSchema>;
