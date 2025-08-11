@@ -1,0 +1,2915 @@
+{
+  "name": "tktcorporation",
+  "description": "SWE",
+  "e_score": 4.13,
+  "b_score": 3.48,
+  "i_score": 3.48,
+  "iconimage_url": "https://media.scout.lapras.com/media/CACHE/images/lapras_person/avatar/4ccf1ceafb3048008f7bd17ed188262e/tktcorporation_icon/ecba51ddc1540f1d9ef79aa79e412948.jpg?Expires=1754896691&Signature=rjyfJCBo07tVxZbKQ73kHJDgp20obNwk8iOttV1vNETayMd59DdYtzp3krJSlE0WiALJt~PM1SAmsSSiyA5cH3zVuWcTzJqcHdq3SUjY3INmWpq7EpDPoPcHYsWHcF3vXPyfQckzxPIcOznNqgxivlvhFUL~ggSj74VhVnEGoMU7TbAzKEcZdEeIhP3T5hPOoCWQ3~HMYvoPRy9h00i9cTxAoqRpHMB1aI7YbSsMwWq-bO~dBM932q7mf5TT-~HixClR3htDA9mkYcAiwiSoHvWytZxJAxIaF9xjKdxx~HEmmsSEAEoCNTr1N32bfA95pei7mpg6a-MtrOGu3guCKQ__&Key-Pair-Id=K1WIWXB00Y0RX8",
+  "qiita_articles": [
+    {
+      "title": "bundle install 時、mysql2でエラー",
+      "url": "https://qiita.com/tktcorporation/items/0ef8c930fc18ce72c301",
+      "tags": ["Ruby", "Rails", "Gem", "環境構築", "Rails5"],
+      "stockers_count": 179,
+      "updated_at": "2019-07-25T14:19:33"
+    },
+    {
+      "title": "マルコフ連鎖を使って自分らしい文章を生成する(Python3)",
+      "url": "https://qiita.com/tktcorporation/items/19d60e2859aff3e2020b",
+      "tags": ["Python", "Python3"],
+      "stockers_count": 102,
+      "updated_at": "2019-06-02T01:40:40"
+    },
+    {
+      "title": "Object等の呼び出しでkeyに動的な変数を使う [TypeScript]",
+      "url": "https://qiita.com/tktcorporation/items/051bb03bb4d72930d8e9",
+      "tags": ["JavaScript", "TypeScript", "ECMAScript"],
+      "stockers_count": 55,
+      "updated_at": "2021-08-23T15:50:03"
+    },
+    {
+      "title": "AWS S3で「Access Denied」を解決する",
+      "url": "https://qiita.com/tktcorporation/items/ec2dbc2fe540e313f917",
+      "tags": ["Rails", "AWS", "S3", "carrierwave", "Rails5"],
+      "stockers_count": 20,
+      "updated_at": "2019-03-20T19:04:58"
+    },
+    {
+      "title": "複数モデル、複数レコードの一括更新(Rails)",
+      "url": "https://qiita.com/tktcorporation/items/7ba7d67b8de970a91bba",
+      "tags": ["Rails", "Rails5"],
+      "stockers_count": 15,
+      "updated_at": "2018-12-14T17:37:44"
+    }
+  ],
+  "zenn_articles": [
+    {
+      "title": "GitHub Codespaces の無料枠を無駄にしないために",
+      "url": "https://zenn.dev/tktcorporation/articles/49505ff65ee384",
+      "tags": [],
+      "posted_at": "2022-12-30T11:26:33"
+    },
+    {
+      "title": "GitHub Codespaces で デフォルトのコンテナイメージをカスタムして使う",
+      "url": "https://zenn.dev/tktcorporation/articles/488bba4488a9d9",
+      "tags": [],
+      "posted_at": "2022-12-03T22:56:09"
+    },
+    {
+      "title": "Rust で外部依存に対して mock test を書く",
+      "url": "https://zenn.dev/tktcorporation/articles/701ed38c6e737a",
+      "tags": [],
+      "posted_at": "2021-09-20T05:19:34"
+    },
+    {
+      "title": "Rust で 未使用の dependencies を探す",
+      "url": "https://zenn.dev/tktcorporation/articles/1563fc2036ff45",
+      "tags": [],
+      "posted_at": "2021-06-28T08:27:55"
+    },
+    {
+      "title": "pysen を使って python の lint 環境をまとめる",
+      "url": "https://zenn.dev/tktcorporation/articles/85003c3975fd55",
+      "tags": [],
+      "posted_at": "2021-04-07T01:48:59"
+    },
+    {
+      "title": "非同期処理が終わるまで待機させる[Kotlin]",
+      "url": "https://zenn.dev/tktcorporation/articles/be81213f6d0da3",
+      "tags": [],
+      "posted_at": "2021-01-05T16:08:16"
+    },
+    {
+      "title": "Typescript で 型(構造体) の一致を判定する (Class, Interface, Type)",
+      "url": "https://zenn.dev/tktcorporation/articles/8757400a6aa0b40e64bd",
+      "tags": [],
+      "posted_at": "2020-09-21T22:47:50"
+    }
+  ],
+  "github_repositories": [
+    {
+      "id": 69469299,
+      "title": "apollographql/apollo-kotlin",
+      "url": "https://github.com/apollographql/apollo-kotlin",
+      "is_oss": true,
+      "is_fork": false,
+      "is_owner": false,
+      "description": ":robot:  A strongly-typed, caching GraphQL client for the JVM, Android, and Kotlin multiplatform.",
+      "stargazers_count": 3081,
+      "language": "Kotlin",
+      "languages": [
+        {
+          "name": "Java",
+          "bytes": 14052
+        },
+        {
+          "name": "ANTLR",
+          "bytes": 8213
+        },
+        {
+          "name": "Kotlin",
+          "bytes": 1767991
+        }
+      ],
+      "contributions": 1,
+      "contributions_url": "https://github.com/apollographql/apollo-kotlin/commits?author=tktcorporation"
+    },
+    {
+      "id": 252728442,
+      "title": "tkt-actions/add-issue-links",
+      "url": "https://github.com/tkt-actions/add-issue-links",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "A GitHub Action for linking a pull request to an issue",
+      "stargazers_count": 24,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 70366
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 941
+        }
+      ],
+      "contributions": 337,
+      "contributions_url": "https://github.com/tkt-actions/add-issue-links/commits?author=tktcorporation"
+    },
+    {
+      "id": 328631160,
+      "title": "tktcorporation/discord-tts-bot",
+      "url": "https://github.com/tktcorporation/discord-tts-bot",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A discord bot to use tts in your voice channel.",
+      "stargazers_count": 3,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 1552
+        },
+        {
+          "name": "RenderScript",
+          "bytes": 1
+        },
+        {
+          "name": "Rust",
+          "bytes": 99784
+        },
+        {
+          "name": "Makefile",
+          "bytes": 1535
+        }
+      ],
+      "contributions": 773,
+      "contributions_url": "https://github.com/tktcorporation/discord-tts-bot/commits?author=tktcorporation"
+    },
+    {
+      "id": 312585508,
+      "title": "serenity-rs/songbird",
+      "url": "https://github.com/serenity-rs/songbird",
+      "is_oss": true,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "An async Rust library for the Discord voice API",
+      "stargazers_count": 215,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "Rust",
+          "bytes": 367822
+        }
+      ],
+      "contributions": 1,
+      "contributions_url": "https://github.com/serenity-rs/songbird/commits?author=tktcorporation"
+    },
+    {
+      "id": 200996660,
+      "title": "lapras-inc/lapras-frontend",
+      "url": "https://github.com/lapras-inc/lapras-frontend",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "",
+      "stargazers_count": 11,
+      "language": "Vue",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 33830
+        },
+        {
+          "name": "SCSS",
+          "bytes": 6054
+        },
+        {
+          "name": "Vue",
+          "bytes": 34532
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1018
+        }
+      ],
+      "contributions": 21,
+      "contributions_url": "https://github.com/lapras-inc/lapras-frontend/commits?author=tktcorporation"
+    },
+    {
+      "id": 898758571,
+      "title": "lapras-inc/lapras-score-v2",
+      "url": "https://github.com/lapras-inc/lapras-score-v2",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "LAPRASの「技術力スコア」の算出ロジックの公開リポジトリです。 スコアに関するご意見や議論は、ぜひLAPRASユーザーコミュニティに投稿ください。",
+      "stargazers_count": 61,
+      "language": "Python",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 340
+        },
+        {
+          "name": "Python",
+          "bytes": 30225
+        }
+      ],
+      "contributions": 7,
+      "contributions_url": "https://github.com/lapras-inc/lapras-score-v2/commits?author=tktcorporation"
+    },
+    {
+      "id": 777313147,
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "VRChatの写真を、一緒にいた人、撮ったワールド、をまとめて表示、検索できるデスクトップアプリケーション",
+      "stargazers_count": 2,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 1431057
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 94
+        },
+        {
+          "name": "CSS",
+          "bytes": 8477
+        },
+        {
+          "name": "Shell",
+          "bytes": 7503
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 31439
+        },
+        {
+          "name": "HTML",
+          "bytes": 1323
+        },
+        {
+          "name": "EJS",
+          "bytes": 1024
+        }
+      ],
+      "contributions": 875,
+      "contributions_url": "https://github.com/tktcorporation/vrchat-albums/commits?author=tktcorporation"
+    },
+    {
+      "id": 969483475,
+      "title": "tktcorporation/clip-filepaths",
+      "url": "https://github.com/tktcorporation/clip-filepaths",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "📋 Copy multiple file paths (including images) to clipboard - A cross platform utility.",
+      "stargazers_count": 8,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 15487
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 474
+        },
+        {
+          "name": "Shell",
+          "bytes": 4292
+        },
+        {
+          "name": "Rust",
+          "bytes": 57724
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 12477
+        },
+        {
+          "name": "Just",
+          "bytes": 5434
+        }
+      ],
+      "contributions": 57,
+      "contributions_url": "https://github.com/tktcorporation/clip-filepaths/commits?author=tktcorporation"
+    },
+    {
+      "id": 334205965,
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "💻 macOS / Ubuntu dotfiles",
+      "stargazers_count": 0,
+      "language": "Shell",
+      "languages": [
+        {
+          "name": "Shell",
+          "bytes": 112853
+        },
+        {
+          "name": "AppleScript",
+          "bytes": 1512
+        }
+      ],
+      "contributions": 216,
+      "contributions_url": "https://github.com/tktcorporation/dotfiles/commits?author=tktcorporation"
+    },
+    {
+      "id": 166921547,
+      "title": "tktcorporation/linebot-messaging",
+      "url": "https://github.com/tktcorporation/linebot-messaging",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 637
+        },
+        {
+          "name": "CSS",
+          "bytes": 2090
+        },
+        {
+          "name": "CoffeeScript",
+          "bytes": 844
+        },
+        {
+          "name": "SCSS",
+          "bytes": 7739
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 28837730
+        },
+        {
+          "name": "Vue",
+          "bytes": 5304
+        },
+        {
+          "name": "Slim",
+          "bytes": 60727
+        },
+        {
+          "name": "HTML",
+          "bytes": 17739
+        },
+        {
+          "name": "Ruby",
+          "bytes": 184845
+        }
+      ],
+      "contributions": 480,
+      "contributions_url": "https://github.com/tktcorporation/linebot-messaging/commits?author=tktcorporation"
+    },
+    {
+      "id": 294461788,
+      "title": "tktcorporation/tktcorporation.com",
+      "url": "https://github.com/tktcorporation/tktcorporation.com",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "simple profile site.",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 51765
+        },
+        {
+          "name": "HTML",
+          "bytes": 10882
+        },
+        {
+          "name": "CSS",
+          "bytes": 2518
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 8350
+        }
+      ],
+      "contributions": 171,
+      "contributions_url": "https://github.com/tktcorporation/tktcorporation.com/commits?author=tktcorporation"
+    },
+    {
+      "id": 678370537,
+      "title": "tktcorporation/vrchat-join-recorder",
+      "url": "https://github.com/tktcorporation/vrchat-join-recorder",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "VRChat の Join 情報を記録し、あとから World 情報を振り返る デスクトップApp",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 207406
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 94
+        },
+        {
+          "name": "Shell",
+          "bytes": 3727
+        },
+        {
+          "name": "CSS",
+          "bytes": 2088
+        },
+        {
+          "name": "HTML",
+          "bytes": 304
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2780
+        }
+      ],
+      "contributions": 419,
+      "contributions_url": "https://github.com/tktcorporation/vrchat-join-recorder/commits?author=tktcorporation"
+    },
+    {
+      "id": 374450991,
+      "title": "tktcorporation/ateaparty",
+      "url": "https://github.com/tktcorporation/ateaparty",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 34202
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 336
+        },
+        {
+          "name": "CSS",
+          "bytes": 2259
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2116
+        }
+      ],
+      "contributions": 235,
+      "contributions_url": "https://github.com/tktcorporation/ateaparty/commits?author=tktcorporation"
+    },
+    {
+      "id": 228123497,
+      "title": "tktcorporation/coc-manager",
+      "url": "https://github.com/tktcorporation/coc-manager",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 81760
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 258
+        },
+        {
+          "name": "Shell",
+          "bytes": 211
+        },
+        {
+          "name": "Makefile",
+          "bytes": 1612
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1998
+        }
+      ],
+      "contributions": 139,
+      "contributions_url": "https://github.com/tktcorporation/coc-manager/commits?author=tktcorporation"
+    },
+    {
+      "id": 759931174,
+      "title": "tktcorporation/get-world-name-and-user-name-from-photo",
+      "url": "https://github.com/tktcorporation/get-world-name-and-user-name-from-photo",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 157590
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 94
+        },
+        {
+          "name": "Shell",
+          "bytes": 3727
+        },
+        {
+          "name": "CSS",
+          "bytes": 1865
+        },
+        {
+          "name": "HTML",
+          "bytes": 300
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 5584
+        }
+      ],
+      "contributions": 272,
+      "contributions_url": "https://github.com/tktcorporation/get-world-name-and-user-name-from-photo/commits?author=tktcorporation"
+    },
+    {
+      "id": 549040367,
+      "title": "tktcorporation/ateaparty-manager",
+      "url": "https://github.com/tktcorporation/ateaparty-manager",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 113103
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 174
+        },
+        {
+          "name": "CSS",
+          "bytes": 7716
+        },
+        {
+          "name": "Shell",
+          "bytes": 295
+        },
+        {
+          "name": "Makefile",
+          "bytes": 119
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 3726
+        },
+        {
+          "name": "HTML",
+          "bytes": 382
+        }
+      ],
+      "contributions": 157,
+      "contributions_url": "https://github.com/tktcorporation/ateaparty-manager/commits?author=tktcorporation"
+    },
+    {
+      "id": 351718022,
+      "title": "tkt-actions/send-email-to-issue-assignee",
+      "url": "https://github.com/tkt-actions/send-email-to-issue-assignee",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 21751
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 50
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 976
+        }
+      ],
+      "contributions": 180,
+      "contributions_url": "https://github.com/tkt-actions/send-email-to-issue-assignee/commits?author=tktcorporation"
+    },
+    {
+      "id": 546924986,
+      "title": "tktcorporation/redwood-tutorial",
+      "url": "https://github.com/tktcorporation/redwood-tutorial",
+      "is_oss": false,
+      "is_fork": true,
+      "is_owner": false,
+      "description": "The end state after completing the RedwoodJS introduction tutorial ",
+      "stargazers_count": 1,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 27978
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 190
+        },
+        {
+          "name": "CSS",
+          "bytes": 6177
+        },
+        {
+          "name": "HTML",
+          "bytes": 418
+        },
+        {
+          "name": "Shell",
+          "bytes": 70
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 60675
+        }
+      ],
+      "contributions": 31,
+      "contributions_url": "https://github.com/tktcorporation/redwood-tutorial/commits?author=tktcorporation"
+    },
+    {
+      "id": 304248105,
+      "title": "tktcorporation/youtube_to_m3u8",
+      "url": "https://github.com/tktcorporation/youtube_to_m3u8",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Get m3u8 url from Youtube video id.",
+      "stargazers_count": 3,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "Rust",
+          "bytes": 92942
+        }
+      ],
+      "contributions": 96,
+      "contributions_url": "https://github.com/tktcorporation/youtube_to_m3u8/commits?author=tktcorporation"
+    },
+    {
+      "id": 258518635,
+      "title": "tktcorporation/Runner",
+      "url": "https://github.com/tktcorporation/Runner",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "2D Runner Game",
+      "stargazers_count": 1,
+      "language": "C#",
+      "languages": [
+        {
+          "name": "C#",
+          "bytes": 42166
+        },
+        {
+          "name": "Go",
+          "bytes": 9279
+        },
+        {
+          "name": "HTML",
+          "bytes": 3749
+        },
+        {
+          "name": "CSS",
+          "bytes": 1668
+        },
+        {
+          "name": "Makefile",
+          "bytes": 794
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1212
+        }
+      ],
+      "contributions": 173,
+      "contributions_url": "https://github.com/tktcorporation/Runner/commits?author=tktcorporation"
+    },
+    {
+      "id": 927787249,
+      "title": "tktcorporation/unofficial-sanrio-vfes-timetable-importer",
+      "url": "https://github.com/tktcorporation/unofficial-sanrio-vfes-timetable-importer",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "サンリオVfesのイベントをカレンダーに登録する非公式ツール",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 145235
+        },
+        {
+          "name": "CSS",
+          "bytes": 4489
+        }
+      ],
+      "contributions": 173,
+      "contributions_url": "https://github.com/tktcorporation/unofficial-sanrio-vfes-timetable-importer/commits?author=tktcorporation"
+    },
+    {
+      "id": 280480295,
+      "title": "tktcorporation/typescript-isolating-the-domain",
+      "url": "https://github.com/tktcorporation/typescript-isolating-the-domain",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A DDD code sample in Typescript.",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 48997
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 50
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1149
+        }
+      ],
+      "contributions": 109,
+      "contributions_url": "https://github.com/tktcorporation/typescript-isolating-the-domain/commits?author=tktcorporation"
+    },
+    {
+      "id": 190849464,
+      "title": "tktcorporation/jiro-spell-generator",
+      "url": "https://github.com/tktcorporation/jiro-spell-generator",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 3,
+      "language": "Vue",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 2488
+        },
+        {
+          "name": "HTML",
+          "bytes": 740
+        },
+        {
+          "name": "Vue",
+          "bytes": 7365
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1641
+        }
+      ],
+      "contributions": 29,
+      "contributions_url": "https://github.com/tktcorporation/jiro-spell-generator/commits?author=tktcorporation"
+    },
+    {
+      "id": 191776602,
+      "title": "tktcorporation/sam-cli_typescript_template",
+      "url": "https://github.com/tktcorporation/sam-cli_typescript_template",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "AWS SAM CLI with Typescript",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 8719
+        },
+        {
+          "name": "Makefile",
+          "bytes": 1487
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1240
+        }
+      ],
+      "contributions": 65,
+      "contributions_url": "https://github.com/tktcorporation/sam-cli_typescript_template/commits?author=tktcorporation"
+    },
+    {
+      "id": 163072682,
+      "title": "tktcorporation/neptune",
+      "url": "https://github.com/tktcorporation/neptune",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "HTML",
+          "bytes": 20554
+        },
+        {
+          "name": "CSS",
+          "bytes": 1787
+        },
+        {
+          "name": "Ruby",
+          "bytes": 53945
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 64935
+        },
+        {
+          "name": "Vue",
+          "bytes": 257
+        }
+      ],
+      "contributions": 62,
+      "contributions_url": "https://github.com/tktcorporation/neptune/commits?author=tktcorporation"
+    },
+    {
+      "id": 283191885,
+      "title": "tktcorporation/tktcorporation",
+      "url": "https://github.com/tktcorporation/tktcorporation",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "",
+      "languages": [],
+      "contributions": 53,
+      "contributions_url": "https://github.com/tktcorporation/tktcorporation/commits?author=tktcorporation"
+    },
+    {
+      "id": 266943264,
+      "title": "tktcorporation/nestjs-sample",
+      "url": "https://github.com/tktcorporation/nestjs-sample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 83
+        }
+      ],
+      "contributions": 44,
+      "contributions_url": "https://github.com/tktcorporation/nestjs-sample/commits?author=tktcorporation"
+    },
+    {
+      "id": 540752685,
+      "title": "tktcorporation/redwoodjs-v3-tutrial",
+      "url": "https://github.com/tktcorporation/redwoodjs-v3-tutrial",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "https://redwoodjs.com/docs/tutorial/foreword",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 72705
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 190
+        },
+        {
+          "name": "CSS",
+          "bytes": 8182
+        },
+        {
+          "name": "HTML",
+          "bytes": 364
+        },
+        {
+          "name": "Shell",
+          "bytes": 125
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2747
+        }
+      ],
+      "contributions": 38,
+      "contributions_url": "https://github.com/tktcorporation/redwoodjs-v3-tutrial/commits?author=tktcorporation"
+    },
+    {
+      "id": 277788608,
+      "title": "tktcorporation/simple-query-builder",
+      "url": "https://github.com/tktcorporation/simple-query-builder",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 24790
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 50
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 715
+        }
+      ],
+      "contributions": 50,
+      "contributions_url": "https://github.com/tktcorporation/simple-query-builder/commits?author=tktcorporation"
+    },
+    {
+      "id": 278968774,
+      "title": "tktcorporation/typescript-docker-template",
+      "url": "https://github.com/tktcorporation/typescript-docker-template",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "base repository for developing typescript app with docker.",
+      "stargazers_count": 0,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 49
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 451
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 715
+        }
+      ],
+      "contributions": 46,
+      "contributions_url": "https://github.com/tktcorporation/typescript-docker-template/commits?author=tktcorporation"
+    },
+    {
+      "id": 925522971,
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "あ茶会 告知投稿の文面検査",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 29954
+        },
+        {
+          "name": "HTML",
+          "bytes": 442
+        },
+        {
+          "name": "CSS",
+          "bytes": 161
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2678
+        }
+      ],
+      "contributions": 33,
+      "contributions_url": "https://github.com/tktcorporation/tweet-validator-for-achakai/commits?author=tktcorporation"
+    },
+    {
+      "id": 470454489,
+      "title": "lapras-inc/gather-tag-game",
+      "url": "https://github.com/lapras-inc/gather-tag-game",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "GatherのAPIを利用して鬼ごっこを実現するシステム",
+      "stargazers_count": 8,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 14392
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 970
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 134
+        }
+      ],
+      "contributions": 11,
+      "contributions_url": "https://github.com/lapras-inc/gather-tag-game/commits?author=tktcorporation"
+    },
+    {
+      "id": 405289667,
+      "title": "tktcorporation/mob-practice-golang",
+      "url": "https://github.com/tktcorporation/mob-practice-golang",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Go tutorials",
+      "stargazers_count": 1,
+      "language": "Go",
+      "languages": [
+        {
+          "name": "Go",
+          "bytes": 5262
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 326
+        },
+        {
+          "name": "Makefile",
+          "bytes": 2628
+        }
+      ],
+      "contributions": 25,
+      "contributions_url": "https://github.com/tktcorporation/mob-practice-golang/commits?author=tktcorporation"
+    },
+    {
+      "id": 993533733,
+      "title": "tktcorporation/node-actionlint",
+      "url": "https://github.com/tktcorporation/node-actionlint",
+      "is_oss": false,
+      "is_fork": true,
+      "is_owner": false,
+      "description": "Run actionlint from Node.js",
+      "stargazers_count": 0,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 3617
+        },
+        {
+          "name": "Go",
+          "bytes": 1175
+        },
+        {
+          "name": "Makefile",
+          "bytes": 199
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 4441
+        }
+      ],
+      "contributions": 25,
+      "contributions_url": "https://github.com/tktcorporation/node-actionlint/commits?author=tktcorporation"
+    },
+    {
+      "id": 287798063,
+      "title": "tktcorporation/janken",
+      "url": "https://github.com/tktcorporation/janken",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Dart",
+      "languages": [
+        {
+          "name": "Objective-C",
+          "bytes": 38
+        },
+        {
+          "name": "HTML",
+          "bytes": 1109
+        },
+        {
+          "name": "Swift",
+          "bytes": 404
+        },
+        {
+          "name": "Dart",
+          "bytes": 8346
+        },
+        {
+          "name": "Kotlin",
+          "bytes": 123
+        }
+      ],
+      "contributions": 67,
+      "contributions_url": "https://github.com/tktcorporation/janken/commits?author=tktcorporation"
+    },
+    {
+      "id": 186992519,
+      "title": "tktcorporation/cognito-test",
+      "url": "https://github.com/tktcorporation/cognito-test",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "login",
+      "stargazers_count": 1,
+      "language": "Vue",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 5449
+        },
+        {
+          "name": "HTML",
+          "bytes": 757
+        },
+        {
+          "name": "Vue",
+          "bytes": 14260
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1101
+        }
+      ],
+      "contributions": 28,
+      "contributions_url": "https://github.com/tktcorporation/cognito-test/commits?author=tktcorporation"
+    },
+    {
+      "id": 294386514,
+      "title": "tktcorporation/Flutter-StateManagement",
+      "url": "https://github.com/tktcorporation/Flutter-StateManagement",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Dart",
+      "languages": [
+        {
+          "name": "Objective-C",
+          "bytes": 38
+        },
+        {
+          "name": "HTML",
+          "bytes": 1129
+        },
+        {
+          "name": "Swift",
+          "bytes": 404
+        },
+        {
+          "name": "Dart",
+          "bytes": 5132
+        },
+        {
+          "name": "Kotlin",
+          "bytes": 133
+        }
+      ],
+      "contributions": 58,
+      "contributions_url": "https://github.com/tktcorporation/Flutter-StateManagement/commits?author=tktcorporation"
+    },
+    {
+      "id": 245421889,
+      "title": "tktcorporation/about",
+      "url": "https://github.com/tktcorporation/about",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 9791
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 126
+        },
+        {
+          "name": "CSS",
+          "bytes": 794
+        },
+        {
+          "name": "Shell",
+          "bytes": 714
+        },
+        {
+          "name": "SCSS",
+          "bytes": 856
+        },
+        {
+          "name": "Makefile",
+          "bytes": 821
+        },
+        {
+          "name": "HTML",
+          "bytes": 2965
+        }
+      ],
+      "contributions": 53,
+      "contributions_url": "https://github.com/tktcorporation/about/commits?author=tktcorporation"
+    },
+    {
+      "id": 516795439,
+      "title": "tktcorporation/redwoodjs-sandbox",
+      "url": "https://github.com/tktcorporation/redwoodjs-sandbox",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 71510
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 190
+        },
+        {
+          "name": "CSS",
+          "bytes": 6179
+        },
+        {
+          "name": "HTML",
+          "bytes": 418
+        },
+        {
+          "name": "Shell",
+          "bytes": 125
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2146
+        }
+      ],
+      "contributions": 40,
+      "contributions_url": "https://github.com/tktcorporation/redwoodjs-sandbox/commits?author=tktcorporation"
+    },
+    {
+      "id": 248193497,
+      "title": "tkt-actions/aws-sam-cli",
+      "url": "https://github.com/tkt-actions/aws-sam-cli",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "For using AWS SAM-CLI in GitHub Actions",
+      "stargazers_count": 6,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 110
+        }
+      ],
+      "contributions": 11,
+      "contributions_url": "https://github.com/tkt-actions/aws-sam-cli/commits?author=tktcorporation"
+    },
+    {
+      "id": 995139257,
+      "title": "tktcorporation/meeting-time-tracker",
+      "url": "https://github.com/tktcorporation/meeting-time-tracker",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 180926
+        },
+        {
+          "name": "CSS",
+          "bytes": 5768
+        }
+      ],
+      "contributions": 52,
+      "contributions_url": "https://github.com/tktcorporation/meeting-time-tracker/commits?author=tktcorporation"
+    },
+    {
+      "id": 190838718,
+      "title": "tktcorporation/spa-sample",
+      "url": "https://github.com/tktcorporation/spa-sample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "Vue",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 2291
+        },
+        {
+          "name": "HTML",
+          "bytes": 557
+        },
+        {
+          "name": "Shell",
+          "bytes": 509
+        },
+        {
+          "name": "Vue",
+          "bytes": 3649
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1181
+        }
+      ],
+      "contributions": 24,
+      "contributions_url": "https://github.com/tktcorporation/spa-sample/commits?author=tktcorporation"
+    },
+    {
+      "id": 738412544,
+      "title": "tktcorporation/otoshidama-dice-roll",
+      "url": "https://github.com/tktcorporation/otoshidama-dice-roll",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 14294
+        },
+        {
+          "name": "CSS",
+          "bytes": 1766
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 3106
+        }
+      ],
+      "contributions": 24,
+      "contributions_url": "https://github.com/tktcorporation/otoshidama-dice-roll/commits?author=tktcorporation"
+    },
+    {
+      "id": 361614327,
+      "title": "tktcorporation/html-stations",
+      "url": "https://github.com/tktcorporation/html-stations",
+      "is_oss": false,
+      "is_fork": true,
+      "is_owner": false,
+      "description": "Railwayに用いるテンプレートリポジトリです。",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 28175
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 319
+        },
+        {
+          "name": "HTML",
+          "bytes": 6665
+        },
+        {
+          "name": "CSS",
+          "bytes": 254
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 5514
+        }
+      ],
+      "contributions": 18,
+      "contributions_url": "https://github.com/tktcorporation/html-stations/commits?author=tktcorporation"
+    },
+    {
+      "id": 423253855,
+      "title": "tktcorporation/planning-poker",
+      "url": "https://github.com/tktcorporation/planning-poker",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 49361
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 682
+        },
+        {
+          "name": "CSS",
+          "bytes": 4195
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2161
+        }
+      ],
+      "contributions": 48,
+      "contributions_url": "https://github.com/tktcorporation/planning-poker/commits?author=tktcorporation"
+    },
+    {
+      "id": 254915795,
+      "title": "tktcorporation/RollABall",
+      "url": "https://github.com/tktcorporation/RollABall",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Unity 3D",
+      "stargazers_count": 1,
+      "language": "HTML",
+      "languages": [
+        {
+          "name": "C#",
+          "bytes": 2035
+        },
+        {
+          "name": "HTML",
+          "bytes": 2731
+        },
+        {
+          "name": "CSS",
+          "bytes": 1668
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1212
+        }
+      ],
+      "contributions": 35,
+      "contributions_url": "https://github.com/tktcorporation/RollABall/commits?author=tktcorporation"
+    },
+    {
+      "id": 503296645,
+      "title": "tktcorporation/docker-mhsendmail",
+      "url": "https://github.com/tktcorporation/docker-mhsendmail",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "mhsendmail",
+      "stargazers_count": 0,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 553
+        }
+      ],
+      "contributions": 28,
+      "contributions_url": "https://github.com/tktcorporation/docker-mhsendmail/commits?author=tktcorporation"
+    },
+    {
+      "id": 923009005,
+      "title": "tktcorporation/audible-overlay",
+      "url": "https://github.com/tktcorporation/audible-overlay",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "displays audio input levels as an overlay on your desktop",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 21921
+        },
+        {
+          "name": "CSS",
+          "bytes": 1319
+        },
+        {
+          "name": "Shell",
+          "bytes": 167
+        },
+        {
+          "name": "Rust",
+          "bytes": 10901
+        },
+        {
+          "name": "Makefile",
+          "bytes": 683
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1034
+        },
+        {
+          "name": "HTML",
+          "bytes": 499
+        },
+        {
+          "name": "Nix",
+          "bytes": 1267
+        }
+      ],
+      "contributions": 45,
+      "contributions_url": "https://github.com/tktcorporation/audible-overlay/commits?author=tktcorporation"
+    },
+    {
+      "id": 910026761,
+      "title": "tktcorporation/otoshidama-2025-standalone",
+      "url": "https://github.com/tktcorporation/otoshidama-2025-standalone",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "お年玉ガチャ！期待値3000円",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 46577
+        },
+        {
+          "name": "CSS",
+          "bytes": 2943
+        },
+        {
+          "name": "HTML",
+          "bytes": 2127
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 3242
+        }
+      ],
+      "contributions": 42,
+      "contributions_url": "https://github.com/tktcorporation/otoshidama-2025-standalone/commits?author=tktcorporation"
+    },
+    {
+      "id": 306323141,
+      "title": "tktcorporation/ExoPlayerYoutubeSample",
+      "url": "https://github.com/tktcorporation/ExoPlayerYoutubeSample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Kotlin",
+      "languages": [
+        {
+          "name": "Kotlin",
+          "bytes": 10454
+        }
+      ],
+      "contributions": 41,
+      "contributions_url": "https://github.com/tktcorporation/ExoPlayerYoutubeSample/commits?author=tktcorporation"
+    },
+    {
+      "id": 277161692,
+      "title": "tktcorporation/DesignPatternExamples",
+      "url": "https://github.com/tktcorporation/DesignPatternExamples",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Design Pattern Samples by using Ramen Models ",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 9931
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 77
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 645
+        }
+      ],
+      "contributions": 25,
+      "contributions_url": "https://github.com/tktcorporation/DesignPatternExamples/commits?author=tktcorporation"
+    },
+    {
+      "id": 307165530,
+      "title": "tktcorporation/hello-flask",
+      "url": "https://github.com/tktcorporation/hello-flask",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "practice of the Python app",
+      "stargazers_count": 0,
+      "language": "Python",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 181
+        },
+        {
+          "name": "Python",
+          "bytes": 1349
+        }
+      ],
+      "contributions": 40,
+      "contributions_url": "https://github.com/tktcorporation/hello-flask/commits?author=tktcorporation"
+    },
+    {
+      "id": 314040513,
+      "title": "tktcorporation/HunyaHunyaButter",
+      "url": "https://github.com/tktcorporation/HunyaHunyaButter",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "C#",
+      "languages": [
+        {
+          "name": "C#",
+          "bytes": 891950
+        },
+        {
+          "name": "ShaderLab",
+          "bytes": 35562
+        }
+      ],
+      "contributions": 18,
+      "contributions_url": "https://github.com/tktcorporation/HunyaHunyaButter/commits?author=tktcorporation"
+    },
+    {
+      "id": 281515672,
+      "title": "tktcorporation/type-async-decorator",
+      "url": "https://github.com/tktcorporation/type-async-decorator",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 4403
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 50
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 645
+        }
+      ],
+      "contributions": 24,
+      "contributions_url": "https://github.com/tktcorporation/type-async-decorator/commits?author=tktcorporation"
+    },
+    {
+      "id": 280038645,
+      "title": "tktcorporation/qiita",
+      "url": "https://github.com/tktcorporation/qiita",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "",
+      "languages": [],
+      "contributions": 24,
+      "contributions_url": "https://github.com/tktcorporation/qiita/commits?author=tktcorporation"
+    },
+    {
+      "id": 344938289,
+      "title": "tktcorporation/chrome-extension-typescript-template",
+      "url": "https://github.com/tktcorporation/chrome-extension-typescript-template",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Chrome extension in Typescript",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 2027
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 128
+        },
+        {
+          "name": "HTML",
+          "bytes": 115
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 965
+        }
+      ],
+      "contributions": 17,
+      "contributions_url": "https://github.com/tktcorporation/chrome-extension-typescript-template/commits?author=tktcorporation"
+    },
+    {
+      "id": 344432888,
+      "title": "tktcorporation/extended-spirit",
+      "url": "https://github.com/tktcorporation/extended-spirit",
+      "is_oss": false,
+      "is_fork": true,
+      "is_owner": false,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 4875
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 128
+        },
+        {
+          "name": "HTML",
+          "bytes": 115
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 955
+        }
+      ],
+      "contributions": 17,
+      "contributions_url": "https://github.com/tktcorporation/extended-spirit/commits?author=tktcorporation"
+    },
+    {
+      "id": 974248723,
+      "title": "tktcorporation/copy-file-paths-electron",
+      "url": "https://github.com/tktcorporation/copy-file-paths-electron",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Demo for https://github.com/tktcorporation/clip-filepaths",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 552248
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 94
+        },
+        {
+          "name": "Shell",
+          "bytes": 4631
+        },
+        {
+          "name": "CSS",
+          "bytes": 4087
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 14923
+        },
+        {
+          "name": "HTML",
+          "bytes": 315
+        },
+        {
+          "name": "EJS",
+          "bytes": 1024
+        }
+      ],
+      "contributions": 22,
+      "contributions_url": "https://github.com/tktcorporation/copy-file-paths-electron/commits?author=tktcorporation"
+    },
+    {
+      "id": 320431703,
+      "title": "tktcorporation/AppSyncSample",
+      "url": "https://github.com/tktcorporation/AppSyncSample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A Sandbox of [AWS Amplify + AWS AppSync]",
+      "stargazers_count": 0,
+      "language": "Java",
+      "languages": [
+        {
+          "name": "Java",
+          "bytes": 7357
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 360
+        },
+        {
+          "name": "Makefile",
+          "bytes": 1029
+        },
+        {
+          "name": "Kotlin",
+          "bytes": 4757
+        }
+      ],
+      "contributions": 34,
+      "contributions_url": "https://github.com/tktcorporation/AppSyncSample/commits?author=tktcorporation"
+    },
+    {
+      "id": 282111953,
+      "title": "tktcorporation/extracttdata-ddd-refactor-sample",
+      "url": "https://github.com/tktcorporation/extracttdata-ddd-refactor-sample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "ddd refactor sample",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 8869
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 50
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2056
+        }
+      ],
+      "contributions": 15,
+      "contributions_url": "https://github.com/tktcorporation/extracttdata-ddd-refactor-sample/commits?author=tktcorporation"
+    },
+    {
+      "id": 395903139,
+      "title": "tktcorporation/ObonHackathonBackend",
+      "url": "https://github.com/tktcorporation/ObonHackathonBackend",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Python",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 629
+        },
+        {
+          "name": "Python",
+          "bytes": 16549
+        }
+      ],
+      "contributions": 31,
+      "contributions_url": "https://github.com/tktcorporation/ObonHackathonBackend/commits?author=tktcorporation"
+    },
+    {
+      "id": 384346779,
+      "title": "tktcorporation/discord-links-transfer-bot",
+      "url": "https://github.com/tktcorporation/discord-links-transfer-bot",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "#random でリンク検知したら自動的に #links に転送したい",
+      "stargazers_count": 0,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 1074
+        },
+        {
+          "name": "Rust",
+          "bytes": 4479
+        }
+      ],
+      "contributions": 14,
+      "contributions_url": "https://github.com/tktcorporation/discord-links-transfer-bot/commits?author=tktcorporation"
+    },
+    {
+      "id": 344419970,
+      "title": "lapras-inc/extended-spirit",
+      "url": "https://github.com/lapras-inc/extended-spirit",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 9596
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 128
+        },
+        {
+          "name": "HTML",
+          "bytes": 115
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 4671
+        }
+      ],
+      "contributions": 10,
+      "contributions_url": "https://github.com/lapras-inc/extended-spirit/commits?author=tktcorporation"
+    },
+    {
+      "id": 321968321,
+      "title": "tktcorporation/android-room-with-a-view-kotlin",
+      "url": "https://github.com/tktcorporation/android-room-with-a-view-kotlin",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "https://developer.android.com/codelabs/android-room-with-a-view-kotlin",
+      "stargazers_count": 0,
+      "language": "Kotlin",
+      "languages": [
+        {
+          "name": "Kotlin",
+          "bytes": 19478
+        }
+      ],
+      "contributions": 26,
+      "contributions_url": "https://github.com/tktcorporation/android-room-with-a-view-kotlin/commits?author=tktcorporation"
+    },
+    {
+      "id": 305380932,
+      "title": "tktcorporation/CountUp",
+      "url": "https://github.com/tktcorporation/CountUp",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Android Kotlin",
+      "stargazers_count": 0,
+      "language": "Kotlin",
+      "languages": [
+        {
+          "name": "Kotlin",
+          "bytes": 14432
+        }
+      ],
+      "contributions": 24,
+      "contributions_url": "https://github.com/tktcorporation/CountUp/commits?author=tktcorporation"
+    },
+    {
+      "id": 1005613528,
+      "title": "tktcorporation/satori-sandbox",
+      "url": "https://github.com/tktcorporation/satori-sandbox",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 133457
+        },
+        {
+          "name": "CSS",
+          "bytes": 1117
+        },
+        {
+          "name": "HTML",
+          "bytes": 282
+        }
+      ],
+      "contributions": 23,
+      "contributions_url": "https://github.com/tktcorporation/satori-sandbox/commits?author=tktcorporation"
+    },
+    {
+      "id": 278969394,
+      "title": "tktcorporation/nestjs-graphql-sample",
+      "url": "https://github.com/tktcorporation/nestjs-graphql-sample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 2120
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 51
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 599
+        }
+      ],
+      "contributions": 14,
+      "contributions_url": "https://github.com/tktcorporation/nestjs-graphql-sample/commits?author=tktcorporation"
+    },
+    {
+      "id": 895368587,
+      "title": "tktcorporation/markdown-to-image-web",
+      "url": "https://github.com/tktcorporation/markdown-to-image-web",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A modern web application that converts Markdown content to high-quality PNG images with real-time preview. Built with React, TypeScript, and Tailwind CSS.",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 64573
+        },
+        {
+          "name": "HTML",
+          "bytes": 2669
+        },
+        {
+          "name": "CSS",
+          "bytes": 764
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1410
+        }
+      ],
+      "contributions": 14,
+      "contributions_url": "https://github.com/tktcorporation/markdown-to-image-web/commits?author=tktcorporation"
+    },
+    {
+      "id": 872699643,
+      "title": "tktcorporation/food-shop-search",
+      "url": "https://github.com/tktcorporation/food-shop-search",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "GoogleMap より簡単にごはん処を見つける",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 89328
+        },
+        {
+          "name": "CSS",
+          "bytes": 1571
+        },
+        {
+          "name": "HTML",
+          "bytes": 743
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2425
+        }
+      ],
+      "contributions": 22,
+      "contributions_url": "https://github.com/tktcorporation/food-shop-search/commits?author=tktcorporation"
+    },
+    {
+      "id": 915726431,
+      "title": "tktcorporation/vrc-world-join-preview",
+      "url": "https://github.com/tktcorporation/vrc-world-join-preview",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 29943
+        },
+        {
+          "name": "HTML",
+          "bytes": 366
+        },
+        {
+          "name": "CSS",
+          "bytes": 58
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 990
+        }
+      ],
+      "contributions": 22,
+      "contributions_url": "https://github.com/tktcorporation/vrc-world-join-preview/commits?author=tktcorporation"
+    },
+    {
+      "id": 461566208,
+      "title": "tktcorporation/vrc-osc-sandbox",
+      "url": "https://github.com/tktcorporation/vrc-osc-sandbox",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 3568
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 1005
+        },
+        {
+          "name": "HTML",
+          "bytes": 1721
+        },
+        {
+          "name": "CSS",
+          "bytes": 930
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 973
+        }
+      ],
+      "contributions": 10,
+      "contributions_url": "https://github.com/tktcorporation/vrc-osc-sandbox/commits?author=tktcorporation"
+    },
+    {
+      "id": 305956352,
+      "title": "tktcorporation/honkit-uml-template",
+      "url": "https://github.com/tktcorporation/honkit-uml-template",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Sample code to render plant uml on Honkit.",
+      "stargazers_count": 0,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 270
+        }
+      ],
+      "contributions": 21,
+      "contributions_url": "https://github.com/tktcorporation/honkit-uml-template/commits?author=tktcorporation"
+    },
+    {
+      "id": 741974998,
+      "title": "tktcorporation/lapras-career-histories-manager",
+      "url": "https://github.com/tktcorporation/lapras-career-histories-manager",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "lapras.com の入力情報を管理する",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 10683
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 1017
+        }
+      ],
+      "contributions": 20,
+      "contributions_url": "https://github.com/tktcorporation/lapras-career-histories-manager/commits?author=tktcorporation"
+    },
+    {
+      "id": 324478776,
+      "title": "tktcorporation/ZeroPolygonAvatar",
+      "url": "https://github.com/tktcorporation/ZeroPolygonAvatar",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A zero polygon avatar for VRChat.",
+      "stargazers_count": 1,
+      "language": "",
+      "languages": [],
+      "contributions": 15,
+      "contributions_url": "https://github.com/tktcorporation/ZeroPolygonAvatar/commits?author=tktcorporation"
+    },
+    {
+      "id": 1016280924,
+      "title": "tktcorporation/udon-practice",
+      "url": "https://github.com/tktcorporation/udon-practice",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "C#",
+      "languages": [
+        {
+          "name": "C#",
+          "bytes": 87922
+        },
+        {
+          "name": "HLSL",
+          "bytes": 13994
+        },
+        {
+          "name": "ShaderLab",
+          "bytes": 80492
+        }
+      ],
+      "contributions": 18,
+      "contributions_url": "https://github.com/tktcorporation/udon-practice/commits?author=tktcorporation"
+    },
+    {
+      "id": 493580089,
+      "title": "lapras-inc/frontend-config",
+      "url": "https://github.com/lapras-inc/frontend-config",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "フロントエンドの設定ファイルを集めたモノレポ",
+      "stargazers_count": 3,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "JavaScript",
+          "bytes": 2447
+        }
+      ],
+      "contributions": 2,
+      "contributions_url": "https://github.com/lapras-inc/frontend-config/commits?author=tktcorporation"
+    },
+    {
+      "id": 155525729,
+      "title": "tktcorporation/twiboard",
+      "url": "https://github.com/tktcorporation/twiboard",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "Ruby",
+      "languages": [
+        {
+          "name": "HTML",
+          "bytes": 22166
+        },
+        {
+          "name": "CSS",
+          "bytes": 7100
+        },
+        {
+          "name": "CoffeeScript",
+          "bytes": 1055
+        },
+        {
+          "name": "Ruby",
+          "bytes": 43000
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 3524
+        }
+      ],
+      "contributions": 8,
+      "contributions_url": "https://github.com/tktcorporation/twiboard/commits?author=tktcorporation"
+    },
+    {
+      "id": 263219301,
+      "title": "tkt-dockers/google-cloud-sdk-golang",
+      "url": "https://github.com/tkt-dockers/google-cloud-sdk-golang",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "For developing with Google Cloud SDK and Golang.",
+      "stargazers_count": 0,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 1096
+        }
+      ],
+      "contributions": 17,
+      "contributions_url": "https://github.com/tkt-dockers/google-cloud-sdk-golang/commits?author=tktcorporation"
+    },
+    {
+      "id": 982028288,
+      "title": "tktcorporation/cross-whisper",
+      "url": "https://github.com/tktcorporation/cross-whisper",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 2484
+        },
+        {
+          "name": "CSS",
+          "bytes": 1739
+        },
+        {
+          "name": "HTML",
+          "bytes": 376
+        },
+        {
+          "name": "Rust",
+          "bytes": 717
+        },
+        {
+          "name": "Nix",
+          "bytes": 2465
+        }
+      ],
+      "contributions": 17,
+      "contributions_url": "https://github.com/tktcorporation/cross-whisper/commits?author=tktcorporation"
+    },
+    {
+      "id": 135252525,
+      "title": "tktcorporation/heroku_test",
+      "url": "https://github.com/tktcorporation/heroku_test",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 1,
+      "language": "Scala",
+      "languages": [
+        {
+          "name": "Scala",
+          "bytes": 7300
+        },
+        {
+          "name": "HTML",
+          "bytes": 1422
+        }
+      ],
+      "contributions": 13,
+      "contributions_url": "https://github.com/tktcorporation/heroku_test/commits?author=tktcorporation"
+    },
+    {
+      "id": 286056975,
+      "title": "tktcorporation/terraform-practice",
+      "url": "https://github.com/tktcorporation/terraform-practice",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "HCL",
+      "languages": [
+        {
+          "name": "HCL",
+          "bytes": 2280
+        },
+        {
+          "name": "Makefile",
+          "bytes": 417
+        }
+      ],
+      "contributions": 16,
+      "contributions_url": "https://github.com/tktcorporation/terraform-practice/commits?author=tktcorporation"
+    },
+    {
+      "id": 873337885,
+      "title": "tktcorporation/audio-monitor-web-remix",
+      "url": "https://github.com/tktcorporation/audio-monitor-web-remix",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Audio Monitor with visualize, PiP",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 41399
+        },
+        {
+          "name": "HTML",
+          "bytes": 677
+        },
+        {
+          "name": "CSS",
+          "bytes": 179
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 989
+        }
+      ],
+      "contributions": 16,
+      "contributions_url": "https://github.com/tktcorporation/audio-monitor-web-remix/commits?author=tktcorporation"
+    },
+    {
+      "id": 316563452,
+      "title": "tktcorporation/mdbook-sample",
+      "url": "https://github.com/tktcorporation/mdbook-sample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 755
+        },
+        {
+          "name": "Makefile",
+          "bytes": 57
+        }
+      ],
+      "contributions": 15,
+      "contributions_url": "https://github.com/tktcorporation/mdbook-sample/commits?author=tktcorporation"
+    },
+    {
+      "id": 357996269,
+      "title": "tktcorporation/aws-android-sdk-appsync-sandbox",
+      "url": "https://github.com/tktcorporation/aws-android-sdk-appsync-sandbox",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Kotlin",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 304
+        },
+        {
+          "name": "Kotlin",
+          "bytes": 13967
+        }
+      ],
+      "contributions": 15,
+      "contributions_url": "https://github.com/tktcorporation/aws-android-sdk-appsync-sandbox/commits?author=tktcorporation"
+    },
+    {
+      "id": 980581879,
+      "title": "tktcorporation/jasrac-report",
+      "url": "https://github.com/tktcorporation/jasrac-report",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "JASRAC作品コード検索・申請",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 203428
+        },
+        {
+          "name": "CSS",
+          "bytes": 4844
+        },
+        {
+          "name": "HTML",
+          "bytes": 2390
+        }
+      ],
+      "contributions": 15,
+      "contributions_url": "https://github.com/tktcorporation/jasrac-report/commits?author=tktcorporation"
+    },
+    {
+      "id": 188569989,
+      "title": "tktcorporation/marcof_texts_generater",
+      "url": "https://github.com/tktcorporation/marcof_texts_generater",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 4,
+      "language": "Python",
+      "languages": [
+        {
+          "name": "Python",
+          "bytes": 30791
+        }
+      ],
+      "contributions": 4,
+      "contributions_url": "https://github.com/tktcorporation/marcof_texts_generater/commits?author=tktcorporation"
+    },
+    {
+      "id": 328637359,
+      "title": "tktcorporation/dotfiles-for-apple-silicon",
+      "url": "https://github.com/tktcorporation/dotfiles-for-apple-silicon",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "for Apple Silicon",
+      "stargazers_count": 0,
+      "language": "Shell",
+      "languages": [
+        {
+          "name": "Shell",
+          "bytes": 35138
+        }
+      ],
+      "contributions": 13,
+      "contributions_url": "https://github.com/tktcorporation/dotfiles-for-apple-silicon/commits?author=tktcorporation"
+    },
+    {
+      "id": 323492432,
+      "title": "tktcorporation/count-with-tweet",
+      "url": "https://github.com/tktcorporation/count-with-tweet",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 437
+        }
+      ],
+      "contributions": 13,
+      "contributions_url": "https://github.com/tktcorporation/count-with-tweet/commits?author=tktcorporation"
+    },
+    {
+      "id": 884891473,
+      "title": "tktcorporation/todododo",
+      "url": "https://github.com/tktcorporation/todododo",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "TODO + WallPaper + (CalenderManager)",
+      "stargazers_count": 0,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 60718
+        },
+        {
+          "name": "CSS",
+          "bytes": 180
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 162677
+        }
+      ],
+      "contributions": 13,
+      "contributions_url": "https://github.com/tktcorporation/todododo/commits?author=tktcorporation"
+    },
+    {
+      "id": 327122199,
+      "title": "tktcorporation/zenn-contents-archived",
+      "url": "https://github.com/tktcorporation/zenn-contents-archived",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "for managing contents of Zenn",
+      "stargazers_count": 0,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 236
+        }
+      ],
+      "contributions": 13,
+      "contributions_url": "https://github.com/tktcorporation/zenn-contents-archived/commits?author=tktcorporation"
+    },
+    {
+      "id": 430980593,
+      "title": "yamada-shota/shopping",
+      "url": "https://github.com/yamada-shota/shopping",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "shopping Helper",
+      "stargazers_count": 0,
+      "language": "HTML",
+      "languages": [
+        {
+          "name": "HTML",
+          "bytes": 13458
+        },
+        {
+          "name": "CSS",
+          "bytes": 7339
+        }
+      ],
+      "contributions": 5,
+      "contributions_url": "https://github.com/yamada-shota/shopping/commits?author=tktcorporation"
+    },
+    {
+      "id": 301025064,
+      "title": "tktcorporation/hello-rust",
+      "url": "https://github.com/tktcorporation/hello-rust",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "https://doc.rust-jp.rs/book/second-edition/ch02-00-guessing-game-tutorial.html",
+      "stargazers_count": 0,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "Makefile",
+          "bytes": 510
+        },
+        {
+          "name": "Rust",
+          "bytes": 1924
+        }
+      ],
+      "contributions": 12,
+      "contributions_url": "https://github.com/tktcorporation/hello-rust/commits?author=tktcorporation"
+    },
+    {
+      "id": 946054815,
+      "title": "tktcorporation/Japanese-Invoice-Generator",
+      "url": "https://github.com/tktcorporation/Japanese-Invoice-Generator",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Created with StackBlitz ⚡️",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 25860
+        },
+        {
+          "name": "CSS",
+          "bytes": 1569
+        },
+        {
+          "name": "HTML",
+          "bytes": 372
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2225
+        }
+      ],
+      "contributions": 12,
+      "contributions_url": "https://github.com/tktcorporation/Japanese-Invoice-Generator/commits?author=tktcorporation"
+    },
+    {
+      "id": 402614145,
+      "title": "tktcorporation/simple-portfolio-generator",
+      "url": "https://github.com/tktcorporation/simple-portfolio-generator",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A repository where you can create a simple design portfolio by simply forking.",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 26723
+        },
+        {
+          "name": "CSS",
+          "bytes": 1138
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 422
+        }
+      ],
+      "contributions": 5,
+      "contributions_url": "https://github.com/tktcorporation/simple-portfolio-generator/commits?author=tktcorporation"
+    },
+    {
+      "id": 432274989,
+      "title": "tktcorporation/black-background",
+      "url": "https://github.com/tktcorporation/black-background",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "CSS",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 1323
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 657
+        },
+        {
+          "name": "CSS",
+          "bytes": 2027
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1815
+        }
+      ],
+      "contributions": 7,
+      "contributions_url": "https://github.com/tktcorporation/black-background/commits?author=tktcorporation"
+    },
+    {
+      "id": 349519000,
+      "title": "tkt-dockers/amplify",
+      "url": "https://github.com/tkt-dockers/amplify",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "to use amplify on docker",
+      "stargazers_count": 0,
+      "language": "Dockerfile",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 361
+        }
+      ],
+      "contributions": 11,
+      "contributions_url": "https://github.com/tkt-dockers/amplify/commits?author=tktcorporation"
+    },
+    {
+      "id": 367544436,
+      "title": "tktcorporation/git-practice-sack",
+      "url": "https://github.com/tktcorporation/git-practice-sack",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "",
+      "languages": [],
+      "contributions": 11,
+      "contributions_url": "https://github.com/tktcorporation/git-practice-sack/commits?author=tktcorporation"
+    },
+    {
+      "id": 323356069,
+      "title": "tktcorporation/svelte-md-blog",
+      "url": "https://github.com/tktcorporation/svelte-md-blog",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "svelte md sample",
+      "stargazers_count": 0,
+      "language": "JavaScript",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 200
+        },
+        {
+          "name": "CSS",
+          "bytes": 2215
+        },
+        {
+          "name": "HTML",
+          "bytes": 544
+        },
+        {
+          "name": "Shell",
+          "bytes": 319
+        },
+        {
+          "name": "Svelte",
+          "bytes": 4026
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 11161
+        }
+      ],
+      "contributions": 11,
+      "contributions_url": "https://github.com/tktcorporation/svelte-md-blog/commits?author=tktcorporation"
+    },
+    {
+      "id": 395677795,
+      "title": "tktcorporation/django-api-sample",
+      "url": "https://github.com/tktcorporation/django-api-sample",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Python",
+      "languages": [
+        {
+          "name": "Dockerfile",
+          "bytes": 287
+        },
+        {
+          "name": "Python",
+          "bytes": 9469
+        }
+      ],
+      "contributions": 11,
+      "contributions_url": "https://github.com/tktcorporation/django-api-sample/commits?author=tktcorporation"
+    },
+    {
+      "id": 996831464,
+      "title": "tktcorporation/blackout-display",
+      "url": "https://github.com/tktcorporation/blackout-display",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "blackout-display",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 11163
+        },
+        {
+          "name": "CSS",
+          "bytes": 1350
+        },
+        {
+          "name": "HTML",
+          "bytes": 462
+        },
+        {
+          "name": "Shell",
+          "bytes": 9
+        },
+        {
+          "name": "Rust",
+          "bytes": 7231
+        },
+        {
+          "name": "Nix",
+          "bytes": 2683
+        }
+      ],
+      "contributions": 11,
+      "contributions_url": "https://github.com/tktcorporation/blackout-display/commits?author=tktcorporation"
+    }
+  ]
+}

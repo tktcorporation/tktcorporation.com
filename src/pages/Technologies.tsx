@@ -1,50 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getLaprasDataSafe } from "../data/laprasData";
+import type { GitHubRepository, LaprasData } from "../data/laprasSchema";
 import "./Technologies.css";
-
-interface GitHubRepository {
-  id: number;
-  title: string;
-  url: string;
-  is_oss: boolean;
-  is_fork: boolean;
-  is_owner: boolean;
-  description: string;
-  stargazers_count: number;
-  language: string;
-  languages: Array<{ name: string; bytes: number }>;
-  contributions: number;
-  contributions_url: string;
-  created_at?: string;
-  pushed_at?: string;
-}
-
-interface QiitaArticle {
-  title: string;
-  url: string;
-  tags: string[];
-  stockers_count: number;
-  updated_at: string;
-}
-
-interface ZennArticle {
-  title: string;
-  url: string;
-  tags: string[];
-  posted_at: string;
-}
-
-interface LaprasData {
-  name: string;
-  description: string;
-  e_score: number;
-  b_score: number;
-  i_score: number;
-  iconimage_url: string;
-  qiita_articles: QiitaArticle[];
-  zenn_articles: ZennArticle[];
-  github_repositories: GitHubRepository[];
-}
 
 interface TechnologyTimeline {
   name: string;
@@ -64,12 +22,6 @@ interface TechnologyTimeline {
 const MONTHS_PER_YEAR = 12;
 const MAX_EXPERIENCE_MONTHS = 24;
 const DEFAULT_PROJECT_DURATION_MONTHS = 3;
-const LAPRAS_API_URL = "https://lapras.com/public/tktcorporation.json";
-
-// エラータイプの判定
-const isNetworkError = (error: unknown): boolean => {
-  return error instanceof TypeError && error.message.includes("fetch");
-};
 
 function Technologies() {
   const [laprasData, setLaprasData] = useState<LaprasData | null>(null);
@@ -142,26 +94,24 @@ function Technologies() {
     []
   );
 
-  const fetchLaprasData = useCallback(async () => {
+  const fetchLaprasData = useCallback(() => {
     try {
       setLoading(true);
-      const response = await fetch(LAPRAS_API_URL);
-      if (!response.ok) {
-        throw new Error(
-          `サーバーエラー: ${response.status} ${response.statusText}`
-        );
+      const data = getLaprasDataSafe();
+
+      if (!data) {
+        throw new Error("LAPRASデータの読み込みに失敗しました");
       }
-      const data: LaprasData = await response.json();
+
       setLaprasData(data);
 
       const techTimeline = extractTechnologiesFromRepositories(
         data.github_repositories
       );
       setTechnologies(techTimeline);
+      setError(null);
     } catch (err) {
-      if (isNetworkError(err)) {
-        setError("ネットワークエラー: インターネット接続を確認してください");
-      } else if (err instanceof Error) {
+      if (err instanceof Error) {
         setError(err.message);
       } else {
         setError("不明なエラーが発生しました");

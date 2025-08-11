@@ -2,8 +2,7 @@
   "image": "mcr.microsoft.com/devcontainers/base:bookworm",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/node:1": {},
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+    "ghcr.io/devcontainers-extra/features/mise:1": {}
   },
   "forwardPorts": [5173, 8787],
   "portsAttributes": {
@@ -21,5 +20,33 @@
       }
     }
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential fzf ripgrep"
+  "onCreateCommand": {
+    "update-apt": ["sudo", "apt-get", "update"]
+  },
+  "updateContentCommand": {
+    "install-packages": [
+      "sudo",
+      "apt-get",
+      "install",
+      "-y",
+      "ripgrep",
+      "bc",
+      "build-essential",
+      "fzf"
+    ],
+    "add-new-node-gpg-key": [
+      "bash",
+      "-c",
+      "gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 5BE8A3F6C8A5C01D106C0AD820B1A390B168D356"
+    ]
+  },
+  "postCreateCommand": {
+    "setup-mise-bash": [
+      "bash",
+      "-c",
+      "echo 'eval \"$(mise activate bash)\"' >> ~/.bashrc"
+    ],
+    "trust-mise": ["mise", "trust"]
+  },
+  "postStartCommand": "mise install"
 }
