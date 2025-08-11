@@ -3,10 +3,7 @@
     "lapras": {
       "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@lapras-inc/lapras-mcp-server"
-      ],
+      "args": ["-y", "@lapras-inc/lapras-mcp-server"],
       "env": {
         "LAPRAS_API_KEY": "${LAPRAS_API_KEY}"
       }
@@ -29,10 +26,7 @@
     "context7": {
       "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ],
+      "args": ["-y", "@upstash/context7-mcp"],
       "env": {}
     }
   }
