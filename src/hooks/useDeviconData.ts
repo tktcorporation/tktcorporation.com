@@ -22,36 +22,47 @@ const classNameCache = new Map<string, string | null>();
 
 export function useDeviconData(): DeviconState {
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   useEffect(() => {
     // データをプリロード
     preloadDeviconData();
-    
+
     // 少し待ってからロード完了とマーク
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 100);
-    
+
     return () => clearTimeout(timer);
   }, []);
-  
-  const getClassName = (name: string, variant: string = "plain"): string | null => {
+
+  const getClassName = (
+    name: string,
+    variant: string = "plain"
+  ): string | null => {
     const cacheKey = `${name}-${variant}`;
-    
+
     // キャッシュから取得
     if (classNameCache.has(cacheKey)) {
       return classNameCache.get(cacheKey) || null;
     }
-    
+
     // 非同期で取得してキャッシュに保存
-    getDeviconClass(name, variant as any).then((className) => {
+    getDeviconClass(
+      name,
+      variant as
+        | "plain"
+        | "original"
+        | "line"
+        | "plain-wordmark"
+        | "original-wordmark"
+    ).then((className) => {
       classNameCache.set(cacheKey, className);
     });
-    
+
     // 初回は null を返す（次回のレンダリングで表示される）
     return null;
   };
-  
+
   return {
     isLoaded,
     getClassName,

@@ -27,10 +27,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import type { TimelineEntry, TimeSpan } from "@/hooks/useLaprasActivities";
 import { cn } from "@/lib/utils";
-import {
-  getDeviconClassName,
-  isLanguageSupported,
-} from "@/utils/simpleDeviconMap";
+import { getTechIcon } from "@/utils/techIcons";
 
 interface TechnologyTimelineProps {
   entries: TimelineEntry[];
@@ -211,31 +208,15 @@ export function TechnologyTimeline({
                       <div className="flex flex-wrap gap-1 md:gap-2">
                         {getTopLanguages(entry.languages).map(
                           ([lang, count]) => {
-                            const isSupported = isLanguageSupported(lang);
-                            const iconClass = getDeviconClassName(
-                              lang,
-                              "plain"
-                            );
+                            const Icon = getTechIcon(lang);
                             return (
                               <Badge
                                 key={lang}
                                 variant="secondary"
                                 className="bg-blue-500/20 text-blue-200 border-blue-500/30 text-[10px] md:text-xs px-2 py-0.5 md:px-3 md:py-1 flex items-center"
                               >
-                                {isSupported && iconClass ? (
-                                  <i
-                                    className={iconClass}
-                                    style={{ 
-                                      fontSize: "14px",
-                                      marginRight: "4px",
-                                      display: "inline-block",
-                                      fontStyle: "normal",
-                                      fontVariant: "normal",
-                                      textRendering: "auto",
-                                      lineHeight: 1,
-                                      WebkitFontSmoothing: "antialiased"
-                                    }}
-                                  />
+                                {Icon ? (
+                                  <Icon className="w-3 md:w-3.5 h-3 md:h-3.5 mr-0.5 md:mr-1" />
                                 ) : (
                                   <Code2 className="w-2.5 md:w-3 h-2.5 md:h-3 mr-0.5 md:mr-1" />
                                 )}

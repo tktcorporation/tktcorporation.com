@@ -35,46 +35,46 @@ let loadingPromise: Promise<void> | null = null;
  */
 async function loadDeviconData(): Promise<void> {
   if (deviconData) return;
-  
+
   if (loadingPromise) {
     await loadingPromise;
     return;
   }
-  
+
   loadingPromise = (async () => {
     try {
-      const response = await fetch('/data/devicon.json');
+      const response = await fetch("/data/devicon.json");
       if (!response.ok) {
         throw new Error(`Failed to load devicon data: ${response.status}`);
       }
-      
+
       const data = await response.json();
       deviconData = data as DeviconEntry[];
-      
+
       // マップを作成
       deviconMap = new Map<string, DeviconEntry>();
       deviconAltNameMap = new Map<string, DeviconEntry>();
-      
+
       for (const entry of deviconData) {
         // 正式名称でマップ
         deviconMap.set(entry.name.toLowerCase(), entry);
-        
+
         // 代替名でもマップ
         for (const altname of entry.altnames || []) {
           deviconAltNameMap.set(altname.toLowerCase(), entry);
         }
       }
-      
+
       console.log(`Loaded ${deviconData.length} devicon entries`);
     } catch (error) {
-      console.error('Failed to load devicon data:', error);
+      console.error("Failed to load devicon data:", error);
       // フォールバックとして空のデータを設定
       deviconData = [];
       deviconMap = new Map();
       deviconAltNameMap = new Map();
     }
   })();
-  
+
   await loadingPromise;
 }
 
@@ -83,11 +83,13 @@ async function loadDeviconData(): Promise<void> {
  * @param name - 技術名
  * @returns Devicon エントリーまたは undefined
  */
-export async function getDeviconEntry(name: string): Promise<DeviconEntry | undefined> {
+export async function getDeviconEntry(
+  name: string
+): Promise<DeviconEntry | undefined> {
   await loadDeviconData();
-  
+
   if (!deviconMap || !deviconAltNameMap) return undefined;
-  
+
   const normalized = name.toLowerCase();
   return deviconMap.get(normalized) || deviconAltNameMap.get(normalized);
 }
@@ -111,18 +113,23 @@ export async function isDeviconSupported(name: string): Promise<boolean> {
  */
 export async function getDeviconClass(
   name: string,
-  variant: "plain" | "original" | "line" | "plain-wordmark" | "original-wordmark" = "plain",
+  variant:
+    | "plain"
+    | "original"
+    | "line"
+    | "plain-wordmark"
+    | "original-wordmark" = "plain",
   colored = true
 ): Promise<string | null> {
   const entry = await getDeviconEntry(name);
-  
+
   if (!entry) {
     return null;
   }
-  
+
   // Devicon エントリーが見つかった場合
   const deviconName = entry.name;
-  
+
   // バリアントがサポートされているかチェック
   let actualVariant = variant;
   if (!entry.versions.font.includes(variant)) {
@@ -135,7 +142,7 @@ export async function getDeviconClass(
       actualVariant = entry.versions.font[0] as typeof variant;
     }
   }
-  
+
   return `devicon-${deviconName}-${actualVariant}${colored ? "" : " colored"}`;
 }
 
