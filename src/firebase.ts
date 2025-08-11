@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * Firebase SDKの初期化と設定を管理する。
+ * アナリティクスの設定とアプリケーション全体での
+ * Firebaseサービスへのアクセスポイントを提供する。
+ *
+ * Context:
+ * - Firebaseホスティングでのデプロイメント
+ * - Google Analyticsによる使用状況の追跡
+ * - SSR対応のための条件付き初期化
+ */
+
 import { type FirebaseApp, getApps, initializeApp } from "firebase/app";
 import "firebase/analytics";
 import { type Analytics, getAnalytics } from "firebase/analytics";

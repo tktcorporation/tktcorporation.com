@@ -75,6 +75,37 @@ npm run screenshot     # Generate screenshot for PR
 
 ## Code Standards
 
+### Purpose Documentation (IMPORTANT)
+**Every TypeScript/TSX file MUST have a Purpose comment at the top of the file.**
+
+Purpose comments document:
+- Why this file/module exists
+- What it aims to achieve
+- Core functionality and intent
+- Any important design decisions
+
+Format:
+```typescript
+/**
+ * Purpose:
+ * [Describe why this file exists, what it does, and its core intent]
+ * 
+ * Context:
+ * [Optional: Additional context about design decisions or implementation approach]
+ */
+```
+
+**Why this matters:**
+- Prevents AI agents from losing or misinterpreting original intent
+- Maintains design consistency across code changes
+- Helps future developers (human or AI) understand the "why" behind the code
+- Reduces accidental removal or modification of important functionality
+
+**Maintenance:**
+- Purpose comments should be updated when the file's intent changes significantly
+- When using AI agents for coding, always verify that the Purpose is preserved and accurate
+- If an AI agent suggests changes that conflict with the Purpose, the Purpose takes precedence
+
 ### Biome Configuration
 - **Indentation**: 2 spaces
 - **Line width**: 80 characters

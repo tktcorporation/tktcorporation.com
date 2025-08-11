@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * 職務経歴書で使用するデータ型の定義。
+ * LAPRASから取得する経験データの構造を
+ * TypeScriptの型として定義し、型安全性を提供する。
+ *
+ * Context:
+ * - Resume.tsxで使用される経験データの型定義
+ * - 職位、組織、期間などの構造化されたデータモデル
+ * - JSONデータとTypeScriptコードの間のインターフェース
+ */
+
 export interface Position {
   id: number;
   job_position_name: string;

@@ -1,5 +1,18 @@
 #!/usr/bin/env npx tsx
 
+/**
+ * Purpose:
+ * LAPRAS APIから最新のデータを取得して、ローカルのJSONファイルを更新する。
+ * このスクリプトによりLAPRASのデータを静的アセットとして
+ * アプリケーションに組み込むことができる。
+ *
+ * Context:
+ * - CI/CDパイプラインやローカル開発での定期的な実行を想定
+ * - Zodスキーマによるバリデーションでデータの整合性を保証
+ * - 静的なデータ配信によりAPI呼び出しのオーバーヘッドを削減
+ * - エラーハンドリングと詳細なログで運用を支援
+ */
+
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";

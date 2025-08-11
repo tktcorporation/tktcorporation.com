@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * LAPRASのデータ構造を定義し、型安全性とバリデーションを提供する。
+ * Zodスキーマを使用してLAPRAS APIから取得するデータの
+ * 完全な型定義と実行時バリデーションを実現する。
+ *
+ * Context:
+ * - GitHubリポジトリ、Qiita記事、スピーカーデック等の構造を定義
+ * - TypeScriptの型推論と実行時バリデーションの両立
+ * - データ取得スクリプトとアプリケーションの間の契約として機能
+ */
+
 import { z } from "zod";
 
 // GitHub Repository Language

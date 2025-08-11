@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * Playwrightの表示機能とスクリーンショット機能をテストする。
+ * CI環境でPlaywrightが正常に動作することを確認し、
+ * ヘッドレスブラウザ環境の健全性を検証する。
+ *
+ * Context:
+ * - CI/CDパイプラインでの環境チェック
+ * - スクリーンショット機能の動作確認
+ * - エラー時の詳細なトラブルシューティング情報の提供
+ */
+
 import { type Browser, chromium, type Page } from "playwright";
 
 const testDisplay = async (): Promise<void> => {
