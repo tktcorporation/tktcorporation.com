@@ -10,7 +10,7 @@
  * - programmingLanguages と devicon の統一的なデータソース
  */
 
-import deviconDataRaw from "../../node_modules/devicon/devicon.json";
+import deviconDataRaw from "devicon/devicon.json";
 
 export interface DeviconEntry {
   name: string;
@@ -34,13 +34,18 @@ export const deviconData: DeviconEntry[] = deviconDataRaw as DeviconEntry[];
 export const deviconMap = new Map<string, DeviconEntry>();
 export const deviconAltNameMap = new Map<string, DeviconEntry>();
 
-for (const entry of deviconData) {
-  // 正式名称でマップ
-  deviconMap.set(entry.name.toLowerCase(), entry);
+// データが正しくインポートされているか確認
+if (!deviconData || deviconData.length === 0) {
+  console.error("Failed to import devicon data");
+} else {
+  for (const entry of deviconData) {
+    // 正式名称でマップ
+    deviconMap.set(entry.name.toLowerCase(), entry);
 
-  // 代替名でもマップ
-  for (const altname of entry.altnames || []) {
-    deviconAltNameMap.set(altname.toLowerCase(), entry);
+    // 代替名でもマップ
+    for (const altname of entry.altnames || []) {
+      deviconAltNameMap.set(altname.toLowerCase(), entry);
+    }
   }
 }
 
