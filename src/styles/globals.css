@@ -36,6 +36,12 @@
   }
 }
 
+/* Devicon specific overrides - must be after base layer */
+i[class^="devicon-"]::before,
+i[class*=" devicon-"]::before {
+  content: "" !important;
+}
+
 html,
 body {
   padding: 0;

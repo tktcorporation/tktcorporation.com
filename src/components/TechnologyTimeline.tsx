@@ -224,7 +224,17 @@ export function TechnologyTimeline({
                               >
                                 {isSupported && iconClass ? (
                                   <i
-                                    className={`${iconClass} text-xs md:text-sm mr-0.5 md:mr-1`}
+                                    className={iconClass}
+                                    style={{ 
+                                      fontSize: "14px",
+                                      marginRight: "4px",
+                                      display: "inline-block",
+                                      fontStyle: "normal",
+                                      fontVariant: "normal",
+                                      textRendering: "auto",
+                                      lineHeight: 1,
+                                      WebkitFontSmoothing: "antialiased"
+                                    }}
                                   />
                                 ) : (
                                   <Code2 className="w-2.5 md:w-3 h-2.5 md:h-3 mr-0.5 md:mr-1" />
