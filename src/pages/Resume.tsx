@@ -354,7 +354,7 @@ function Resume() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-950 text-slate-200">
+    <div className="min-h-screen flex flex-col text-slate-200">
       <nav className="p-6 border-b border-white/10 backdrop-blur-lg bg-black/20">
         <div className="container mx-auto flex justify-between items-center">
           <Link
