@@ -44,7 +44,9 @@ export function TechnologyTimeline({
       .slice(0, limit);
   };
 
-  const getActivityIcon = (type: TimelineEntry["activities"][0]["type"]) => {
+  const getActivityIcon = (
+    type: "github" | "github_pr" | "article" | "event"
+  ) => {
     switch (type) {
       case "github":
         return "🔧";
@@ -59,7 +61,9 @@ export function TechnologyTimeline({
     }
   };
 
-  const getActivityColor = (type: TimelineEntry["activities"][0]["type"]) => {
+  const getActivityColor = (
+    type: "github" | "github_pr" | "article" | "event"
+  ) => {
     switch (type) {
       case "github":
         return "text-blue-300";
@@ -72,6 +76,14 @@ export function TechnologyTimeline({
       default:
         return "text-gray-300";
     }
+  };
+
+  const getTotalActivities = (entry: TimelineEntry): number => {
+    const repoActivities = entry.repositoryGroups.reduce(
+      (sum, group) => sum + group.activities.length,
+      0
+    );
+    return repoActivities + entry.articles.length + entry.events.length;
   };
 
   return (
@@ -164,51 +176,173 @@ export function TechnologyTimeline({
 
                     {/* アクティビティ数バッジ */}
                     <span className="px-3 py-1 text-sm bg-purple-500/20 text-purple-200 rounded-full border border-purple-500/30">
-                      {entry.activities.length} activities
+                      {getTotalActivities(entry)} activities
                     </span>
                   </div>
 
-                  {/* アクティビティリスト（最初の5件） */}
+                  {/* アクティビティリスト */}
                   <details className="mt-4">
                     <summary className="text-sm text-purple-300 cursor-pointer hover:text-purple-200 transition-colors">
                       詳細を表示
                     </summary>
-                    <div className="mt-3 space-y-2">
-                      {entry.activities.slice(0, 10).map((activity, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-start gap-2 text-sm"
-                        >
-                          <span className="mt-1">
-                            {getActivityIcon(activity.type)}
-                          </span>
-                          <div className="flex-1">
-                            <a
-                              href={activity.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={`hover:underline ${getActivityColor(
-                                activity.type
-                              )}`}
-                            >
-                              {activity.title}
-                            </a>
-                            <div className="text-xs text-slate-500 mt-0.5">
-                              {activity.date.toLocaleDateString("ja-JP")}
-                              {activity.language && (
-                                <span className="ml-2">
-                                  {activity.language}
-                                </span>
-                              )}
-                            </div>
+                    <div className="mt-3 space-y-4">
+                      {/* リポジトリグループ */}
+                      {entry.repositoryGroups.length > 0 && (
+                        <div>
+                          <h4 className="text-xs font-semibold text-slate-400 mb-2">
+                            📦 リポジトリ活動
+                          </h4>
+                          <div className="space-y-3">
+                            {entry.repositoryGroups
+                              .slice(0, 5)
+                              .map((group, idx) => (
+                                <div
+                                  key={idx}
+                                  className="bg-black/20 rounded-lg p-3 border border-white/5"
+                                >
+                                  <div className="flex items-start justify-between mb-2">
+                                    <h5 className="text-sm font-medium text-blue-300">
+                                      {group.repository}
+                                    </h5>
+                                    <div className="flex gap-2 text-xs text-slate-500">
+                                      {group.language && (
+                                        <span className="px-2 py-0.5 bg-blue-500/10 text-blue-300 rounded">
+                                          {group.language}
+                                        </span>
+                                      )}
+                                      {group.contributions > 0 && (
+                                        <span>
+                                          💻 {group.contributions} commits
+                                        </span>
+                                      )}
+                                      {group.prCount > 0 && (
+                                        <span>🔄 {group.prCount} PRs</span>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <div className="space-y-1">
+                                    {group.activities
+                                      .slice(0, 3)
+                                      .map((activity, actIdx) => (
+                                        <div
+                                          key={actIdx}
+                                          className="flex items-center gap-2 text-xs"
+                                        >
+                                          <span>
+                                            {getActivityIcon(activity.type)}
+                                          </span>
+                                          <a
+                                            href={activity.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`hover:underline ${getActivityColor(activity.type)}`}
+                                          >
+                                            {activity.type === "github_pr"
+                                              ? "Pull Request"
+                                              : "Commit"}
+                                          </a>
+                                          <span className="text-slate-600">
+                                            {activity.date.toLocaleDateString(
+                                              "ja-JP"
+                                            )}
+                                          </span>
+                                        </div>
+                                      ))}
+                                    {group.activities.length > 3 && (
+                                      <p className="text-xs text-slate-500 mt-1">
+                                        他 {group.activities.length - 3}{" "}
+                                        件の活動
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            {entry.repositoryGroups.length > 5 && (
+                              <p className="text-xs text-slate-400">
+                                他 {entry.repositoryGroups.length - 5}{" "}
+                                リポジトリ
+                              </p>
+                            )}
                           </div>
                         </div>
-                      ))}
+                      )}
 
-                      {entry.activities.length > 10 && (
-                        <p className="text-xs text-slate-400 mt-2">
-                          他 {entry.activities.length - 10} 件のアクティビティ
-                        </p>
+                      {/* 記事 */}
+                      {entry.articles.length > 0 && (
+                        <div>
+                          <h4 className="text-xs font-semibold text-slate-400 mb-2">
+                            ✍️ 執筆記事
+                          </h4>
+                          <div className="space-y-2">
+                            {entry.articles.slice(0, 5).map((article, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-start gap-2 text-sm"
+                              >
+                                <span className="mt-1">
+                                  {getActivityIcon(article.type)}
+                                </span>
+                                <div className="flex-1">
+                                  <a
+                                    href={article.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`hover:underline ${getActivityColor(article.type)}`}
+                                  >
+                                    {article.title}
+                                  </a>
+                                  <div className="text-xs text-slate-500 mt-0.5">
+                                    {article.date.toLocaleDateString("ja-JP")}
+                                    <span className="ml-2">
+                                      {article.source === "qiita"
+                                        ? "Qiita"
+                                        : "Zenn"}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                            {entry.articles.length > 5 && (
+                              <p className="text-xs text-slate-400">
+                                他 {entry.articles.length - 5} 件の記事
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* イベント */}
+                      {entry.events.length > 0 && (
+                        <div>
+                          <h4 className="text-xs font-semibold text-slate-400 mb-2">
+                            🎤 イベント参加
+                          </h4>
+                          <div className="space-y-2">
+                            {entry.events.map((event, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-start gap-2 text-sm"
+                              >
+                                <span className="mt-1">
+                                  {getActivityIcon(event.type)}
+                                </span>
+                                <div className="flex-1">
+                                  <a
+                                    href={event.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`hover:underline ${getActivityColor(event.type)}`}
+                                  >
+                                    {event.title}
+                                  </a>
+                                  <div className="text-xs text-slate-500 mt-0.5">
+                                    {event.date.toLocaleDateString("ja-JP")}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       )}
                     </div>
                   </details>

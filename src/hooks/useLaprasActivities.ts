@@ -15,16 +15,36 @@ import type { GitHubRepository, LaprasData } from "../data/laprasSchema";
 
 export type TimeSpan = "1month" | "6months" | "1year";
 
+export interface RepositoryGroup {
+  repository: string;
+  activities: Array<{
+    date: Date;
+    type: "github" | "github_pr";
+    title: string;
+    url: string;
+  }>;
+  language?: string;
+  contributions: number;
+  prCount: number;
+  latestActivity: Date;
+}
+
 export interface TimelineEntry {
   startDate: Date;
   endDate: Date;
-  activities: Array<{
+  repositoryGroups: RepositoryGroup[]; // リポジトリごとにグルーピング
+  articles: Array<{
     date: Date;
-    type: "github" | "github_pr" | "article" | "event" | "other";
+    type: "article";
     title: string;
     url: string;
-    repository?: string;
-    language?: string;
+    source: "qiita" | "zenn" | "blog" | "note";
+  }>;
+  events: Array<{
+    date: Date;
+    type: "event";
+    title: string;
+    url: string;
   }>;
   languages: Map<string, number>; // 言語名 -> 使用回数
   repositories: Map<string, number>; // リポジトリ名 -> 貢献数
@@ -66,7 +86,9 @@ export function useLaprasActivities(data: LaprasData | null) {
         const entry: TimelineEntry = {
           startDate,
           endDate,
-          activities: [],
+          repositoryGroups: [],
+          articles: [],
+          events: [],
           languages: new Map(),
           repositories: new Map(),
           totalContributions: 0,
@@ -75,21 +97,56 @@ export function useLaprasActivities(data: LaprasData | null) {
           eventCount: 0,
         };
 
+        // リポジトリごとの活動を一時的に格納
+        const repoActivitiesMap = new Map<
+          string,
+          {
+            activities: Array<{
+              date: Date;
+              type: "github" | "github_pr";
+              title: string;
+              url: string;
+            }>;
+            language?: string;
+            contributions: number;
+            prCount: number;
+          }
+        >();
+
         // この期間のアクティビティを収集
         for (const activity of activities) {
           const activityDate = new Date(activity.date);
 
           if (activityDate >= startDate && activityDate < endDate) {
-            let type: TimelineEntry["activities"][0]["type"] = "other";
-            let repository: string | undefined;
-            let language: string | undefined;
-
-            if (activity.type === "github") {
-              type = "github";
-              repository = activity.title;
+            if (activity.type === "github" || activity.type === "github_pr") {
+              const repository = activity.title;
               const repo = repoMap.get(repository);
+
+              if (!repoActivitiesMap.has(repository)) {
+                repoActivitiesMap.set(repository, {
+                  activities: [],
+                  language: repo?.language,
+                  contributions: 0,
+                  prCount: 0,
+                });
+              }
+
+              const repoGroup = repoActivitiesMap.get(repository);
+              if (!repoGroup) continue;
+
+              repoGroup.activities.push({
+                date: activityDate,
+                type: activity.type as "github" | "github_pr",
+                title: activity.title,
+                url: activity.url,
+              });
+
+              if (activity.type === "github_pr") {
+                repoGroup.prCount++;
+                entry.prCount++;
+              }
+
               if (repo) {
-                language = repo.language;
                 // 言語をカウント
                 for (const lang of repo.languages || []) {
                   entry.languages.set(
@@ -97,54 +154,58 @@ export function useLaprasActivities(data: LaprasData | null) {
                     (entry.languages.get(lang.name) || 0) + 1
                   );
                 }
-                // リポジトリの貢献をカウント
-                entry.repositories.set(
-                  repository,
-                  (entry.repositories.get(repository) || 0) + repo.contributions
-                );
-                entry.totalContributions += repo.contributions;
-              }
-            } else if (activity.type === "github_pr") {
-              type = "github_pr";
-              repository = activity.title;
-              entry.prCount++;
-
-              const repo = repoMap.get(repository);
-              if (repo) {
-                language = repo.language;
-                // PRも言語カウントに含める
-                for (const lang of repo.languages || []) {
-                  entry.languages.set(
-                    lang.name,
-                    (entry.languages.get(lang.name) || 0) + 1
-                  );
+                // 貢献度は一度だけカウント
+                if (
+                  activity.type === "github" &&
+                  repoGroup.contributions === 0
+                ) {
+                  repoGroup.contributions = repo.contributions;
+                  entry.repositories.set(repository, repo.contributions);
+                  entry.totalContributions += repo.contributions;
                 }
               }
             } else if (activity.type === "connpass") {
-              type = "event";
+              entry.events.push({
+                date: activityDate,
+                type: "event",
+                title: activity.title,
+                url: activity.url,
+              });
               entry.eventCount++;
             }
-
-            entry.activities.push({
-              date: activityDate,
-              type,
-              title: activity.title,
-              url: activity.url,
-              repository,
-              language,
-            });
           }
         }
+
+        // リポジトリグループを作成
+        for (const [repository, data] of repoActivitiesMap.entries()) {
+          // 活動を日付でソート（新しい順）
+          data.activities.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+          entry.repositoryGroups.push({
+            repository,
+            activities: data.activities,
+            language: data.language,
+            contributions: data.contributions,
+            prCount: data.prCount,
+            latestActivity: data.activities[0].date,
+          });
+        }
+
+        // リポジトリグループを最新の活動日でソート
+        entry.repositoryGroups.sort(
+          (a, b) => b.latestActivity.getTime() - a.latestActivity.getTime()
+        );
 
         // Qiita記事を追加
         for (const article of laprasData.qiita_articles) {
           const articleDate = new Date(article.updated_at);
           if (articleDate >= startDate && articleDate < endDate) {
-            entry.activities.push({
+            entry.articles.push({
               date: articleDate,
               type: "article",
               title: article.title,
               url: article.url,
+              source: "qiita",
             });
             entry.articleCount++;
 
@@ -178,21 +239,28 @@ export function useLaprasActivities(data: LaprasData | null) {
         for (const article of laprasData.zenn_articles) {
           const articleDate = new Date(article.posted_at);
           if (articleDate >= startDate && articleDate < endDate) {
-            entry.activities.push({
+            entry.articles.push({
               date: articleDate,
               type: "article",
               title: article.title,
               url: article.url,
+              source: "zenn",
             });
             entry.articleCount++;
           }
         }
 
-        // アクティビティを日付でソート（新しい順）
-        entry.activities.sort((a, b) => b.date.getTime() - a.date.getTime());
+        // 記事とイベントを日付でソート（新しい順）
+        entry.articles.sort((a, b) => b.date.getTime() - a.date.getTime());
+        entry.events.sort((a, b) => b.date.getTime() - a.date.getTime());
 
         // アクティビティがある期間のみ追加
-        if (entry.activities.length > 0) {
+        const hasActivity =
+          entry.repositoryGroups.length > 0 ||
+          entry.articles.length > 0 ||
+          entry.events.length > 0;
+
+        if (hasActivity) {
           entries.push(entry);
         }
       }
