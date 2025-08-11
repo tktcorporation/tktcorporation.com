@@ -14,7 +14,8 @@
     "lint:fix": "biome check --write .",
     "typecheck": "tsc",
     "screenshot": "tsx scripts/screenshot.ts",
-    "test": "tsx scripts/test-display.ts"
+    "test": "tsx scripts/test-display.ts",
+    "update:lapras": "tsx scripts/update-lapras-data.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
@@ -25,7 +26,8 @@
     "firebase": "12.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.8.0"
+    "react-router-dom": "^7.8.0",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.4",
@@ -40,6 +42,6 @@
     "vite": "^5.4.11"
   },
   "engines": {
-    "node": ">=24.0.0"
+    "node": "24"
   }
 }
