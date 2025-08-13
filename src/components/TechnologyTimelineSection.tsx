@@ -7,7 +7,7 @@
  * Context:
  * - Home.tsx の複雑さを軽減し、単一責任の原則に従う
  * - Technology Timeline の表示ロジックをカプセル化
- * - 1年間隔での表示に固定し、シンプルなインターフェースを提供
+ * - デフォルトは1年間隔で表示、ユーザーが期間を切り替え可能
  */
 
 import { useEffect } from "react";
@@ -16,11 +16,10 @@ import { getLaprasData } from "@/data/laprasData";
 import { useLaprasActivities } from "@/hooks/useLaprasActivities";
 
 export function TechnologyTimelineSection() {
-  const { timelineEntries, setTimeSpan, loading } = useLaprasActivities(
-    getLaprasData()
-  );
+  const { timelineEntries, timeSpan, setTimeSpan, loading } =
+    useLaprasActivities(getLaprasData());
 
-  // 1年間隔に固定
+  // デフォルトは1年間隔
   useEffect(() => {
     setTimeSpan("1year");
   }, [setTimeSpan]);
@@ -34,8 +33,8 @@ export function TechnologyTimelineSection() {
         {!loading && (
           <TechnologyTimeline
             entries={timelineEntries}
-            timeSpan="1year"
-            onTimeSpanChange={() => {}} // 1年固定なので変更不可
+            timeSpan={timeSpan}
+            onTimeSpanChange={setTimeSpan}
           />
         )}
       </div>

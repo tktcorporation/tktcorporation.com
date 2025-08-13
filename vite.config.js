@@ -28,10 +28,22 @@ export default defineConfig({
     host: "0.0.0.0",
   },
   build: {
+    target: "baseline-widely-available",
     outDir: "dist",
     assetsDir: "assets",
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       input: "index.html",
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          icons: [
+            "react-icons",
+            "@icons-pack/react-simple-icons",
+            "lucide-react",
+          ],
+        },
+      },
     },
   },
 });

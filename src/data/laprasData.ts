@@ -4,12 +4,12 @@
  * 型安全な形でアプリケーション全体に提供する。
  *
  * Context:
- * - public/lapras-data.jsonから静的データを読み込み
+ * - src/data/lapras-data.jsonから静的データを読み込み
  * - Zodスキーマでバリデーションして型安全性を保証
  * - エラーハンドリングを含む2つのアクセス方法を提供
  */
 
-import laprasDataJson from "../../public/lapras-data.json";
+import laprasDataJson from "./lapras-data.json";
 import { type LaprasData, LaprasDataSchema } from "./laprasSchema";
 
 /**
