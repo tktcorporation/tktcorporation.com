@@ -23,7 +23,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const LAPRAS_API_URL = "https://lapras.com/public/tktcorporation.json";
-const OUTPUT_PATH = path.join(__dirname, "../public/lapras-data.json");
+const OUTPUT_PATH = path.join(__dirname, "../src/data/lapras-data.json");
 
 async function updateLaprasData() {
   try {
