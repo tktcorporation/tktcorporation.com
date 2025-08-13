@@ -18,16 +18,16 @@ export type TimeSpan = "1month" | "6months" | "1year";
 
 export interface RepositoryGroup {
   repository: string;
-  activities: Array<{
-    date: Date;
-    type: "github" | "github_pr";
-    title: string;
-    url: string;
-  }>;
+  description?: string; // リポジトリの説明
+  activitySummary: {
+    commits: number;
+    pullRequests: number;
+    total: number;
+  };
   language?: string;
   contributions: number;
-  prCount: number;
   latestActivity: Date;
+  url: string; // リポジトリのURL
 }
 
 export interface TimelineEntry {
@@ -102,15 +102,13 @@ export function useLaprasActivities(data: LaprasData | null) {
         const repoActivitiesMap = new Map<
           string,
           {
-            activities: Array<{
-              date: Date;
-              type: "github" | "github_pr";
-              title: string;
-              url: string;
-            }>;
+            commits: number;
+            pullRequests: number;
             language?: string;
+            description?: string;
             contributions: number;
-            prCount: number;
+            latestActivity: Date;
+            url: string;
           }
         >();
 
@@ -125,45 +123,44 @@ export function useLaprasActivities(data: LaprasData | null) {
 
               if (!repoActivitiesMap.has(repository)) {
                 repoActivitiesMap.set(repository, {
-                  activities: [],
+                  commits: 0,
+                  pullRequests: 0,
                   language: repo?.language,
-                  contributions: 0,
-                  prCount: 0,
+                  description: repo?.description,
+                  contributions: repo?.contributions || 0,
+                  latestActivity: activityDate,
+                  url: activity.url,
                 });
+
+                // 貢献度をカウント
+                if (repo) {
+                  entry.repositories.set(repository, repo.contributions);
+                  entry.totalContributions += repo.contributions;
+
+                  // 言語をカウント
+                  for (const lang of repo.languages || []) {
+                    entry.languages.set(
+                      lang.name,
+                      (entry.languages.get(lang.name) || 0) + 1
+                    );
+                  }
+                }
               }
 
               const repoGroup = repoActivitiesMap.get(repository);
               if (!repoGroup) continue;
 
-              repoGroup.activities.push({
-                date: activityDate,
-                type: activity.type as "github" | "github_pr",
-                title: activity.title,
-                url: activity.url,
-              });
-
-              if (activity.type === "github_pr") {
-                repoGroup.prCount++;
-                entry.prCount++;
+              // 最新のアクティビティ日を更新
+              if (activityDate > repoGroup.latestActivity) {
+                repoGroup.latestActivity = activityDate;
               }
 
-              if (repo) {
-                // 言語をカウント
-                for (const lang of repo.languages || []) {
-                  entry.languages.set(
-                    lang.name,
-                    (entry.languages.get(lang.name) || 0) + 1
-                  );
-                }
-                // 貢献度は一度だけカウント
-                if (
-                  activity.type === "github" &&
-                  repoGroup.contributions === 0
-                ) {
-                  repoGroup.contributions = repo.contributions;
-                  entry.repositories.set(repository, repo.contributions);
-                  entry.totalContributions += repo.contributions;
-                }
+              // アクティビティの種類ごとにカウント
+              if (activity.type === "github_pr") {
+                repoGroup.pullRequests++;
+                entry.prCount++;
+              } else {
+                repoGroup.commits++;
               }
             } else if (activity.type === "connpass") {
               entry.events.push({
@@ -179,16 +176,18 @@ export function useLaprasActivities(data: LaprasData | null) {
 
         // リポジトリグループを作成
         for (const [repository, data] of repoActivitiesMap.entries()) {
-          // 活動を日付でソート（新しい順）
-          data.activities.sort((a, b) => b.date.getTime() - a.date.getTime());
-
           entry.repositoryGroups.push({
             repository,
-            activities: data.activities,
+            description: data.description,
+            activitySummary: {
+              commits: data.commits,
+              pullRequests: data.pullRequests,
+              total: data.commits + data.pullRequests,
+            },
             language: data.language,
             contributions: data.contributions,
-            prCount: data.prCount,
-            latestActivity: data.activities[0].date,
+            latestActivity: data.latestActivity,
+            url: data.url,
           });
         }
 

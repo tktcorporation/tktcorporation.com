@@ -21,7 +21,6 @@ import {
   Mic2,
   Package,
 } from "lucide-react";
-import type { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -132,43 +131,9 @@ export function TechnologyTimeline({
       .slice(0, limit);
   };
 
-  const getActivityIcon = (
-    type: "github" | "github_pr" | "article" | "event"
-  ): ReactNode => {
-    switch (type) {
-      case "github":
-        return <GitBranch className="w-3 md:w-4 h-3 md:h-4" />;
-      case "github_pr":
-        return <GitPullRequest className="w-3 md:w-4 h-3 md:h-4" />;
-      case "article":
-        return <FileText className="w-3 md:w-4 h-3 md:h-4" />;
-      case "event":
-        return <Mic2 className="w-3 md:w-4 h-3 md:h-4" />;
-      default:
-        return <Code2 className="w-3 md:w-4 h-3 md:h-4" />;
-    }
-  };
-
-  const getActivityColor = (
-    type: "github" | "github_pr" | "article" | "event"
-  ) => {
-    switch (type) {
-      case "github":
-        return "text-blue-300";
-      case "github_pr":
-        return "text-green-300";
-      case "article":
-        return "text-purple-300";
-      case "event":
-        return "text-yellow-300";
-      default:
-        return "text-gray-300";
-    }
-  };
-
   const getTotalActivities = (entry: TimelineEntry): number => {
     const repoActivities = entry.repositoryGroups.reduce(
-      (sum, group) => sum + group.activities.length,
+      (sum, group) => sum + group.activitySummary.total,
       0
     );
     return repoActivities + entry.articles.length + entry.events.length;
@@ -284,70 +249,67 @@ export function TechnologyTimeline({
 
                 <CardContent className="p-3 md:p-4 lg:p-6 pt-0 md:pt-0 space-y-3 md:space-y-4">
                   {/* リポジトリグループ */}
-                  {entry.repositoryGroups.slice(0, 3).map((group, gIdx) => (
+                  {entry.repositoryGroups.slice(0, 5).map((group, gIdx) => (
                     <div
                       key={gIdx}
-                      className="border-l-2 border-gray-600 pl-2 md:pl-3 lg:pl-4 space-y-1 md:space-y-2 overflow-hidden"
+                      className="border-l-2 border-gray-600 pl-2 md:pl-3 lg:pl-4 overflow-hidden"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                        <h4 className="text-xs md:text-sm font-medium text-gray-200 min-w-0 break-words">
-                          {group.repository}
-                        </h4>
-                        <div className="flex items-center flex-wrap gap-1 md:gap-2 text-[10px] md:text-xs text-gray-400 flex-shrink-0">
-                          {group.language && (
-                            <Badge
-                              variant="outline"
-                              className="text-[10px] md:text-xs px-1.5 py-0 md:px-2 md:py-0.5"
-                            >
-                              {group.language}
-                            </Badge>
-                          )}
-                          <span className="flex items-center gap-0.5 md:gap-1">
-                            <GitBranch className="w-2.5 md:w-3 h-2.5 md:h-3" />
-                            {group.contributions}
-                          </span>
-                          {group.prCount > 0 && (
-                            <span className="flex items-center gap-0.5 md:gap-1">
-                              <GitPullRequest className="w-2.5 md:w-3 h-2.5 md:h-3" />
-                              {group.prCount}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* アクティビティ */}
-                      <div className="space-y-0.5 md:space-y-1">
-                        {group.activities.slice(0, 2).map((activity, aIdx) => (
-                          <a
-                            key={aIdx}
-                            href={activity.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block group"
-                          >
-                            <div className="flex items-start gap-1 md:gap-2 text-[10px] md:text-xs hover:bg-gray-700/30 rounded p-0.5 md:p-1 transition-colors overflow-hidden">
-                              <span
-                                className={cn(
-                                  "mt-0.5 flex-shrink-0",
-                                  getActivityColor(activity.type)
-                                )}
-                              >
-                                {getActivityIcon(activity.type)}
-                              </span>
-                              <span className="text-gray-300 group-hover:text-gray-100 transition-colors min-w-0 flex-1 break-words leading-tight">
-                                {activity.title}
-                              </span>
+                      <a
+                        href={group.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block hover:bg-gray-700/20 rounded p-1 md:p-2 -m-1 md:-m-2 transition-colors"
+                      >
+                        <div className="flex flex-col gap-1">
+                          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-xs md:text-sm font-medium text-gray-200 group-hover:text-white break-words transition-colors">
+                                {group.repository}
+                              </h4>
+                              {group.description && (
+                                <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 line-clamp-2">
+                                  {group.description}
+                                </p>
+                              )}
                             </div>
-                          </a>
-                        ))}
-                        {group.activities.length > 2 && (
-                          <div className="text-[10px] md:text-xs text-gray-500 pl-4 md:pl-6">
-                            他 {group.activities.length - 2} 件のアクティビティ
+                            <div className="flex items-center flex-wrap gap-1 md:gap-2 text-[10px] md:text-xs text-gray-400 flex-shrink-0">
+                              {group.language && (
+                                <Badge
+                                  variant="outline"
+                                  className="text-[10px] md:text-xs px-1.5 py-0 md:px-2 md:py-0.5"
+                                >
+                                  {group.language}
+                                </Badge>
+                              )}
+                              <span className="flex items-center gap-0.5 md:gap-1">
+                                <GitBranch className="w-2.5 md:w-3 h-2.5 md:h-3" />
+                                {group.contributions}
+                              </span>
+                              {group.activitySummary.commits > 0 && (
+                                <span className="flex items-center gap-0.5 md:gap-1 text-blue-300">
+                                  <Code2 className="w-2.5 md:w-3 h-2.5 md:h-3" />
+                                  {group.activitySummary.commits}
+                                </span>
+                              )}
+                              {group.activitySummary.pullRequests > 0 && (
+                                <span className="flex items-center gap-0.5 md:gap-1 text-green-300">
+                                  <GitPullRequest className="w-2.5 md:w-3 h-2.5 md:h-3" />
+                                  {group.activitySummary.pullRequests}
+                                </span>
+                              )}
+                            </div>
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      </a>
                     </div>
                   ))}
+
+                  {/* もっと見る */}
+                  {entry.repositoryGroups.length > 5 && (
+                    <div className="text-[10px] md:text-xs text-gray-500 pl-2 md:pl-3">
+                      他 {entry.repositoryGroups.length - 5} リポジトリ
+                    </div>
+                  )}
 
                   {/* 記事 */}
                   {entry.articles.length > 0 && (
