@@ -387,8 +387,10 @@ const Portfolio = () => {
               </div>
 
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">関連リンク</h3>
-                <div className="pt-4 space-y-2">
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  関連リンク
+                </h3>
+                <div className="pt-4 flex flex-col space-y-2">
                   <a
                     href="https://v-fes.sanrio.co.jp/"
                     target="_blank"
@@ -454,28 +456,14 @@ const Portfolio = () => {
           </div>
 
           <div className="max-w-6xl mx-auto flex gap-8">
-            {/* 左側: 画像プレースホルダー */}
+            {/* 左側: 画像（3:4比率） */}
             <div className="flex-shrink-0">
-              <div className="w-72 h-96 bg-gray-50 rounded-lg flex items-center justify-center">
-                <div className="text-gray-400 text-center p-4">
-                  <svg
-                    className="w-16 h-16 mx-auto mb-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    role="img"
-                    aria-label="Image placeholder"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <p className="text-sm">カレンダーシステムUI</p>
-                  <p className="text-xs mt-2">288 × 384px</p>
-                </div>
+              <div className="w-72 h-96 bg-gray-50 rounded-lg overflow-hidden">
+                <img
+                  src="/src/assets/vfes2025-comm-calendar.png"
+                  alt="カレンダーシステムのスクリーンショット"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
@@ -492,15 +480,6 @@ const Portfolio = () => {
                   <li>• Unity側実装調整</li>
                   <li>• オンボーディングドキュメント作成</li>
                   <li>• 顧客への説明・サポート</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">成果</h3>
-                <ul className="space-y-2 text-gray-600 font-light text-sm">
-                  <li>• 100以上のイベント管理を効率化</li>
-                  <li>• リアルタイム更新機能の実装</li>
-                  <li>• 運営チームの作業時間を大幅削減</li>
                 </ul>
               </div>
             </div>
