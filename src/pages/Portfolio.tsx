@@ -10,8 +10,9 @@
  * - プロジェクトアサイン、転職、協業など多様な場面で使用可能
  *
  * Context:
+ * - Spectacleライブラリを使用した高品質なプレゼンテーション機能
  * - デフォルトは縦スクロール表示（通常のWebページ形式）
- * - プレゼンテーションモードでスライド形式に切り替え可能
+ * - プレゼンテーションモードでSpectacle形式に切り替え可能
  * - PDF出力時に適切なレイアウトになることを想定
  * - キーボードナビゲーション対応
  * - レスポンシブデザイン対応
@@ -20,23 +21,17 @@
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Download,
-  ExternalLink,
-  Maximize2,
-  Minimize2,
-  Presentation,
-  ScrollText,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { Download, ExternalLink, Presentation, ScrollText } from "lucide-react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import "@/styles/animations.css";
 
+// Spectacleコンポーネントの動的インポート
+const PortfolioPresentation = lazy(() => import("./PortfolioPresentation"));
+
 const Portfolio = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [_currentSlide, setCurrentSlide] = useState(0);
+  const [_isFullscreen, setIsFullscreen] = useState(false);
   const [isPresentationMode, setIsPresentationMode] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 
@@ -566,15 +561,15 @@ const Portfolio = () => {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [isPresentationMode]);
 
-  const goToPreviousSlide = () => {
+  const _goToPreviousSlide = () => {
     setCurrentSlide((prev) => (prev > 0 ? prev - 1 : slides.length - 1));
   };
 
-  const goToNextSlide = () => {
+  const _goToNextSlide = () => {
     setCurrentSlide((prev) => (prev < slides.length - 1 ? prev + 1 : 0));
   };
 
-  const toggleFullscreen = () => {
+  const _toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
       setIsFullscreen(true);
@@ -881,110 +876,52 @@ const Portfolio = () => {
     );
   }
 
-  // プレゼンテーションモード（スライド形式）
+  // プレゼンテーションモード（Spectacle形式）
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col">
-      {/* ヘッダー */}
-      <div className="flex justify-between items-center p-4 border-b border-gray-200 bg-white">
-        <div className="text-sm text-gray-600">
-          スライド {currentSlide + 1} / {slides.length}
-        </div>
+    <div className="min-h-screen bg-white">
+      {/* コントロールバー */}
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <h1 className="text-lg font-light text-gray-600">
+          Portfolio Presentation
+        </h1>
         <div className="flex gap-2">
           <Button
-            size="icon"
-            onClick={togglePresentationMode}
-            title="スクロールモードに戻る (Esc)"
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
-          >
-            <ScrollText className="h-4 w-4" />
-          </Button>
-          <Button
-            size="icon"
-            onClick={exportToPDF}
-            disabled={isExporting}
-            title="PDFとしてダウンロード"
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
+            size="sm"
+            onClick={() => {
+              // PDF出力用URLを新しいタブで開く
+              const url = new URL(window.location.href);
+              url.searchParams.set("export", "pdf");
+              window.open(url.toString(), "_blank");
+            }}
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors flex items-center gap-2"
           >
             <Download className="h-4 w-4" />
+            PDFエクスポート
           </Button>
           <Button
-            size="icon"
-            onClick={toggleFullscreen}
-            title={
-              isFullscreen ? "フルスクリーン終了 (F)" : "フルスクリーン (F)"
-            }
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
+            size="sm"
+            onClick={togglePresentationMode}
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors flex items-center gap-2"
           >
-            {isFullscreen ? (
-              <Minimize2 className="h-4 w-4" />
-            ) : (
-              <Maximize2 className="h-4 w-4" />
-            )}
+            <ScrollText className="h-4 w-4" />
+            スクロールモードに戻る
           </Button>
         </div>
       </div>
 
-      {/* メインコンテンツエリア */}
-      <div className="flex-1 relative overflow-hidden bg-white">
-        <div
-          id="portfolio-content"
-          className="absolute inset-0 flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        >
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              id={`slide-${index}`}
-              className="min-w-full h-full flex items-center justify-center p-8"
-              style={{
-                // PDF出力時のページ区切りを考慮
-                pageBreakAfter: index < slides.length - 1 ? "always" : "avoid",
-              }}
-            >
-              <div className="w-full max-w-6xl mx-auto">{slide.content}</div>
+      {/* Spectacleプレゼンテーション */}
+      <div className="pt-16">
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="text-gray-500">
+                プレゼンテーションを読み込み中...
+              </div>
             </div>
-          ))}
-        </div>
-
-        {/* ナビゲーションボタン */}
-        <button
-          type="button"
-          onClick={goToPreviousSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors border border-gray-200"
-          aria-label="前のスライド"
+          }
         >
-          <ChevronLeft className="h-6 w-6 text-gray-700" />
-        </button>
-        <button
-          type="button"
-          onClick={goToNextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors border border-gray-200"
-          aria-label="次のスライド"
-        >
-          <ChevronRight className="h-6 w-6 text-gray-700" />
-        </button>
-      </div>
-
-      {/* スライドインジケーター */}
-      <div className="flex justify-center gap-2 p-4 bg-white border-t border-gray-200">
-        {slides.map((_, index) => (
-          <button
-            type="button"
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`h-2 w-2 rounded-full transition-all ${
-              index === currentSlide
-                ? "bg-gray-700 w-8"
-                : "bg-gray-300 hover:bg-gray-400"
-            }`}
-            aria-label={`スライド ${index + 1} へ移動`}
-          />
-        ))}
-      </div>
-
-      {/* キーボードショートカットのヒント */}
-      <div className="text-xs text-gray-500 text-center pb-2 bg-white">
-        ← → でスライド切り替え | F でフルスクリーン | Esc でスクロールモードへ
+          <PortfolioPresentation />
+        </Suspense>
       </div>
     </div>
   );
