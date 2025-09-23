@@ -143,12 +143,12 @@ const Portfolio = () => {
       content: (
         <div className="flex flex-col justify-center h-full">
           <div className="text-center mb-16">
-            <p className="text-lg text-gray-500 mb-4 font-light">2022 - 現在</p>
+            <p className="text-lg text-gray-500 mb-4 font-light">2025 - 現在</p>
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
-              toCプロダクトマネージャー
+              toC Webプロダクト開発
             </h2>
             <p className="text-xl text-gray-600 font-light">
-              Webアプリケーションサービス企業
+              フルタイム・プロダクトマネージャー
             </p>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
@@ -175,9 +175,9 @@ const Portfolio = () => {
                   </h3>
                   <ul className="space-y-2 text-gray-600 font-light">
                     <li>• ユーザー獲得・維持率の改善施策実行</li>
-                    <li>• データドリブンな意思決定プロセスの確立</li>
-                    <li>• ステークホルダーとの密な連携体制構築</li>
-                    <li>• プロダクトロードマップの策定と管理</li>
+                    <li>• 機能リリースによるWAU向上 / メールパフォーマンス改善</li>
+                    <li>• PdM2人,開発者4人 チームでのスクラム開発</li>
+                    <li>• 必要に応じて開発者としても稼働</li>
                   </ul>
                 </div>
               </div>
@@ -194,12 +194,12 @@ const Portfolio = () => {
       content: (
         <div className="flex flex-col justify-center h-full">
           <div className="text-center mb-16">
-            <p className="text-lg text-gray-500 mb-4 font-light">2020 - 2022</p>
+            <p className="text-lg text-gray-500 mb-4 font-light">2020 - 2025</p>
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
-              フルスタックエンジニア
+              toB SaaS Webプロダクト開発
             </h2>
             <p className="text-xl text-gray-600 font-light">
-              B2B/B2C両面のプロダクト開発
+              フルタイム・Webアプリケーションエンジニア
             </p>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
@@ -246,12 +246,12 @@ const Portfolio = () => {
       content: (
         <div className="flex flex-col justify-center h-full">
           <div className="text-center mb-16">
-            <p className="text-lg text-gray-500 mb-4 font-light">2024</p>
+            <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
-              サンリオVフェス 2024
+              Sanrio Virtual Festival 2025
             </h2>
             <p className="text-xl text-gray-600 font-light">
-              プロジェクトマネージャー補佐 (副業)
+              副業・プロジェクトマネージャー補助
             </p>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
@@ -264,10 +264,9 @@ const Portfolio = () => {
                     プロジェクト管理
                   </h3>
                   <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• 100以上のイベントの進行管理</li>
-                    <li>• 出演者との調整とスケジューリング</li>
-                    <li>• 配信スケジュールの管理と最適化</li>
-                    <li>• リアルタイムでの課題解決と調整</li>
+                    <li>• 複数プロジェクトの進捗把握、アラート</li>
+                    <li>• プロジェクト管理のツール選定/セットアップ</li>
+                    <li>• 技術補助</li>
                   </ul>
                 </div>
               </div>
@@ -278,10 +277,56 @@ const Portfolio = () => {
                     システム開発
                   </h3>
                   <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• 内部カレンダーシステムの構築</li>
-                    <li>• 進行管理ツールの開発と運用</li>
-                    <li>• 効率化ツールの企画・実装</li>
-                    <li>• リアルタイム情報共有システム</li>
+                    <li>• 画像とか入れたい</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // サンリオVフェス プロジェクト
+    {
+      id: 6,
+      title: "サンリオVフェス 2024",
+      content: (
+        <div className="flex flex-col justify-center h-full">
+          <div className="text-center mb-16">
+            <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
+            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
+              Sanrio Virtual Festival 2025
+            </h2>
+            <p className="text-xl text-gray-600 font-light">
+              副業・PM/開発
+            </p>
+            <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-3">
+                    責務・役割
+                  </h3>
+                  <ul className="space-y-2 text-gray-600 font-light">
+                    <li>• 要件ヒアリング / 仕様策定</li>
+                    <li>• Unityエンジニアへの制作依頼/進捗管理</li>
+                    <li>• デザイン / Unity表示調整 / 入力側Web開発</li>
+                    <li>• オンボーディングドキュメント作成 / 顧客への説明</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-3">
+                    制作物
+                  </h3>
+                  <ul className="space-y-2 text-gray-600 font-light">
+                    <li>• 作ったものの画像とか入れたい</li>
                   </ul>
                 </div>
               </div>
@@ -293,17 +338,17 @@ const Portfolio = () => {
 
     // VRChatゲーム開発プロジェクト
     {
-      id: 6,
+      id: 7,
       title: "VRChatゲーム開発",
       content: (
         <div className="flex flex-col justify-center h-full">
           <div className="text-center mb-16">
-            <p className="text-lg text-gray-500 mb-4 font-light">現在進行中</p>
+            <p className="text-lg text-gray-500 mb-4 font-light">2025-現在</p>
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
               VRChatゲーム開発
             </h2>
             <p className="text-xl text-gray-600 font-light">
-              PM補助・仕様策定 (5人チーム)
+              副業・PM補助/仕様,ロードマップ策定
             </p>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
@@ -316,9 +361,7 @@ const Portfolio = () => {
                     プロジェクト管理
                   </h3>
                   <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• 仕様決定と要件定義</li>
-                    <li>• 5人チームの進捗管理</li>
-                    <li>• リスク対応と課題解決</li>
+                    <li>• 要件ヒアリングと仕様決定</li>
                     <li>• 2025年リリースに向けたロードマップ策定</li>
                   </ul>
                 </div>
