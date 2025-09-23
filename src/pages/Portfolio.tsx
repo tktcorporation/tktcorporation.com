@@ -21,6 +21,7 @@
 import {
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
   Maximize2,
   Minimize2,
   Presentation,
@@ -147,9 +148,14 @@ const Portfolio = () => {
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
               toC Webプロダクト開発
             </h2>
-            <p className="text-xl text-gray-600 font-light">
-              フルタイム・プロダクトマネージャー
-            </p>
+            <div className="flex items-center justify-center gap-4">
+              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+                フルタイム
+              </span>
+              <p className="text-xl text-gray-600 font-light">
+                プロダクトマネージャー
+              </p>
+            </div>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
 
@@ -175,7 +181,9 @@ const Portfolio = () => {
                   </h3>
                   <ul className="space-y-2 text-gray-600 font-light">
                     <li>• ユーザー獲得・維持率の改善施策実行</li>
-                    <li>• 機能リリースによるWAU向上 / メールパフォーマンス改善</li>
+                    <li>
+                      • 機能リリースによるWAU向上 / メールパフォーマンス改善
+                    </li>
                     <li>• PdM2人,開発者4人 チームでのスクラム開発</li>
                     <li>• 必要に応じて開発者としても稼働</li>
                   </ul>
@@ -198,9 +206,14 @@ const Portfolio = () => {
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
               toB SaaS Webプロダクト開発
             </h2>
-            <p className="text-xl text-gray-600 font-light">
-              フルタイム・Webアプリケーションエンジニア
-            </p>
+            <div className="flex items-center justify-center gap-4">
+              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+                フルタイム
+              </span>
+              <p className="text-xl text-gray-600 font-light">
+                Webアプリケーションエンジニア
+              </p>
+            </div>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
 
@@ -239,46 +252,91 @@ const Portfolio = () => {
       ),
     },
 
-    // サンリオVフェス プロジェクト
+    // サンリオVフェス - VRライブ制作
     {
       id: 5,
-      title: "サンリオVフェス 2024",
+      title: "VRライブ制作",
       content: (
         <div className="flex flex-col justify-center h-full">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
-            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
-              Sanrio Virtual Festival 2025
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+              サンリオキャラVRライブ制作
             </h2>
-            <p className="text-xl text-gray-600 font-light">
-              副業・プロジェクトマネージャー補助
-            </p>
+            <a
+              href="https://v-fes.sanrio.co.jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+            >
+              Sanrio Virtual Festival 2025
+              <ExternalLink className="inline-block ml-1 w-4 h-4" />
+            </a>
+            <div className="flex items-center justify-center gap-4">
+              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+                副業
+              </span>
+              <p className="text-lg text-gray-600 font-light">
+                プロジェクトマネージャー補助
+              </p>
+            </div>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    プロジェクト管理
-                  </h3>
-                  <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• 複数プロジェクトの進捗把握、アラート</li>
-                    <li>• プロジェクト管理のツール選定/セットアップ</li>
-                    <li>• 技術補助</li>
-                  </ul>
-                </div>
+          <div className="max-w-6xl mx-auto flex gap-8">
+            {/* 左側: 画像プレースホルダー（3:4比率） */}
+            <div className="flex-shrink-0">
+              <div className="w-72 h-96 bg-gray-50 rounded-lg overflow-hidden">
+                <img
+                  src="/src/assets/vfes2025-artist.png"
+                  alt="VRライブのスクリーンショット"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            {/* 右側: 説明文 */}
+            <div className="flex-1 space-y-6">
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  担当業務
+                </h3>
+                <ul className="space-y-2 text-gray-600 font-light text-sm">
+                  <li>• プロジェクトの進捗管理</li>
+                  <li>• 進捗を鑑みた制作スコープの調整</li>
+                  <li>• プロジェクト管理ツールの選定・セットアップ</li>
+                  <li>• 技術的な課題解決のサポート</li>
+                </ul>
               </div>
 
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    システム開発
-                  </h3>
-                  <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• 画像とか入れたい</li>
-                  </ul>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  成果物・リンク
+                </h3>
+                <div className="space-y-2">
+                  <a
+                    href="https://v-fes.sanrio.co.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      role="img"
+                      aria-label="External link"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                    Sanrio Virtual Festival 公式サイト
+                  </a>
                 </div>
               </div>
             </div>
@@ -287,48 +345,177 @@ const Portfolio = () => {
       ),
     },
 
-    // サンリオVフェス プロジェクト
+    // サンリオVフェス - 軽量化プロジェクト
     {
       id: 6,
-      title: "サンリオVフェス 2024",
+      title: "コンテンツ軽量化",
       content: (
         <div className="flex flex-col justify-center h-full">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
-            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
-              Sanrio Virtual Festival 2025
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+              既存コンテンツ軽量化
             </h2>
-            <p className="text-xl text-gray-600 font-light">
-              副業・PM/開発
-            </p>
+            <a
+              href="https://v-fes.sanrio.co.jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+            >
+              Sanrio Virtual Festival 2025
+              <ExternalLink className="inline-block ml-1 w-4 h-4" />
+            </a>
+            <div className="flex items-center justify-center gap-4">
+              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+                副業
+              </span>
+              <p className="text-lg text-gray-600 font-light">PM / 開発</p>
+            </div>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
+            {/* 画像 */}
+            <div className="flex justify-center mb-6">
+              <div className="w-72 h-96 bg-gray-50 rounded-lg overflow-hidden">
+                <img
+                  src="/src/assets/vfes2025-optimise.png"
+                  alt="コンテンツ軽量化のスクリーンショット"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            {/* 説明文 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    責務・役割
-                  </h3>
-                  <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• 要件ヒアリング / 仕様策定</li>
-                    <li>• Unityエンジニアへの制作依頼/進捗管理</li>
-                    <li>• デザイン / Unity表示調整 / 入力側Web開発</li>
-                    <li>• オンボーディングドキュメント作成 / 顧客への説明</li>
-                  </ul>
-                </div>
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium text-gray-900">
+                  責務・役割
+                </h3>
+                <ul className="space-y-2 text-gray-600 font-light text-sm">
+                  <li>• 既存3Dコンテンツの軽量化要件定義</li>
+                  <li>• パフォーマンス測定と最適化目標設定</li>
+                  <li>• Unityエンジニアとの技術的調整</li>
+                  <li>• 軽量化前後の品質確認</li>
+                </ul>
               </div>
 
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    制作物
-                  </h3>
-                  <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• 作ったものの画像とか入れたい</li>
-                  </ul>
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium text-gray-900">成果</h3>
+                <ul className="space-y-2 text-gray-600 font-light text-sm">
+                  <li>• パフォーマンス大幅改善</li>
+                  <li>• より多くのユーザーがアクセス可能に</li>
+                </ul>
+                <div className="pt-4">
+                  <a
+                    href="https://v-fes.sanrio.co.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      role="img"
+                      aria-label="External link"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                    プロジェクト詳細
+                  </a>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // サンリオVフェス - イベントカレンダー制作
+    {
+      id: 7,
+      title: "イベントカレンダー制作",
+      content: (
+        <div className="flex flex-col justify-center h-full">
+          <div className="text-center mb-12">
+            <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+              イベントカレンダーシステム開発
+            </h2>
+            <a
+              href="https://v-fes.sanrio.co.jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+            >
+              Sanrio Virtual Festival 2025
+              <ExternalLink className="inline-block ml-1 w-4 h-4" />
+            </a>
+            <div className="flex items-center justify-center gap-4">
+              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+                副業
+              </span>
+              <p className="text-lg text-gray-600 font-light">PM / 開発</p>
+            </div>
+            <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
+          </div>
+
+          <div className="max-w-6xl mx-auto flex gap-8">
+            {/* 左側: 画像プレースホルダー */}
+            <div className="flex-shrink-0">
+              <div className="w-72 h-96 bg-gray-50 rounded-lg flex items-center justify-center">
+                <div className="text-gray-400 text-center p-4">
+                  <svg
+                    className="w-16 h-16 mx-auto mb-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    role="img"
+                    aria-label="Image placeholder"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <p className="text-sm">カレンダーシステムUI</p>
+                  <p className="text-xs mt-2">288 × 384px</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 右側: 説明文 */}
+            <div className="flex-1 space-y-6">
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  責務・役割
+                </h3>
+                <ul className="space-y-2 text-gray-600 font-light text-sm">
+                  <li>• 要件ヒアリング / 仕様策定</li>
+                  <li>• UI/UXデザイン設計</li>
+                  <li>• フロントエンド実装（Web）</li>
+                  <li>• Unity側との連携調整</li>
+                  <li>• オンボーディングドキュメント作成</li>
+                  <li>• 顧客への説明・サポート</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">成果</h3>
+                <ul className="space-y-2 text-gray-600 font-light text-sm">
+                  <li>• 100以上のイベント管理を効率化</li>
+                  <li>• リアルタイム更新機能の実装</li>
+                  <li>• 運営チームの作業時間を大幅削減</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -338,18 +525,23 @@ const Portfolio = () => {
 
     // VRChatゲーム開発プロジェクト
     {
-      id: 7,
+      id: 8,
       title: "VRChatゲーム開発",
       content: (
         <div className="flex flex-col justify-center h-full">
           <div className="text-center mb-16">
-            <p className="text-lg text-gray-500 mb-4 font-light">2025-現在</p>
+            <p className="text-lg text-gray-500 mb-4 font-light">2025 - 現在</p>
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
               VRChatゲーム開発
             </h2>
-            <p className="text-xl text-gray-600 font-light">
-              副業・PM補助/仕様,ロードマップ策定
-            </p>
+            <div className="flex items-center justify-center gap-4">
+              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+                副業
+              </span>
+              <p className="text-xl text-gray-600 font-light">
+                PM補助 / 仕様・ロードマップ策定
+              </p>
+            </div>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
 
@@ -393,9 +585,9 @@ const Portfolio = () => {
 
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
-        setCurrentSlide((prev) => (prev > 0 ? prev - 1 : 5));
+        setCurrentSlide((prev) => (prev > 0 ? prev - 1 : 7));
       } else if (e.key === "ArrowRight") {
-        setCurrentSlide((prev) => (prev < 5 ? prev + 1 : 0));
+        setCurrentSlide((prev) => (prev < 7 ? prev + 1 : 0));
       } else if (e.key === "f" || e.key === "F") {
         if (!document.fullscreenElement) {
           document.documentElement.requestFullscreen();
