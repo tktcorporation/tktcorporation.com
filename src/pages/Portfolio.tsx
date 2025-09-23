@@ -18,9 +18,12 @@
  * - Appleライクなミニマルデザインで信頼性を演出
  */
 
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import {
   ChevronLeft,
   ChevronRight,
+  Download,
   ExternalLink,
   Maximize2,
   Minimize2,
@@ -35,6 +38,7 @@ const Portfolio = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPresentationMode, setIsPresentationMode] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
 
   // スライドのコンテンツ配列
   const slides = [
@@ -491,13 +495,13 @@ const Portfolio = () => {
     // VRChatゲーム開発プロジェクト
     {
       id: 8,
-      title: "VRChatゲーム開発",
+      title: "VRChatゲームワールド開発",
       content: (
         <div className="flex flex-col justify-center h-full">
           <div className="text-center mb-16">
             <p className="text-lg text-gray-500 mb-4 font-light">2025 - 現在</p>
             <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
-              VRChatゲーム開発
+              VRChatゲームワールド開発
             </h2>
             <div className="flex items-center justify-center gap-4">
               <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
@@ -515,7 +519,7 @@ const Portfolio = () => {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    プロジェクト管理
+                    担当業務
                   </h3>
                   <ul className="space-y-2 text-gray-600 font-light">
                     <li>• 要件ヒアリングと仕様決定</li>
@@ -588,6 +592,245 @@ const Portfolio = () => {
     }
   };
 
+  const exportToPDF = async () => {
+    setIsExporting(true);
+    try {
+      // PDFドキュメントの作成
+      const pdf = new jsPDF({
+        orientation: "landscape",
+        unit: "mm",
+        format: "a4",
+      });
+
+      // 各スライドを処理
+      for (let i = 0; i < slides.length; i++) {
+        // 既存のDOM要素を取得
+        const slideElement = document.querySelector(`#slide-${i}`);
+        if (!slideElement) continue;
+
+        // 一時的なコンテナを作成
+        const container = document.createElement("div");
+        container.style.position = "fixed";
+        container.style.left = "-9999px";
+        container.style.top = "0";
+        container.style.width = "1920px";
+        container.style.height = "1080px";
+        container.style.backgroundColor = "white";
+        container.style.padding = "60px";
+        container.style.boxSizing = "border-box";
+        container.style.fontFamily =
+          "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+        document.body.appendChild(container);
+
+        // スライドのクローンを作成して、完全に新しいHTML構造を作成
+        const clonedSlide = slideElement.cloneNode(true) as HTMLElement;
+
+        // すべてのインラインスタイルをクリア
+        const clearAllStyles = (element: HTMLElement) => {
+          // 既存のクラスを削除
+          element.removeAttribute("class");
+          element.removeAttribute("style");
+
+          Array.from(element.children).forEach((child) => {
+            if (child instanceof HTMLElement) {
+              clearAllStyles(child);
+            }
+          });
+        };
+
+        clearAllStyles(clonedSlide);
+
+        // 必要なスタイルを直接適用する関数
+        const applyCleanStyles = (
+          element: HTMLElement,
+          originalElement: HTMLElement
+        ) => {
+          const computedStyle = window.getComputedStyle(originalElement);
+
+          // 基本的なレイアウトスタイル
+          if (computedStyle.display && computedStyle.display !== "inline") {
+            element.style.display = computedStyle.display;
+          }
+          if (computedStyle.flexDirection) {
+            element.style.flexDirection = computedStyle.flexDirection;
+          }
+          if (computedStyle.justifyContent) {
+            element.style.justifyContent = computedStyle.justifyContent;
+          }
+          if (computedStyle.alignItems) {
+            element.style.alignItems = computedStyle.alignItems;
+          }
+          if (computedStyle.textAlign) {
+            element.style.textAlign = computedStyle.textAlign;
+          }
+          if (computedStyle.gap && computedStyle.gap !== "0px") {
+            element.style.gap = computedStyle.gap;
+          }
+          if (computedStyle.padding && computedStyle.padding !== "0px") {
+            element.style.padding = computedStyle.padding;
+          }
+          if (computedStyle.margin && computedStyle.margin !== "0px") {
+            element.style.margin = computedStyle.margin;
+          }
+          if (computedStyle.maxWidth && computedStyle.maxWidth !== "none") {
+            element.style.maxWidth = computedStyle.maxWidth;
+          }
+
+          // フォントスタイル
+          if (computedStyle.fontSize) {
+            element.style.fontSize = computedStyle.fontSize;
+          }
+          if (computedStyle.fontWeight) {
+            element.style.fontWeight = computedStyle.fontWeight;
+          }
+          if (computedStyle.lineHeight) {
+            element.style.lineHeight = computedStyle.lineHeight;
+          }
+
+          // 色の変換（oklchを使わずに固定値を設定）
+          const colorValue = computedStyle.color;
+          if (colorValue) {
+            // テキストの明度に基づいて色を設定
+            if (originalElement.classList.contains("text-gray-900")) {
+              element.style.color = "#1f2937";
+            } else if (originalElement.classList.contains("text-gray-800")) {
+              element.style.color = "#374151";
+            } else if (originalElement.classList.contains("text-gray-700")) {
+              element.style.color = "#4b5563";
+            } else if (originalElement.classList.contains("text-gray-600")) {
+              element.style.color = "#6b7280";
+            } else if (originalElement.classList.contains("text-gray-500")) {
+              element.style.color = "#9ca3af";
+            } else if (originalElement.classList.contains("text-gray-400")) {
+              element.style.color = "#d1d5db";
+            } else if (originalElement.classList.contains("text-blue-600")) {
+              element.style.color = "#2563eb";
+            } else if (originalElement.classList.contains("text-blue-800")) {
+              element.style.color = "#1e40af";
+            } else {
+              element.style.color = "#1f2937"; // デフォルト
+            }
+          }
+
+          // 背景色
+          const bgValue = computedStyle.backgroundColor;
+          if (
+            bgValue &&
+            bgValue !== "rgba(0, 0, 0, 0)" &&
+            bgValue !== "transparent"
+          ) {
+            if (originalElement.classList.contains("bg-gray-100")) {
+              element.style.backgroundColor = "#f3f4f6";
+            } else if (originalElement.classList.contains("bg-gray-50")) {
+              element.style.backgroundColor = "#f9fafb";
+            } else if (originalElement.classList.contains("bg-gray-200")) {
+              element.style.backgroundColor = "#e5e7eb";
+            } else if (bgValue.includes("oklch")) {
+              element.style.backgroundColor = "#ffffff";
+            } else if (bgValue.includes("rgb")) {
+              element.style.backgroundColor = bgValue;
+            }
+          }
+
+          // ボーダー
+          if (
+            computedStyle.borderWidth &&
+            computedStyle.borderWidth !== "0px"
+          ) {
+            element.style.borderWidth = computedStyle.borderWidth;
+            element.style.borderStyle = "solid";
+            element.style.borderColor = "#d1d5db";
+          }
+
+          // 角丸
+          if (
+            computedStyle.borderRadius &&
+            computedStyle.borderRadius !== "0px"
+          ) {
+            element.style.borderRadius = computedStyle.borderRadius;
+          }
+
+          // 子要素も処理
+          const originalChildren = Array.from(originalElement.children);
+          const clonedChildren = Array.from(element.children);
+
+          for (let i = 0; i < clonedChildren.length; i++) {
+            const clonedChild = clonedChildren[i];
+            const originalChild = originalChildren[i];
+            if (
+              clonedChild instanceof HTMLElement &&
+              originalChild instanceof HTMLElement
+            ) {
+              applyCleanStyles(clonedChild, originalChild);
+            }
+          }
+        };
+
+        // スタイルを適用
+        clonedSlide.style.width = "100%";
+        clonedSlide.style.height = "100%";
+        clonedSlide.style.display = "flex";
+        clonedSlide.style.alignItems = "center";
+        clonedSlide.style.justifyContent = "center";
+        clonedSlide.style.backgroundColor = "white";
+
+        // オリジナル要素に基づいてスタイルを適用
+        if (slideElement instanceof HTMLElement) {
+          applyCleanStyles(clonedSlide, slideElement);
+        }
+
+        container.appendChild(clonedSlide);
+
+        // 少し待機して、レンダリングを完了させる
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        // キャプチャ
+        const canvas = await html2canvas(container, {
+          scale: 2,
+          logging: false,
+          useCORS: true,
+          backgroundColor: "#ffffff",
+          allowTaint: true,
+          foreignObjectRendering: false,
+        });
+
+        // PDFに追加
+        if (i > 0) {
+          pdf.addPage();
+        }
+
+        const imgData = canvas.toDataURL("image/png");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        const imgX = (pdfWidth - imgWidth * ratio) / 2;
+        const imgY = (pdfHeight - imgHeight * ratio) / 2;
+
+        pdf.addImage(
+          imgData,
+          "PNG",
+          imgX,
+          imgY,
+          imgWidth * ratio,
+          imgHeight * ratio
+        );
+
+        // クリーンアップ
+        document.body.removeChild(container);
+      }
+
+      // PDFを保存
+      pdf.save(`portfolio-${new Date().toISOString().split("T")[0]}.pdf`);
+    } catch (error) {
+      console.error("Failed to export PDF:", error);
+      alert("PDF出力に失敗しました。再度お試しください。");
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   // 縦スクロール表示（デフォルト）
   if (!isPresentationMode) {
     return (
@@ -596,23 +839,34 @@ const Portfolio = () => {
         <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
           <div className="flex justify-between items-center p-4">
             <h1 className="text-lg font-light text-gray-600">Portfolio</h1>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={togglePresentationMode}
-              className="flex items-center gap-2 border-gray-300 hover:bg-gray-50 transition-colors"
-            >
-              <Presentation className="h-4 w-4" />
-              プレゼンテーションモード
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                onClick={exportToPDF}
+                disabled={isExporting}
+                className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors flex items-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                {isExporting ? "エクスポート中..." : "PDFダウンロード"}
+              </Button>
+              <Button
+                size="sm"
+                onClick={togglePresentationMode}
+                className="bg-gray-700 hover:bg-gray-800 text-white transition-colors flex items-center gap-2"
+              >
+                <Presentation className="h-4 w-4" />
+                プレゼンテーションモード
+              </Button>
+            </div>
           </div>
         </div>
 
         {/* スクロール可能なコンテンツ */}
-        <div className="max-w-6xl mx-auto px-4 py-8">
+        <div id="portfolio-content" className="max-w-6xl mx-auto px-4 py-8">
           {slides.map((slide, index) => (
             <section
               key={slide.id}
+              id={`slide-${index}`}
               className="min-h-screen flex items-center justify-center py-16"
               style={{
                 // PDF出力時のページ区切りを考慮
@@ -637,22 +891,29 @@ const Portfolio = () => {
         </div>
         <div className="flex gap-2">
           <Button
-            variant="outline"
             size="icon"
             onClick={togglePresentationMode}
             title="スクロールモードに戻る (Esc)"
-            className="border-gray-300 hover:bg-gray-50 transition-colors"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
           >
             <ScrollText className="h-4 w-4" />
           </Button>
           <Button
-            variant="outline"
+            size="icon"
+            onClick={exportToPDF}
+            disabled={isExporting}
+            title="PDFとしてダウンロード"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
+          >
+            <Download className="h-4 w-4" />
+          </Button>
+          <Button
             size="icon"
             onClick={toggleFullscreen}
             title={
               isFullscreen ? "フルスクリーン終了 (F)" : "フルスクリーン (F)"
             }
-            className="border-gray-300 hover:bg-gray-50 transition-colors"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
           >
             {isFullscreen ? (
               <Minimize2 className="h-4 w-4" />
@@ -666,12 +927,14 @@ const Portfolio = () => {
       {/* メインコンテンツエリア */}
       <div className="flex-1 relative overflow-hidden bg-white">
         <div
+          id="portfolio-content"
           className="absolute inset-0 flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {slides.map((slide, index) => (
             <div
               key={slide.id}
+              id={`slide-${index}`}
               className="min-w-full h-full flex items-center justify-center p-8"
               style={{
                 // PDF出力時のページ区切りを考慮
