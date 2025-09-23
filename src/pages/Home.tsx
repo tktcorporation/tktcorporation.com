@@ -19,7 +19,6 @@ import {
   SiZenn,
 } from "@icons-pack/react-simple-icons";
 import { Coffee, Globe, Mail } from "lucide-react";
-import { TechnologyTimelineSection } from "@/components/TechnologyTimelineSection";
 import { Button } from "@/components/ui/button";
 
 // LinkedInアイコン（ブランドガイドラインの問題でsimple-iconsから削除されたためカスタム）
@@ -160,9 +159,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* Technology Timeline セクション */}
-      <TechnologyTimelineSection />
     </div>
   );
 }

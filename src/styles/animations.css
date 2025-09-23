@@ -1,0 +1,81 @@
+/**
+ * Purpose:
+ * カスタムアニメーションとアニメーション遅延のためのCSSクラス。
+ * Tailwindの標準アニメーションを拡張し、段階的なアニメーション効果を実現。
+ *
+ * Context:
+ * - アニメーション遅延クラスで要素の順次表示を制御
+ * - ホバーエフェクトで対話性を向上
+ * - 非開発者にも視覚的にわかりやすいインタラクション
+ */
+
+/* アニメーション遅延クラス */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* グラデーションアニメーション */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* カードのホバーエフェクト強化 */
+.card-hover-glow:hover {
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.2),
+    0 0 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* テキストのグロー効果 */
+.text-glow {
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* スムーズな出現アニメーション */
+.fade-in-visible {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* プログレスバーアニメーション */
+@keyframes progress-fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progress {
+  animation: progress-fill 2s ease-out forwards;
+}

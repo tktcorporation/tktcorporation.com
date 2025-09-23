@@ -5,13 +5,14 @@
  *
  * Context:
  * - React Routerを使用したクライアントサイドルーティング
- * - シンプルな3ページ構成（Home、Resume、Technologies）
+ * - 4ページ構成（Home、Resume、Technologies、Portfolio）
  * - 全ページ共通の背景エフェクトを提供
  * - 拡張性を考慮した構造
  */
 
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Portfolio from "./pages/Portfolio";
 import Resume from "./pages/Resume";
 import Technologies from "./pages/Technologies";
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/technologies" element={<Technologies />} />
+          <Route path="/portfolio" element={<Portfolio />} />
         </Routes>
       </div>
     </div>
