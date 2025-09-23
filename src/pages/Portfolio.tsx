@@ -159,35 +159,31 @@ const Portfolio = () => {
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    主な責任
-                  </h3>
-                  <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• KPI設定に基づいた機能企画</li>
-                    <li>• リリース計画の策定と実行管理</li>
-                    <li>• グロース施策の企画・実行・効果測定</li>
-                  </ul>
-                </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="flex gap-8">
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  主な責任
+                </h3>
+                <ul className="space-y-2 text-gray-600 font-light text-sm">
+                  <li>• KPI設定に基づいた機能企画</li>
+                  <li>• リリース計画の策定と実行管理</li>
+                  <li>• グロース施策の企画・実行・効果測定</li>
+                </ul>
               </div>
 
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    成果・インパクト
-                  </h3>
-                  <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• ユーザー獲得・維持率の改善施策実行</li>
-                    <li>
-                      • 機能リリースによるWAU向上 / メールパフォーマンス改善
-                    </li>
-                    <li>• PdM2人,開発者4人 チームでのスクラム開発</li>
-                    <li>• 必要に応じて開発者としても稼働</li>
-                  </ul>
-                </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  成果・インパクト
+                </h3>
+                <ul className="space-y-2 text-gray-600 font-light text-sm">
+                  <li>• ユーザー獲得・維持率の改善施策実行</li>
+                  <li>
+                    • 機能リリースによるWAU向上 / メールパフォーマンス改善
+                  </li>
+                  <li>• PdM2人,開発者4人 チームでのスクラム開発</li>
+                  <li>• 必要に忌じて開発者としても稼働</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -267,13 +263,13 @@ const Portfolio = () => {
               href="https://v-fes.sanrio.co.jp/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+              className="inline-flex items-center text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
             >
+              <ExternalLink className="inline-block w-4 h-4 mr-1" />
               Sanrio Virtual Festival 2025
-              <ExternalLink className="inline-block ml-1 w-4 h-4" />
             </a>
             <div className="flex items-center justify-center gap-4">
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
                 副業
               </span>
               <p className="text-lg text-gray-600 font-light">
@@ -320,7 +316,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4 mr-2" />
                     公式サイト: Sanrio Virtual Festival
                   </a>
                 </div>
@@ -346,16 +342,18 @@ const Portfolio = () => {
               href="https://v-fes.sanrio.co.jp/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+              className="inline-flex items-center text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
             >
+              <ExternalLink className="inline-block w-4 h-4 mr-1" />
               Sanrio Virtual Festival 2025
-              <ExternalLink className="inline-block ml-1 w-4 h-4" />
             </a>
             <div className="flex items-center justify-center gap-4">
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
                 副業
               </span>
-              <p className="text-lg text-gray-600 font-light">PM / 開発</p>
+              <p className="text-lg text-gray-600 font-light">
+                プロジェクトマネージャー
+              </p>
             </div>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
@@ -397,7 +395,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4 mr-2" />
                     公式サイト: Sanrio Virtual Festival
                   </a>
                   <a
@@ -406,7 +404,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4 mr-2" />
                     Xポスト: 制作担当しました
                   </a>
                   <a
@@ -415,7 +413,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4 mr-2" />
                     Xポスト: 軽量化対象のコンテンツ告知
                   </a>
                 </div>
@@ -441,16 +439,18 @@ const Portfolio = () => {
               href="https://v-fes.sanrio.co.jp/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+              className="inline-flex items-center text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
             >
+              <ExternalLink className="inline-block w-4 h-4 mr-1" />
               Sanrio Virtual Festival 2025
-              <ExternalLink className="inline-block ml-1 w-4 h-4" />
             </a>
             <div className="flex items-center justify-center gap-4">
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
                 副業
               </span>
-              <p className="text-lg text-gray-600 font-light">PM / 開発</p>
+              <p className="text-lg text-gray-600 font-light">
+                プロジェクトマネージャー
+              </p>
             </div>
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
@@ -500,7 +500,7 @@ const Portfolio = () => {
               VRChatゲーム開発
             </h2>
             <div className="flex items-center justify-center gap-4">
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-light">
+              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
                 副業
               </span>
               <p className="text-xl text-gray-600 font-light">
@@ -519,21 +519,9 @@ const Portfolio = () => {
                   </h3>
                   <ul className="space-y-2 text-gray-600 font-light">
                     <li>• 要件ヒアリングと仕様決定</li>
-                    <li>• 2025年リリースに向けたロードマップ策定</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">
-                    開発貢献
-                  </h3>
-                  <ul className="space-y-2 text-gray-600 font-light">
-                    <li>• Unity開発補助（約20%の貢献）</li>
-                    <li>• ゲーム設計とバランス調整</li>
-                    <li>• VRChat SDK活用とワールド構築</li>
-                    <li>• プレイテストとフィードバック収集</li>
+                    <li>• リリースに向けたロードマップ策定</li>
+                    <li>• ビデオコンテの制作</li>
+                    <li>• チームメンバーへの作業割り当て</li>
                   </ul>
                 </div>
               </div>
