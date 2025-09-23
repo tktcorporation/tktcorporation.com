@@ -311,7 +311,7 @@ const Portfolio = () => {
 
               <div>
                 <h3 className="text-lg font-medium text-gray-900 mb-3">
-                  成果物・リンク
+                  関連リンク
                 </h3>
                 <div className="space-y-2">
                   <a
@@ -320,22 +320,8 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      role="img"
-                      aria-label="External link"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                    Sanrio Virtual Festival 公式サイト
+                    <ExternalLink className="w-4 h-4" />
+                    公式サイト: Sanrio Virtual Festival
                   </a>
                 </div>
               </div>
@@ -354,7 +340,7 @@ const Portfolio = () => {
           <div className="text-center mb-12">
             <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
             <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
-              既存コンテンツ軽量化
+              既存VRコンテンツ軽量化
             </h2>
             <a
               href="https://v-fes.sanrio.co.jp/"
@@ -374,9 +360,9 @@ const Portfolio = () => {
             <div className="w-16 h-px bg-gray-300 mx-auto mt-6"></div>
           </div>
 
-          <div className="max-w-6xl mx-auto">
-            {/* 画像 */}
-            <div className="flex justify-center mb-6">
+          <div className="max-w-6xl mx-auto flex gap-8">
+            {/* 左側: 画像（3:4比率） */}
+            <div className="flex-shrink-0">
               <div className="w-72 h-96 bg-gray-50 rounded-lg overflow-hidden">
                 <img
                   src="/src/assets/vfes2025-optimise.png"
@@ -386,49 +372,49 @@ const Portfolio = () => {
               </div>
             </div>
 
-            {/* 説明文 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium text-gray-900">
+            {/* 右側: 説明文 */}
+            <div className="flex-1 space-y-6">
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
                   責務・役割
                 </h3>
                 <ul className="space-y-2 text-gray-600 font-light text-sm">
-                  <li>• 既存3Dコンテンツの軽量化要件定義</li>
-                  <li>• パフォーマンス測定と最適化目標設定</li>
-                  <li>• Unityエンジニアとの技術的調整</li>
+                  <li>• 進行管理</li>
+                  <li>• 要件/着地点のすり合わせ</li>
+                  <li>• 先方Unityエンジニアとの技術的調整</li>
                   <li>• 軽量化前後の品質確認</li>
                 </ul>
               </div>
 
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium text-gray-900">成果</h3>
-                <ul className="space-y-2 text-gray-600 font-light text-sm">
-                  <li>• パフォーマンス大幅改善</li>
-                  <li>• より多くのユーザーがアクセス可能に</li>
-                </ul>
-                <div className="pt-4">
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">関連リンク</h3>
+                <div className="pt-4 space-y-2">
                   <a
                     href="https://v-fes.sanrio.co.jp/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      role="img"
-                      aria-label="External link"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                    プロジェクト詳細
+                    <ExternalLink className="w-4 h-4" />
+                    公式サイト: Sanrio Virtual Festival
+                  </a>
+                  <a
+                    href="https://x.com/QuestMaker_/status/1970336011558498585"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Xポスト: 制作担当しました
+                  </a>
+                  <a
+                    href="https://x.com/SANRIO_Vfes/status/1960266010264764865"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Xポスト: 軽量化対象のコンテンツ告知
                   </a>
                 </div>
               </div>
@@ -501,9 +487,9 @@ const Portfolio = () => {
                 </h3>
                 <ul className="space-y-2 text-gray-600 font-light text-sm">
                   <li>• 要件ヒアリング / 仕様策定</li>
-                  <li>• UI/UXデザイン設計</li>
-                  <li>• フロントエンド実装（Web）</li>
-                  <li>• Unity側との連携調整</li>
+                  <li>• UIデザイン</li>
+                  <li>• Web/データ配信基盤実装</li>
+                  <li>• Unity側実装調整</li>
                   <li>• オンボーディングドキュメント作成</li>
                   <li>• 顧客への説明・サポート</li>
                 </ul>
