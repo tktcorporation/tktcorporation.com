@@ -12,7 +12,7 @@
 
 import { useEffect, useState } from "react";
 import { Box, Deck, FullScreen, Progress, Slide } from "spectacle";
-import SpectaclePDFExport from "../components/SpectaclePDFExport";
+import SpectacleExportPDF from "../components/SpectacleExportPDF";
 import {
   B2CProductManagerSlide,
   CapabilitiesSlide,
@@ -49,25 +49,12 @@ const PortfolioPresentation = () => {
     // Spectacleの標準exportModeパラメータを使用
     setExportMode(params.get("exportMode") === "true");
     setPrintMode(params.get("printMode") === "true");
-
-    // exportModeが有効な場合、自動的に印刷ダイアログを開く
-    if (
-      params.get("exportMode") === "true" &&
-      params.get("printMode") === "true"
-    ) {
-      setTimeout(() => {
-        window.print();
-      }, 1000);
-    }
   }, []);
 
   return (
     <>
       {/* PDFエクスポートコンポーネント */}
-      <SpectaclePDFExport
-        enabled={exportMode || printMode}
-        autoOpen={exportMode}
-      />
+      <SpectacleExportPDF enabled={exportMode || printMode} />
 
       <Deck
         theme={theme}
@@ -82,7 +69,11 @@ const PortfolioPresentation = () => {
         }
       >
         {/* スライド1: タイトル */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="1"
+        >
           <Box
             style={{
               width: "100%",
@@ -99,7 +90,11 @@ const PortfolioPresentation = () => {
         </Slide>
 
         {/* スライド2: Capabilities */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="2"
+        >
           <Box
             style={{
               width: "100%",
@@ -116,7 +111,11 @@ const PortfolioPresentation = () => {
         </Slide>
 
         {/* スライド3: B2Cプロダクトマネージャー経験 */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="3"
+        >
           <Box
             style={{
               width: "100%",
@@ -133,7 +132,11 @@ const PortfolioPresentation = () => {
         </Slide>
 
         {/* スライド4: フルスタックエンジニア経験 */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="4"
+        >
           <Box
             style={{
               width: "100%",
@@ -150,7 +153,11 @@ const PortfolioPresentation = () => {
         </Slide>
 
         {/* スライド5: VRライブ制作 */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="5"
+        >
           <Box
             style={{
               width: "100%",
@@ -167,7 +174,11 @@ const PortfolioPresentation = () => {
         </Slide>
 
         {/* スライド6: コンテンツ軽量化 */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="6"
+        >
           <Box
             style={{
               width: "100%",
@@ -184,7 +195,11 @@ const PortfolioPresentation = () => {
         </Slide>
 
         {/* スライド7: イベントカレンダー制作 */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="7"
+        >
           <Box
             style={{
               width: "100%",
@@ -201,7 +216,11 @@ const PortfolioPresentation = () => {
         </Slide>
 
         {/* スライド8: VRChatゲーム開発 */}
-        <Slide backgroundColor="background">
+        <Slide
+          backgroundColor="background"
+          className="spectacle-slide"
+          data-slide="8"
+        >
           <Box
             style={{
               width: "100%",
