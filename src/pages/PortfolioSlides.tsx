@@ -404,9 +404,7 @@ export const EventCalendarSlide = ({
         <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
           副業
         </span>
-        <p className="text-lg text-gray-600 font-light">
-          プロジェクトマネージャー
-        </p>
+        <p className="text-lg text-gray-600 font-light">PM / デザイン / 開発</p>
       </div>
       <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
     </div>

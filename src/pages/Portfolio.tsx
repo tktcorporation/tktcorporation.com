@@ -42,6 +42,14 @@ const Portfolio = () => {
   const [_isFullscreen, setIsFullscreen] = useState(false);
   const [isPresentationMode, setIsPresentationMode] = useState(false);
 
+  // URLパラメータをチェック
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("mode") === "presentation") {
+      setIsPresentationMode(true);
+    }
+  }, []);
+
   // スライドのコンテンツ配列
   const slides = [
     {
