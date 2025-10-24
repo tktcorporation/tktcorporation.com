@@ -24,7 +24,7 @@ jobs:
       - name: Take screenshot
         run: npm run screenshot
       - name: Upload screenshot
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: pr-screenshot
           path: pr-screenshot.jpg
