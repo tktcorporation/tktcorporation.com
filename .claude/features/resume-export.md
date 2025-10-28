@@ -82,5 +82,5 @@ The exported Markdown includes:
 
 **Deployment**:
 - Static export files are automatically generated during build
-- Deployed to Firebase hosting with the rest of the site
+- Deployed to GitHub Pages with the rest of the site
 - No server-side logic required
