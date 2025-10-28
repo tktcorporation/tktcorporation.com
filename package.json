@@ -18,6 +18,9 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test tests/e2e/",
+    "test:e2e:ui": "playwright test tests/e2e/ --ui",
+    "test:all": "npm run test:run && npm run test:e2e",
     "test:display": "tsx scripts/test-display.ts",
     "update:lapras": "tsx scripts/update-lapras-data.ts"
   },

@@ -1,12 +1,72 @@
 /**
- * Purpose:
- * Unit tests for experience description parser.
- * Validates robust parsing of technologies and hierarchical bullet points.
+ * ============================================================================
+ * Experience Description Parser - Unit Test Specification
+ * ============================================================================
  *
- * Context:
- * - Tests Zod-validated structured parsing
- * - Ensures indentation preservation
- * - Covers edge cases and malformed input
+ * ## Module Purpose
+ * Parse LAPRAS experience descriptions into structured, type-safe data.
+ * Handles technology extraction and hierarchical bullet point parsing.
+ *
+ * ## Why This Parser Exists
+ * LAPRAS stores experience descriptions as plain text with implicit structure:
+ * ```
+ * Tech1 / Tech2 / Tech3
+ *
+ * * Responsibility 1
+ *     * Sub-item 1
+ *     * Sub-item 2
+ * * Responsibility 2
+ * ```
+ *
+ * Problems with naive string parsing:
+ * 1. Indentation is easy to break (spaces vs tabs)
+ * 2. No type safety - silent failures
+ * 3. Difficult to maintain hierarchical structure
+ * 4. Error-prone when data format changes
+ *
+ * ## Design Decisions
+ *
+ * ### Zod for Validation
+ * - Runtime type checking catches data corruption early
+ * - Self-documenting schema serves as contract
+ * - Automatic TypeScript type inference
+ *
+ * ### Recursive Hierarchy Parsing
+ * - Preserves indentation levels correctly
+ * - Supports arbitrary nesting depth
+ * - Handles irregular spacing gracefully
+ *
+ * ### Technology Extraction
+ * - First line is always technologies (LAPRAS convention)
+ * - Split by " / " delimiter
+ * - Trimmed and filtered for empty strings
+ *
+ * ## Input Format Specification
+ * ```
+ * Tech1 / Tech2 / Tech3    <- First line: technologies (optional)
+ *                           <- Empty lines (optional)
+ * * Top-level item         <- No indentation
+ *     * Child item         <- 4 spaces indentation
+ *         * Grandchild     <- 8 spaces indentation
+ * * Another top item       <- Back to no indentation
+ * ```
+ *
+ * ## Output Schema (Zod-validated)
+ * ```typescript
+ * {
+ *   technologies: string[],           // Extracted from first line
+ *   responsibilities: BulletItem[]    // Hierarchical structure
+ * }
+ *
+ * type BulletItem = {
+ *   text: string,
+ *   children?: BulletItem[]  // Recursive structure
+ * }
+ * ```
+ *
+ * ============================================================================
+ * EXECUTABLE SPECIFICATION TESTS BELOW
+ * ============================================================================
  */
 
 import { describe, expect, it } from "vitest";
