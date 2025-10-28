@@ -12,9 +12,12 @@
  */
 
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { CopyResumeButton } from "@/components/CopyResumeButton";
+import { calculateSkillsWithYears } from "@/utils/calculateSkills";
 import { getDeviconClass, isDeviconSupported } from "@/utils/devicon";
+import { generateResumeMarkdown } from "@/utils/exportResumeMarkdown";
 import { extractTechnologies } from "@/utils/languageMap";
 import experiencesData from "../data/experiences.json";
 
@@ -65,98 +68,6 @@ function Resume() {
   >([]);
   const [skillsWithYears, setSkillsWithYears] = useState<SkillWithYears[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const calculateSkillsWithYears = useCallback(
-    (exps: Experience[]): SkillWithYears[] => {
-      const skillPeriods: Map<
-        string,
-        Array<{ start: number; end: number }>
-      > = new Map();
-      // Use the global tech regex pattern
-
-      const currentDate = new Date();
-      const currentYearMonth =
-        currentDate.getFullYear() * 12 + (currentDate.getMonth() + 1);
-
-      for (const exp of exps) {
-        if (exp.description) {
-          const matches = extractTechnologies(exp.description);
-          if (matches.length > 0) {
-            const startMonth = exp.start_year * 12 + exp.start_month;
-            const endMonth = exp.end_year
-              ? exp.end_year * 12 + (exp.end_month ?? 12)
-              : currentYearMonth;
-
-            // matchesは既に正規化された技術名の配列（重複を除去）
-            const uniqueSkills = Array.from(new Set(matches));
-
-            for (const skill of uniqueSkills) {
-              if (!skillPeriods.has(skill)) {
-                skillPeriods.set(skill, []);
-              }
-              const periods = skillPeriods.get(skill);
-              if (periods) {
-                periods.push({
-                  start: startMonth,
-                  end: endMonth,
-                });
-              }
-            }
-          }
-        }
-      }
-
-      // Merge overlapping periods and calculate total months for each skill
-      const skillsWithYears: SkillWithYears[] = [];
-
-      for (const [skillName, periods] of skillPeriods) {
-        // Sort periods by start date
-        periods.sort((a, b) => a.start - b.start);
-
-        // Merge overlapping periods
-        const mergedPeriods: Array<{ start: number; end: number }> = [];
-        let current = periods[0];
-
-        for (let i = 1; i < periods.length; i++) {
-          const next = periods[i];
-          if (next.start <= current.end) {
-            // Overlapping or adjacent, merge
-            current.end = Math.max(current.end, next.end);
-          } else {
-            // No overlap, add current and move to next
-            mergedPeriods.push(current);
-            current = next;
-          }
-        }
-        mergedPeriods.push(current);
-
-        // Calculate total months
-        const totalMonths = mergedPeriods.reduce((sum, period) => {
-          return sum + (period.end - period.start);
-        }, 0);
-
-        const years = Math.floor(totalMonths / 12);
-        const months = totalMonths % 12;
-
-        skillsWithYears.push({
-          name: skillName,
-          years,
-          months,
-        });
-      }
-
-      // Sort by total experience (years + months), then by name
-      return skillsWithYears.sort((a, b) => {
-        const totalA = a.years * 12 + a.months;
-        const totalB = b.years * 12 + b.months;
-        if (totalB !== totalA) {
-          return totalB - totalA; // Descending by total experience
-        }
-        return a.name.localeCompare(b.name); // Ascending by name
-      });
-    },
-    []
-  );
 
   /**
    * Groups experiences by organization and consecutive time periods.
@@ -275,7 +186,15 @@ function Resume() {
     setGroupedExperiences(grouped);
     setSkillsWithYears(skills);
     setLoading(false);
-  }, [calculateSkillsWithYears, groupExperiences]);
+  }, [groupExperiences]);
+
+  // Generate AI-friendly Markdown for export
+  const resumeMarkdown = useMemo(() => {
+    if (skillsWithYears.length === 0 || _experiences.length === 0) {
+      return "";
+    }
+    return generateResumeMarkdown(_experiences, skillsWithYears);
+  }, [_experiences, skillsWithYears]);
 
   const extractTechTags = useCallback((description: string): string[] => {
     if (!description) return [];
@@ -359,9 +278,38 @@ function Resume() {
       <main className="container mx-auto px-4 py-12 flex-grow">
         <div className="max-w-5xl mx-auto">
           <header className="mb-12 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
-              Resume
-            </h1>
+            <div className="flex flex-col items-center gap-4 mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-white animate-fade-in">
+                Resume
+              </h1>
+              <CopyResumeButton markdown={resumeMarkdown} variant="primary" />
+            </div>
+            <p className="text-slate-400 text-sm mt-2">
+              Export formats:{" "}
+              <a
+                href="/resume.md"
+                className="text-purple-400 hover:text-purple-300 transition-colors"
+                download
+              >
+                Markdown
+              </a>
+              <span className="mx-2">•</span>
+              <a
+                href="/resume.txt"
+                className="text-purple-400 hover:text-purple-300 transition-colors"
+                download
+              >
+                Plain Text
+              </a>
+              <span className="mx-2">•</span>
+              <a
+                href="/resume.json"
+                className="text-purple-400 hover:text-purple-300 transition-colors"
+                download
+              >
+                JSON
+              </a>
+            </p>
           </header>
 
           <section className="mb-8 md:mb-12">
