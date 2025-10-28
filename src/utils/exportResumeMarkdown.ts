@@ -440,20 +440,6 @@ function generateTimelineSection(experiences: Experience[]): string {
 }
 
 /**
- * Generate footer with attribution
- */
-function generateFooter(): string {
-  return `---
-
-*Generated with [Claude Code](https://claude.com/claude-code)*
-
-For latest information: [https://tktcorporation.com/resume](https://tktcorporation.com/resume)
-
-Data source: [LAPRAS](https://lapras.com)
-`;
-}
-
-/**
  * Main function to generate AI-friendly Markdown resume
  */
 export function generateResumeMarkdown(
@@ -495,9 +481,6 @@ export function generateResumeMarkdown(
   if (format === "concise" || format === "detailed") {
     markdown += generateTimelineSection(experiences);
   }
-
-  // Add footer
-  markdown += generateFooter();
 
   return markdown;
 }

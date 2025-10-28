@@ -174,16 +174,6 @@ describe("generateResumeMarkdown", () => {
     });
   });
 
-  describe("Footer", () => {
-    it("should include attribution footer", () => {
-      const result = generateResumeMarkdown(mockExperiences, mockSkills);
-      expect(result).toContain("Generated with");
-      expect(result).toContain("Claude Code");
-      expect(result).toContain("https://tktcorporation.com/resume");
-      expect(result).toContain("LAPRAS");
-    });
-  });
-
   describe("Options Handling", () => {
     it("should respect includeMetadata option", () => {
       const withoutMetadata = generateResumeMarkdown(
