@@ -13,7 +13,7 @@ import {
   type BulletItem,
   type StructuredDescription,
   StructuredDescriptionSchema,
-} from "@/types/resume-export";
+} from "../types/resume-export";
 
 /**
  * Parse experience description into structured data
