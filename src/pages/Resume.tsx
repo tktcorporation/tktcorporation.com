@@ -12,9 +12,12 @@
  */
 
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { CopyResumeButton } from "@/components/CopyResumeButton";
+import { calculateSkillsWithYears } from "@/utils/calculateSkills";
 import { getDeviconClass, isDeviconSupported } from "@/utils/devicon";
+import { generateResumeMarkdown } from "@/utils/exportResumeMarkdown";
 import { extractTechnologies } from "@/utils/languageMap";
 import experiencesData from "../data/experiences.json";
 
@@ -65,98 +68,6 @@ function Resume() {
   >([]);
   const [skillsWithYears, setSkillsWithYears] = useState<SkillWithYears[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const calculateSkillsWithYears = useCallback(
-    (exps: Experience[]): SkillWithYears[] => {
-      const skillPeriods: Map<
-        string,
-        Array<{ start: number; end: number }>
-      > = new Map();
-      // Use the global tech regex pattern
-
-      const currentDate = new Date();
-      const currentYearMonth =
-        currentDate.getFullYear() * 12 + (currentDate.getMonth() + 1);
-
-      for (const exp of exps) {
-        if (exp.description) {
-          const matches = extractTechnologies(exp.description);
-          if (matches.length > 0) {
-            const startMonth = exp.start_year * 12 + exp.start_month;
-            const endMonth = exp.end_year
-              ? exp.end_year * 12 + (exp.end_month ?? 12)
-              : currentYearMonth;
-
-            // matchesは既に正規化された技術名の配列（重複を除去）
-            const uniqueSkills = Array.from(new Set(matches));
-
-            for (const skill of uniqueSkills) {
-              if (!skillPeriods.has(skill)) {
-                skillPeriods.set(skill, []);
-              }
-              const periods = skillPeriods.get(skill);
-              if (periods) {
-                periods.push({
-                  start: startMonth,
-                  end: endMonth,
-                });
-              }
-            }
-          }
-        }
-      }
-
-      // Merge overlapping periods and calculate total months for each skill
-      const skillsWithYears: SkillWithYears[] = [];
-
-      for (const [skillName, periods] of skillPeriods) {
-        // Sort periods by start date
-        periods.sort((a, b) => a.start - b.start);
-
-        // Merge overlapping periods
-        const mergedPeriods: Array<{ start: number; end: number }> = [];
-        let current = periods[0];
-
-        for (let i = 1; i < periods.length; i++) {
-          const next = periods[i];
-          if (next.start <= current.end) {
-            // Overlapping or adjacent, merge
-            current.end = Math.max(current.end, next.end);
-          } else {
-            // No overlap, add current and move to next
-            mergedPeriods.push(current);
-            current = next;
-          }
-        }
-        mergedPeriods.push(current);
-
-        // Calculate total months
-        const totalMonths = mergedPeriods.reduce((sum, period) => {
-          return sum + (period.end - period.start);
-        }, 0);
-
-        const years = Math.floor(totalMonths / 12);
-        const months = totalMonths % 12;
-
-        skillsWithYears.push({
-          name: skillName,
-          years,
-          months,
-        });
-      }
-
-      // Sort by total experience (years + months), then by name
-      return skillsWithYears.sort((a, b) => {
-        const totalA = a.years * 12 + a.months;
-        const totalB = b.years * 12 + b.months;
-        if (totalB !== totalA) {
-          return totalB - totalA; // Descending by total experience
-        }
-        return a.name.localeCompare(b.name); // Ascending by name
-      });
-    },
-    []
-  );
 
   /**
    * Groups experiences by organization and consecutive time periods.
@@ -275,7 +186,15 @@ function Resume() {
     setGroupedExperiences(grouped);
     setSkillsWithYears(skills);
     setLoading(false);
-  }, [calculateSkillsWithYears, groupExperiences]);
+  }, [groupExperiences]);
+
+  // Generate AI-friendly Markdown for export
+  const resumeMarkdown = useMemo(() => {
+    if (skillsWithYears.length === 0 || _experiences.length === 0) {
+      return "";
+    }
+    return generateResumeMarkdown(_experiences, skillsWithYears);
+  }, [_experiences, skillsWithYears]);
 
   const extractTechTags = useCallback((description: string): string[] => {
     if (!description) return [];
@@ -358,10 +277,13 @@ function Resume() {
 
       <main className="container mx-auto px-4 py-12 flex-grow">
         <div className="max-w-5xl mx-auto">
-          <header className="mb-12 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
-              Resume
-            </h1>
+          <header className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <h1 className="text-3xl md:text-4xl font-bold text-white animate-fade-in">
+                Resume
+              </h1>
+              <CopyResumeButton markdown={resumeMarkdown} variant="primary" />
+            </div>
           </header>
 
           <section className="mb-8 md:mb-12">
@@ -583,6 +505,101 @@ function Resume() {
                 </div>
               </div>
             )}
+          </section>
+
+          {/* Export section - Documentation style */}
+          <section className="mt-16 pt-8 border-t border-slate-700">
+            <h2 className="text-lg font-semibold text-slate-300 mb-4">
+              Export formats
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <a
+                href="/resume.md"
+                download
+                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+                    Markdown
+                  </h3>
+                </div>
+                <p className="text-sm text-slate-400">
+                  AI-friendly format with YAML frontmatter
+                </p>
+              </a>
+
+              <a
+                href="/resume.txt"
+                download
+                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+                    Plain Text
+                  </h3>
+                </div>
+                <p className="text-sm text-slate-400">
+                  Terminal-friendly 80-character format
+                </p>
+              </a>
+
+              <a
+                href="/resume.json"
+                download
+                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+                    JSON
+                  </h3>
+                </div>
+                <p className="text-sm text-slate-400">
+                  Structured data with calculated fields
+                </p>
+              </a>
+            </div>
           </section>
         </div>
       </main>

@@ -9,7 +9,7 @@
  * - TechnologyTimeline と Resume で使用
  */
 
-import { programmingLanguages } from "@/data/programmingLanguages";
+import { programmingLanguages } from "../data/programmingLanguages";
 
 // programmingLanguages に含まれていない追加の技術
 // 現在は programmingLanguages.ts に全て定義済みなので空

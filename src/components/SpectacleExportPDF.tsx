@@ -138,12 +138,12 @@ const SpectacleExportPDF = ({ enabled }: SpectacleExportPDFProps) => {
             const value = computedStyle[
               prop as keyof CSSStyleDeclaration
             ] as string;
-            if (value && value.includes("oklch")) {
+            if (value?.includes("oklch")) {
               // デフォルトのフォールバック色を設定
               if (prop.includes("background") || prop.includes("Background")) {
-                style[prop as any] = "#ffffff";
+                style.setProperty(prop, "#ffffff");
               } else {
-                style[prop as any] = "#000000";
+                style.setProperty(prop, "#000000");
               }
             }
           });
@@ -213,7 +213,7 @@ const SpectacleExportPDF = ({ enabled }: SpectacleExportPDFProps) => {
           }
 
           // インラインスタイルの属性もチェック
-          if (style.cssText && style.cssText.includes("oklch")) {
+          if (style.cssText?.includes("oklch")) {
             // oklchを含むインラインスタイルを削除
             const newCssText = style.cssText.replace(/[^;]*oklch[^;]*/gi, "");
             style.cssText = newCssText;

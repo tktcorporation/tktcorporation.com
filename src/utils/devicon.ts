@@ -10,7 +10,7 @@
  * - 言語/フレームワーク名をDevicon のクラス名にマッピング
  */
 
-import { getDeviconEntry } from "@/data/deviconData";
+import { getDeviconEntry } from "../data/deviconData";
 
 /**
  * 言語/フレームワーク名からDevicon クラス名を生成

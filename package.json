@@ -14,7 +14,14 @@
     "lint:fix": "biome check --write .",
     "typecheck": "tsc",
     "screenshot": "tsx scripts/screenshot.ts",
-    "test": "tsx scripts/test-display.ts",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test tests/e2e/",
+    "test:e2e:ui": "playwright test tests/e2e/ --ui",
+    "test:all": "npm run test:run && npm run test:e2e",
+    "test:display": "tsx scripts/test-display.ts",
     "update:lapras": "tsx scripts/update-lapras-data.ts"
   },
   "dependencies": {
@@ -44,16 +51,21 @@
   "devDependencies": {
     "@biomejs/biome": "^2.1.4",
     "@playwright/test": "^1.54.2",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@tktco/node-actionlint": "^1.6.0",
     "@types/http-server": "^0.12.4",
     "@types/node": "24.2.1",
+    "@vitest/ui": "^4.0.4",
     "devicon": "^2.17.0",
+    "happy-dom": "^20.0.8",
     "http-server": "^14.1.1",
     "playwright": "^1.54.2",
     "simple-git-hooks": "^2.13.1",
     "tsx": "^4.20.4",
     "typescript": "5.9.2",
-    "vite": "^7.1.2"
+    "vite": "^7.1.2",
+    "vitest": "^4.0.4"
   },
   "engines": {
     "node": "24"
