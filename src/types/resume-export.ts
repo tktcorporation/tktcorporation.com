@@ -62,6 +62,4 @@ export const StructuredDescriptionSchema = z.object({
   responsibilities: z.array(BulletItemSchema),
 });
 
-export type StructuredDescription = z.infer<
-  typeof StructuredDescriptionSchema
->;
+export type StructuredDescription = z.infer<typeof StructuredDescriptionSchema>;

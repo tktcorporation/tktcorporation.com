@@ -38,10 +38,7 @@ export function parseExperienceDescription(
 
   // Find the start of bullet points (skip empty lines after tech line)
   let bulletStartIndex = 1;
-  while (
-    bulletStartIndex < lines.length &&
-    !lines[bulletStartIndex].trim()
-  ) {
+  while (bulletStartIndex < lines.length && !lines[bulletStartIndex].trim()) {
     bulletStartIndex++;
   }
 
@@ -134,10 +131,7 @@ function buildHierarchy(
         const childIndent = lines[i + 1].indent;
 
         // Recursively build children
-        const childResult = buildHierarchy(
-          lines.slice(i + 1),
-          childIndent
-        );
+        const childResult = buildHierarchy(lines.slice(i + 1), childIndent);
         if (childResult.items.length > 0) {
           item.children = childResult.items;
         }

@@ -12,9 +12,9 @@
  */
 
 import type {
+  BulletItem,
   ResumeExportMetadata,
   ResumeMarkdownOptions,
-  BulletItem,
 } from "../types/resume-export";
 import { parseExperienceDescription } from "./parseExperienceDescription";
 

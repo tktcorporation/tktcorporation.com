@@ -9,7 +9,7 @@
  * - Covers edge cases and malformed input
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { parseExperienceDescription } from "../../src/utils/parseExperienceDescription";
 
 describe("parseExperienceDescription", () => {
@@ -258,7 +258,9 @@ Some text without asterisk
 
       // Should not throw
       const result = parseExperienceDescription(description);
-      expect(result.responsibilities[0].children?.[0].children?.[0].children).toBeDefined();
+      expect(
+        result.responsibilities[0].children?.[0].children?.[0].children
+      ).toBeDefined();
     });
   });
 });

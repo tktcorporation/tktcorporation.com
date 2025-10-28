@@ -78,15 +78,15 @@ export function CopyResumeButton({
   };
 
   const baseClasses =
-    "inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-slate-900";
+    "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-normal transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-900";
 
   const variantClasses =
     variant === "primary"
-      ? "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl active:scale-95"
-      : "bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700";
+      ? "bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 hover:border-slate-600"
+      : "bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700";
 
   const stateClasses = copied
-    ? "!bg-green-600 !from-green-600 !to-green-600"
+    ? "!bg-slate-700 !text-green-400 !border-slate-600"
     : "";
 
   return (
@@ -101,13 +101,13 @@ export function CopyResumeButton({
       >
         {copied ? (
           <>
-            <Check className="w-4 h-4" aria-hidden="true" />
-            <span className="hidden sm:inline">Copied!</span>
+            <Check className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>Copied</span>
           </>
         ) : (
           <>
-            <Copy className="w-4 h-4" aria-hidden="true" />
-            <span className="hidden sm:inline">Copy for AI</span>
+            <Copy className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>Copy</span>
           </>
         )}
       </button>
