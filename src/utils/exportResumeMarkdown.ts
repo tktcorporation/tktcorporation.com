@@ -14,7 +14,9 @@
 import type {
   ResumeExportMetadata,
   ResumeMarkdownOptions,
+  BulletItem,
 } from "../types/resume-export";
+import { parseExperienceDescription } from "./parseExperienceDescription";
 
 interface Experience {
   id: number;
@@ -113,18 +115,16 @@ function formatDateRange(exp: Experience): string {
 }
 
 /**
- * Extract technologies from description
+ * Extract technologies from description using structured parser
  */
 function extractTechnologies(description: string): string[] {
-  const lines = description.split("\n");
-  const firstLine = lines[0] || "";
-
-  // Technologies are usually in the first line, separated by " / "
-  if (firstLine.includes(" / ")) {
-    return firstLine.split(" / ").map((tech) => tech.trim());
+  try {
+    const parsed = parseExperienceDescription(description);
+    return parsed.technologies;
+  } catch {
+    // Fallback to empty array if parsing fails
+    return [];
   }
-
-  return [];
 }
 
 /**
@@ -349,26 +349,37 @@ function generateSkillsSection(skills: SkillWithYears[]): string {
 }
 
 /**
- * Format experience description as bullet points
+ * Format bullet items as Markdown with proper indentation
+ * Preserves hierarchical structure from parsed data
  */
-function formatDescription(description: string): string[] {
-  const lines = description.split("\n").slice(1); // Skip first line (technologies)
-  const bullets: string[] = [];
+function formatBulletItems(items: BulletItem[], indentLevel = 0): string[] {
+  const result: string[] = [];
+  const indent = "  ".repeat(indentLevel); // 2 spaces per level
 
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
+  for (const item of items) {
+    result.push(`${indent}- ${item.text}`);
 
-    // Convert existing list items to proper Markdown bullets
-    if (trimmed.startsWith("*")) {
-      const content = trimmed.substring(1).trim();
-      bullets.push(`- ${content}`);
-    } else {
-      bullets.push(`- ${trimmed}`);
+    if (item.children && item.children.length > 0) {
+      const childLines = formatBulletItems(item.children, indentLevel + 1);
+      result.push(...childLines);
     }
   }
 
-  return bullets;
+  return result;
+}
+
+/**
+ * Format experience description as bullet points (legacy wrapper)
+ * Use structured parsing for better indentation handling
+ */
+function formatDescription(description: string): string[] {
+  try {
+    const parsed = parseExperienceDescription(description);
+    return formatBulletItems(parsed.responsibilities);
+  } catch {
+    // Fallback to empty array if parsing fails
+    return [];
+  }
 }
 
 /**

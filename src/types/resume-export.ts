@@ -9,6 +9,8 @@
  * - Supports multiple export formats (Markdown, plain text, JSON)
  */
 
+import { z } from "zod";
+
 export type ExportFormat = "markdown" | "text" | "json";
 
 export interface ResumeMarkdownOptions {
@@ -36,3 +38,30 @@ export interface ResumeExportMetadata {
   /** Career focus based on recent roles */
   careerFocus: string;
 }
+
+/**
+ * Zod schemas for structured experience description parsing
+ */
+
+// Bullet point item with optional nested children
+export const BulletItemSchema: z.ZodType<BulletItem> = z.lazy(() =>
+  z.object({
+    text: z.string(),
+    children: z.array(BulletItemSchema).optional(),
+  })
+);
+
+export type BulletItem = {
+  text: string;
+  children?: BulletItem[];
+};
+
+// Structured experience description
+export const StructuredDescriptionSchema = z.object({
+  technologies: z.array(z.string()),
+  responsibilities: z.array(BulletItemSchema),
+});
+
+export type StructuredDescription = z.infer<
+  typeof StructuredDescriptionSchema
+>;
