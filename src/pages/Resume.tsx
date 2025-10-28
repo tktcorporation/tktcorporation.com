@@ -277,39 +277,13 @@ function Resume() {
 
       <main className="container mx-auto px-4 py-12 flex-grow">
         <div className="max-w-5xl mx-auto">
-          <header className="mb-12 text-center relative">
-            <div className="absolute right-0 top-0">
+          <header className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <h1 className="text-3xl md:text-4xl font-bold text-white animate-fade-in">
+                Resume
+              </h1>
               <CopyResumeButton markdown={resumeMarkdown} variant="primary" />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white animate-fade-in mb-4">
-              Resume
-            </h1>
-            <p className="text-slate-400 text-sm mt-2">
-              Export formats:{" "}
-              <a
-                href="/resume.md"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
-                download
-              >
-                Markdown
-              </a>
-              <span className="mx-2">•</span>
-              <a
-                href="/resume.txt"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
-                download
-              >
-                Plain Text
-              </a>
-              <span className="mx-2">•</span>
-              <a
-                href="/resume.json"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
-                download
-              >
-                JSON
-              </a>
-            </p>
           </header>
 
           <section className="mb-8 md:mb-12">
@@ -531,6 +505,101 @@ function Resume() {
                 </div>
               </div>
             )}
+          </section>
+
+          {/* Export section - Documentation style */}
+          <section className="mt-16 pt-8 border-t border-slate-700">
+            <h2 className="text-lg font-semibold text-slate-300 mb-4">
+              Export formats
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <a
+                href="/resume.md"
+                download
+                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+                    Markdown
+                  </h3>
+                </div>
+                <p className="text-sm text-slate-400">
+                  AI-friendly format with YAML frontmatter
+                </p>
+              </a>
+
+              <a
+                href="/resume.txt"
+                download
+                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+                    Plain Text
+                  </h3>
+                </div>
+                <p className="text-sm text-slate-400">
+                  Terminal-friendly 80-character format
+                </p>
+              </a>
+
+              <a
+                href="/resume.json"
+                download
+                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+                    JSON
+                  </h3>
+                </div>
+                <p className="text-sm text-slate-400">
+                  Structured data with calculated fields
+                </p>
+              </a>
+            </div>
           </section>
         </div>
       </main>

@@ -78,15 +78,15 @@ export function CopyResumeButton({
   };
 
   const baseClasses =
-    "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-normal transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-900";
+    "inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-normal transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-slate-500";
 
   const variantClasses =
     variant === "primary"
-      ? "bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 hover:border-slate-600"
-      : "bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700";
+      ? "bg-transparent hover:bg-slate-800/50 text-slate-500 hover:text-slate-300 border border-slate-700/50 hover:border-slate-600"
+      : "bg-transparent hover:bg-slate-800/50 text-slate-500 hover:text-slate-300 border border-slate-700/50";
 
   const stateClasses = copied
-    ? "!bg-slate-700 !text-green-400 !border-slate-600"
+    ? "!bg-slate-800/50 !text-green-400 !border-green-700/50"
     : "";
 
   return (
@@ -101,12 +101,12 @@ export function CopyResumeButton({
       >
         {copied ? (
           <>
-            <Check className="w-3.5 h-3.5" aria-hidden="true" />
+            <Check className="w-3 h-3" aria-hidden="true" />
             <span>Copied</span>
           </>
         ) : (
           <>
-            <Copy className="w-3.5 h-3.5" aria-hidden="true" />
+            <Copy className="w-3 h-3" aria-hidden="true" />
             <span>Copy</span>
           </>
         )}
