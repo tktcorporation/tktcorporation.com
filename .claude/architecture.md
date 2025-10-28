@@ -6,7 +6,7 @@
 - **Styling**: Tailwind CSS with PostCSS
 - **Code Quality**: Biome (linting and formatting)
 - **Type Checking**: TypeScript with strict mode
-- **Hosting**: Firebase (configuration in src/firebase.ts)
+- **Hosting**: GitHub Pages
 
 ## Project Structure
 - `/src` - React application source code

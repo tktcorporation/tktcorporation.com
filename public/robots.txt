@@ -1,0 +1,29 @@
+# robots.txt for tktcorporation.com
+# Allow all crawlers and AI bots
+
+# Allow all robots
+User-agent: *
+Allow: /
+
+# Explicitly allow OpenAI crawlers for ChatGPT and SearchGPT
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Allow other AI crawlers
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap location (if you add one in the future)
+# Sitemap: https://tktcorporation.com/sitemap.xml

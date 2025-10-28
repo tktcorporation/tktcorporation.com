@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal website built with React, TypeScript, and Vite. It includes a main homepage and a resume page with LAPRAS integration for displaying work experiences.
 
-**Key Technologies**: React 19, TypeScript, Vite, Tailwind CSS, Biome, Firebase
+**Key Technologies**: React 19, TypeScript, Vite, Tailwind CSS, Biome
 
 **Node.js Requirement**: >= 24.0.0
 
