@@ -14,6 +14,11 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Resume from "./pages/Resume";
+import {
+  ResumeJsonExport,
+  ResumeMarkdownExport,
+  ResumeTextExport,
+} from "./pages/ResumeExports";
 import Technologies from "./pages/Technologies";
 
 // グローバル背景コンポーネント
@@ -46,6 +51,10 @@ function App() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/technologies" element={<Technologies />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          {/* Export routes for AI-friendly access */}
+          <Route path="/resume.md" element={<ResumeMarkdownExport />} />
+          <Route path="/resume.txt" element={<ResumeTextExport />} />
+          <Route path="/resume.json" element={<ResumeJsonExport />} />
         </Routes>
       </div>
     </div>
