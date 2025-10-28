@@ -141,9 +141,9 @@ const SpectacleExportPDF = ({ enabled }: SpectacleExportPDFProps) => {
             if (value?.includes("oklch")) {
               // デフォルトのフォールバック色を設定
               if (prop.includes("background") || prop.includes("Background")) {
-                style[prop as any] = "#ffffff";
+                style.setProperty(prop, "#ffffff");
               } else {
-                style[prop as any] = "#000000";
+                style.setProperty(prop, "#000000");
               }
             }
           });
