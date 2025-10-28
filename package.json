@@ -55,7 +55,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@tktco/node-actionlint": "^1.6.0",
     "@types/http-server": "^0.12.4",
-    "@types/node": "24.2.1",
+    "@types/node": "24.9.1",
     "@vitest/ui": "^4.0.4",
     "devicon": "^2.17.0",
     "happy-dom": "^20.0.8",
