@@ -26,7 +26,7 @@ interface ResumeExportProps {
 export function ResumeExport({ type }: ResumeExportProps) {
   const [copied, setCopied] = useState(false);
 
-  const { content, title, language } = useMemo(() => {
+  const { content, title } = useMemo(() => {
     const experiences = experiencesData.experience_list;
     const skills = calculateSkillsWithYears(experiences);
 
@@ -35,7 +35,6 @@ export function ResumeExport({ type }: ResumeExportProps) {
         return {
           content: generateResumeMarkdown(experiences, skills),
           title: "Resume - Markdown Format",
-          language: "markdown",
         };
       }
       case "text": {
@@ -43,14 +42,12 @@ export function ResumeExport({ type }: ResumeExportProps) {
         return {
           content: markdownToPlainText(markdown),
           title: "Resume - Plain Text Format",
-          language: "text",
         };
       }
       case "json": {
         return {
           content: generateResumeJson(experiences, skills),
           title: "Resume - JSON Format",
-          language: "json",
         };
       }
     }
@@ -77,24 +74,24 @@ export function ResumeExport({ type }: ResumeExportProps) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <div className="container mx-auto px-4 py-8 max-w-5xl">
-        <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-white">{title}</h1>
+    <div className="min-h-screen bg-white text-gray-900">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="mb-4 flex items-center justify-between border-b border-gray-200 pb-4">
+          <h1 className="text-xl font-semibold text-gray-800">{title}</h1>
           <div className="flex gap-2">
             <button
               type="button"
               onClick={handleCopy}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300 transition-colors"
               title="Copy to clipboard"
             >
-              <Copy className="w-4 h-4" />
+              <Copy className="w-3.5 h-3.5" />
               {copied ? "Copied!" : "Copy"}
             </button>
             <button
               type="button"
               onClick={handleDownload}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300 transition-colors"
               title="Download file"
             >
               Download
@@ -102,16 +99,9 @@ export function ResumeExport({ type }: ResumeExportProps) {
           </div>
         </div>
 
-        <pre className="bg-slate-900 border border-slate-800 rounded-lg p-6 overflow-x-auto text-sm text-slate-300 whitespace-pre-wrap break-words">
-          <code className={`language-${language}`}>{content}</code>
+        <pre style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>
+          {content}
         </pre>
-
-        <div className="mt-4 text-sm text-slate-500">
-          <p>
-            This content is available for AI agents to fetch and parse. Share
-            this URL with AI assistants for resume analysis.
-          </p>
-        </div>
       </div>
     </div>
   );
