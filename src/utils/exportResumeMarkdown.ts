@@ -11,7 +11,8 @@
  * - Preserves all critical information from experiences.json
  */
 
-import type { Experience, SkillWithYears } from "@/types/experience";
+import type { Experience, SkillWithYears } from "../types/experience";
+import { getDisplayPositionName } from "../types/experience";
 import type {
   BulletItem,
   ResumeExportMetadata,
@@ -150,7 +151,9 @@ function generateSummary(
   metadata: ResumeExportMetadata
 ): string {
   const currentExp = experiences[0];
-  const currentPosition = currentExp?.position_name || "Software Engineer";
+  const currentPosition = currentExp
+    ? getDisplayPositionName(currentExp)
+    : "Software Engineer";
   const currentCompany = currentExp?.organization_name || "N/A";
 
   const topSkills = skills
@@ -347,7 +350,7 @@ function generateExperienceSection(experiences: Experience[]): string {
         ? `${exp.client_company_name} (via ${exp.organization_name})`
         : exp.organization_name;
 
-    section += `### ${companyName} | ${exp.position_name}\n\n`;
+    section += `### ${companyName} | ${getDisplayPositionName(exp)}\n\n`;
     section += `**Duration**: ${formatExpDateRange(exp)}\n`;
 
     const positions = exp.positions.map((p) => p.job_position_name).join(", ");
@@ -385,7 +388,7 @@ function generateTimelineSection(experiences: Experience[]): string {
         ? `${exp.end_year}/${String(exp.end_month).padStart(2, "0")}`
         : "Present";
 
-    section += `- **${start} - ${end}**: ${exp.organization_name} (${exp.position_name})\n`;
+    section += `- **${start} - ${end}**: ${exp.organization_name} (${getDisplayPositionName(exp)})\n`;
   }
 
   section += "\n";

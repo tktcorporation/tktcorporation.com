@@ -132,7 +132,8 @@ describe("generateResumeMarkdown", () => {
 
     it("should include position titles", () => {
       const result = generateResumeMarkdown(mockExperiences, mockSkills);
-      expect(result).toContain("Senior Engineer");
+      // positions[0].job_position_name is prioritized over position_name
+      expect(result).toContain("Software Engineer");
       expect(result).toContain("Junior Developer");
     });
 

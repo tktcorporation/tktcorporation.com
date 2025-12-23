@@ -10,7 +10,7 @@
  * - Provides machine-readable format for integrations
  */
 
-import type { Experience, SkillWithYears } from "@/types/experience";
+import type { Experience, SkillWithYears } from "../types/experience";
 
 interface EnhancedExperience extends Experience {
   duration_months: number;

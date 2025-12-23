@@ -9,21 +9,20 @@
  * - ExperienceCardを使用して各経験を表示
  */
 
-import type React from "react";
-import type { GroupedExperience } from "@/types/experience";
+import type {
+  DateFormatter,
+  DescriptionFormatter,
+  GroupedExperience,
+  TechExtractor,
+} from "@/types/experience";
 import { ExperienceCard } from "./ExperienceCard";
 
 interface ExperienceSectionProps {
   groupedExperiences: GroupedExperience[];
   loading?: boolean;
-  formatDate: (
-    year: number,
-    month: number,
-    endYear: number | null,
-    endMonth: number | null
-  ) => string;
-  extractTechTags: (description: string) => string[];
-  formatDescription: (description: string) => React.ReactElement[];
+  formatDate: DateFormatter;
+  extractTechTags: TechExtractor;
+  formatDescription: DescriptionFormatter;
 }
 
 function ExperienceSkeleton() {
