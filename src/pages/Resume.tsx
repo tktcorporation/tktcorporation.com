@@ -25,12 +25,8 @@ import { formatDateRange } from "@/utils/formatDate";
 import { extractTechnologies } from "@/utils/languageMap";
 
 function Resume() {
-  const {
-    groupedExperiences,
-    skillsWithYears,
-    resumeMarkdown,
-    loading,
-  } = useResumeData();
+  const { groupedExperiences, skillsWithYears, resumeMarkdown, loading } =
+    useResumeData();
 
   const extractTechTags = useCallback((description: string): string[] => {
     if (!description) return [];

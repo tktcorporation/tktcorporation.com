@@ -11,8 +11,8 @@
  * - Preserves all critical information from experiences.json
  */
 
-import type { Experience, SkillWithYears } from "@/types/experience";
-import { getDisplayPositionName } from "@/types/experience";
+import type { Experience, SkillWithYears } from "../types/experience";
+import { getDisplayPositionName } from "../types/experience";
 import type {
   BulletItem,
   ResumeExportMetadata,

@@ -9,7 +9,7 @@
  * - 同じロジックを他のコンポーネントでも再利用可能
  */
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type {
   Experience,
   GroupedExperience,

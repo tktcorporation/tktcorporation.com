@@ -141,7 +141,9 @@ export function ExperienceCard({
         {/* 経験リストを統一的にレンダリング（単一/複数の条件分岐を削除） */}
         <div
           className={
-            group.experiences.length > 1 ? "space-y-3 md:space-y-4 mt-3 md:mt-4" : ""
+            group.experiences.length > 1
+              ? "space-y-3 md:space-y-4 mt-3 md:mt-4"
+              : ""
           }
         >
           {group.experiences.map((exp) => (
