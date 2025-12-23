@@ -163,6 +163,8 @@ export function getGroupedPeriod(group: GroupedExperience): Period {
  * グループの全期間を月数で計算
  */
 export function getGroupedDurationMonths(group: GroupedExperience): number {
+  // Note: formatDate.ts の dateToMonths を使用すると循環依存になるため、
+  // ここでは直接計算を行う。この型定義ファイルは依存関係の底にあるべき。
   const now = new Date();
   const currentYear = now.getFullYear();
   const currentMonth = now.getMonth() + 1;

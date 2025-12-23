@@ -97,24 +97,29 @@ export function ExperienceCard({
       )
     )
   );
+  const cardId = `exp-${group.organization_name.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase()}-${group.total_start_year}`;
 
   return (
-    <div
+    <li
       key={`${group.organization_name}-${group.total_start_year}-${group.total_start_month}`}
-      className="relative"
+      className="relative list-none"
     >
       {/* タイムラインドット（装飾要素） */}
       <div
         className="absolute left-0 md:left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50"
         aria-hidden="true"
       />
-      <div
+      <article
         className="ml-8 md:ml-16 rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 md:hover:shadow-lg md:hover:shadow-purple-500/20 md:hover:-translate-y-1"
         style={{ animationDelay: `${index * 0.1}s` }}
+        aria-labelledby={cardId}
       >
-        <div className="flex flex-col md:flex-row md:justify-between mb-3 md:mb-4">
+        <header className="flex flex-col md:flex-row md:justify-between mb-3 md:mb-4">
           <div className="flex-1">
-            <h3 className="text-base md:text-lg font-bold text-white">
+            <h3
+              id={cardId}
+              className="text-base md:text-lg font-bold text-white"
+            >
               {group.organization_name}
               {group.is_client_work && group.client_company_name && (
                 <span className="text-xs md:text-sm text-slate-400 ml-1 md:ml-2 font-normal">
@@ -122,23 +127,31 @@ export function ExperienceCard({
                 </span>
               )}
             </h3>
-            <div className="mt-2 flex flex-wrap gap-1 md:gap-2">
+            <ul
+              className="mt-2 flex flex-wrap gap-1 md:gap-2 list-none"
+              aria-label="Positions"
+            >
               {uniquePositions.map((positionName) => (
-                <PositionBadge key={positionName} name={positionName} />
+                <li key={positionName}>
+                  <PositionBadge name={positionName} />
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-          <p className="text-xs md:text-sm text-slate-400 mt-2 md:mt-0 font-mono">
+          <time
+            className="text-xs md:text-sm text-slate-400 mt-2 md:mt-0 font-mono"
+            dateTime={`${group.total_start_year}-${String(group.total_start_month).padStart(2, "0")}`}
+          >
             {formatDate(
               group.total_start_year,
               group.total_start_month,
               group.total_end_year,
               group.total_end_month
             )}
-          </p>
-        </div>
+          </time>
+        </header>
 
-        {/* 経験リストを統一的にレンダリング（単一/複数の条件分岐を削除） */}
+        {/* 経験リストを統一的にレンダリング */}
         <div
           className={
             group.experiences.length > 1
@@ -158,7 +171,7 @@ export function ExperienceCard({
             />
           ))}
         </div>
-      </div>
-    </div>
+      </article>
+    </li>
   );
 }

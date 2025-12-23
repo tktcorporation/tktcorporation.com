@@ -67,9 +67,9 @@ export function ExperienceSection({
             className="absolute left-2 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent"
             aria-hidden="true"
           />
-          <ul
+          <ol
             className="space-y-6 md:space-y-8 list-none"
-            aria-label="Work experience timeline"
+            aria-label="Work experience timeline (most recent first)"
           >
             {groupedExperiences.map((group, index) => (
               <ExperienceCard
@@ -81,7 +81,7 @@ export function ExperienceSection({
                 formatDescription={formatDescription}
               />
             ))}
-          </ul>
+          </ol>
         </div>
       )}
     </section>
