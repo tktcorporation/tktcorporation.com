@@ -417,30 +417,33 @@ test.describe("Resume Page Integration", () => {
  * These tests are marked as .skip() and serve as TODO items.
  * Uncomment when implementing these features.
  */
-test.describe.skip("Future Enhancements", () => {
-  test("should support multi-language exports (en/ja)", async ({ page }) => {
-    // TODO: Implement ?lang=ja query parameter
-    await page.goto("/resume.md?lang=ja");
-    const content = await page.textContent("pre");
-    expect(content).toContain("職務経歴書");
-  });
+test.describe
+  .skip("Future Enhancements", () => {
+    test("should support multi-language exports (en/ja)", async ({ page }) => {
+      // TODO: Implement ?lang=ja query parameter
+      await page.goto("/resume.md?lang=ja");
+      const content = await page.textContent("pre");
+      expect(content).toContain("職務経歴書");
+    });
 
-  test("should support custom styling via query parameters", async ({
-    page,
-  }) => {
-    // TODO: Implement ?theme=dark or ?style=compact
-    await page.goto("/resume.md?theme=dark");
-    const bgColor = await page.evaluate(
-      () => getComputedStyle(document.body).backgroundColor
-    );
-    expect(bgColor).toMatch(/rgb\(.*\)/); // Dark background
-  });
+    test("should support custom styling via query parameters", async ({
+      page,
+    }) => {
+      // TODO: Implement ?theme=dark or ?style=compact
+      await page.goto("/resume.md?theme=dark");
+      const bgColor = await page.evaluate(
+        () => getComputedStyle(document.body).backgroundColor
+      );
+      expect(bgColor).toMatch(/rgb\(.*\)/); // Dark background
+    });
 
-  test("should provide RSS/Atom feed for career updates", async ({ page }) => {
-    // TODO: Implement /resume.xml or /resume.atom
-    const response = await page.goto("/resume.xml");
-    expect(response?.status()).toBe(200);
-    const content = await page.textContent("body");
-    expect(content).toContain("<rss");
+    test("should provide RSS/Atom feed for career updates", async ({
+      page,
+    }) => {
+      // TODO: Implement /resume.xml or /resume.atom
+      const response = await page.goto("/resume.xml");
+      expect(response?.status()).toBe(200);
+      const content = await page.textContent("body");
+      expect(content).toContain("<rss");
+    });
   });
-});

@@ -12,6 +12,7 @@ export default defineConfig({
       "**/node_modules/**",
       "**/dist/**",
       "**/*.spec.js", // Exclude Playwright tests
+      "**/tests/e2e/**", // Exclude E2E test directory
       "**/*.e2e.ts",
     ],
     coverage: {
