@@ -15,51 +15,23 @@ import type React from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { CopyResumeButton } from "@/components/CopyResumeButton";
+import {
+  ExperienceSection,
+  ExportSection,
+  SkillsSection,
+} from "@/components/resume";
+import type {
+  Experience,
+  GroupedExperience,
+  SkillWithYears,
+} from "@/types/experience";
 import { calculateSkillsWithYears } from "@/utils/calculateSkills";
-import { getDeviconClass, isDeviconSupported } from "@/utils/devicon";
 import { generateResumeMarkdown } from "@/utils/exportResumeMarkdown";
+import { formatDateRange } from "@/utils/formatDate";
 import { extractTechnologies } from "@/utils/languageMap";
 import experiencesData from "../data/experiences.json";
 
 const MAX_CONSECUTIVE_GAP = 1; // Maximum gap allowed between periods to be considered consecutive (1 month)
-const PROGRESS_BAR_MAX_MONTHS = 24; // 2 years maximum for progress bar calculation
-
-interface Position {
-  id: number;
-  job_position_name: string;
-}
-
-interface Experience {
-  id: number;
-  organization_name: string;
-  is_client_work: boolean;
-  client_company_name: string;
-  positions: Position[];
-  position_name: string;
-  start_year: number;
-  start_month: number;
-  end_year: number | null;
-  end_month: number | null;
-  description: string;
-  updated_at: string;
-}
-
-interface GroupedExperience {
-  organization_name: string;
-  is_client_work: boolean;
-  client_company_name: string;
-  total_start_year: number;
-  total_start_month: number;
-  total_end_year: number | null;
-  total_end_month: number | null;
-  experiences: Experience[];
-}
-
-interface SkillWithYears {
-  name: string;
-  years: number;
-  months: number;
-}
 
 function Resume() {
   const [_experiences, setExperiences] = useState<Experience[]>([]);
@@ -202,24 +174,6 @@ function Resume() {
     return extractTechnologies(description);
   }, []);
 
-  const formatDate = (
-    year: number,
-    month: number,
-    endYear: number | null,
-    endMonth: number | null
-  ): string => {
-    if (!year) return "";
-
-    const startDate = `${year}/${String(month).padStart(2, "0")}`;
-
-    if (!endYear || endYear === 0) {
-      return `${startDate} - Present`;
-    }
-
-    const endDate = `${endYear}/${String(endMonth).padStart(2, "0")}`;
-    return `${startDate} - ${endDate}`;
-  };
-
   const formatDescription = (description: string): React.ReactElement[] => {
     if (!description) return [];
 
@@ -286,321 +240,17 @@ function Resume() {
             </div>
           </header>
 
-          <section className="mb-8 md:mb-12">
-            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Skills & Technologies
-            </h2>
-            {loading ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div
-                    key={i}
-                    className="rounded-md p-2 md:p-3 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
-                  >
-                    <div className="h-4 bg-white/10 rounded w-2/3 mb-1" />
-                    <div className="h-3 bg-white/10 rounded w-1/3" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
-                {skillsWithYears.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="rounded-md p-2 md:p-3 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 md:hover:shadow-lg md:hover:shadow-purple-500/20 md:hover:-translate-y-1"
-                  >
-                    <div className="flex flex-col gap-1">
-                      <h3 className="text-xs md:text-sm font-semibold text-purple-200 truncate">
-                        {skill.name}
-                      </h3>
-                      <span className="text-[10px] md:text-xs text-purple-300">
-                        {skill.years > 0 && `${skill.years}年`}
-                        {skill.months > 0 && `${skill.months}ヶ月`}
-                      </span>
-                    </div>
-                    <div className="w-full bg-slate-700 rounded-full h-1 md:h-1.5 mt-1.5">
-                      <div
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-700"
-                        style={{
-                          width: `${Math.min(100, ((skill.years * 12 + skill.months) / PROGRESS_BAR_MAX_MONTHS) * 100)}%`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
+          <SkillsSection skills={skillsWithYears} loading={loading} />
 
-          <section className="mb-12">
-            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Professional Experience
-            </h2>
+          <ExperienceSection
+            groupedExperiences={groupedExperiences}
+            loading={loading}
+            formatDate={formatDateRange}
+            extractTechTags={extractTechTags}
+            formatDescription={formatDescription}
+          />
 
-            {loading ? (
-              <div className="space-y-6 md:space-y-8">
-                {[1, 2].map((i) => (
-                  <div
-                    key={i}
-                    className="rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
-                  >
-                    <div className="h-5 md:h-6 bg-white/10 rounded w-1/3 mb-3 md:mb-4" />
-                    <div className="h-4 bg-white/10 rounded w-1/2 mb-2" />
-                    <div className="h-4 bg-white/10 rounded w-full" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="relative">
-                <div className="absolute left-2 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
-                <div className="space-y-6 md:space-y-8">
-                  {groupedExperiences.map((group, index) => (
-                    <div
-                      key={`${group.organization_name}-${group.total_start_year}-${group.total_start_month}`}
-                      className="relative"
-                    >
-                      <div className="absolute left-0 md:left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50" />
-                      <div
-                        className="ml-8 md:ml-16 rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 md:hover:shadow-lg md:hover:shadow-purple-500/20 md:hover:-translate-y-1"
-                        style={{ animationDelay: `${index * 0.1}s` }}
-                      >
-                        <div className="flex flex-col md:flex-row md:justify-between mb-3 md:mb-4">
-                          <div className="flex-1">
-                            <h3 className="text-base md:text-lg font-bold text-white">
-                              {group.organization_name}
-                              {group.is_client_work &&
-                                group.client_company_name && (
-                                  <span className="text-xs md:text-sm text-slate-400 ml-1 md:ml-2 font-normal">
-                                    ({group.client_company_name})
-                                  </span>
-                                )}
-                            </h3>
-                            <div className="mt-2 flex flex-wrap gap-1 md:gap-2">
-                              {Array.from(
-                                new Set(
-                                  group.experiences.flatMap((exp) =>
-                                    exp.positions.map(
-                                      (pos) => pos.job_position_name
-                                    )
-                                  )
-                                )
-                              ).map((positionName) => (
-                                <span
-                                  key={positionName}
-                                  className="inline-block px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30"
-                                >
-                                  {positionName}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                          <p className="text-xs md:text-sm text-slate-400 mt-2 md:mt-0 font-mono">
-                            {formatDate(
-                              group.total_start_year,
-                              group.total_start_month,
-                              group.total_end_year,
-                              group.total_end_month
-                            )}
-                          </p>
-                        </div>
-
-                        {/* グループ内の個別の経験を表示 */}
-                        {group.experiences.length > 1 ? (
-                          <div className="space-y-3 md:space-y-4 mt-3 md:mt-4">
-                            {group.experiences.map((exp, _expIndex) => (
-                              <div
-                                key={exp.id}
-                                className="border-l-2 border-purple-500/30 pl-3 md:pl-4"
-                              >
-                                <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                                  <h4 className="text-sm md:text-base font-semibold text-purple-200">
-                                    {exp.position_name}
-                                  </h4>
-                                  <p className="text-[10px] md:text-xs text-slate-400 font-mono">
-                                    {formatDate(
-                                      exp.start_year,
-                                      exp.start_month,
-                                      exp.end_year,
-                                      exp.end_month
-                                    )}
-                                  </p>
-                                </div>
-                                {exp.description && (
-                                  <>
-                                    <div className="flex flex-wrap gap-1 md:gap-2 mb-2 md:mb-3">
-                                      {extractTechTags(exp.description).map(
-                                        (tech) => {
-                                          const isSupported =
-                                            isDeviconSupported(tech);
-                                          return (
-                                            <span
-                                              key={tech}
-                                              className="px-1.5 md:px-2 py-0.5 md:py-1 text-[10px] md:text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30 inline-flex items-center gap-1"
-                                            >
-                                              {isSupported && (
-                                                <i
-                                                  className={`${getDeviconClass(
-                                                    tech,
-                                                    "plain"
-                                                  )} text-xs md:text-sm`}
-                                                />
-                                              )}
-                                              {tech}
-                                            </span>
-                                          );
-                                        }
-                                      )}
-                                    </div>
-                                    <div className="text-slate-300 space-y-1 text-xs md:text-sm">
-                                      {formatDescription(exp.description)}
-                                    </div>
-                                  </>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <>
-                            <h4 className="text-sm md:text-base font-semibold text-purple-200 mb-2">
-                              {group.experiences[0].position_name}
-                            </h4>
-                            {group.experiences[0].description && (
-                              <>
-                                <div className="flex flex-wrap gap-1 md:gap-2 mb-2 md:mb-3">
-                                  {extractTechTags(
-                                    group.experiences[0].description
-                                  ).map((tech) => {
-                                    const isSupported =
-                                      isDeviconSupported(tech);
-                                    return (
-                                      <span
-                                        key={tech}
-                                        className="px-1.5 md:px-2 py-0.5 md:py-1 text-[10px] md:text-xs bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 rounded-md border border-blue-500/30 inline-flex items-center gap-1"
-                                      >
-                                        {isSupported && (
-                                          <i
-                                            className={`${getDeviconClass(
-                                              tech,
-                                              "plain"
-                                            )} text-xs md:text-sm`}
-                                          />
-                                        )}
-                                        {tech}
-                                      </span>
-                                    );
-                                  })}
-                                </div>
-                                <div className="text-slate-300 space-y-1 text-xs md:text-sm">
-                                  {formatDescription(
-                                    group.experiences[0].description
-                                  )}
-                                </div>
-                              </>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </section>
-
-          {/* Export section - Documentation style */}
-          <section className="mt-16 pt-8 border-t border-slate-700">
-            <h2 className="text-lg font-semibold text-slate-300 mb-4">
-              Export formats
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <a
-                href="/resume.md"
-                download
-                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <svg
-                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
-                    Markdown
-                  </h3>
-                </div>
-                <p className="text-sm text-slate-400">
-                  AI-friendly format with YAML frontmatter
-                </p>
-              </a>
-
-              <a
-                href="/resume.txt"
-                download
-                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <svg
-                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
-                    Plain Text
-                  </h3>
-                </div>
-                <p className="text-sm text-slate-400">
-                  Terminal-friendly 80-character format
-                </p>
-              </a>
-
-              <a
-                href="/resume.json"
-                download
-                className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <svg
-                    className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
-                  </svg>
-                  <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
-                    JSON
-                  </h3>
-                </div>
-                <p className="text-sm text-slate-400">
-                  Structured data with calculated fields
-                </p>
-              </a>
-            </div>
-          </section>
+          <ExportSection />
         </div>
       </main>
 
@@ -617,33 +267,6 @@ function Resume() {
           </a>
         </p>
       </footer>
-
-      <style>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.6s ease-out forwards;
-        }
-        
-        .animation-delay-100 {
-          animation-delay: 0.1s;
-          opacity: 0;
-        }
-        
-        .animation-delay-200 {
-          animation-delay: 0.2s;
-          opacity: 0;
-        }
-      `}</style>
     </div>
   );
 }

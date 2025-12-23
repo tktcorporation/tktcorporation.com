@@ -11,38 +11,14 @@
  * - Preserves all critical information from experiences.json
  */
 
+import type { Experience, SkillWithYears } from "@/types/experience";
 import type {
   BulletItem,
   ResumeExportMetadata,
   ResumeMarkdownOptions,
 } from "../types/resume-export";
+import { formatDateRangeWithDuration } from "./formatDate";
 import { parseExperienceDescription } from "./parseExperienceDescription";
-
-interface Experience {
-  id: number;
-  organization_name: string;
-  is_client_work: boolean;
-  client_company_name: string;
-  positions: Position[];
-  position_name: string;
-  start_year: number;
-  start_month: number;
-  end_year: number | null;
-  end_month: number | null;
-  description: string;
-  updated_at: string;
-}
-
-interface Position {
-  id: number;
-  job_position_name: string;
-}
-
-interface SkillWithYears {
-  name: string;
-  years: number;
-  months: number;
-}
 
 /**
  * Calculate total experience duration from experiences list
@@ -80,38 +56,15 @@ function calculateTotalExperience(experiences: Experience[]): string {
 }
 
 /**
- * Format date range for display
+ * Format date range for display (wrapper for Experience object)
  */
-function formatDateRange(exp: Experience): string {
-  const start = `${exp.start_year}/${String(exp.start_month).padStart(2, "0")}`;
-  const end =
-    exp.end_year && exp.end_month
-      ? `${exp.end_year}/${String(exp.end_month).padStart(2, "0")}`
-      : "Present";
-
-  // Calculate duration
-  const startDate = new Date(exp.start_year, exp.start_month - 1);
-  const endDate =
-    exp.end_year && exp.end_month
-      ? new Date(exp.end_year, exp.end_month - 1)
-      : new Date();
-
-  const months =
-    (endDate.getFullYear() - startDate.getFullYear()) * 12 +
-    endDate.getMonth() -
-    startDate.getMonth();
-
-  const years = Math.floor(months / 12);
-  const remainingMonths = months % 12;
-
-  let duration = "";
-  if (years > 0) duration += `${years} year${years > 1 ? "s" : ""}`;
-  if (remainingMonths > 0) {
-    if (duration) duration += " ";
-    duration += `${remainingMonths} month${remainingMonths > 1 ? "s" : ""}`;
-  }
-
-  return `${start} - ${end} (${duration || "< 1 month"})`;
+function formatExpDateRange(exp: Experience): string {
+  return formatDateRangeWithDuration(
+    exp.start_year,
+    exp.start_month,
+    exp.end_year,
+    exp.end_month
+  );
 }
 
 /**
@@ -395,7 +348,7 @@ function generateExperienceSection(experiences: Experience[]): string {
         : exp.organization_name;
 
     section += `### ${companyName} | ${exp.position_name}\n\n`;
-    section += `**Duration**: ${formatDateRange(exp)}\n`;
+    section += `**Duration**: ${formatExpDateRange(exp)}\n`;
 
     const positions = exp.positions.map((p) => p.job_position_name).join(", ");
     section += `**Position**: ${positions}\n\n`;

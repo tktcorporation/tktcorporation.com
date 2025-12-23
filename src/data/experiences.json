@@ -90,8 +90,8 @@
       "position_name": "ソフトウェアエンジニア",
       "start_year": 2022,
       "start_month": 10,
-      "end_year": 0,
-      "end_month": 0,
+      "end_year": null,
+      "end_month": null,
       "description": "AWS / Docker / Python / Django / TypeScript / Vue\n開発もしつつ、チームの動きを考えたりこぼれた玉を拾う動きが多いポジションに移動\n* 企業向けプロダクト開発チームにて\n  * 開発目標の認識合わせ、チーム内イベントの設定\n  * 開発業務(front/back)\n* frontend課題への課題に向き合うチームの運営",
       "updated_at": "2025-08-04T23:43:36.883559+00:00"
     },
