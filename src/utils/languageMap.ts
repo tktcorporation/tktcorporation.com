@@ -7,6 +7,7 @@
  * - programmingLanguages データを使用して言語/技術の正規化
  * - 言語名の正規化と検出を統一的に処理
  * - TechnologyTimeline と Resume で使用
+ * - 正規表現はキャッシュされてパフォーマンス最適化
  */
 
 import { programmingLanguages } from "../data/programmingLanguages";
@@ -17,6 +18,26 @@ const additionalTechnologies: Record<
   string,
   { name: string; type: string; aliases?: string[] }
 > = {};
+
+// ============================================================================
+// 正規表現キャッシュ
+// ============================================================================
+
+/** 技術名/エイリアスから正規表現への変換キャッシュ */
+const regexCache = new Map<string, RegExp>();
+
+/**
+ * 文字列から単語境界マッチ用の正規表現を取得（キャッシュ付き）
+ */
+function getWordBoundaryRegex(word: string): RegExp {
+  const cached = regexCache.get(word);
+  if (cached) return cached;
+
+  const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(`\\b${escaped}\\b`, "gi");
+  regexCache.set(word, regex);
+  return regex;
+}
 
 /**
  * 言語/技術名を正規化して正式名称を取得
@@ -109,24 +130,23 @@ export function getLanguageColor(name: string): string | null {
 
 /**
  * テキストから技術スタックを抽出
+ * 正規表現はキャッシュされるため、同じテキストパターンに対して高速に動作
+ *
  * @param text - 解析するテキスト
- * @returns 抽出された技術名の配列
+ * @returns 抽出された技術名の配列（アルファベット順）
  */
 export function extractTechnologies(text: string): string[] {
   const technologies = new Set<string>();
 
   // programmingLanguages の言語をチェック
   for (const [key, value] of Object.entries(programmingLanguages)) {
-    // プログラミング言語とマークアップ言語、フレームワークなどを対象
+    // デザインツールは除外
     if (value.type === "design") {
-      continue; // デザインツールは除外
+      continue;
     }
 
-    // 正式名称をチェック
-    const regex = new RegExp(
-      `\\b${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
-      "gi"
-    );
+    // 正式名称をチェック（キャッシュ付き正規表現を使用）
+    const regex = getWordBoundaryRegex(key);
     if (regex.test(text)) {
       technologies.add(key);
     }
@@ -134,10 +154,7 @@ export function extractTechnologies(text: string): string[] {
     // エイリアスもチェック
     if (value.aliases && Array.isArray(value.aliases)) {
       for (const alias of value.aliases) {
-        const aliasRegex = new RegExp(
-          `\\b${alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
-          "gi"
-        );
+        const aliasRegex = getWordBoundaryRegex(alias);
         if (aliasRegex.test(text)) {
           technologies.add(key);
         }
@@ -148,10 +165,7 @@ export function extractTechnologies(text: string): string[] {
   // 追加の技術をチェック
   for (const [key, value] of Object.entries(additionalTechnologies)) {
     // 正式名称をチェック
-    const regex = new RegExp(
-      `\\b${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
-      "gi"
-    );
+    const regex = getWordBoundaryRegex(key);
     if (regex.test(text)) {
       technologies.add(key);
     }
@@ -159,10 +173,7 @@ export function extractTechnologies(text: string): string[] {
     // エイリアスもチェック
     if (value.aliases) {
       for (const alias of value.aliases) {
-        const aliasRegex = new RegExp(
-          `\\b${alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
-          "gi"
-        );
+        const aliasRegex = getWordBoundaryRegex(alias);
         if (aliasRegex.test(text)) {
           technologies.add(key);
         }
