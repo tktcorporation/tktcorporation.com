@@ -20,7 +20,13 @@
         "editorconfig.editorconfig",
         "WakaTime.vscode-wakatime",
         "nemesv.copy-file-name"
-      ]
+      ],
+      "settings": {
+        "files.watcherExclude": {
+          "**/.git/*/**": true,
+          "**/node_modules/*/**": true
+        }
+      }
     }
   },
   "onCreateCommand": {
