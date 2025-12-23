@@ -7,6 +7,7 @@
  * - Robust parsing logic that preserves indentation and hierarchy
  * - Uses Zod validation for type safety
  * - Replaces fragile string manipulation with structured data
+ * - パース結果はキャッシュされてパフォーマンス最適化
  */
 
 import {
@@ -15,8 +16,23 @@ import {
   StructuredDescriptionSchema,
 } from "../types/resume-export";
 
+// ============================================================================
+// キャッシュ（LRU方式でサイズ制限）
+// ============================================================================
+
+const MAX_PARSE_CACHE_SIZE = 100;
+const parseCache = new Map<string, StructuredDescription>();
+
+/**
+ * キャッシュをクリアする（テスト用）
+ */
+export function clearParseCache(): void {
+  parseCache.clear();
+}
+
 /**
  * Parse experience description into structured data
+ * パース結果はキャッシュされ、同じdescriptionに対して高速に動作
  *
  * Expected format:
  * ```
@@ -31,6 +47,33 @@ import {
 export function parseExperienceDescription(
   description: string
 ): StructuredDescription {
+  // キャッシュをチェック
+  const cached = parseCache.get(description);
+  if (cached) {
+    // LRU: アクセスされたアイテムを最後に移動
+    parseCache.delete(description);
+    parseCache.set(description, cached);
+    return cached;
+  }
+
+  const result = parseDescriptionInternal(description);
+
+  // キャッシュサイズ制限
+  if (parseCache.size >= MAX_PARSE_CACHE_SIZE) {
+    const oldestKey = parseCache.keys().next().value;
+    if (oldestKey !== undefined) {
+      parseCache.delete(oldestKey);
+    }
+  }
+
+  parseCache.set(description, result);
+  return result;
+}
+
+/**
+ * 内部パース処理（キャッシュなし）
+ */
+function parseDescriptionInternal(description: string): StructuredDescription {
   const lines = description.split("\n");
 
   // Parse technologies from first line (format: "Tech1 / Tech2 / Tech3")
@@ -107,8 +150,36 @@ function parseBulletPoints(lines: string[]): BulletItem[] {
 }
 
 /**
- * Build hierarchical structure from flat list of indented items
- * Returns items at the specified base indent level
+ * Build hierarchical structure from flat list of indented items.
+ * インデントレベルに基づいてフラットなリストをツリー構造に変換する。
+ *
+ * Algorithm:
+ * 1. 各行を順番に処理
+ * 2. 現在のインデント（baseIndent）より小さい行 → このレベルの終了
+ * 3. 現在のインデントと同じ行 → このレベルのアイテム
+ * 4. 次の行がより深いインデント → 再帰的に子要素を処理
+ *
+ * Example input:
+ * ```
+ * [
+ *   { text: "Item 1", indent: 0 },
+ *   { text: "Child 1", indent: 4 },
+ *   { text: "Child 2", indent: 4 },
+ *   { text: "Item 2", indent: 0 }
+ * ]
+ * ```
+ *
+ * Example output:
+ * ```
+ * [
+ *   { text: "Item 1", children: [{ text: "Child 1" }, { text: "Child 2" }] },
+ *   { text: "Item 2" }
+ * ]
+ * ```
+ *
+ * @param lines - パース済みの行配列（テキストとインデントを含む）
+ * @param baseIndent - 現在処理中のインデントレベル
+ * @returns items: 構築されたツリー、nextIndex: 処理した行数
  */
 function buildHierarchy(
   lines: Array<{ text: string; indent: number }>,
@@ -120,27 +191,26 @@ function buildHierarchy(
   while (i < lines.length) {
     const line = lines[i];
 
-    // If indent is less than base, we've reached the end of this level
+    // Base case: インデントが現在のレベルより浅い → 親に戻る
     if (line.indent < baseIndent) {
       break;
     }
 
-    // If indent equals base, this is an item at our level
+    // 現在のレベルのアイテムを処理
     if (line.indent === baseIndent) {
       const item: BulletItem = { text: line.text };
 
-      // Look ahead to see if next items are children (greater indent)
+      // 次の行がより深いインデント → 子要素として再帰処理
       if (i + 1 < lines.length && lines[i + 1].indent > baseIndent) {
-        // Find the next indent level (first child's indent)
         const childIndent = lines[i + 1].indent;
 
-        // Recursively build children
+        // Recursive case: 子要素を再帰的に構築
         const childResult = buildHierarchy(lines.slice(i + 1), childIndent);
         if (childResult.items.length > 0) {
           item.children = childResult.items;
         }
 
-        // Skip processed children
+        // 処理済みの子要素をスキップ
         i += childResult.nextIndex + 1;
       } else {
         i++;
@@ -148,8 +218,8 @@ function buildHierarchy(
 
       items.push(item);
     } else {
-      // Indent is greater than base but we're not in child processing
-      // This shouldn't happen with proper input, but handle gracefully
+      // Edge case: 予期しないインデント（不正な入力）
+      // グレースフルに処理してスキップ
       i++;
     }
   }

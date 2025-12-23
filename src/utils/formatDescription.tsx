@@ -97,7 +97,14 @@ function createLineElement(
  * @returns Reactエレメントの配列
  */
 export function formatDescription(description: string): React.ReactElement[] {
-  if (!description) return [];
+  if (!description) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        "formatDescription: received empty or undefined description"
+      );
+    }
+    return [];
+  }
 
   return description
     .split("\n")

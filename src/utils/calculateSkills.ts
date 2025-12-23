@@ -10,6 +10,7 @@
  */
 
 import type { Experience, SkillWithYears } from "@/types/experience";
+import { dateToMonths, getCurrentMonths } from "./formatDate";
 import { extractTechnologies } from "./languageMap";
 
 // Re-export for backward compatibility
@@ -27,17 +28,15 @@ export function calculateSkillsWithYears(
     Array<{ start: number; end: number }>
   > = new Map();
 
-  const currentDate = new Date();
-  const currentYearMonth =
-    currentDate.getFullYear() * 12 + (currentDate.getMonth() + 1);
+  const currentYearMonth = getCurrentMonths();
 
   for (const exp of experiences) {
     if (exp.description) {
       const matches = extractTechnologies(exp.description);
       if (matches.length > 0) {
-        const startMonth = exp.start_year * 12 + exp.start_month;
+        const startMonth = dateToMonths(exp.start_year, exp.start_month);
         const endMonth = exp.end_year
-          ? exp.end_year * 12 + (exp.end_month ?? 12)
+          ? dateToMonths(exp.end_year, exp.end_month ?? 12)
           : currentYearMonth;
 
         // matches は既に正規化された技術名の配列（重複を除去）

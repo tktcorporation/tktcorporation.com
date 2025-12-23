@@ -125,8 +125,11 @@ export function TechnologyTimeline({
     }
   };
 
-  const getTopLanguages = (languages: Map<string, number>, limit = 3) => {
-    return Array.from(languages.entries())
+  const getTopLanguages = (
+    languages: Record<string, number>,
+    limit = 3
+  ): [string, number][] => {
+    return Object.entries(languages)
       .sort((a, b) => b[1] - a[1])
       .slice(0, limit);
   };

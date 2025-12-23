@@ -10,16 +10,13 @@
  */
 
 import type { Experience, GroupedExperience } from "@/types/experience";
+import { dateToMonths } from "./formatDate";
 
 /** 連続期間とみなす最大ギャップ（月数） */
 export const MAX_CONSECUTIVE_GAP = 1;
 
-/**
- * 日付を月数に変換（比較用）
- */
-export function dateToMonths(year: number, month: number): number {
-  return year * 12 + month;
-}
+// Re-export for backward compatibility
+export { dateToMonths } from "./formatDate";
 
 /**
  * 経験のグループ化キーを生成

@@ -6,6 +6,7 @@
  * Context:
  * - Resume.tsx、exportResumeMarkdown.tsなどで使用
  * - 期間の表示、経過月数の計算を統一
+ * - dateToMonths() を全ファイルで共通利用
  */
 
 export interface DateRange {
@@ -13,6 +14,42 @@ export interface DateRange {
   startMonth: number;
   endYear: number | null;
   endMonth: number | null;
+}
+
+/**
+ * 有効な月の範囲（1-12）
+ */
+const MIN_MONTH = 1;
+const MAX_MONTH = 12;
+
+/**
+ * 月の値が有効かどうかを検証
+ * @throws Error 月の値が1-12の範囲外の場合
+ */
+export function validateMonth(month: number, context = "month"): void {
+  if (month < MIN_MONTH || month > MAX_MONTH) {
+    throw new Error(
+      `Invalid ${context}: ${month}. Must be between ${MIN_MONTH} and ${MAX_MONTH}.`
+    );
+  }
+}
+
+/**
+ * 年と月を月数に変換（比較・計算用）
+ * プロジェクト全体で一貫した日付計算を提供
+ *
+ * @example dateToMonths(2024, 6) // => 24294
+ */
+export function dateToMonths(year: number, month: number): number {
+  return year * 12 + month;
+}
+
+/**
+ * 現在の日時を月数で取得
+ */
+export function getCurrentMonths(): number {
+  const now = new Date();
+  return dateToMonths(now.getFullYear(), now.getMonth() + 1);
 }
 
 /**

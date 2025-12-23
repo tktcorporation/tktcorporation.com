@@ -9,7 +9,7 @@
  * - 同じロジックを他のコンポーネントでも再利用可能
  */
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type {
   Experience,
   GroupedExperience,
@@ -18,6 +18,7 @@ import type {
 import { calculateSkillsWithYears } from "@/utils/calculateSkills";
 import { groupExperiences } from "@/utils/experienceGrouping";
 import { generateResumeMarkdown } from "@/utils/exportResumeMarkdown";
+import { dateToMonths } from "@/utils/formatDate";
 import experiencesData from "../data/experiences.json";
 
 interface UseResumeDataResult {
@@ -27,6 +28,17 @@ interface UseResumeDataResult {
   resumeMarkdown: string;
   loading: boolean;
 }
+
+/**
+ * 経験を開始日順（新しい順）にソート
+ */
+const sortExperiencesByDate = (experiences: Experience[]): Experience[] => {
+  return [...experiences].sort((a, b) => {
+    const aDate = dateToMonths(a.start_year, a.start_month);
+    const bDate = dateToMonths(b.start_year, b.start_month);
+    return bDate - aDate;
+  });
+};
 
 /**
  * 職務経歴書データを取得・加工するカスタムフック
@@ -39,23 +51,25 @@ export function useResumeData(): UseResumeDataResult {
   const [skillsWithYears, setSkillsWithYears] = useState<SkillWithYears[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const sortedExperiences = [...experiencesData.experience_list].sort(
-      (a, b) => {
-        const aDate = a.start_year * 12 + a.start_month;
-        const bDate = b.start_year * 12 + b.start_month;
-        return bDate - aDate;
-      }
+  // データ処理をメモ化
+  const processData = useCallback(() => {
+    const sortedExperiences = sortExperiencesByDate(
+      experiencesData.experience_list
     );
-
     const grouped = groupExperiences(sortedExperiences);
     const skills = calculateSkillsWithYears(sortedExperiences);
+
+    return { sortedExperiences, grouped, skills };
+  }, []);
+
+  useEffect(() => {
+    const { sortedExperiences, grouped, skills } = processData();
 
     setExperiences(sortedExperiences);
     setGroupedExperiences(grouped);
     setSkillsWithYears(skills);
     setLoading(false);
-  }, []);
+  }, [processData]);
 
   // AI用Markdown生成
   const resumeMarkdown = useMemo(() => {

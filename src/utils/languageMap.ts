@@ -20,21 +20,40 @@ const additionalTechnologies: Record<
 > = {};
 
 // ============================================================================
-// 正規表現キャッシュ
+// 正規表現キャッシュ（LRU方式でサイズ制限）
 // ============================================================================
+
+/** キャッシュの最大サイズ */
+const MAX_REGEX_CACHE_SIZE = 500;
 
 /** 技術名/エイリアスから正規表現への変換キャッシュ */
 const regexCache = new Map<string, RegExp>();
 
 /**
  * 文字列から単語境界マッチ用の正規表現を取得（キャッシュ付き）
+ * LRU方式でキャッシュサイズを制限し、メモリリークを防止
  */
 function getWordBoundaryRegex(word: string): RegExp {
   const cached = regexCache.get(word);
-  if (cached) return cached;
+  if (cached) {
+    // LRU: アクセスされたアイテムを最後に移動
+    regexCache.delete(word);
+    regexCache.set(word, cached);
+    return cached;
+  }
 
   const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const regex = new RegExp(`\\b${escaped}\\b`, "gi");
+
+  // キャッシュサイズ制限チェック
+  if (regexCache.size >= MAX_REGEX_CACHE_SIZE) {
+    // 最も古いエントリを削除（Mapは挿入順を保持）
+    const oldestKey = regexCache.keys().next().value;
+    if (oldestKey !== undefined) {
+      regexCache.delete(oldestKey);
+    }
+  }
+
   regexCache.set(word, regex);
   return regex;
 }

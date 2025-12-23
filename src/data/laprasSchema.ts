@@ -60,12 +60,34 @@ const ZennArticleSchema = z.object({
   posted_at: z.string(),
 });
 
+// Activity types - 既知のアクティビティタイプを型安全に
+export const ActivityTypes = [
+  "github",
+  "github_pr",
+  "connpass",
+  "qiita",
+  "zenn",
+  "blog",
+  "note",
+  "speaker_deck",
+  "teratail",
+  "hatena",
+  "other",
+] as const;
+
+export type ActivityType = (typeof ActivityTypes)[number];
+
 // Activity
 const ActivitySchema = z.object({
   title: z.string(),
   url: z.string(),
   date: z.string(),
-  type: z.string(), // More flexible to handle various types
+  // 既知のタイプはenumで検証、未知のタイプは "other" として扱う
+  type: z
+    .string()
+    .transform((val) =>
+      ActivityTypes.includes(val as ActivityType) ? val : "other"
+    ) as z.ZodType<ActivityType>,
 });
 
 // Event
