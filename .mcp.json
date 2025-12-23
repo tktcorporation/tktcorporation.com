@@ -1,32 +1,21 @@
 {
   "mcpServers": {
-    "lapras": {
+    "chrome-devtools": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@lapras-inc/lapras-mcp-server"],
-      "env": {
-        "LAPRAS_API_KEY": "${LAPRAS_API_KEY}"
-      }
-    },
-    "serena": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-        "--context",
-        "ide-assistant",
-        "--project",
-        "."
-      ],
+      "command": "bash",
+      "args": [".devcontainer/run-chrome-devtools-mcp.sh"],
       "env": {}
     },
     "context7": {
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp"],
+      "env": {}
+    },
+    "ide": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/ide-mcp@latest"],
       "env": {}
     }
   }

@@ -1,46 +1,47 @@
 {
   "image": "mcr.microsoft.com/devcontainers/base:bookworm",
   "features": {
+    // "ghcr.io/devcontainers/features/docker-in-docker:2": {
+    //   "version": "latest",
+    //   "enableNonRootDocker": "true",
+    //   "moby": "true"
+    // },
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers-extra/features/mise:1": {}
   },
-  "forwardPorts": [5173, 8787],
-  "portsAttributes": {
-    "5173": {
-      "label": "vite"
-    }
-  },
-  "runArgs": ["--env-file", ".devcontainer/devcontainer.env"],
+  "runArgs": ["--env-file", ".devcontainer/.env.devcontainer"],
   "customizations": {
     "vscode": {
-      "extensions": ["mhutchie.git-graph", "WakaTime.vscode-wakatime"],
-      "files.watcherExclude": {
-        "**/.git/*/**": true,
-        "**/node_modules/*/**": true
+      "extensions": [
+        "GitHub.copilot",
+        "mhutchie.git-graph",
+        "steoates.autoimport",
+        "editorconfig.editorconfig",
+        "WakaTime.vscode-wakatime",
+        "nemesv.copy-file-name"
+      ],
+      "settings": {
+        "files.watcherExclude": {
+          "**/.git/*/**": true,
+          "**/node_modules/*/**": true
+        }
       }
     }
   },
   "onCreateCommand": {
-    "update-apt": ["sudo", "apt-get", "update"]
-  },
-  "updateContentCommand": {
     "install-packages": [
-      "sudo",
-      "apt-get",
-      "install",
-      "-y",
-      "ripgrep",
-      "bc",
-      "build-essential",
-      "fzf"
-    ],
-    "add-new-node-gpg-key": [
       "bash",
       "-c",
-      "gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 5BE8A3F6C8A5C01D106C0AD820B1A390B168D356"
+      "set -e; sudo apt-get update && sudo apt-get install -y build-essential fzf ripgrep bc gpg ca-certificates curl"
     ]
   },
-  "postCreateCommand": {
+  "updateContentCommand": {
+    "add-node-gpg-key-mise": [
+      "bash",
+      "-c",
+      "set -e; curl -fsSL https://raw.githubusercontent.com/nodejs/release-keys/b362bd15f2ac7ce350d7563fc03e0c625e455e5f/cli.sh | bash -s import"
+    ],
     "setup-mise-bash": [
       "bash",
       "-c",
@@ -48,5 +49,14 @@
     ],
     "trust-mise": ["mise", "trust"]
   },
-  "postStartCommand": "mise install"
+  "postCreateCommand": {
+    "mise-install": "mise install"
+  },
+  "postStartCommand": {
+    "setup-chrome-devtools-mcp": [
+      "bash",
+      "-lc",
+      ".devcontainer/setup-chrome-devtools-mcp.sh"
+    ]
+  }
 }
