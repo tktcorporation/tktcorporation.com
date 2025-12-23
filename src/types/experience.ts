@@ -113,14 +113,65 @@ export interface SkillWithYears {
 
 /**
  * グループ化された経験（組織・期間別）
+ *
+ * Note: total_start_*, total_end_* は experiences から計算可能な派生フィールドです。
+ * グループ化時に事前計算されますが、experiences を直接参照する場合は
+ * getGroupedPeriod() を使用することもできます。
  */
 export interface GroupedExperience {
   organization_name: string;
   is_client_work: boolean;
   client_company_name: string;
+  /** 派生フィールド: experiences[0].start_year から計算 */
   total_start_year: number;
+  /** 派生フィールド: experiences[0].start_month から計算 */
   total_start_month: number;
+  /** 派生フィールド: experiences[last].end_year から計算 */
   total_end_year: number | null;
+  /** 派生フィールド: experiences[last].end_month から計算 */
   total_end_month: number | null;
   experiences: Experience[];
+}
+
+/**
+ * 期間情報の型
+ */
+export interface Period {
+  startYear: number;
+  startMonth: number;
+  endYear: number | null;
+  endMonth: number | null;
+}
+
+/**
+ * GroupedExperience の期間を experiences から再計算
+ * キャッシュされた total_* フィールドの代わりに使用可能
+ */
+export function getGroupedPeriod(group: GroupedExperience): Period {
+  const firstExp = group.experiences[0];
+  const lastExp = group.experiences[group.experiences.length - 1];
+
+  return {
+    startYear: firstExp.start_year,
+    startMonth: firstExp.start_month,
+    endYear: lastExp.end_year,
+    endMonth: lastExp.end_month,
+  };
+}
+
+/**
+ * グループの全期間を月数で計算
+ */
+export function getGroupedDurationMonths(group: GroupedExperience): number {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+
+  const startMonths = group.total_start_year * 12 + group.total_start_month;
+  const endMonths =
+    group.total_end_year === null
+      ? currentYear * 12 + currentMonth
+      : group.total_end_year * 12 + (group.total_end_month ?? 12);
+
+  return Math.max(0, endMonths - startMonths);
 }

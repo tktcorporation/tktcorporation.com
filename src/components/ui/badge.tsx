@@ -1,11 +1,14 @@
 /**
  * Purpose:
- * Badge component for displaying labels, tags, and status indicators
- * following shadcn/ui design patterns with multiple variants.
+ * 汎用バッジコンポーネント - shadcn/ui デザインパターンに従う。
+ * ラベル、タグ、ステータス表示用の汎用的なバッジ。
  *
  * Context:
- * Used throughout the application for categorization, status display,
- * and highlighting important information in a compact format.
+ * - TechnologyTimeline などの汎用的なUI部品として使用
+ * - class-variance-authority によるバリアント管理
+ *
+ * Note: 技術スタック表示には resume/TechBadge.tsx を使用してください
+ * （Deviconアイコン対応、技術特化のスタイリング）
  */
 
 import { cva, type VariantProps } from "class-variance-authority";

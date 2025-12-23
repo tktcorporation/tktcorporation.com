@@ -38,8 +38,6 @@ import {
 const PortfolioPresentation = lazy(() => import("./PortfolioPresentation"));
 
 const Portfolio = () => {
-  const [_currentSlide, setCurrentSlide] = useState(0);
-  const [_isFullscreen, setIsFullscreen] = useState(false);
   const [isPresentationMode, setIsPresentationMode] = useState(false);
 
   // URLパラメータをチェック
@@ -106,27 +104,21 @@ const Portfolio = () => {
   ];
 
   // キーボードナビゲーション（プレゼンテーションモード時のみ）
+  // Note: スライドナビゲーションはSpectacleが管理するため、ここではフルスクリーンとEscapeのみ処理
   useEffect(() => {
     if (!isPresentationMode) return;
 
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        setCurrentSlide((prev) => (prev > 0 ? prev - 1 : 7));
-      } else if (e.key === "ArrowRight") {
-        setCurrentSlide((prev) => (prev < 7 ? prev + 1 : 0));
-      } else if (e.key === "f" || e.key === "F") {
+      if (e.key === "f" || e.key === "F") {
         if (!document.fullscreenElement) {
           document.documentElement.requestFullscreen();
-          setIsFullscreen(true);
         } else {
           document.exitFullscreen();
-          setIsFullscreen(false);
         }
       } else if (e.key === "Escape") {
         setIsPresentationMode(false);
         if (document.fullscreenElement) {
           document.exitFullscreen();
-          setIsFullscreen(false);
         }
       }
     };
@@ -135,29 +127,10 @@ const Portfolio = () => {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [isPresentationMode]);
 
-  const _goToPreviousSlide = () => {
-    setCurrentSlide((prev) => (prev > 0 ? prev - 1 : slides.length - 1));
-  };
-
-  const _goToNextSlide = () => {
-    setCurrentSlide((prev) => (prev < slides.length - 1 ? prev + 1 : 0));
-  };
-
-  const _toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
-    }
-  };
-
   const togglePresentationMode = () => {
     setIsPresentationMode(!isPresentationMode);
     if (isPresentationMode && document.fullscreenElement) {
       document.exitFullscreen();
-      setIsFullscreen(false);
     }
   };
 

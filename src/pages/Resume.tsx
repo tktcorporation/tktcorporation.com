@@ -11,8 +11,6 @@
  * - レスポンシブデザインで様々なデバイスに対応
  */
 
-import type React from "react";
-import { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { CopyResumeButton } from "@/components/CopyResumeButton";
 import {
@@ -22,56 +20,12 @@ import {
 } from "@/components/resume";
 import { useResumeData } from "@/hooks/useResumeData";
 import { formatDateRange } from "@/utils/formatDate";
+import { formatDescription } from "@/utils/formatDescription";
 import { extractTechnologies } from "@/utils/languageMap";
 
 function Resume() {
   const { groupedExperiences, skillsWithYears, resumeMarkdown, loading } =
     useResumeData();
-
-  const extractTechTags = useCallback((description: string): string[] => {
-    if (!description) return [];
-    // languageMap の extractTechnologies を使用
-    return extractTechnologies(description);
-  }, []);
-
-  const formatDescription = (description: string): React.ReactElement[] => {
-    if (!description) return [];
-
-    return description
-      .split("\n")
-      .map((line, index) => {
-        const trimmedLine = line.trim();
-        if (!trimmedLine) return null;
-
-        if (line.startsWith("●") || line.startsWith("*")) {
-          return (
-            <li key={`${index}-disc`} className="ml-4 list-disc">
-              {line.substring(1).trim()}
-            </li>
-          );
-        }
-        if (line.startsWith("　　■") || line.startsWith("    *")) {
-          return (
-            <li key={`${index}-sub`} className="ml-8 text-sm list-circle">
-              {line.replace(/^[　■\s*]+/, "")}
-            </li>
-          );
-        }
-        if (line.startsWith("　○") || line.startsWith("  *")) {
-          return (
-            <li key={`${index}-circle`} className="ml-6 list-circle">
-              {line.replace(/^[　○\s*]+/, "")}
-            </li>
-          );
-        }
-        return (
-          <p key={`${index}-para`} className="mb-1">
-            {trimmedLine}
-          </p>
-        );
-      })
-      .filter(Boolean) as React.ReactElement[];
-  };
 
   return (
     <div className="min-h-screen flex flex-col text-slate-200">
@@ -106,7 +60,7 @@ function Resume() {
             groupedExperiences={groupedExperiences}
             loading={loading}
             formatDate={formatDateRange}
-            extractTechTags={extractTechTags}
+            extractTechTags={extractTechnologies}
             formatDescription={formatDescription}
           />
 
