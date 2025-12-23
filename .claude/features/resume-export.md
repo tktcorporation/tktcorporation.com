@@ -77,7 +77,6 @@ The exported Markdown includes:
 
 **Data Source**:
 - Resume data comes from `src/data/experiences.json`
-- Updated via LAPRAS integration (see MCP Integration section)
 - Skills are calculated from experience descriptions
 
 **Deployment**:

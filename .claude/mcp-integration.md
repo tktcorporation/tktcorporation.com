@@ -4,56 +4,29 @@ The project uses MCP servers for enhanced functionality. Configuration is in `.m
 
 ## Available MCP Servers
 
-### 1. LAPRAS (`mcp__lapras__*`)
-**Purpose**: Integration with LAPRAS career platform for managing professional data
+### 1. Chrome DevTools (`mcp__chrome-devtools__*`)
+**Purpose**: Browser automation and debugging via Chrome DevTools Protocol
 
 **When to use**:
-- Searching for job opportunities with specific criteria
-- Managing work experiences and career information
-- Updating professional summary and career aspirations
-- Fetching LAPRAS profile data
+- Taking screenshots of pages
+- Navigating and interacting with web pages
+- Debugging frontend issues
+- E2E testing and visual verification
+- Performance analysis
 
 **Key functions**:
-- `mcp__lapras__search_jobs` - Search jobs by criteria (salary, tech stack, position)
-- `mcp__lapras__get_job_detail` - Get detailed information about a specific job
-- `mcp__lapras__get_experiences` - Retrieve work experiences from LAPRAS
-- `mcp__lapras__create_experience` - Add new work experience
-- `mcp__lapras__update_experience` - Update existing work experience
-- `mcp__lapras__delete_experience` - Remove work experience
-- `mcp__lapras__get_job_summary` - Get career summary (職務要約)
-- `mcp__lapras__update_job_summary` - Update career summary
-- `mcp__lapras__get_want_to_do` - Get career aspirations
-- `mcp__lapras__update_want_to_do` - Update career aspirations
+- `mcp__chrome-devtools__take_screenshot` - Capture page screenshots
+- `mcp__chrome-devtools__take_snapshot` - Get page accessibility tree snapshot
+- `mcp__chrome-devtools__navigate_page` - Navigate to URLs
+- `mcp__chrome-devtools__click` - Click on elements
+- `mcp__chrome-devtools__fill` - Fill form inputs
+- `mcp__chrome-devtools__evaluate_script` - Execute JavaScript in page context
+- `mcp__chrome-devtools__list_console_messages` - Get console output
+- `mcp__chrome-devtools__list_network_requests` - Monitor network activity
 
-**Note**: Requires `LAPRAS_API_KEY` environment variable. Data synced to https://lapras.com/cv
+**Setup**: Requires Chrome/Chromium installation. Setup script at `.devcontainer/setup-chrome-devtools-mcp.sh`.
 
-### 2. Serena (`mcp__serena__*`)
-**Purpose**: Advanced code analysis and semantic code operations
-
-**When to use**:
-- Analyzing code structure and symbols (classes, functions, methods)
-- Finding symbol references and dependencies
-- Making precise, symbol-aware code edits
-- Searching for patterns in codebase
-- ~~Storing and retrieving project memories/documentation~~ (Use `.claude/` directory instead)
-
-**Key functions**:
-- `mcp__serena__get_symbols_overview` - Understand file structure without reading entire file
-- `mcp__serena__find_symbol` - Find specific symbols by name path
-- `mcp__serena__find_referencing_symbols` - Find all references to a symbol
-- `mcp__serena__replace_symbol_body` - Replace entire symbol definitions
-- `mcp__serena__insert_before_symbol` / `insert_after_symbol` - Insert code precisely
-- `mcp__serena__replace_regex` - Pattern-based replacements with wildcards
-- `mcp__serena__search_for_pattern` - Flexible pattern search across codebase
-- `mcp__serena__list_dir` / `find_file` - Navigate project structure
-
-**Best practices**:
-- Use symbol tools instead of reading entire files when possible
-- Prefer `get_symbols_overview` before deep file analysis
-- Use regex with wildcards for efficient large replacements
-- **For project documentation, use `.claude/` directory instead of Serena memories**
-
-### 3. Context7 (`mcp__context7__*`)
+### 2. Context7 (`mcp__context7__*`)
 **Purpose**: Retrieve up-to-date documentation for libraries and frameworks
 
 **When to use**:
@@ -71,20 +44,31 @@ The project uses MCP servers for enhanced functionality. Configuration is in `.m
 - Specify `topic` parameter to focus documentation retrieval
 - Use appropriate `tokens` limit based on needed detail (default: 10000)
 
+### 3. IDE (`mcp__ide__*`)
+**Purpose**: IDE integration tools from Anthropic for enhanced development workflows
+
+**When to use**:
+- Enhanced code editing and refactoring
+- IDE-specific operations and integrations
+- Advanced development tooling
+
+**Note**: This is an official Anthropic MCP server for IDE integration.
+
 ## MCP Usage Guidelines
 
 1. **Choose the right tool for the task**:
    - File operations → Native tools (Read, Write, Edit)
-   - Code analysis → Serena (symbols, patterns)
+   - Browser automation → Chrome DevTools
    - Library docs → Context7
-   - Career data → LAPRAS
-   - **Project documentation → `.claude/` directory (not Serena memories)**
+   - IDE operations → IDE MCP
+   - **Project documentation → `.claude/` directory**
 
 2. **Efficiency considerations**:
-   - Serena's symbol tools are more efficient than reading entire files
-   - Context7 can save time vs. web searches for library documentation
-   - LAPRAS operations directly update the live profile
+   - Chrome DevTools for visual verification and browser testing
+   - Context7 saves time vs. web searches for library documentation
+   - Use snapshots over screenshots when possible (faster, more accessible)
 
-3. **Integration flow**:
-   - LAPRAS data flows: LAPRAS platform ↔ MCP ↔ Local JSON ↔ Website
-   - Context7 provides real-time documentation without local storage
+3. **Browser automation tips**:
+   - Prefer `take_snapshot` for understanding page structure
+   - Use `take_screenshot` for visual verification
+   - Chain navigation and interaction commands efficiently

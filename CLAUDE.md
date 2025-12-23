@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal website built with React, TypeScript, and Vite. It includes a main homepage and a resume page with LAPRAS integration for displaying work experiences.
+This is a personal website built with React, TypeScript, and Vite. It includes a main homepage and a resume page for displaying work experiences.
 
 **Key Technologies**: React 19, TypeScript, Vite, Tailwind CSS, Biome
 
@@ -122,7 +122,7 @@ For detailed information, refer to these documents:
 - **Architecture** - @.claude/architecture.md - Tech stack, project structure, configuration files
 - **Development Workflows** - @.claude/development.md - Development commands, CI/CD
 - **Living Documentation** - @.claude/living-documentation.md - Test-driven specification approach
-- **MCP Integration** - @.claude/mcp-integration.md - LAPRAS, Serena, Context7 integration guides
+- **MCP Integration** - @.claude/mcp-integration.md - Chrome DevTools, Context7, IDE MCP guides
 - **Resume Export Feature** - @.claude/features/resume-export.md - AI-friendly resume export implementation
 
 ## Useful Slash Commands
