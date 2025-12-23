@@ -33,8 +33,8 @@ export function parseExperienceDescription(
 ): StructuredDescription {
   const lines = description.split("\n");
 
-  // Extract technologies from first line
-  const technologies = extractTechnologies(lines[0] || "");
+  // Parse technologies from first line (format: "Tech1 / Tech2 / Tech3")
+  const technologies = parseTechListFromFirstLine(lines[0] || "");
 
   // Find the start of bullet points (skip empty lines after tech line)
   let bulletStartIndex = 1;
@@ -56,10 +56,14 @@ export function parseExperienceDescription(
 }
 
 /**
- * Extract technologies from first line
+ * Parse technology list from first line of description
  * Expected format: "Tech1 / Tech2 / Tech3"
+ *
+ * Note: This is different from languageMap.ts extractTechnologies() which
+ * detects technologies from any text using regex pattern matching.
+ * This function simply splits a formatted tech list string.
  */
-function extractTechnologies(firstLine: string): string[] {
+function parseTechListFromFirstLine(firstLine: string): string[] {
   if (!firstLine.trim()) {
     return [];
   }
