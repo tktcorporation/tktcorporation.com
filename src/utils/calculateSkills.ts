@@ -9,28 +9,11 @@
  * - Sorts skills by total experience duration (descending)
  */
 
+import type { Experience, SkillWithYears } from "@/types/experience";
 import { extractTechnologies } from "./languageMap";
 
-interface Experience {
-  id: number;
-  organization_name: string;
-  is_client_work: boolean;
-  client_company_name: string;
-  positions: Array<{ id: number; job_position_name: string }>;
-  position_name: string;
-  start_year: number;
-  start_month: number;
-  end_year: number | null;
-  end_month: number | null;
-  description: string;
-  updated_at: string;
-}
-
-export interface SkillWithYears {
-  name: string;
-  years: number;
-  months: number;
-}
+// Re-export for backward compatibility
+export type { SkillWithYears } from "@/types/experience";
 
 /**
  * Calculate skills with years of experience from a list of experiences

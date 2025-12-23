@@ -10,31 +10,7 @@
  * - Provides machine-readable format for integrations
  */
 
-interface Experience {
-  id: number;
-  organization_name: string;
-  is_client_work: boolean;
-  client_company_name: string;
-  positions: Position[];
-  position_name: string;
-  start_year: number;
-  start_month: number;
-  end_year: number | null;
-  end_month: number | null;
-  description: string;
-  updated_at: string;
-}
-
-interface Position {
-  id: number;
-  job_position_name: string;
-}
-
-interface SkillWithYears {
-  name: string;
-  years: number;
-  months: number;
-}
+import type { Experience, SkillWithYears } from "@/types/experience";
 
 interface EnhancedExperience extends Experience {
   duration_months: number;
