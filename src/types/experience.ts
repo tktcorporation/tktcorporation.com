@@ -103,12 +103,24 @@ export interface ExperienceData {
 }
 
 /**
+ * スキルのカテゴリ
+ */
+export type SkillCategory =
+  | "language"
+  | "frontend"
+  | "backend"
+  | "infrastructure"
+  | "database"
+  | "other";
+
+/**
  * スキルと経験年数
  */
 export interface SkillWithYears {
   name: string;
   years: number;
   months: number;
+  category: SkillCategory;
 }
 
 /**

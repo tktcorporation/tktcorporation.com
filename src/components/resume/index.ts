@@ -9,5 +9,6 @@
 export { ExperienceCard } from "./ExperienceCard";
 export { ExperienceSection } from "./ExperienceSection";
 export { ExportSection } from "./ExportSection";
+export { ProfileSection } from "./ProfileSection";
 export { SkillsSection } from "./SkillsSection";
 export { TechBadge } from "./TechBadge";

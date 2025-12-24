@@ -16,6 +16,7 @@ import { CopyResumeButton } from "@/components/CopyResumeButton";
 import {
   ExperienceSection,
   ExportSection,
+  ProfileSection,
   SkillsSection,
 } from "@/components/resume";
 import { useResumeData } from "@/hooks/useResumeData";
@@ -24,8 +25,13 @@ import { formatDescription } from "@/utils/formatDescription";
 import { extractTechnologies } from "@/utils/languageMap";
 
 function Resume() {
-  const { groupedExperiences, skillsWithYears, resumeMarkdown, loading } =
-    useResumeData();
+  const {
+    experiences,
+    groupedExperiences,
+    skillsWithYears,
+    resumeMarkdown,
+    loading,
+  } = useResumeData();
 
   return (
     <div className="min-h-screen flex flex-col text-slate-200">
@@ -45,14 +51,19 @@ function Resume() {
 
       <main className="container mx-auto px-4 py-12 flex-grow">
         <div className="max-w-5xl mx-auto">
-          <header className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
+          <header className="mb-8">
+            <div className="flex items-center gap-3">
               <h1 className="text-3xl md:text-4xl font-bold text-white animate-fade-in">
                 Resume
               </h1>
               <CopyResumeButton markdown={resumeMarkdown} variant="primary" />
             </div>
           </header>
+
+          <ProfileSection
+            experiences={experiences}
+            groupedExperiences={groupedExperiences}
+          />
 
           <SkillsSection skills={skillsWithYears} loading={loading} />
 

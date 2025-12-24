@@ -9,11 +9,88 @@
  * - Sorts skills by total experience duration (descending)
  */
 
-import type { Experience, SkillWithYears } from "@/types/experience";
-import { extractTechnologies } from "./languageMap";
+import type {
+  Experience,
+  SkillCategory,
+  SkillWithYears,
+} from "@/types/experience";
+import { extractTechnologies, getTechnologyType } from "./languageMap";
 
 // Re-export for backward compatibility
 export type { SkillWithYears } from "@/types/experience";
+
+/**
+ * 技術タイプからスキルカテゴリを判定
+ */
+function getSkillCategory(skillName: string): SkillCategory {
+  const type = getTechnologyType(skillName);
+
+  // プログラミング言語
+  if (type === "programming" || type === "markup") {
+    return "language";
+  }
+
+  // フロントエンド（フレームワーク/ライブラリで判定）
+  const frontendTechs = [
+    "React",
+    "Vue.js",
+    "Angular",
+    "Svelte",
+    "Next.js",
+    "Nuxt.js",
+    "Tailwind CSS",
+    "Bootstrap",
+    "Sass",
+    "CSS3",
+    "HTML5",
+  ];
+  if (frontendTechs.includes(skillName) || type === "css") {
+    return "frontend";
+  }
+
+  // バックエンド
+  const backendTechs = [
+    "Django",
+    "FastAPI",
+    "Express",
+    "NestJS",
+    "Spring",
+    "Ruby on Rails",
+    "Laravel",
+    "Node.js",
+  ];
+  if (backendTechs.includes(skillName) || type === "backend") {
+    return "backend";
+  }
+
+  // データベース
+  if (type === "database") {
+    return "database";
+  }
+
+  // インフラ
+  const infraTechs = [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "GitHub Actions",
+    "CircleCI",
+    "Jenkins",
+    "Nginx",
+  ];
+  if (
+    infraTechs.includes(skillName) ||
+    type === "cloud" ||
+    type === "infrastructure" ||
+    type === "ci" ||
+    type === "hosting"
+  ) {
+    return "infrastructure";
+  }
+
+  return "other";
+}
 
 /**
  * Calculate skills with years of experience from a list of experiences
@@ -95,6 +172,7 @@ export function calculateSkillsWithYears(
       name: skillName,
       years,
       months,
+      category: getSkillCategory(skillName),
     });
   }
 
