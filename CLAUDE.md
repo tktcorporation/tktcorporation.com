@@ -57,6 +57,31 @@ Format:
 - When using AI agents for coding, always verify that the Purpose is preserved and accurate
 - If an AI agent suggests changes that conflict with the Purpose, the Purpose takes precedence
 
+## UI/UX Design Standards (CRITICAL for Visual Changes)
+
+**Before implementing ANY UI changes, you MUST read:**
+- **Design System** - @.claude/design-system.md - Color palette, spacing, typography tokens
+- **UI/UX Guidelines** - @.claude/ui-ux-guidelines.md - Rules, anti-patterns, checklists
+
+### Quick Rules
+1. **Use only defined tokens** - No custom colors, spacing, or animations
+2. **Copy existing patterns** - Find similar components and replicate their styling
+3. **Less is more** - Remove decorative elements that don't serve a function
+4. **Consistency over creativity** - Matching existing > "better" but different
+
+### Pre-Implementation Checklist
+- [ ] Read the most similar existing component
+- [ ] Verify all values are from design-system.md
+- [ ] Check visual hierarchy (important = prominent)
+- [ ] Confirm hover/focus states match existing patterns
+
+### Common Anti-Patterns to Avoid
+- Multiple gradients competing for attention
+- Excessive or nested animations
+- Empty containers wrapping single values
+- Decorative elements without function
+- Inconsistent spacing values
+
 ## Claude Code Advanced Features
 
 Claude Code provides advanced capabilities for complex task management and efficient execution.
@@ -119,8 +144,13 @@ Claude Code provides advanced capabilities for complex task management and effic
 
 For detailed information, refer to these documents:
 
+### Core Guidelines
 - **Architecture** - @.claude/architecture.md - Tech stack, project structure, configuration files
 - **Development Workflows** - @.claude/development.md - Development commands, CI/CD
+- **Design System** - @.claude/design-system.md - Design tokens (colors, spacing, typography)
+- **UI/UX Guidelines** - @.claude/ui-ux-guidelines.md - Design rules and anti-patterns
+
+### Features & Integration
 - **Living Documentation** - @.claude/living-documentation.md - Test-driven specification approach
 - **MCP Integration** - @.claude/mcp-integration.md - Chrome DevTools, Context7, IDE MCP guides
 - **Resume Export Feature** - @.claude/features/resume-export.md - AI-friendly resume export implementation
