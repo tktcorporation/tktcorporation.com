@@ -270,7 +270,9 @@ export const VRLiveProductionSlide = ({
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-slate-100 mb-3">関連リンク</h3>
+          <h3 className="text-lg font-medium text-slate-100 mb-3">
+            関連リンク
+          </h3>
           <div className="space-y-2">
             <a
               href="https://v-fes.sanrio.co.jp/"
@@ -335,7 +337,9 @@ export const ContentOptimizationSlide = ({
       {/* 右側: 説明文 */}
       <div className="flex-1 space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-slate-100 mb-3">責務・役割</h3>
+          <h3 className="text-lg font-medium text-slate-100 mb-3">
+            責務・役割
+          </h3>
           <ul className="space-y-2 text-slate-300 font-light text-sm">
             <li>• 進行管理</li>
             <li>• 要件/着地点のすり合わせ</li>
@@ -345,7 +349,9 @@ export const ContentOptimizationSlide = ({
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-slate-100 mb-3">関連リンク</h3>
+          <h3 className="text-lg font-medium text-slate-100 mb-3">
+            関連リンク
+          </h3>
           <div className="pt-4 flex flex-col space-y-2">
             <a
               href="https://v-fes.sanrio.co.jp/"
@@ -404,7 +410,9 @@ export const EventCalendarSlide = ({
         <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-full text-xs font-light">
           副業
         </span>
-        <p className="text-lg text-slate-300 font-light">PM / デザイン / 開発</p>
+        <p className="text-lg text-slate-300 font-light">
+          PM / デザイン / 開発
+        </p>
       </div>
       <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
@@ -426,7 +434,9 @@ export const EventCalendarSlide = ({
       {/* 右側: 説明文 */}
       <div className="flex-1 space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-slate-100 mb-3">責務・役割</h3>
+          <h3 className="text-lg font-medium text-slate-100 mb-3">
+            責務・役割
+          </h3>
           <ul className="space-y-2 text-slate-300 font-light text-sm">
             <li>• 要件ヒアリング / 仕様策定</li>
             <li>• UIデザイン</li>
@@ -464,7 +474,9 @@ export const VRChatGameSlide = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-medium text-slate-100 mb-3">担当業務</h3>
+            <h3 className="text-lg font-medium text-slate-100 mb-3">
+              担当業務
+            </h3>
             <ul className="space-y-2 text-slate-300 font-light">
               <li>• 要件ヒアリングと仕様決定</li>
               <li>• リリースに向けたロードマップ策定</li>
