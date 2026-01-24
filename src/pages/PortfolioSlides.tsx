@@ -24,10 +24,10 @@ interface SlideContentProps {
 // タイトルスライド
 export const TitleSlide = () => (
   <div className="flex flex-col items-center justify-center h-full text-center">
-    <h1 className="text-6xl md:text-7xl font-light tracking-tight mb-6 text-gray-900">
+    <h1 className="text-6xl md:text-7xl font-light tracking-tight mb-6 text-slate-100">
       tktcorporation
     </h1>
-    <p className="text-2xl md:text-3xl text-gray-700 font-light">
+    <p className="text-2xl md:text-3xl text-slate-200 font-light">
       Software Engineer / Product Manager
     </p>
   </div>
@@ -37,27 +37,27 @@ export const TitleSlide = () => (
 export const CapabilitiesSlide = () => (
   <div className="flex flex-col justify-center h-full">
     <div className="text-center mb-12">
-      <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-4">
+      <h2 className="text-5xl md:text-6xl font-light text-slate-100 mb-4">
         Capabilities
       </h2>
-      <p className="text-xl text-gray-500 font-light">
+      <p className="text-xl text-slate-400 font-light">
         ソフトウェアの企画から開発、リリース、グロースまで
       </p>
-      <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
+      <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
 
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Engineering Category */}
       <div className="text-center">
-        <h3 className="text-xl font-medium text-gray-800 mb-4">Engineering</h3>
+        <h3 className="text-xl font-medium text-slate-200 mb-4">Engineering</h3>
         <div className="flex flex-wrap justify-center gap-2">
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             Webサイト / Webアプリ開発
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             iOS / Androidアプリ開発
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             Mac / Windowsアプリ開発
           </span>
         </div>
@@ -65,23 +65,23 @@ export const CapabilitiesSlide = () => (
 
       {/* Project Management Category */}
       <div className="text-center">
-        <h3 className="text-xl font-medium text-gray-800 mb-4">
+        <h3 className="text-xl font-medium text-slate-200 mb-4">
           Project Management
         </h3>
         <div className="flex flex-wrap justify-center gap-2">
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             スケジュール管理
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             チーム調整
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             ステークホルダー対応
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             リスク管理
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             進捗可視化
           </span>
         </div>
@@ -89,23 +89,23 @@ export const CapabilitiesSlide = () => (
 
       {/* Product Management Category */}
       <div className="text-center">
-        <h3 className="text-xl font-medium text-gray-800 mb-4">
+        <h3 className="text-xl font-medium text-slate-200 mb-4">
           Product Management
         </h3>
         <div className="flex flex-wrap justify-center gap-2">
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             KPI設定・分析
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             開発企画
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             リリース計画策定
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             ユーザー分析
           </span>
-          <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-light transition-colors">
+          <span className="px-4 py-2 bg-white/10 text-slate-200 rounded-full text-sm font-light transition-colors">
             グロースハック
           </span>
         </div>
@@ -118,26 +118,26 @@ export const CapabilitiesSlide = () => (
 export const B2CProductManagerSlide = () => (
   <div className="flex flex-col justify-center h-full">
     <div className="text-center mb-16">
-      <p className="text-lg text-gray-500 mb-4 font-light">2025 - 現在</p>
-      <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
+      <p className="text-lg text-slate-400 mb-4 font-light">2025 - 現在</p>
+      <h2 className="text-5xl md:text-6xl font-light text-slate-100 mb-6">
         toC Webプロダクト開発
       </h2>
       <div className="flex items-center justify-center gap-4">
-        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+        <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-full text-xs font-light">
           フルタイム
         </span>
-        <p className="text-xl text-gray-600 font-light">
+        <p className="text-xl text-slate-300 font-light">
           プロダクトマネージャー
         </p>
       </div>
-      <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
+      <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
 
     <div className="max-w-6xl mx-auto">
       <div className="flex gap-8">
         <div className="flex-1">
-          <h3 className="text-lg font-medium text-gray-900 mb-3">主な責任</h3>
-          <ul className="space-y-2 text-gray-600 font-light text-sm">
+          <h3 className="text-lg font-medium text-slate-100 mb-3">主な責任</h3>
+          <ul className="space-y-2 text-slate-300 font-light text-sm">
             <li>• KPI設定に基づいた機能企画</li>
             <li>• リリース計画の策定と実行管理</li>
             <li>• グロース施策の企画・実行・効果測定</li>
@@ -145,10 +145,10 @@ export const B2CProductManagerSlide = () => (
         </div>
 
         <div className="flex-1">
-          <h3 className="text-lg font-medium text-gray-900 mb-3">
+          <h3 className="text-lg font-medium text-slate-100 mb-3">
             成果・インパクト
           </h3>
-          <ul className="space-y-2 text-gray-600 font-light text-sm">
+          <ul className="space-y-2 text-slate-300 font-light text-sm">
             <li>• ユーザー獲得・維持率の改善施策実行</li>
             <li>• 機能リリースによるWAU向上 / メールパフォーマンス改善</li>
             <li>• PdM2人,開発者4人 チームでのスクラム開発</li>
@@ -164,29 +164,29 @@ export const B2CProductManagerSlide = () => (
 export const FullstackEngineerSlide = () => (
   <div className="flex flex-col justify-center h-full">
     <div className="text-center mb-16">
-      <p className="text-lg text-gray-500 mb-4 font-light">2020 - 2025</p>
-      <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
+      <p className="text-lg text-slate-400 mb-4 font-light">2020 - 2025</p>
+      <h2 className="text-5xl md:text-6xl font-light text-slate-100 mb-6">
         toB SaaS Webプロダクト開発
       </h2>
       <div className="flex items-center justify-center gap-4">
-        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+        <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-full text-xs font-light">
           フルタイム
         </span>
-        <p className="text-xl text-gray-600 font-light">
+        <p className="text-xl text-slate-300 font-light">
           Webアプリケーションエンジニア
         </p>
       </div>
-      <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
+      <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
 
     <div className="max-w-4xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-3">
+            <h3 className="text-lg font-medium text-slate-100 mb-3">
               技術的な担当領域
             </h3>
-            <ul className="space-y-2 text-gray-600 font-light">
+            <ul className="space-y-2 text-slate-300 font-light">
               <li>• フロントエンド・バックエンド開発</li>
               <li>• RESTful API設計と実装</li>
               <li>• AWS インフラ構築と運用</li>
@@ -197,10 +197,10 @@ export const FullstackEngineerSlide = () => (
 
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-3">
+            <h3 className="text-lg font-medium text-slate-100 mb-3">
               ビジネス貢献
             </h3>
-            <ul className="space-y-2 text-gray-600 font-light">
+            <ul className="space-y-2 text-slate-300 font-light">
               <li>• 顧客要件のヒアリングと要件定義</li>
               <li>• システム改善提案と実装</li>
               <li>• 技術課題の解決とパフォーマンス向上</li>
@@ -219,35 +219,35 @@ export const VRLiveProductionSlide = ({
 }: SlideContentProps) => (
   <div className="flex flex-col justify-center h-full">
     <div className="text-center mb-12">
-      <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
-      <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+      <p className="text-lg text-slate-400 mb-4 font-light">2025</p>
+      <h2 className="text-4xl md:text-5xl font-light text-slate-100 mb-4">
         サンリオキャラVRライブ制作
       </h2>
       <a
         href="https://v-fes.sanrio.co.jp/"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+        className="inline-flex items-center text-lg text-slate-400 font-light mb-4 hover:text-purple-400 transition-colors"
       >
         <ExternalLink className="inline-block w-4 h-4 mr-1" />
         Sanrio Virtual Festival 2025
       </a>
       <div className="flex items-center justify-center gap-4">
-        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+        <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-full text-xs font-light">
           副業
         </span>
-        <p className="text-lg text-gray-600 font-light">
+        <p className="text-lg text-slate-300 font-light">
           プロジェクトマネージャー補助
         </p>
       </div>
-      <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
+      <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
 
     <div className="max-w-6xl mx-auto flex gap-8">
       {/* 左側: 画像プレースホルダー（3:4比率） */}
       {!exportMode && (
         <div className="flex-shrink-0">
-          <div className="w-72 h-96 bg-gray-50 rounded-lg overflow-hidden">
+          <div className="w-72 h-96 bg-white/5 rounded-lg overflow-hidden">
             <img
               src={vfesArtistImage}
               alt="VRライブのスクリーンショット"
@@ -260,8 +260,8 @@ export const VRLiveProductionSlide = ({
       {/* 右側: 説明文 */}
       <div className="flex-1 space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3">担当業務</h3>
-          <ul className="space-y-2 text-gray-600 font-light text-sm">
+          <h3 className="text-lg font-medium text-slate-100 mb-3">担当業務</h3>
+          <ul className="space-y-2 text-slate-300 font-light text-sm">
             <li>• プロジェクトの進捗管理</li>
             <li>• 進捗を鑑みた制作スコープの調整</li>
             <li>• プロジェクト管理ツールの選定・セットアップ</li>
@@ -270,13 +270,13 @@ export const VRLiveProductionSlide = ({
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3">関連リンク</h3>
+          <h3 className="text-lg font-medium text-slate-100 mb-3">関連リンク</h3>
           <div className="space-y-2">
             <a
               href="https://v-fes.sanrio.co.jp/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+              className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-light text-sm"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               公式サイト: Sanrio Virtual Festival
@@ -294,35 +294,35 @@ export const ContentOptimizationSlide = ({
 }: SlideContentProps) => (
   <div className="flex flex-col justify-center h-full">
     <div className="text-center mb-12">
-      <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
-      <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+      <p className="text-lg text-slate-400 mb-4 font-light">2025</p>
+      <h2 className="text-4xl md:text-5xl font-light text-slate-100 mb-4">
         既存VRコンテンツ軽量化
       </h2>
       <a
         href="https://v-fes.sanrio.co.jp/"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+        className="inline-flex items-center text-lg text-slate-400 font-light mb-4 hover:text-purple-400 transition-colors"
       >
         <ExternalLink className="inline-block w-4 h-4 mr-1" />
         Sanrio Virtual Festival 2025
       </a>
       <div className="flex items-center justify-center gap-4">
-        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+        <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-full text-xs font-light">
           副業
         </span>
-        <p className="text-lg text-gray-600 font-light">
+        <p className="text-lg text-slate-300 font-light">
           プロジェクトマネージャー
         </p>
       </div>
-      <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
+      <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
 
     <div className="max-w-6xl mx-auto flex gap-8">
       {/* 左側: 画像（3:4比率） */}
       {!exportMode && (
         <div className="flex-shrink-0">
-          <div className="w-72 h-96 bg-gray-50 rounded-lg overflow-hidden">
+          <div className="w-72 h-96 bg-white/5 rounded-lg overflow-hidden">
             <img
               src={vfesOptimiseImage}
               alt="コンテンツ軽量化のスクリーンショット"
@@ -335,8 +335,8 @@ export const ContentOptimizationSlide = ({
       {/* 右側: 説明文 */}
       <div className="flex-1 space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3">責務・役割</h3>
-          <ul className="space-y-2 text-gray-600 font-light text-sm">
+          <h3 className="text-lg font-medium text-slate-100 mb-3">責務・役割</h3>
+          <ul className="space-y-2 text-slate-300 font-light text-sm">
             <li>• 進行管理</li>
             <li>• 要件/着地点のすり合わせ</li>
             <li>• 先方Unityエンジニアとの技術的調整</li>
@@ -345,13 +345,13 @@ export const ContentOptimizationSlide = ({
         </div>
 
         <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3">関連リンク</h3>
+          <h3 className="text-lg font-medium text-slate-100 mb-3">関連リンク</h3>
           <div className="pt-4 flex flex-col space-y-2">
             <a
               href="https://v-fes.sanrio.co.jp/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+              className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-light text-sm"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               公式サイト: Sanrio Virtual Festival
@@ -360,7 +360,7 @@ export const ContentOptimizationSlide = ({
               href="https://x.com/QuestMaker_/status/1970336011558498585"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+              className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-light text-sm"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               Xポスト: 制作担当しました
@@ -369,7 +369,7 @@ export const ContentOptimizationSlide = ({
               href="https://x.com/SANRIO_Vfes/status/1960266010264764865"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-light text-sm"
+              className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-light text-sm"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               Xポスト: 軽量化対象のコンテンツ告知
@@ -387,33 +387,33 @@ export const EventCalendarSlide = ({
 }: SlideContentProps) => (
   <div className="flex flex-col justify-center h-full">
     <div className="text-center mb-12">
-      <p className="text-lg text-gray-500 mb-4 font-light">2025</p>
-      <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+      <p className="text-lg text-slate-400 mb-4 font-light">2025</p>
+      <h2 className="text-4xl md:text-5xl font-light text-slate-100 mb-4">
         イベントカレンダーシステム開発
       </h2>
       <a
         href="https://v-fes.sanrio.co.jp/"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center text-lg text-gray-500 font-light mb-4 hover:text-blue-600 transition-colors"
+        className="inline-flex items-center text-lg text-slate-400 font-light mb-4 hover:text-purple-400 transition-colors"
       >
         <ExternalLink className="inline-block w-4 h-4 mr-1" />
         Sanrio Virtual Festival 2025
       </a>
       <div className="flex items-center justify-center gap-4">
-        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+        <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-full text-xs font-light">
           副業
         </span>
-        <p className="text-lg text-gray-600 font-light">PM / デザイン / 開発</p>
+        <p className="text-lg text-slate-300 font-light">PM / デザイン / 開発</p>
       </div>
-      <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
+      <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
 
     <div className="max-w-6xl mx-auto flex gap-8">
       {/* 左側: 画像（3:4比率） */}
       {!exportMode && (
         <div className="flex-shrink-0">
-          <div className="w-72 h-96 bg-gray-50 rounded-lg overflow-hidden">
+          <div className="w-72 h-96 bg-white/5 rounded-lg overflow-hidden">
             <img
               src={vfesCalendarImage}
               alt="カレンダーシステムのスクリーンショット"
@@ -426,8 +426,8 @@ export const EventCalendarSlide = ({
       {/* 右側: 説明文 */}
       <div className="flex-1 space-y-6">
         <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3">責務・役割</h3>
-          <ul className="space-y-2 text-gray-600 font-light text-sm">
+          <h3 className="text-lg font-medium text-slate-100 mb-3">責務・役割</h3>
+          <ul className="space-y-2 text-slate-300 font-light text-sm">
             <li>• 要件ヒアリング / 仕様策定</li>
             <li>• UIデザイン</li>
             <li>• Web/データ配信基盤実装</li>
@@ -445,27 +445,27 @@ export const EventCalendarSlide = ({
 export const VRChatGameSlide = () => (
   <div className="flex flex-col justify-center h-full">
     <div className="text-center mb-16">
-      <p className="text-lg text-gray-500 mb-4 font-light">2025 - 現在</p>
-      <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
+      <p className="text-lg text-slate-400 mb-4 font-light">2025 - 現在</p>
+      <h2 className="text-5xl md:text-6xl font-light text-slate-100 mb-6">
         VRChatゲームワールド開発
       </h2>
       <div className="flex items-center justify-center gap-4">
-        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
+        <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-full text-xs font-light">
           副業
         </span>
-        <p className="text-xl text-gray-600 font-light">
+        <p className="text-xl text-slate-300 font-light">
           PM補助 / 仕様・ロードマップ策定
         </p>
       </div>
-      <div className="w-16 h-px bg-gray-300 mx-auto mt-6" />
+      <div className="w-16 h-px bg-white/20 mx-auto mt-6" />
     </div>
 
     <div className="max-w-4xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-3">担当業務</h3>
-            <ul className="space-y-2 text-gray-600 font-light">
+            <h3 className="text-lg font-medium text-slate-100 mb-3">担当業務</h3>
+            <ul className="space-y-2 text-slate-300 font-light">
               <li>• 要件ヒアリングと仕様決定</li>
               <li>• リリースに向けたロードマップ策定</li>
               <li>• ビデオコンテの制作</li>
