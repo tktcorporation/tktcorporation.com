@@ -24,18 +24,18 @@ import {
   VRLiveProductionSlide,
 } from "./PortfolioSlides";
 
-// カスタムテーマ定義（最小限のテーマ設定）
+// カスタムテーマ定義（ダークテーマに統一）
 const theme = {
   colors: {
-    primary: "#1f2937",
-    secondary: "#4b5563",
-    background: "#ffffff",
-    text: "#1f2937",
+    primary: "#a855f7", // purple-500
+    secondary: "#94a3b8", // slate-400
+    background: "#020617", // slate-950
+    text: "#f1f5f9", // slate-100
   },
   fonts: {
     header:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    text: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    text: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
   },
 };
 
@@ -62,8 +62,8 @@ const PortfolioPresentation = () => {
           // exportModeの時はテンプレートを非表示
           exportMode || printMode ? null : (
             <Box position="absolute" left={0} right={0} bottom={0} height={5}>
-              <FullScreen size={30} color="#9ca3af" />
-              <Progress color="#1f2937" />
+              <FullScreen size={30} color="#94a3b8" />
+              <Progress color="#a855f7" />
             </Box>
           )
         }

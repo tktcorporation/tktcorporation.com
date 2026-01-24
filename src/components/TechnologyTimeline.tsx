@@ -172,7 +172,7 @@ export function TechnologyTimeline({
       {/* タイムライン */}
       <div className="relative overflow-hidden">
         {/* 縦線 */}
-        <div className="absolute left-2 md:left-2.5 top-8 bottom-0 w-0.5 bg-gray-600" />
+        <div className="absolute left-2 md:left-2.5 top-8 bottom-0 w-0.5 bg-slate-600" />
 
         {entries.map((entry, index) => (
           <div key={index} className="relative mb-6 md:mb-8 lg:mb-10">
@@ -181,7 +181,7 @@ export function TechnologyTimeline({
               <div
                 className={cn(
                   "text-[10px] md:text-xs lg:text-sm font-medium",
-                  index === 0 ? "text-purple-400" : "text-gray-400"
+                  index === 0 ? "text-purple-400" : "text-slate-400"
                 )}
               >
                 {formatPeriod(entry.startDate, entry.endDate, index)}
@@ -194,7 +194,7 @@ export function TechnologyTimeline({
               <div className="relative flex-shrink-0">
                 <div
                   className={cn(
-                    "w-4 md:w-5 h-4 md:h-5 rounded-full border-2 md:border-4 border-gray-800 z-10",
+                    "w-4 md:w-5 h-4 md:h-5 rounded-full border-2 md:border-4 border-slate-800 z-10",
                     index === 0
                       ? "bg-purple-500 ring-2 ring-purple-500/30"
                       : "bg-purple-500"
@@ -203,7 +203,7 @@ export function TechnologyTimeline({
               </div>
 
               {/* コンテンツカード */}
-              <Card className="flex-1 min-w-0 bg-gray-800/50 border-gray-700 -mt-1 overflow-hidden">
+              <Card className="flex-1 min-w-0 bg-white/5 border-white/10 -mt-1 overflow-hidden">
                 <CardHeader className="p-3 md:p-4 lg:p-6">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                     <div className="space-y-1 md:space-y-2">
@@ -231,7 +231,7 @@ export function TechnologyTimeline({
                       </div>
 
                       {/* リポジトリ数 */}
-                      <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-xs lg:text-sm text-gray-400">
+                      <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-xs lg:text-sm text-slate-400">
                         <span className="flex items-center gap-0.5 md:gap-1">
                           <Package className="w-3 md:w-4 h-3 md:h-4" />
                           {entry.repositories.size} repos
@@ -255,27 +255,27 @@ export function TechnologyTimeline({
                   {entry.repositoryGroups.slice(0, 5).map((group, gIdx) => (
                     <div
                       key={gIdx}
-                      className="border-l-2 border-gray-600 pl-2 md:pl-3 lg:pl-4 overflow-hidden"
+                      className="border-l-2 border-slate-600 pl-2 md:pl-3 lg:pl-4 overflow-hidden"
                     >
                       <a
                         href={group.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group block hover:bg-gray-700/20 rounded p-1 md:p-2 -m-1 md:-m-2 transition-colors"
+                        className="group block hover:bg-white/10 rounded p-1 md:p-2 -m-1 md:-m-2 transition-colors"
                       >
                         <div className="flex flex-col gap-1">
                           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-xs md:text-sm font-medium text-gray-200 group-hover:text-white break-words transition-colors">
+                              <h4 className="text-xs md:text-sm font-medium text-slate-200 group-hover:text-white break-words transition-colors">
                                 {group.repository}
                               </h4>
                               {group.description && (
-                                <p className="text-[10px] md:text-xs text-gray-400 mt-0.5 line-clamp-2">
+                                <p className="text-[10px] md:text-xs text-slate-400 mt-0.5 line-clamp-2">
                                   {group.description}
                                 </p>
                               )}
                             </div>
-                            <div className="flex items-center flex-wrap gap-1 md:gap-2 text-[10px] md:text-xs text-gray-400 flex-shrink-0">
+                            <div className="flex items-center flex-wrap gap-1 md:gap-2 text-[10px] md:text-xs text-slate-400 flex-shrink-0">
                               {group.language && (
                                 <Badge
                                   variant="outline"
@@ -309,7 +309,7 @@ export function TechnologyTimeline({
 
                   {/* もっと見る */}
                   {entry.repositoryGroups.length > 5 && (
-                    <div className="text-[10px] md:text-xs text-gray-500 pl-2 md:pl-3">
+                    <div className="text-[10px] md:text-xs text-slate-500 pl-2 md:pl-3">
                       他 {entry.repositoryGroups.length - 5} リポジトリ
                     </div>
                   )}
@@ -317,7 +317,7 @@ export function TechnologyTimeline({
                   {/* 記事 */}
                   {entry.articles.length > 0 && (
                     <div className="border-l-2 border-purple-600 pl-2 md:pl-3 lg:pl-4 space-y-1 md:space-y-2 overflow-hidden">
-                      <h4 className="text-xs md:text-sm font-medium text-gray-200 flex items-center gap-1 md:gap-2">
+                      <h4 className="text-xs md:text-sm font-medium text-slate-200 flex items-center gap-1 md:gap-2">
                         <FileText className="w-3 md:w-4 h-3 md:h-4" />
                         記事 ({entry.articles.length})
                       </h4>
@@ -330,14 +330,14 @@ export function TechnologyTimeline({
                             rel="noopener noreferrer"
                             className="block group"
                           >
-                            <div className="flex items-start gap-1 md:gap-2 text-[10px] md:text-xs hover:bg-gray-700/30 rounded p-0.5 md:p-1 transition-colors overflow-hidden">
+                            <div className="flex items-start gap-1 md:gap-2 text-[10px] md:text-xs hover:bg-white/10 rounded p-0.5 md:p-1 transition-colors overflow-hidden">
                               <Badge
                                 variant="outline"
                                 className="text-[10px] md:text-xs px-1.5 py-0 md:px-2 md:py-0.5 flex-shrink-0"
                               >
                                 {article.source}
                               </Badge>
-                              <span className="text-gray-300 group-hover:text-gray-100 transition-colors min-w-0 flex-1 break-words leading-tight">
+                              <span className="text-slate-300 group-hover:text-slate-100 transition-colors min-w-0 flex-1 break-words leading-tight">
                                 {article.title}
                               </span>
                             </div>
@@ -350,7 +350,7 @@ export function TechnologyTimeline({
                   {/* イベント */}
                   {entry.events.length > 0 && (
                     <div className="border-l-2 border-yellow-600 pl-2 md:pl-3 lg:pl-4 space-y-1 md:space-y-2 overflow-hidden">
-                      <h4 className="text-xs md:text-sm font-medium text-gray-200 flex items-center gap-1 md:gap-2">
+                      <h4 className="text-xs md:text-sm font-medium text-slate-200 flex items-center gap-1 md:gap-2">
                         <Mic2 className="w-3 md:w-4 h-3 md:h-4" />
                         イベント ({entry.events.length})
                       </h4>
@@ -363,7 +363,7 @@ export function TechnologyTimeline({
                             rel="noopener noreferrer"
                             className="block group"
                           >
-                            <div className="text-[10px] md:text-xs text-gray-300 hover:text-gray-100 hover:bg-gray-700/30 rounded p-0.5 md:p-1 transition-colors min-w-0 break-words leading-tight overflow-hidden">
+                            <div className="text-[10px] md:text-xs text-slate-300 hover:text-slate-100 hover:bg-white/10 rounded p-0.5 md:p-1 transition-colors min-w-0 break-words leading-tight overflow-hidden">
                               {event.title}
                             </div>
                           </a>
@@ -375,7 +375,7 @@ export function TechnologyTimeline({
                   {/* もっと見るリンク */}
                   {entry.repositoryGroups.length > 3 && (
                     <div className="text-center pt-1 md:pt-2">
-                      <span className="text-[10px] md:text-xs text-gray-500">
+                      <span className="text-[10px] md:text-xs text-slate-500">
                         他 {entry.repositoryGroups.length - 3} 件のリポジトリ
                       </span>
                     </div>

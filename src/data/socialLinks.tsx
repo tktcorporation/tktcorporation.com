@@ -64,14 +64,14 @@ export const SOCIAL_LINKS: SocialLink[] = [
     Icon: SiGithub,
     alt: "GitHub",
     label: "GitHub",
-    color: "hover:text-gray-400",
+    color: "hover:text-slate-400",
   },
   {
     href: "https://twitter.com/tktcorporation",
     Icon: SiX,
     alt: "X",
     label: "X (Twitter)",
-    color: "hover:text-gray-300",
+    color: "hover:text-slate-300",
   },
   {
     href: "https://linkedin.com/in/tktcorporation",
