@@ -7,7 +7,7 @@
  * - Uses modern Clipboard API (navigator.clipboard)
  * - Accessible design with keyboard support
  * - Mobile-friendly with touch optimization
- * - Integrates with existing design system (purple/pink gradient theme)
+ * - ミニマルなライトテーマに統合
  */
 
 import { Check, Copy } from "lucide-react";
@@ -32,18 +32,15 @@ export function CopyResumeButton({
 
   const handleCopy = async () => {
     try {
-      // Modern Clipboard API
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(markdown);
         setCopied(true);
         setError(null);
 
-        // Reset copied state after 2 seconds
         setTimeout(() => {
           setCopied(false);
         }, 2000);
       } else {
-        // Fallback for older browsers
         const textArea = document.createElement("textarea");
         textArea.value = markdown;
         textArea.style.position = "fixed";
@@ -78,15 +75,15 @@ export function CopyResumeButton({
   };
 
   const baseClasses =
-    "inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-normal transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-slate-500";
+    "inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-normal transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-blue-400";
 
   const variantClasses =
     variant === "primary"
-      ? "bg-transparent hover:bg-slate-800/50 text-slate-500 hover:text-slate-300 border border-slate-700/50 hover:border-slate-600"
-      : "bg-transparent hover:bg-slate-800/50 text-slate-500 hover:text-slate-300 border border-slate-700/50";
+      ? "bg-transparent hover:bg-stone-100 text-stone-400 hover:text-stone-600 border border-stone-200 hover:border-stone-300"
+      : "bg-transparent hover:bg-stone-100 text-stone-400 hover:text-stone-600 border border-stone-200";
 
   const stateClasses = copied
-    ? "!bg-slate-800/50 !text-green-400 !border-green-700/50"
+    ? "!bg-green-50 !text-green-600 !border-green-200"
     : "";
 
   return (

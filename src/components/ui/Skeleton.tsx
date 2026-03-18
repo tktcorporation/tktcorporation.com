@@ -21,7 +21,7 @@ interface SkeletonProps {
 export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
-      className={cn("bg-white/10 rounded animate-pulse", className)}
+      className={cn("bg-stone-200 rounded animate-pulse", className)}
       aria-hidden="true"
     />
   );
@@ -65,7 +65,7 @@ export function SkeletonCard({
   return (
     <div
       className={cn(
-        "rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse",
+        "rounded-lg p-4 md:p-6 bg-stone-50 border border-stone-200 animate-pulse",
         className
       )}
       aria-hidden="true"
@@ -112,7 +112,7 @@ export function SkeletonGrid({
         <div
           key={`skeleton-grid-${i}`}
           className={cn(
-            "rounded-md p-2 md:p-3 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse",
+            "rounded-md p-2 md:p-3 bg-stone-50 border border-stone-200 animate-pulse",
             itemClassName
           )}
         >

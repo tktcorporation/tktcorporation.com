@@ -5,8 +5,9 @@
  *
  * Context:
  * - Resume.tsxから分離されたコンポーネント
- * - GroupedExperienceデータを受け取り、カード形式で表示
+ * - GroupedExperienceデータを受け取り、シンプルなカード形式で表示
  * - 技術バッジ、期間、役職を表示
+ * - ミニマルデザイン: 控えめなボーダーとホバーのみ
  */
 
 import type {
@@ -47,17 +48,17 @@ function ExperienceDetail({
   hideDuration = false,
 }: ExperienceDetailProps) {
   const borderClass = showBorder
-    ? "border-l-2 border-purple-500/30 pl-3 md:pl-4"
+    ? "border-l-2 border-stone-200 pl-3 md:pl-4"
     : "";
 
   return (
     <div className={borderClass}>
       <div className="flex flex-col md:flex-row md:justify-between mb-2">
-        <h4 className="text-sm md:text-base font-semibold text-purple-200">
+        <h4 className="text-sm md:text-base font-medium text-stone-700">
           {getDisplayPositionName(exp)}
         </h4>
         {!hideDuration && (
-          <p className="text-[10px] md:text-xs text-slate-400 font-mono">
+          <p className="text-[10px] md:text-xs text-stone-400 font-mono">
             {formatDate(
               exp.start_year,
               exp.start_month,
@@ -69,12 +70,12 @@ function ExperienceDetail({
       </div>
       {exp.description && (
         <>
-          <div className="flex flex-wrap gap-1 md:gap-2 mb-2 md:mb-3">
+          <div className="flex flex-wrap gap-1 md:gap-1.5 mb-2 md:mb-3">
             {extractTechTags(exp.description).map((tech) => (
               <TechBadge key={tech} name={tech} />
             ))}
           </div>
-          <div className="text-slate-300 space-y-1 text-xs md:text-sm">
+          <div className="text-stone-600 space-y-1 text-xs md:text-sm leading-relaxed">
             {formatDescription(exp.description)}
           </div>
         </>
@@ -85,7 +86,7 @@ function ExperienceDetail({
 
 export function ExperienceCard({
   group,
-  index,
+  index: _index,
   formatDate,
   extractTechTags,
   formatDescription,
@@ -104,31 +105,30 @@ export function ExperienceCard({
       key={`${group.organization_name}-${group.total_start_year}-${group.total_start_month}`}
       className="relative list-none"
     >
-      {/* タイムラインドット（装飾要素） */}
+      {/* タイムラインドット */}
       <div
-        className="absolute left-0 md:left-6 w-4 h-4 bg-purple-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/50"
+        className="absolute left-0 w-[15px] h-[15px] bg-white border-2 border-stone-300 rounded-full"
         aria-hidden="true"
       />
       <article
-        className="ml-8 md:ml-16 rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 md:hover:shadow-lg md:hover:shadow-purple-500/20 md:hover:-translate-y-1"
-        style={{ animationDelay: `${index * 0.1}s` }}
+        className="ml-8 rounded-lg p-4 md:p-5 border border-stone-200 hover:border-stone-300 transition-colors duration-200"
         aria-labelledby={cardId}
       >
-        <header className="flex flex-col md:flex-row md:justify-between mb-3 md:mb-4">
+        <header className="flex flex-col md:flex-row md:justify-between mb-3">
           <div className="flex-1">
             <h3
               id={cardId}
-              className="text-base md:text-lg font-bold text-white"
+              className="text-base md:text-lg font-bold text-stone-900"
             >
               {group.organization_name}
               {group.is_client_work && group.client_company_name && (
-                <span className="text-xs md:text-sm text-slate-400 ml-1 md:ml-2 font-normal">
+                <span className="text-xs md:text-sm text-stone-400 ml-1 md:ml-2 font-normal">
                   ({group.client_company_name})
                 </span>
               )}
             </h3>
             <ul
-              className="mt-2 flex flex-wrap gap-1 md:gap-2 list-none"
+              className="mt-1.5 flex flex-wrap gap-1 md:gap-1.5 list-none"
               aria-label="Positions"
             >
               {uniquePositions.map((positionName) => (
@@ -139,7 +139,7 @@ export function ExperienceCard({
             </ul>
           </div>
           <time
-            className="text-xs md:text-sm text-slate-400 mt-2 md:mt-0 font-mono"
+            className="text-xs md:text-sm text-stone-400 mt-2 md:mt-0 font-mono"
             dateTime={`${group.total_start_year}-${String(group.total_start_month).padStart(2, "0")}`}
           >
             {formatDate(
@@ -151,7 +151,6 @@ export function ExperienceCard({
           </time>
         </header>
 
-        {/* 経験リストを統一的にレンダリング */}
         <div
           className={
             group.experiences.length > 1

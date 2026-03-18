@@ -8,11 +8,12 @@
  * - 経験を組織別・期間別にグループ化して表示
  * - 技術スタックを自動的に抽出してハイライト
  * - スキルの習熟度を期間ベースで計算・可視化
- * - レスポンシブデザインで様々なデバイスに対応
+ * - ミニマルなライトテーマ、タイポグラフィ主導のデザイン
  */
 
 import { Link } from "react-router-dom";
 import { CopyResumeButton } from "@/components/CopyResumeButton";
+import { WavyUnderline } from "@/components/illustrations";
 import {
   ExperienceSection,
   ExportSection,
@@ -28,54 +29,51 @@ function Resume() {
     useResumeData();
 
   return (
-    <div className="min-h-screen flex flex-col text-slate-200">
-      <nav className="p-6 border-b border-white/10 backdrop-blur-lg bg-black/20">
-        <div className="container mx-auto flex justify-between items-center">
+    <div className="min-h-screen flex flex-col">
+      <nav className="px-6 py-4 border-b border-stone-200">
+        <div className="max-w-3xl mx-auto flex justify-between items-center">
           <Link
             to="/"
-            className="text-lg font-bold hover:text-purple-400 transition-colors flex items-center gap-2"
+            className="text-sm text-stone-500 hover:text-stone-900 transition-colors duration-200"
           >
             Home
           </Link>
-          <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Resume
-          </h1>
+          <span className="text-sm font-medium text-stone-900">Resume</span>
         </div>
       </nav>
 
-      <main className="container mx-auto px-4 py-12 flex-grow">
-        <div className="max-w-5xl mx-auto">
-          <header className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <h1 className="text-3xl md:text-4xl font-bold text-white animate-fade-in">
-                Resume
-              </h1>
-              <CopyResumeButton markdown={resumeMarkdown} variant="primary" />
-            </div>
-          </header>
+      <main className="max-w-3xl mx-auto w-full px-6 py-12 flex-grow">
+        <header className="mb-12">
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-2xl md:text-3xl font-bold text-stone-900 tracking-tight">
+              Resume
+            </h1>
+            <CopyResumeButton markdown={resumeMarkdown} variant="primary" />
+          </div>
+          <WavyUnderline className="text-blue-400" />
+        </header>
 
-          <SkillsSection skills={skillsWithYears} loading={loading} />
+        <SkillsSection skills={skillsWithYears} loading={loading} />
 
-          <ExperienceSection
-            groupedExperiences={groupedExperiences}
-            loading={loading}
-            formatDate={formatDateRange}
-            extractTechTags={extractTechnologies}
-            formatDescription={formatDescription}
-          />
+        <ExperienceSection
+          groupedExperiences={groupedExperiences}
+          loading={loading}
+          formatDate={formatDateRange}
+          extractTechTags={extractTechnologies}
+          formatDescription={formatDescription}
+        />
 
-          <ExportSection />
-        </div>
+        <ExportSection />
       </main>
 
-      <footer className="mt-auto py-6 text-center text-sm text-slate-400 border-t border-white/10 backdrop-blur-lg bg-black/20">
+      <footer className="mt-auto py-6 text-center text-xs text-stone-400 border-t border-stone-200">
         <p>
           © {new Date().getFullYear()} tkt | Data from{" "}
           <a
             href="https://lapras.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-purple-400 hover:text-purple-300 transition-colors"
+            className="text-blue-500 hover:text-blue-700 transition-colors duration-200"
           >
             LAPRAS
           </a>

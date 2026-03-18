@@ -19,15 +19,14 @@ export function TechnologyTimelineSection() {
   const { timelineEntries, timeSpan, setTimeSpan, loading } =
     useLaprasActivities(getLaprasData());
 
-  // デフォルトは1年間隔
   useEffect(() => {
     setTimeSpan("1year");
   }, [setTimeSpan]);
 
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-white mb-12">
+    <section className="py-16 px-6">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-xl md:text-2xl font-bold text-stone-900 mb-8">
           Technology Timeline
         </h2>
         {!loading && (
