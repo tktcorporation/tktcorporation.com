@@ -23,26 +23,26 @@ function ExportLink({ href, title, description, icon }: ExportLinkProps) {
     <a
       href={href}
       download
-      className="block p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+      className="group block p-4 rounded-lg border border-stone-200 hover:border-stone-300 transition-colors duration-200"
     >
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center gap-2 mb-1">
         {icon}
-        <h3 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+        <h3 className="font-medium text-stone-800 group-hover:text-blue-600 transition-colors duration-200">
           {title}
         </h3>
       </div>
-      <p className="text-sm text-slate-400">{description}</p>
+      <p className="text-sm text-stone-400">{description}</p>
     </a>
   );
 }
 
 export function ExportSection() {
   return (
-    <section className="mt-16 pt-8 border-t border-slate-700">
-      <h2 className="text-lg font-semibold text-slate-300 mb-4">
+    <section className="mt-14 pt-8 border-t border-stone-200">
+      <h2 className="text-sm font-medium text-stone-500 mb-4">
         Export formats
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <ExportLink
           href="/resume.md"
           title="Markdown"

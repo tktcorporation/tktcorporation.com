@@ -5,7 +5,7 @@
  *
  * Context:
  * - ExportSectionで使用されるアイコンを共通化
- * - 他の場所でも再利用可能
+ * - ライトテーマに合わせた配色
  */
 
 interface IconProps {
@@ -13,7 +13,7 @@ interface IconProps {
 }
 
 const defaultClassName =
-  "w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors";
+  "w-5 h-5 text-stone-400 group-hover:text-blue-500 transition-colors duration-200";
 
 export function MarkdownIcon({ className = defaultClassName }: IconProps) {
   return (

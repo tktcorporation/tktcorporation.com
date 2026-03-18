@@ -157,18 +157,16 @@ const Portfolio = () => {
   // 縦スクロール表示（デフォルト）
   if (!isPresentationMode) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="min-h-screen bg-background text-foreground">
         {/* ヘッダー */}
-        <div className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
+        <div className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-stone-200">
           <div className="flex justify-between items-center p-4">
-            <h1 className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Portfolio
-            </h1>
+            <h1 className="text-lg font-semibold text-stone-900">Portfolio</h1>
             <div className="flex gap-2">
               <Button
                 size="sm"
                 onClick={exportToPDF}
-                className="bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition-colors flex items-center gap-2"
+                className="bg-transparent hover:bg-stone-100 text-stone-600 border border-stone-200 transition-colors duration-200 flex items-center gap-2"
               >
                 <Download className="h-4 w-4" />
                 PDFダウンロード
@@ -176,7 +174,7 @@ const Portfolio = () => {
               <Button
                 size="sm"
                 onClick={togglePresentationMode}
-                className="bg-purple-600 hover:bg-purple-700 text-white transition-colors flex items-center gap-2"
+                className="bg-stone-900 hover:bg-stone-800 text-white transition-colors duration-200 flex items-center gap-2"
               >
                 <Presentation className="h-4 w-4" />
                 プレゼンテーションモード
@@ -207,24 +205,21 @@ const Portfolio = () => {
 
   // プレゼンテーションモード（Spectacle形式）
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-background">
       {/* コントロールバー */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
-        <h1 className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-background/95 backdrop-blur-sm border-b border-stone-200">
+        <h1 className="text-lg font-semibold text-stone-900">
           Portfolio Presentation
         </h1>
         <div className="flex gap-2">
           <Button
             size="sm"
             onClick={() => {
-              // SpectacleのexportModeを使用してPDF出力用URLを開く
               const url = new URL(window.location.href);
               url.searchParams.set("exportMode", "true");
               url.searchParams.set("printMode", "true");
-              // 新しいタブで開く
               const printWindow = window.open(url.toString(), "_blank");
 
-              // 印刷ダイアログを自動的に開くためのメッセージ
               if (printWindow) {
                 setTimeout(() => {
                   alert(
@@ -233,7 +228,7 @@ const Portfolio = () => {
                 }, 500);
               }
             }}
-            className="bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition-colors flex items-center gap-2"
+            className="bg-transparent hover:bg-stone-100 text-stone-600 border border-stone-200 transition-colors duration-200 flex items-center gap-2"
           >
             <Download className="h-4 w-4" />
             PDFエクスポート
@@ -241,7 +236,7 @@ const Portfolio = () => {
           <Button
             size="sm"
             onClick={togglePresentationMode}
-            className="bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition-colors flex items-center gap-2"
+            className="bg-transparent hover:bg-stone-100 text-stone-600 border border-stone-200 transition-colors duration-200 flex items-center gap-2"
           >
             <ScrollText className="h-4 w-4" />
             スクロールモードに戻る
@@ -254,7 +249,7 @@ const Portfolio = () => {
         <Suspense
           fallback={
             <div className="flex items-center justify-center min-h-screen">
-              <div className="text-slate-400">
+              <div className="text-stone-400">
                 プレゼンテーションを読み込み中...
               </div>
             </div>

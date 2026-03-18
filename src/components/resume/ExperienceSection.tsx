@@ -1,12 +1,13 @@
 /**
  * Purpose:
  * 職務経験セクション全体を表示するコンポーネント。
- * タイムライン形式でグループ化された経験を表示する。
+ * シンプルなリスト形式でグループ化された経験を表示する。
  *
  * Context:
  * - Resume.tsxから分離されたコンポーネント
  * - ローディング状態のスケルトンUIをサポート
  * - ExperienceCardを使用して各経験を表示
+ * - タイムラインの装飾は最小限に抑え、コンテンツ主導のレイアウト
  */
 
 import type {
@@ -27,16 +28,16 @@ interface ExperienceSectionProps {
 
 function ExperienceSkeleton() {
   return (
-    <div className="space-y-6 md:space-y-8" aria-busy="true">
+    <div className="space-y-6" aria-busy="true">
       {[1, 2].map((i) => (
         <div
           key={i}
-          className="rounded-lg p-4 md:p-6 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse"
+          className="rounded-lg p-4 md:p-6 bg-stone-50 border border-stone-200 animate-pulse"
           aria-hidden="true"
         >
-          <div className="h-5 md:h-6 bg-white/10 rounded w-1/3 mb-3 md:mb-4" />
-          <div className="h-4 bg-white/10 rounded w-1/2 mb-2" />
-          <div className="h-4 bg-white/10 rounded w-full" />
+          <div className="h-5 md:h-6 bg-stone-200 rounded w-1/3 mb-3 md:mb-4" />
+          <div className="h-4 bg-stone-200 rounded w-1/2 mb-2" />
+          <div className="h-4 bg-stone-200 rounded w-full" />
         </div>
       ))}
     </div>
@@ -54,7 +55,7 @@ export function ExperienceSection({
     <section className="mb-12" aria-labelledby="experience-section-title">
       <h2
         id="experience-section-title"
-        className="text-xl md:text-2xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+        className="text-lg md:text-xl font-bold text-stone-900 mb-4 md:mb-6"
       >
         Professional Experience
       </h2>
@@ -63,12 +64,13 @@ export function ExperienceSection({
         <ExperienceSkeleton />
       ) : (
         <div className="relative">
+          {/* シンプルなタイムラインライン */}
           <div
-            className="absolute left-2 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent"
+            className="absolute left-[7px] md:left-[7px] top-2 bottom-2 w-px bg-stone-200"
             aria-hidden="true"
           />
           <ol
-            className="space-y-6 md:space-y-8 list-none"
+            className="space-y-6 list-none"
             aria-label="Work experience timeline (most recent first)"
           >
             {groupedExperiences.map((group, index) => (

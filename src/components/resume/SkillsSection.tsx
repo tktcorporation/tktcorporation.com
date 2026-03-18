@@ -41,9 +41,9 @@ function calculateMaxMonths(skills: SkillWithYears[]): number {
 
 function SkillCardSkeleton() {
   return (
-    <div className="rounded-md p-2 md:p-3 bg-white/5 backdrop-blur-lg border border-white/10 animate-pulse">
-      <div className="h-4 bg-white/10 rounded w-2/3 mb-1" />
-      <div className="h-3 bg-white/10 rounded w-1/3" />
+    <div className="rounded-md p-2 md:p-3 bg-stone-100 animate-pulse">
+      <div className="h-4 bg-stone-200 rounded w-2/3 mb-1" />
+      <div className="h-3 bg-stone-200 rounded w-1/3" />
     </div>
   );
 }
@@ -56,28 +56,27 @@ interface SkillCardProps {
 function SkillCard({ skill, maxMonths }: SkillCardProps) {
   const totalMonths = calculateTotalMonths(skill);
   const progressPercent = Math.min(100, (totalMonths / maxMonths) * 100);
-  // 一意のIDを生成（スキル名からスペースと特殊文字を除去）
   const skillId = `skill-${skill.name.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase()}`;
   const durationText = `${skill.years > 0 ? `${skill.years}年` : ""}${skill.months > 0 ? `${skill.months}ヶ月` : ""}`;
 
   return (
     <li
-      className="rounded-md p-2 md:p-3 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 md:hover:shadow-lg md:hover:shadow-purple-500/20 md:hover:-translate-y-1 list-none"
+      className="rounded-md p-2 md:p-3 border border-stone-200 hover:border-stone-300 transition-colors duration-200 list-none"
       aria-labelledby={skillId}
     >
       <div className="flex flex-col gap-1">
         <h3
           id={skillId}
-          className="text-xs md:text-sm font-semibold text-purple-200 truncate"
+          className="text-xs md:text-sm font-medium text-stone-800 truncate"
         >
           {skill.name}
         </h3>
-        <span className="text-[10px] md:text-xs text-purple-300">
+        <span className="text-[10px] md:text-xs text-stone-400">
           {durationText}
         </span>
       </div>
       <div
-        className="w-full bg-slate-700 rounded-full h-1 md:h-1.5 mt-1.5"
+        className="w-full bg-stone-100 rounded-full h-1 md:h-1.5 mt-1.5"
         role="progressbar"
         aria-valuenow={Math.round(progressPercent)}
         aria-valuemin={0}
@@ -86,7 +85,7 @@ function SkillCard({ skill, maxMonths }: SkillCardProps) {
         aria-valuetext={`${skill.name}: ${durationText}`}
       >
         <div
-          className="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-700"
+          className="bg-blue-500 h-full rounded-full transition-all duration-700"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -95,14 +94,13 @@ function SkillCard({ skill, maxMonths }: SkillCardProps) {
 }
 
 export function SkillsSection({ skills, loading = false }: SkillsSectionProps) {
-  // 動的に最大月数を計算（メモ化してパフォーマンス最適化）
   const maxMonths = useMemo(() => calculateMaxMonths(skills), [skills]);
 
   return (
-    <section className="mb-8 md:mb-12" aria-labelledby="skills-section-title">
+    <section className="mb-10 md:mb-14" aria-labelledby="skills-section-title">
       <h2
         id="skills-section-title"
-        className="text-xl md:text-2xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+        className="text-lg md:text-xl font-bold text-stone-900 mb-4 md:mb-6"
       >
         Skills & Technologies
       </h2>

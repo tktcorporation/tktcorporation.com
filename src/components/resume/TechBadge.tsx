@@ -6,7 +6,7 @@
  * Context:
  * - Resume.tsxおよびTechnologyTimelineで使用
  * - ExperienceCardのPositionBadgeも統合
- * - 重複していたバッジスタイルを共通化
+ * - ミニマルデザイン: 控えめな背景色とボーダー
  */
 
 import { getDeviconClass, isDeviconSupported } from "@/utils/devicon";
@@ -25,15 +25,13 @@ interface TechBadgeProps {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  blue: "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30",
-  purple:
-    "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
-  position:
-    "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
+  blue: "bg-blue-50 text-blue-700 border-blue-200",
+  purple: "bg-stone-50 text-stone-600 border-stone-200",
+  position: "bg-stone-50 text-stone-600 border-stone-200",
 };
 
 const sizeStyles: Record<BadgeSize, string> = {
-  sm: "px-1.5 md:px-2 py-0.5 md:py-1 text-[10px] md:text-xs",
+  sm: "px-1.5 md:px-2 py-0.5 text-[10px] md:text-xs",
   md: "px-2 md:px-3 py-0.5 md:py-1 text-xs md:text-sm",
 };
 
@@ -49,7 +47,6 @@ export function TechBadge({
   shape = "rounded",
   showIcon,
 }: TechBadgeProps) {
-  // デフォルトでは position バリアント以外でアイコンを表示
   const shouldShowIcon = showIcon ?? variant !== "position";
   const isSupported = shouldShowIcon && isDeviconSupported(name);
 

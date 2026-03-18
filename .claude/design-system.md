@@ -2,42 +2,47 @@
 
 This document defines the canonical design tokens for this project. **AI agents MUST use only these values** to maintain visual consistency.
 
+## Design Philosophy
+
+**ミニマル + イラストアクセント**: 温かみのあるライトテーマをベースに、手書き風SVGイラストで個性を表現。タイポグラフィとホワイトスペース主導のデザイン。
+
 ## Color Palette
 
 ### Semantic Colors (Use These)
 
 | Token | CSS Variable | Usage |
 |-------|--------------|-------|
-| `bg-background` | `--background` | Page background |
-| `text-foreground` | `--foreground` | Primary text |
-| `bg-card` | `--card` | Card backgrounds |
+| `bg-background` | `--background` | Page background (warm off-white) |
+| `text-foreground` | `--foreground` | Primary text (near-black) |
+| `bg-card` | `--card` | Card backgrounds (white) |
 | `text-muted-foreground` | `--muted-foreground` | Secondary text |
 | `border-border` | `--border` | Default borders |
 
 ### Brand Colors
 
-| Color | Tailwind Class | Hex | Usage |
-|-------|----------------|-----|-------|
-| Deep Navy | `bg-slate-950` | `#0f172a` | Background |
-| Primary Gradient | `from-purple-400 to-pink-400` | - | Accent headings |
-| Secondary Gradient | `from-blue-500 to-cyan-500` | - | Alternative accent |
+| Color | Tailwind Class | Usage |
+|-------|----------------|-------|
+| Warm White | `bg-background` / `#fafaf8` | Page background |
+| Accent Blue | `text-blue-600` / `bg-blue-500` | Links, accents, progress bars |
+| Stone Dark | `text-stone-900` | Primary text |
 
 ### Text Colors (Hierarchy)
 
 | Level | Class | Usage |
 |-------|-------|-------|
-| Primary | `text-slate-100` or `text-foreground` | Headings, important text |
-| Secondary | `text-slate-300` | Body text |
-| Muted | `text-slate-400` | Metadata, captions |
-| Disabled | `text-slate-500` | Inactive elements |
+| Primary | `text-stone-900` | Headings, important text |
+| Secondary | `text-stone-600` | Body text |
+| Muted | `text-stone-400` | Metadata, captions |
+| Disabled | `text-stone-300` | Inactive elements |
 
 ### Surface Colors
 
 | Surface | Classes | Usage |
 |---------|---------|-------|
-| Card | `bg-white/5 border-white/10` | Content containers |
-| Card Hover | `bg-white/10 border-purple-500/50` | Interactive cards |
-| Modal | `bg-slate-900/95 backdrop-blur-lg` | Overlays |
+| Card | `border border-stone-200` | Content containers |
+| Card Hover | `hover:border-stone-300` | Interactive cards |
+| Badge | `bg-blue-50 text-blue-700 border-blue-200` | Tech badges |
+| Badge Alt | `bg-stone-50 text-stone-600 border-stone-200` | Position badges |
 
 ## Typography
 
@@ -50,9 +55,8 @@ Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif
 
 | Name | Mobile | Desktop | Usage |
 |------|--------|---------|-------|
-| Display | `text-5xl` | `text-7xl` | Page hero titles |
-| Title | `text-3xl` | `text-4xl` | Page titles |
-| Section | `text-xl` | `text-2xl` | Section headings |
+| Title | `text-2xl` | `text-3xl` | Page titles |
+| Section | `text-lg` | `text-xl` | Section headings |
 | Card Title | `text-base` | `text-lg` | Card headings |
 | Body | `text-sm` | `text-base` | Body text |
 | Caption | `text-xs` | `text-sm` | Metadata, labels |
@@ -63,7 +67,7 @@ Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif
 | Weight | Class | Usage |
 |--------|-------|-------|
 | Normal | `font-normal` | Body text |
-| Semibold | `font-semibold` | Card titles, emphasis |
+| Medium | `font-medium` | Card titles, labels |
 | Bold | `font-bold` | Page titles, headings |
 
 ## Spacing Scale
@@ -79,14 +83,6 @@ Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif
 | xl | `8` (2rem) | Section margins |
 | 2xl | `12` (3rem) | Page section spacing |
 
-### Responsive Patterns
-
-| Pattern | Mobile | Desktop | Usage |
-|---------|--------|---------|-------|
-| Card Padding | `p-4` | `p-6` | Card internal spacing |
-| Section Gap | `gap-4` | `gap-6` | Between cards |
-| Section Margin | `mb-8` | `mb-12` | Between sections |
-
 ## Border & Radius
 
 ### Border Radius
@@ -96,7 +92,7 @@ Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif
 | Small | `rounded-sm` | Buttons, badges |
 | Default | `rounded-md` | Cards, inputs |
 | Large | `rounded-lg` | Modal, large cards |
-| Full | `rounded-full` | Pills, avatars |
+| Full | `rounded-full` | Pills, avatars, timeline dots |
 
 ### Border Width
 
@@ -105,99 +101,66 @@ Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif
 | Default | `border` (1px) | Cards, inputs |
 | None | `border-0` | Seamless elements |
 
-## Shadows & Effects
-
-### Shadow Scale
-
-| Level | Classes | Usage |
-|-------|---------|-------|
-| None | - | Default state |
-| Subtle | `shadow-lg shadow-purple-500/10` | Cards |
-| Prominent | `shadow-lg shadow-purple-500/20` | Hover state |
-
-### Backdrop Effects
-
-| Effect | Class | Usage |
-|--------|-------|-------|
-| Blur | `backdrop-blur-lg` | Overlays, glass effect |
-
 ## Animation Tokens
 
 ### Allowed Animations
 
-| Animation | Class | Duration | Usage |
-|-----------|-------|----------|-------|
-| Fade In | `animate-fadeIn` | 0.5s | Page load elements |
-| Fade In Up | `animate-fadeInUp` | 0.6s | Staggered lists |
-| Scale In | `animate-scaleIn` | 0.4s | Modals, tooltips |
+**ONLY** `transition-colors duration-200` and `transition-all duration-200` are permitted for hover/focus states. No decorative animations.
 
 ### Transition
 
 | Property | Class | Usage |
 |----------|-------|-------|
-| All | `transition-all duration-300` | Hover effects |
-| Colors | `transition-colors duration-200` | Color changes only |
-
-### Animation Delays (Staggered)
-
-```
-animation-delay-100, animation-delay-200, ...
-```
+| Colors | `transition-colors duration-200` | Hover color changes |
 
 ## Component Patterns
 
 ### Card Pattern
 ```tsx
-<div className="bg-white/5 border border-white/10 rounded-lg p-4 md:p-6
-  hover:bg-white/10 hover:border-purple-500/50
-  hover:shadow-lg hover:shadow-purple-500/20
-  transition-all duration-300">
+<div className="border border-stone-200 rounded-lg p-4 md:p-5
+  hover:border-stone-300 transition-colors duration-200">
 ```
 
 ### Badge Pattern
 ```tsx
-<span className="inline-flex items-center px-2 py-1
-  text-xs font-medium rounded-md
-  bg-purple-500/20 text-purple-300">
+<span className="inline-flex items-center px-2 py-0.5
+  text-xs rounded-md
+  bg-blue-50 text-blue-700 border border-blue-200">
 ```
 
-### Gradient Text Pattern
+### Nav Pattern
 ```tsx
-<h1 className="bg-gradient-to-r from-purple-400 to-pink-400
-  bg-clip-text text-transparent">
+<nav className="px-6 py-4 border-b border-stone-200">
+  <div className="max-w-3xl mx-auto flex justify-between items-center">
 ```
 
-### Button Pattern
+### Link Pattern
 ```tsx
-<button className="px-4 py-2 rounded-md font-medium
-  bg-purple-600 hover:bg-purple-700
-  text-white transition-colors duration-200">
+<a className="text-stone-500 hover:text-blue-600
+  transition-colors duration-200 border-b border-stone-200
+  hover:border-blue-300 pb-0.5">
 ```
+
+## Illustration Accents
+
+Hand-drawn SVG components from `@/components/illustrations`:
+
+| Component | Usage |
+|-----------|-------|
+| `WavyUnderline` | Below page titles |
+| `DotPattern` | Section separators |
+| `HandArrow` | Navigation link decoration |
+| `SmallStar` | Emphasis accent |
+
+Usage: `<WavyUnderline className="text-blue-400 mt-2" />`
 
 ## Grid Layouts
-
-### Responsive Grid Patterns
-
-| Layout | Classes | Usage |
-|--------|---------|-------|
-| Skills | `grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5` | Tag grids |
-| Cards | `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3` | Card layouts |
-| Export | `grid grid-cols-1 md:grid-cols-3` | Feature grids |
 
 ### Container
 
 ```tsx
-<div className="max-w-5xl mx-auto px-4 md:px-6">
+<div className="max-w-3xl mx-auto px-6">
 ```
-
-## Z-Index Scale
-
-| Layer | Value | Usage |
-|-------|-------|-------|
-| Base | `z-0` | Default content |
-| Elevated | `z-10` | Floating elements |
-| Modal | `z-50` | Modal overlays |
-| Toast | `z-100` | Notifications |
 
 ---
 
