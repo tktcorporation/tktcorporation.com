@@ -1,5 +1,47 @@
 {
   "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  // Volume name must start with [a-zA-Z0-9] to comply with Docker naming rules
+  // Using 'devcontainer-' prefix so ${localWorkspaceFolderBasename} ('.github') doesn't start the name
+  "mounts": [
+    "source=devcontainer-${localWorkspaceFolderBasename}-pnpm-store,target=${containerWorkspaceFolder}/.pnpm-store,type=volume",
+
+    // Claude Code データ永続化 (会話履歴・認証・設定)
+    // Anthropic 公式 devcontainer と同じアプローチ: ~/.claude 全体を named volume にする
+    // ref: https://github.com/anthropics/claude-code/blob/main/.devcontainer/devcontainer.json
+    // 認証には ~/.claude/.credentials.json と ~/.claude.json の両方が必要
+    // ~/.claude.json は volume 外 (ホームディレクトリ直下) なので postCreateCommand でリストアする
+    "source=devcontainer-${localWorkspaceFolderBasename}-claude-data,target=/home/vscode/.claude,type=volume",
+
+    // mise インストール済みツールを DevContainer 間で共有
+    // 全コンテナが Linux なのでバイナリ互換性あり。ワークスペース名を含めず共有 volume にする
+    // ホスト (macOS) とは OS が異なるためバインドマウントではなく named volume を使う
+    "source=devcontainer-shared-mise-data,target=/home/vscode/.local/share/mise,type=volume"
+  ],
+
+  // Codespaces 環境変数の転送
+  // Codespaces では runArgs --env-file が無視されるため、remoteEnv で補完する。
+  // Codespaces: リポジトリの Codespaces secrets に設定した値が ${localEnv:...} 経由で注入される
+  // ローカル: ホストマシンの環境変数から注入される（.env.devcontainer と併用可）
+  // Claude Code OAuth 認証のコールバック用ポートフォワーディング
+  // claude login 実行時にローカル HTTP サーバーが起動し、ブラウザからのリダイレクトを受け取る
+  // Codespaces ではポートフォワーディングが必要（ローカルでは不要だが設定しても害はない）
+  "forwardPorts": [7160, 7161, 7162, 7163, 7164],
+  "portsAttributes": {
+    "7160-7164": {
+      "label": "Claude OAuth Callback",
+      "onAutoForward": "silent"
+    }
+  },
+
+  "remoteEnv": {
+    "GH_TOKEN": "${localEnv:GH_TOKEN}",
+    "WAKATIME_API_KEY": "${localEnv:WAKATIME_API_KEY}"
+  },
+
   "features": {
     // "ghcr.io/devcontainers/features/docker-in-docker:2": {
     //   "version": "latest",
@@ -23,9 +65,31 @@
       ],
       "settings": {
         "files.watcherExclude": {
-          "**/.git/*/**": true,
-          "**/node_modules/*/**": true
-        }
+          "**/.git/objects/**": true,
+          "**/.git/subtree-cache/**": true,
+          "**/.git/modules/**": true,
+          "**/node_modules/**": true,
+          "**/.pnpm/**": true,
+          "**/.pnpm-store/**": true,
+          "**/.turbo/**": true,
+          "**/dist/**": true,
+          "**/.next/**": true,
+          "**/__pycache__/**": true,
+          "**/.pytest_cache/**": true,
+          "**/venv/**": true,
+          "**/.venv/**": true
+        },
+        "search.exclude": {
+          "**/node_modules": true,
+          "**/.pnpm": true,
+          "**/.pnpm-store": true,
+          "**/.git": true,
+          "**/.turbo": true,
+          "**/dist": true,
+          "**/.next": true,
+          "**/coverage": true
+        },
+        "git.detectSubmodulesLimit": 0
       }
     }
   },
@@ -33,7 +97,19 @@
     "install-packages": [
       "bash",
       "-c",
-      "set -e; sudo apt-get update && sudo apt-get install -y build-essential fzf ripgrep bc gpg ca-certificates curl"
+      "set -e; sudo apt-get update && sudo apt-get install -y build-essential fzf ripgrep bc gpg ca-certificates curl tmux"
+    ],
+    // named volume は root 所有で作成されるため、vscode ユーザーに権限を付与する
+    // 対象:
+    //   .pnpm-store: pnpm のパッケージキャッシュ (named volume)
+    //   ~/.local/share/mise: mise のインストール済みツール (named volume)
+    //   ~/.local/state/mise: mise trust の trusted-configs 保存先
+    //   ~/.cache/mise: mise のダウンロードキャッシュ
+    //   ~/.claude: Claude Code データ全体 (named volume)
+    "fix-volume-permissions": [
+      "bash",
+      "-c",
+      "set -e; sudo mkdir -p ~/.local/state/mise ~/.cache/mise && sudo chown -R $(whoami) .pnpm-store ~/.local/share/mise ~/.local/state/mise ~/.cache/mise ~/.claude"
     ]
   },
   "updateContentCommand": {
@@ -42,21 +118,38 @@
       "-c",
       "set -e; curl -fsSL https://raw.githubusercontent.com/nodejs/release-keys/b362bd15f2ac7ce350d7563fc03e0c625e455e5f/cli.sh | bash -s import"
     ],
-    "setup-mise-bash": [
-      "bash",
-      "-c",
-      "echo 'eval \"$(mise activate bash)\"' >> ~/.bashrc"
-    ],
-    "trust-mise": ["mise", "trust"]
+    "setup-mise-bash": ["bash", "-c", "echo 'eval \"$(mise activate bash)\"' >> ~/.bashrc"],
+    "trust-mise": ["bash", "-lc", "mise trust"],
+    "setup-git-user": ["bash", "-l", ".devcontainer/setup-git-user.sh"],
+    // vite-plus (vp) CLI: Vite, Vitest, Oxlint, Oxfmt, Rolldown, tsdown を統合した開発ツールチェーン
+    // CI=true で Node.js 管理の対話プロンプトをスキップ
+    "install-vite-plus": ["bash", "-c", "CI=true curl -fsSL https://vite.plus | bash"]
   },
   "postCreateCommand": {
-    "mise-install": "mise install"
+    "fix-pnpm-store-permissions": ["bash", "-lc", "sudo chown -R $(whoami) .pnpm-store"],
+    "git-performance": "git config status.submoduleSummary false && git config diff.ignoreSubmodules all && git config fetch.recurseSubmodules false && git config submodule.recurse false",
+    "install-gh-extensions": "gh extension install agbiotech/gh-sub-issue 2>/dev/null || true",
+    "mise-install": ["bash", "-lc", "mise install"],
+    // ~/.claude.json (OAuth セッション) は volume 外のため、volume 内にバックアップをリストアする
+    // claude login 後に persist-claude-auth.sh save を実行してバックアップを作成する
+    // 初回は何もしない (ファイルがなければスキップ)
+    "restore-claude-json": [
+      "bash",
+      "-c",
+      "test -f ~/.claude/.claude.json.bak && cp ~/.claude/.claude.json.bak ~/.claude.json || test -f ~/.claude.json || echo '{\"hasCompletedOnboarding\":true}' > ~/.claude.json"
+    ]
   },
   "postStartCommand": {
-    "setup-chrome-devtools-mcp": [
+    // Codespaces では runArgs --env-file が無効なため、
+    // .env.devcontainer の内容をシェルプロファイルに追加して補完する
+    "load-env-to-profile": ["bash", "-lc", ".devcontainer/load-env-to-profile.sh"],
+    "setup-chrome-devtools-mcp": ["bash", "-lc", ".devcontainer/setup-chrome-devtools-mcp.sh"],
+    "mise-upgrade": ["mise", "upgrade"],
+    "check-env-file": [
       "bash",
-      "-lc",
-      ".devcontainer/setup-chrome-devtools-mcp.sh"
+      "-c",
+      "[ -s .devcontainer/.env.devcontainer ] || echo 'WARNING: .devcontainer/.env.devcontainer is empty or missing. Secrets are not loaded.'"
     ]
-  }
+  },
+  "initializeCommand": "touch .devcontainer/.env.devcontainer"
 }
