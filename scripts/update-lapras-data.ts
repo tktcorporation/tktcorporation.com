@@ -16,7 +16,9 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
+
 import type { z } from "zod";
+
 import { LaprasDataSchema } from "../src/data/laprasSchema.js";
 
 const __filename = fileURLToPath(import.meta.url);

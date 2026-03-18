@@ -50,7 +50,6 @@ import {
   DiUbuntu,
   DiWindows,
 } from "react-icons/di";
-
 import {
   SiAmazon,
   SiAuth0,

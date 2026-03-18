@@ -21,7 +21,7 @@ interface SkeletonProps {
 export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
-      className={cn("bg-stone-200 rounded animate-pulse", className)}
+      className={cn("animate-pulse rounded bg-stone-200", className)}
       aria-hidden="true"
     />
   );
@@ -65,15 +65,15 @@ export function SkeletonCard({
   return (
     <div
       className={cn(
-        "rounded-lg p-4 md:p-6 bg-stone-50 border border-stone-200 animate-pulse",
+        "animate-pulse rounded-lg border border-stone-200 bg-stone-50 p-4 md:p-6",
         className
       )}
       aria-hidden="true"
     >
       {showHeader && (
         <>
-          <Skeleton className="h-5 md:h-6 w-1/3 mb-3 md:mb-4" />
-          <Skeleton className="h-4 w-1/2 mb-2" />
+          <Skeleton className="mb-3 h-5 w-1/3 md:mb-4 md:h-6" />
+          <Skeleton className="mb-2 h-4 w-1/2" />
         </>
       )}
       {showContent && <Skeleton className="h-4 w-full" />}
@@ -102,7 +102,7 @@ export function SkeletonGrid({
   return (
     <div
       className={cn(
-        "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3",
+        "grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 md:gap-3 lg:grid-cols-5",
         className
       )}
       aria-busy="true"
@@ -112,11 +112,11 @@ export function SkeletonGrid({
         <div
           key={`skeleton-grid-${i}`}
           className={cn(
-            "rounded-md p-2 md:p-3 bg-stone-50 border border-stone-200 animate-pulse",
+            "animate-pulse rounded-md border border-stone-200 bg-stone-50 p-2 md:p-3",
             itemClassName
           )}
         >
-          <Skeleton className="h-4 w-2/3 mb-1" />
+          <Skeleton className="mb-1 h-4 w-2/3" />
           <Skeleton className="h-3 w-1/3" />
         </div>
       ))}

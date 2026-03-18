@@ -2,7 +2,7 @@ version: "3.8"
 services:
   app:
     image: node:24-slim
-    command: npm run dev
+    command: npx vp dev
     working_dir: /app
     volumes:
       - .:/app

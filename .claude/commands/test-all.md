@@ -10,6 +10,7 @@ Run comprehensive test suite:
 2. **E2E Tests**: !`npm run test:e2e`
 
 After running tests:
+
 - Report test results summary (passed/failed/skipped counts)
 - Show coverage statistics if available
 - If any tests fail, report which ones and why

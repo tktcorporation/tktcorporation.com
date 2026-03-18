@@ -1,6 +1,7 @@
 # Project Structure
 
 ## Root Directory Layout
+
 ```
 /workspaces/tktcorporation.com/
 ├── src/                    # React application source code
@@ -44,7 +45,7 @@
 - Contains the main page components
 - Each page is a standalone route in the application
 
-### /src/components  
+### /src/components
 - Reusable UI components used across pages
 - Follow React component best practices
 
@@ -65,3 +66,4 @@
 - GitHub Actions workflow on push to master and PRs
 - Uses Docker Compose for consistent environment
 - Runs linting, type checking, and build steps
+```

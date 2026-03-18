@@ -10,6 +10,7 @@
  */
 
 import type { Experience, GroupedExperience } from "@/types/experience";
+
 import { dateToMonths } from "./formatDate";
 
 /** 連続期間とみなす最大ギャップ（月数） */

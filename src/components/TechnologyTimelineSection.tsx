@@ -11,6 +11,7 @@
  */
 
 import { useEffect } from "react";
+
 import { TechnologyTimeline } from "@/components/TechnologyTimeline";
 import { getLaprasData } from "@/data/laprasData";
 import { useLaprasActivities } from "@/hooks/useLaprasActivities";
@@ -24,9 +25,9 @@ export function TechnologyTimelineSection() {
   }, [setTimeSpan]);
 
   return (
-    <section className="py-16 px-6">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-xl md:text-2xl font-bold text-stone-900 mb-8">
+    <section className="px-6 py-16">
+      <div className="mx-auto max-w-3xl">
+        <h2 className="mb-8 text-xl font-bold text-stone-900 md:text-2xl">
           Technology Timeline
         </h2>
         {!loading && (

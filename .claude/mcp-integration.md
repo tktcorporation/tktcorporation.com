@@ -5,9 +5,11 @@ The project uses MCP servers for enhanced functionality. Configuration is in `.m
 ## Available MCP Servers
 
 ### 1. Chrome DevTools (`mcp__chrome-devtools__*`)
+
 **Purpose**: Browser automation and debugging via Chrome DevTools Protocol
 
 **When to use**:
+
 - Taking screenshots of pages
 - Navigating and interacting with web pages
 - Debugging frontend issues
@@ -15,6 +17,7 @@ The project uses MCP servers for enhanced functionality. Configuration is in `.m
 - Performance analysis
 
 **Key functions**:
+
 - `mcp__chrome-devtools__take_screenshot` - Capture page screenshots
 - `mcp__chrome-devtools__take_snapshot` - Get page accessibility tree snapshot
 - `mcp__chrome-devtools__navigate_page` - Navigate to URLs
@@ -27,27 +30,33 @@ The project uses MCP servers for enhanced functionality. Configuration is in `.m
 **Setup**: Requires Chrome/Chromium installation. Setup script at `.devcontainer/setup-chrome-devtools-mcp.sh`.
 
 ### 2. Context7 (`mcp__context7__*`)
+
 **Purpose**: Retrieve up-to-date documentation for libraries and frameworks
 
 **When to use**:
+
 - Looking up current API documentation for any library
 - Getting code examples for specific library features
 - Resolving library versions and compatibility
 - Understanding library usage patterns
 
 **Key functions**:
+
 - `mcp__context7__resolve-library-id` - Convert library name to Context7 ID
 - `mcp__context7__get-library-docs` - Fetch comprehensive library documentation
 
 **Best practices**:
+
 - Always call `resolve-library-id` first unless user provides exact library ID
 - Specify `topic` parameter to focus documentation retrieval
 - Use appropriate `tokens` limit based on needed detail (default: 10000)
 
 ### 3. IDE (`mcp__ide__*`)
+
 **Purpose**: IDE integration tools from Anthropic for enhanced development workflows
 
 **When to use**:
+
 - Enhanced code editing and refactoring
 - IDE-specific operations and integrations
 - Advanced development tooling

@@ -18,6 +18,7 @@ import type {
   TechExtractor,
 } from "@/types/experience";
 import { getDisplayPositionName } from "@/types/experience";
+
 import { PositionBadge, TechBadge } from "./TechBadge";
 
 export interface ExperienceCardProps {
@@ -53,12 +54,12 @@ function ExperienceDetail({
 
   return (
     <div className={borderClass}>
-      <div className="flex flex-col md:flex-row md:justify-between mb-2">
-        <h4 className="text-sm md:text-base font-medium text-stone-700">
+      <div className="mb-2 flex flex-col md:flex-row md:justify-between">
+        <h4 className="text-sm font-medium text-stone-700 md:text-base">
           {getDisplayPositionName(exp)}
         </h4>
         {!hideDuration && (
-          <p className="text-[10px] md:text-xs text-stone-400 font-mono">
+          <p className="font-mono text-[10px] text-stone-400 md:text-xs">
             {formatDate(
               exp.start_year,
               exp.start_month,
@@ -70,12 +71,12 @@ function ExperienceDetail({
       </div>
       {exp.description && (
         <>
-          <div className="flex flex-wrap gap-1 md:gap-1.5 mb-2 md:mb-3">
+          <div className="mb-2 flex flex-wrap gap-1 md:mb-3 md:gap-1.5">
             {extractTechTags(exp.description).map((tech) => (
               <TechBadge key={tech} name={tech} />
             ))}
           </div>
-          <div className="text-stone-600 space-y-1 text-xs md:text-sm leading-relaxed">
+          <div className="space-y-1 text-xs leading-relaxed text-stone-600 md:text-sm">
             {formatDescription(exp.description)}
           </div>
         </>
@@ -107,28 +108,28 @@ export function ExperienceCard({
     >
       {/* タイムラインドット */}
       <div
-        className="absolute left-0 w-[15px] h-[15px] bg-white border-2 border-stone-300 rounded-full"
+        className="absolute left-0 h-[15px] w-[15px] rounded-full border-2 border-stone-300 bg-white"
         aria-hidden="true"
       />
       <article
-        className="ml-8 rounded-lg p-4 md:p-5 border border-stone-200 hover:border-stone-300 transition-colors duration-200"
+        className="ml-8 rounded-lg border border-stone-200 p-4 transition-colors duration-200 hover:border-stone-300 md:p-5"
         aria-labelledby={cardId}
       >
-        <header className="flex flex-col md:flex-row md:justify-between mb-3">
+        <header className="mb-3 flex flex-col md:flex-row md:justify-between">
           <div className="flex-1">
             <h3
               id={cardId}
-              className="text-base md:text-lg font-bold text-stone-900"
+              className="text-base font-bold text-stone-900 md:text-lg"
             >
               {group.organization_name}
               {group.is_client_work && group.client_company_name && (
-                <span className="text-xs md:text-sm text-stone-400 ml-1 md:ml-2 font-normal">
+                <span className="ml-1 text-xs font-normal text-stone-400 md:ml-2 md:text-sm">
                   ({group.client_company_name})
                 </span>
               )}
             </h3>
             <ul
-              className="mt-1.5 flex flex-wrap gap-1 md:gap-1.5 list-none"
+              className="mt-1.5 flex list-none flex-wrap gap-1 md:gap-1.5"
               aria-label="Positions"
             >
               {uniquePositions.map((positionName) => (
@@ -139,7 +140,7 @@ export function ExperienceCard({
             </ul>
           </div>
           <time
-            className="text-xs md:text-sm text-stone-400 mt-2 md:mt-0 font-mono"
+            className="mt-2 font-mono text-xs text-stone-400 md:mt-0 md:text-sm"
             dateTime={`${group.total_start_year}-${String(group.total_start_month).padStart(2, "0")}`}
           >
             {formatDate(
@@ -154,7 +155,7 @@ export function ExperienceCard({
         <div
           className={
             group.experiences.length > 1
-              ? "space-y-3 md:space-y-4 mt-3 md:mt-4"
+              ? "mt-3 space-y-3 md:mt-4 md:space-y-4"
               : ""
           }
         >

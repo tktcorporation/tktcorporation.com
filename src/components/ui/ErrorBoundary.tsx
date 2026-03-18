@@ -50,22 +50,22 @@ export class ErrorBoundary extends Component<
 
       return (
         <div
-          className="rounded-lg p-6 bg-red-500/10 border border-red-500/30 text-red-300"
+          className="rounded-lg border border-red-500/30 bg-red-500/10 p-6 text-red-300"
           role="alert"
         >
-          <h2 className="text-lg font-semibold mb-2">Something went wrong</h2>
+          <h2 className="mb-2 text-lg font-semibold">Something went wrong</h2>
           <p className="text-sm opacity-80">
             An error occurred while rendering this section.
           </p>
           {process.env.NODE_ENV === "development" && this.state.error && (
-            <pre className="mt-4 text-xs bg-black/20 p-2 rounded overflow-auto">
+            <pre className="mt-4 overflow-auto rounded bg-black/20 p-2 text-xs">
               {this.state.error.message}
             </pre>
           )}
           <button
             type="button"
             onClick={() => this.setState({ hasError: false, error: null })}
-            className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded transition-colors"
+            className="mt-4 rounded bg-red-500/20 px-4 py-2 transition-colors hover:bg-red-500/30"
           >
             Try again
           </button>

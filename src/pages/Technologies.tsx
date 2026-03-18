@@ -12,6 +12,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import { TechnologyTimeline } from "../components/TechnologyTimeline";
 import { getLaprasDataSafe } from "../data/laprasData";
 import type { LaprasData } from "../data/laprasSchema";
@@ -62,12 +63,12 @@ function Technologies() {
   }, [fetchLaprasData]);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <nav className="px-6 py-4 border-b border-stone-200">
-        <div className="max-w-3xl mx-auto flex justify-between items-center">
+    <div className="flex min-h-screen flex-col">
+      <nav className="border-b border-stone-200 px-6 py-4">
+        <div className="mx-auto flex max-w-3xl items-center justify-between">
           <Link
             to="/"
-            className="text-sm text-stone-500 hover:text-stone-900 transition-colors duration-200"
+            className="text-sm text-stone-500 transition-colors duration-200 hover:text-stone-900"
           >
             Home
           </Link>
@@ -77,9 +78,9 @@ function Technologies() {
         </div>
       </nav>
 
-      <main className="max-w-3xl mx-auto w-full px-6 py-12 flex-grow">
+      <main className="mx-auto w-full max-w-3xl flex-grow px-6 py-12">
         <header className="mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-stone-900 tracking-tight mb-2">
+          <h1 className="mb-2 text-2xl font-bold tracking-tight text-stone-900 md:text-3xl">
             Activities
           </h1>
           {laprasData && (
@@ -95,10 +96,10 @@ function Technologies() {
         </header>
 
         {loading && (
-          <div className="text-center py-12">
+          <div className="py-12 text-center">
             {/* biome-ignore lint/a11y/useSemanticElements: role="status" is correct for loading spinners */}
             <div
-              className="inline-block animate-spin rounded-full h-6 w-6 border-2 border-stone-300 border-t-stone-600"
+              className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-stone-300 border-t-stone-600"
               role="status"
               aria-label="データを読み込み中"
             />
@@ -109,12 +110,12 @@ function Technologies() {
         )}
 
         {error && (
-          <div className="text-center py-12" role="alert">
-            <p className="text-red-600 mb-4 text-sm">エラー: {error}</p>
+          <div className="py-12 text-center" role="alert">
+            <p className="mb-4 text-sm text-red-600">エラー: {error}</p>
             <button
               type="button"
               onClick={handleRetry}
-              className="px-4 py-2 text-sm border border-stone-300 rounded-md hover:bg-stone-50 transition-colors duration-200"
+              className="rounded-md border border-stone-300 px-4 py-2 text-sm transition-colors duration-200 hover:bg-stone-50"
               aria-label="データの再読み込み"
             >
               再試行
@@ -137,22 +138,22 @@ function Technologies() {
           !error &&
           !activitiesLoading &&
           timelineEntries.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-stone-400 text-sm">
+            <div className="py-12 text-center">
+              <p className="text-sm text-stone-400">
                 表示可能な活動データがありません
               </p>
             </div>
           )}
       </main>
 
-      <footer className="mt-auto py-6 text-center text-xs text-stone-400 border-t border-stone-200">
+      <footer className="mt-auto border-t border-stone-200 py-6 text-center text-xs text-stone-400">
         <p>
           © {new Date().getFullYear()} tkt | Data from{" "}
           <a
             href="https://lapras.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-700 transition-colors duration-200"
+            className="text-blue-500 transition-colors duration-200 hover:text-blue-700"
           >
             LAPRAS
           </a>

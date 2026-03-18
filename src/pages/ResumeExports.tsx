@@ -11,10 +11,12 @@
  */
 
 import { useMemo } from "react";
+
 import { calculateSkillsWithYears } from "@/utils/calculateSkills";
 import { generateResumeJson } from "@/utils/exportResumeJson";
 import { generateResumeMarkdown } from "@/utils/exportResumeMarkdown";
 import { markdownToPlainText } from "@/utils/exportResumeText";
+
 import experiencesData from "../data/experiences.json";
 
 type ExportType = "markdown" | "text" | "json";

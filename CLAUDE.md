@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal website built with React, TypeScript, and Vite. It includes a main homepage and a resume page for displaying work experiences.
 
-**Key Technologies**: React 19, TypeScript, Vite, Tailwind CSS, Biome
+**Key Technologies**: React 19, TypeScript, Vite+ (vite-plus), Tailwind CSS, Oxlint, Oxfmt
 
 **Node.js Requirement**: >= 24.0.0
 
@@ -15,8 +15,7 @@ This is a personal website built with React, TypeScript, and Vite. It includes a
 **ALWAYS run the following commands after making code changes:**
 
 ```bash
-npm run lint      # Check code formatting and linting
-npm run typecheck # Check TypeScript types
+npm run check     # Run all quality checks (lint + fmt + typecheck via vp check)
 npm run test      # Run tests (if applicable)
 ```
 
@@ -27,15 +26,18 @@ If any of these checks fail, you MUST fix the issues before considering the task
 ## Code Standards
 
 ### Purpose Documentation (IMPORTANT)
+
 **Every TypeScript/TSX file MUST have a Purpose comment at the top of the file.**
 
 Purpose comments document:
+
 - Why this file/module exists
 - What it aims to achieve
 - Core functionality and intent
 - Any important design decisions
 
 Format:
+
 ```typescript
 /**
  * Purpose:
@@ -47,12 +49,14 @@ Format:
 ```
 
 **Why this matters:**
+
 - Prevents AI agents from losing or misinterpreting original intent
 - Maintains design consistency across code changes
 - Helps future developers (human or AI) understand the "why" behind the code
 - Reduces accidental removal or modification of important functionality
 
 **Maintenance:**
+
 - Purpose comments should be updated when the file's intent changes significantly
 - When using AI agents for coding, always verify that the Purpose is preserved and accurate
 - If an AI agent suggests changes that conflict with the Purpose, the Purpose takes precedence
@@ -60,22 +64,26 @@ Format:
 ## UI/UX Design Standards (CRITICAL for Visual Changes)
 
 **Before implementing ANY UI changes, you MUST read:**
+
 - **Design System** - @.claude/design-system.md - Color palette, spacing, typography tokens
 - **UI/UX Guidelines** - @.claude/ui-ux-guidelines.md - Rules, anti-patterns, checklists
 
 ### Quick Rules
+
 1. **Use only defined tokens** - No custom colors, spacing, or animations
 2. **Copy existing patterns** - Find similar components and replicate their styling
 3. **Less is more** - Remove decorative elements that don't serve a function
 4. **Consistency over creativity** - Matching existing > "better" but different
 
 ### Pre-Implementation Checklist
+
 - [ ] Read the most similar existing component
 - [ ] Verify all values are from design-system.md
 - [ ] Check visual hierarchy (important = prominent)
 - [ ] Confirm hover/focus states match existing patterns
 
 ### Common Anti-Patterns to Avoid
+
 - Multiple gradients competing for attention
 - Excessive or nested animations
 - Empty containers wrapping single values
@@ -91,18 +99,21 @@ Claude Code provides advanced capabilities for complex task management and effic
 **Purpose**: Creates a structured plan before executing complex tasks, allowing for review and approval.
 
 **When to use**:
+
 - Complex multi-step implementations requiring architectural decisions
 - Tasks with multiple possible approaches that need discussion
 - Features that impact multiple parts of the codebase
 - When you want to review the implementation strategy before execution
 
 **How it works**:
+
 1. Claude analyzes the task and creates a detailed plan
 2. The plan is presented to you for review
 3. You can approve, modify, or reject the plan
 4. Claude executes the approved plan step-by-step
 
 **Best practices**:
+
 - Use Plan mode for tasks with ambiguity or multiple valid approaches
 - Review plans carefully - they're designed to catch issues early
 - Provide feedback on plans to refine the approach before implementation
@@ -113,6 +124,7 @@ Claude Code provides advanced capabilities for complex task management and effic
 **Purpose**: Allows Claude to resume previous subagent sessions, maintaining context and continuity.
 
 **Benefits**:
+
 - Preserves context from previous work
 - Avoids redundant exploration or analysis
 - Enables iterative development workflows
@@ -123,17 +135,20 @@ Claude Code provides advanced capabilities for complex task management and effic
 **Purpose**: Claude automatically selects the appropriate AI model for each subagent task.
 
 **Available models**:
+
 - **Sonnet**: Default model, balanced performance (current: Sonnet 4.5)
 - **Opus**: Most capable model for complex reasoning and tasks
 - **Haiku**: Fast, efficient model for straightforward tasks
 
 **Manual override**:
+
 ```
 "Use Opus for this architectural analysis"
 "Use Haiku to quickly search for all config files"
 ```
 
 **Best practices**:
+
 1. **Trust the automation**: Claude selects appropriate modes and models automatically
 2. **Provide context**: Clear task descriptions help Plan mode create better plans
 3. **Review plans**: Always review generated plans for complex tasks
@@ -145,12 +160,14 @@ Claude Code provides advanced capabilities for complex task management and effic
 For detailed information, refer to these documents:
 
 ### Core Guidelines
+
 - **Architecture** - @.claude/architecture.md - Tech stack, project structure, configuration files
 - **Development Workflows** - @.claude/development.md - Development commands, CI/CD
 - **Design System** - @.claude/design-system.md - Design tokens (colors, spacing, typography)
 - **UI/UX Guidelines** - @.claude/ui-ux-guidelines.md - Design rules and anti-patterns
 
 ### Features & Integration
+
 - **Living Documentation** - @.claude/living-documentation.md - Test-driven specification approach
 - **MCP Integration** - @.claude/mcp-integration.md - Chrome DevTools, Context7, IDE MCP guides
 - **Resume Export Feature** - @.claude/features/resume-export.md - AI-friendly resume export implementation

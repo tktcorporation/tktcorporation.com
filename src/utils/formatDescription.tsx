@@ -65,13 +65,13 @@ function createLineElement(
       );
     case "sub":
       return (
-        <li key={`${index}-sub`} className="ml-8 text-sm list-circle">
+        <li key={`${index}-sub`} className="list-circle ml-8 text-sm">
           {text}
         </li>
       );
     case "circle":
       return (
-        <li key={`${index}-circle`} className="ml-6 list-circle">
+        <li key={`${index}-circle`} className="list-circle ml-6">
           {text}
         </li>
       );
