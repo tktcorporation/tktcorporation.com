@@ -98,12 +98,12 @@ export function CopyResumeButton({
       >
         {copied ? (
           <>
-            <Check className="w-3 h-3" aria-hidden="true" />
+            <Check className="h-3 w-3" aria-hidden="true" />
             <span>Copied</span>
           </>
         ) : (
           <>
-            <Copy className="w-3 h-3" aria-hidden="true" />
+            <Copy className="h-3 w-3" aria-hidden="true" />
             <span>Copy</span>
           </>
         )}
@@ -111,7 +111,7 @@ export function CopyResumeButton({
 
       {error && (
         <div
-          className="absolute top-full mt-2 left-0 right-0 bg-red-500 text-white text-xs px-3 py-2 rounded shadow-lg whitespace-nowrap z-10"
+          className="absolute top-full right-0 left-0 z-10 mt-2 rounded bg-red-500 px-3 py-2 text-xs whitespace-nowrap text-white shadow-lg"
           role="alert"
         >
           {error}

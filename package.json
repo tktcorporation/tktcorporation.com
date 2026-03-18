@@ -4,20 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "biome check . && tsc --noEmit && npm run lint:actions",
-    "lint:biome": "biome check .",
+    "dev": "vp dev",
+    "build": "vp build",
+    "preview": "vp preview",
+    "check": "vp check && npm run lint:actions",
+    "lint": "vp lint && npm run lint:actions",
     "lint:actions": "node-actionlint",
-    "format": "biome format --write .",
-    "lint:fix": "biome check --write .",
+    "format": "vp fmt --write",
+    "lint:fix": "vp lint --fix",
     "typecheck": "tsc",
     "screenshot": "tsx scripts/screenshot.ts",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
+    "test": "vp test",
+    "test:ui": "vp test --ui",
+    "test:run": "vp test run",
+    "test:coverage": "vp test run --coverage",
     "test:e2e": "playwright test tests/e2e/",
     "test:e2e:ui": "playwright test tests/e2e/ --ui",
     "test:all": "npm run test:run && npm run test:e2e",
@@ -49,14 +49,12 @@
     "zod": "^4.2.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.10",
     "@playwright/test": "^1.57.0",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
     "@tktco/node-actionlint": "^1.6.0",
     "@types/http-server": "^0.12.4",
     "@types/node": "^24.10.4",
-    "@vitest/ui": "^4.0.16",
     "devicon": "^2.17.0",
     "happy-dom": "^20.0.11",
     "http-server": "^14.1.1",
@@ -64,13 +62,12 @@
     "simple-git-hooks": "^2.13.1",
     "tsx": "^4.21.0",
     "typescript": "5.9.3",
-    "vite": "^7.3.0",
-    "vitest": "^4.0.16"
+    "vite-plus": "^0.1.12"
+  },
+  "simple-git-hooks": {
+    "pre-push": "npm run check && npm run typecheck"
   },
   "engines": {
     "node": "24"
-  },
-  "simple-git-hooks": {
-    "pre-push": "npm run lint && npm run typecheck"
   }
 }

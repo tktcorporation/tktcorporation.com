@@ -11,6 +11,7 @@
  */
 
 import { useMemo } from "react";
+
 import type { SkillWithYears } from "@/types/experience";
 
 /** 進捗バーの最小月数（短すぎるバーを防ぐ） */
@@ -41,9 +42,9 @@ function calculateMaxMonths(skills: SkillWithYears[]): number {
 
 function SkillCardSkeleton() {
   return (
-    <div className="rounded-md p-2 md:p-3 bg-stone-100 animate-pulse">
-      <div className="h-4 bg-stone-200 rounded w-2/3 mb-1" />
-      <div className="h-3 bg-stone-200 rounded w-1/3" />
+    <div className="animate-pulse rounded-md bg-stone-100 p-2 md:p-3">
+      <div className="mb-1 h-4 w-2/3 rounded bg-stone-200" />
+      <div className="h-3 w-1/3 rounded bg-stone-200" />
     </div>
   );
 }
@@ -61,22 +62,22 @@ function SkillCard({ skill, maxMonths }: SkillCardProps) {
 
   return (
     <li
-      className="rounded-md p-2 md:p-3 border border-stone-200 hover:border-stone-300 transition-colors duration-200 list-none"
+      className="list-none rounded-md border border-stone-200 p-2 transition-colors duration-200 hover:border-stone-300 md:p-3"
       aria-labelledby={skillId}
     >
       <div className="flex flex-col gap-1">
         <h3
           id={skillId}
-          className="text-xs md:text-sm font-medium text-stone-800 truncate"
+          className="truncate text-xs font-medium text-stone-800 md:text-sm"
         >
           {skill.name}
         </h3>
-        <span className="text-[10px] md:text-xs text-stone-400">
+        <span className="text-[10px] text-stone-400 md:text-xs">
           {durationText}
         </span>
       </div>
       <div
-        className="w-full bg-stone-100 rounded-full h-1 md:h-1.5 mt-1.5"
+        className="mt-1.5 h-1 w-full rounded-full bg-stone-100 md:h-1.5"
         role="progressbar"
         aria-valuenow={Math.round(progressPercent)}
         aria-valuemin={0}
@@ -85,7 +86,7 @@ function SkillCard({ skill, maxMonths }: SkillCardProps) {
         aria-valuetext={`${skill.name}: ${durationText}`}
       >
         <div
-          className="bg-blue-500 h-full rounded-full transition-all duration-700"
+          className="h-full rounded-full bg-blue-500 transition-all duration-700"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -100,13 +101,13 @@ export function SkillsSection({ skills, loading = false }: SkillsSectionProps) {
     <section className="mb-10 md:mb-14" aria-labelledby="skills-section-title">
       <h2
         id="skills-section-title"
-        className="text-lg md:text-xl font-bold text-stone-900 mb-4 md:mb-6"
+        className="mb-4 text-lg font-bold text-stone-900 md:mb-6 md:text-xl"
       >
         Skills & Technologies
       </h2>
       {loading ? (
         <div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3"
+          className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 md:gap-3 lg:grid-cols-5"
           aria-busy="true"
         >
           {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -115,7 +116,7 @@ export function SkillsSection({ skills, loading = false }: SkillsSectionProps) {
         </div>
       ) : (
         <ul
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3 list-none"
+          className="grid list-none grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 md:gap-3 lg:grid-cols-5"
           aria-label="Professional skills with experience duration"
         >
           {skills.map((skill) => (

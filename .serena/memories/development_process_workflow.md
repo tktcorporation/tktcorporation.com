@@ -37,6 +37,7 @@ When starting a new feature or complex task:
 #### TDD Cycle (Red-Green-Refactor)
 
 1. **RED: Write Failing Tests First**
+
    ```typescript
    // tests/utils/myFeature.test.ts
    describe("myFeature", () => {
@@ -46,12 +47,14 @@ When starting a new feature or complex task:
      });
    });
    ```
+
    - Write tests BEFORE implementation
    - Tests should fail initially (RED)
    - Focus on behavior, not implementation
    - Use descriptive test names
 
 2. **GREEN: Write Minimum Code to Pass**
+
    ```typescript
    // src/utils/myFeature.ts
    export function myFeature(input) {
@@ -59,6 +62,7 @@ When starting a new feature or complex task:
      return expected;
    }
    ```
+
    - Write just enough code to pass tests
    - Don't over-engineer
    - Run tests frequently: `npm run test`
@@ -87,14 +91,15 @@ When starting a new feature or complex task:
    - Good: `it("should generate markdown with AI metadata frontmatter")`
 
 4. **Arrange-Act-Assert Pattern**
+
    ```typescript
    it("should calculate total duration", () => {
      // Arrange: Set up test data
      const experiences = [mockExp1, mockExp2];
-     
+
      // Act: Execute the function
      const result = calculateDuration(experiences);
-     
+
      // Assert: Verify the result
      expect(result).toBe("3 years 6 months");
    });
@@ -152,6 +157,7 @@ Follow the checklist in the implementation document:
 Before considering a task complete:
 
 1. **Run Required Checks** (from CLAUDE.md)
+
    ```bash
    npm run test         # Run ALL tests (must pass)
    npm run lint         # Fix all linting issues
@@ -160,9 +166,11 @@ Before considering a task complete:
    ```
 
 2. **Test Coverage**
+
    ```bash
    npm run test:coverage  # Check code coverage
    ```
+
    - Aim for >80% coverage for utilities
    - Aim for >70% coverage for components
    - 100% coverage for critical business logic
@@ -250,28 +258,32 @@ Before considering a task complete:
 **Assignee**: Claude Code
 
 ## 📋 Overview
+
 [Brief description]
 
 ## 🎯 Goals
+
 1. Goal 1
 2. Goal 2
 
 ## 🏗️ Architecture
+
 [Technical approach]
 
 ## 🧪 Test Plan (TDD)
 
 ### Test Coverage Goals
+
 - Unit tests: >80%
 - Integration tests: Key user flows
 - Edge cases: All identified scenarios
 
 ### Test Cases
+
 1. **Feature A**
    - [ ] Should handle normal input
    - [ ] Should handle empty input
    - [ ] Should handle invalid input
-   
 2. **Feature B**
    - [ ] Should generate correct output
    - [ ] Should handle edge cases
@@ -279,20 +291,24 @@ Before considering a task complete:
 ## 📝 Implementation Checklist
 
 ### Phase 1: Write Tests (RED)
+
 - [ ] Write failing tests for Feature A
 - [ ] Write failing tests for Feature B
 - [ ] Verify tests fail as expected
 
 ### Phase 2: Implement Features (GREEN)
+
 - [ ] Implement Feature A (make tests pass)
 - [ ] Implement Feature B (make tests pass)
 
 ### Phase 3: Refactor (REFACTOR)
+
 - [ ] Optimize Feature A
 - [ ] Improve code readability
 - [ ] Ensure all tests still pass
 
 ### Phase 4: Integration
+
 - [ ] Integrate with existing code
 - [ ] Run full test suite
 - [ ] Fix any regressions
@@ -301,13 +317,17 @@ Before considering a task complete:
 
 ### New Files
 ```
+
 src/utils/feature.ts
 tests/utils/feature.test.ts
+
 ```
 
 ### Modified Files
 ```
+
 src/pages/Page.tsx
+
 ```
 
 ## 🔧 Technical Notes
@@ -341,6 +361,7 @@ src/pages/Page.tsx
 ## When to Use This Workflow
 
 ✅ **Use for:**
+
 - New features (multi-file changes)
 - Complex refactoring
 - Architecture changes
@@ -349,6 +370,7 @@ src/pages/Page.tsx
 - Critical business logic
 
 ❌ **Skip for:**
+
 - Simple bug fixes (1-2 line changes)
 - Documentation-only updates
 - Trivial style tweaks
@@ -368,6 +390,7 @@ This workflow with TDD was successfully applied during the implementation:
 8. ✅ Build successful with export files generated
 
 **Test Results**:
+
 ```
 ✓ tests/utils/exportResumeMarkdown.test.ts (28 tests) 4ms
   Test Files  1 passed (1)

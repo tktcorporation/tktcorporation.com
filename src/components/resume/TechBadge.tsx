@@ -52,7 +52,7 @@ export function TechBadge({
 
   return (
     <span
-      className={`${variantStyles[variant]} ${sizeStyles[size]} ${shapeStyles[shape]} border inline-flex items-center gap-1`}
+      className={`${variantStyles[variant]} ${sizeStyles[size]} ${shapeStyles[shape]} inline-flex items-center gap-1 border`}
     >
       {isSupported && (
         <i className={`${getDeviconClass(name, "plain")} text-xs md:text-sm`} />

@@ -12,7 +12,9 @@
  */
 
 import { useCallback, useEffect, useState } from "react";
+
 import { getNormalizedName } from "@/utils/languageMap";
+
 import type {
   Activity,
   GitHubRepository,

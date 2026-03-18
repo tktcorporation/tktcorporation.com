@@ -12,6 +12,7 @@
  */
 
 import { Link } from "react-router-dom";
+
 import { CopyResumeButton } from "@/components/CopyResumeButton";
 import { WavyUnderline } from "@/components/illustrations";
 import {
@@ -29,12 +30,12 @@ function Resume() {
     useResumeData();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <nav className="px-6 py-4 border-b border-stone-200">
-        <div className="max-w-3xl mx-auto flex justify-between items-center">
+    <div className="flex min-h-screen flex-col">
+      <nav className="border-b border-stone-200 px-6 py-4">
+        <div className="mx-auto flex max-w-3xl items-center justify-between">
           <Link
             to="/"
-            className="text-sm text-stone-500 hover:text-stone-900 transition-colors duration-200"
+            className="text-sm text-stone-500 transition-colors duration-200 hover:text-stone-900"
           >
             Home
           </Link>
@@ -42,10 +43,10 @@ function Resume() {
         </div>
       </nav>
 
-      <main className="max-w-3xl mx-auto w-full px-6 py-12 flex-grow">
+      <main className="mx-auto w-full max-w-3xl flex-grow px-6 py-12">
         <header className="mb-12">
-          <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-2xl md:text-3xl font-bold text-stone-900 tracking-tight">
+          <div className="mb-2 flex items-center gap-3">
+            <h1 className="text-2xl font-bold tracking-tight text-stone-900 md:text-3xl">
               Resume
             </h1>
             <CopyResumeButton markdown={resumeMarkdown} variant="primary" />
@@ -66,14 +67,14 @@ function Resume() {
         <ExportSection />
       </main>
 
-      <footer className="mt-auto py-6 text-center text-xs text-stone-400 border-t border-stone-200">
+      <footer className="mt-auto border-t border-stone-200 py-6 text-center text-xs text-stone-400">
         <p>
           © {new Date().getFullYear()} tkt | Data from{" "}
           <a
             href="https://lapras.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-700 transition-colors duration-200"
+            className="text-blue-500 transition-colors duration-200 hover:text-blue-700"
           >
             LAPRAS
           </a>

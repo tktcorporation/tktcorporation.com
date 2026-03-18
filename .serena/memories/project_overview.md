@@ -1,12 +1,15 @@
 # Project Overview: tktcorporation.com
 
 ## Purpose
+
 This is a personal website for a web application developer named tkt, featuring:
+
 - **Homepage**: Profile information, social media links, and support links
 - **Resume Page**: LAPRAS-integrated work experience display with automatic synchronization
 - Modern UI with gradient backgrounds, animations, and dark theme
 
 ## Main Features
+
 - Responsive design with mobile-first approach
 - Real-time work experience synchronization from LAPRAS API
 - Skills extraction from work experiences
@@ -14,6 +17,7 @@ This is a personal website for a web application developer named tkt, featuring:
 - TypeScript with strict mode for type safety
 
 ## Tech Stack
+
 - **Frontend Framework**: React 19 with TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS with PostCSS
@@ -25,6 +29,7 @@ This is a personal website for a web application developer named tkt, featuring:
 - **Node Version**: >= 24.0.0
 
 ## Environment
+
 - Development System: Linux
 - Package Manager: npm
 - Git Hooks: simple-git-hooks for pre-push checks

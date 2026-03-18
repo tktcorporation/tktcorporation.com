@@ -32,6 +32,7 @@ This directory contains modular documentation and configuration for Claude Code.
 ### What Goes Where?
 
 **CLAUDE.md** (Core - Always Loaded):
+
 - Project overview and key technologies
 - Required checks before completing tasks
 - Code standards (Purpose documentation)
@@ -39,6 +40,7 @@ This directory contains modular documentation and configuration for Claude Code.
 - References to detailed documentation
 
 **Modular Documentation** (Loaded on Import):
+
 - `architecture.md` - Technical implementation details
 - `development.md` - Development workflows and commands
 - `living-documentation.md` - Documentation philosophy and practices
@@ -46,6 +48,7 @@ This directory contains modular documentation and configuration for Claude Code.
 - `features/*.md` - Feature-specific documentation
 
 **Custom Commands** (.claude/commands/):
+
 - Reusable workflows as slash commands
 - Can specify allowed tools and model for efficiency
 - Accessible via `/command-name` in Claude Code
@@ -53,6 +56,7 @@ This directory contains modular documentation and configuration for Claude Code.
 ## How Claude Code Uses This
 
 Claude Code automatically:
+
 1. Loads `CLAUDE.md` as base context
 2. Imports referenced files via `@.claude/filename.md` syntax when needed
 3. Makes custom commands available via `/command-name`
@@ -61,11 +65,13 @@ Claude Code automatically:
 ## Migration from Old Structure
 
 **Before** (Single CLAUDE.md):
+
 - 506 lines, all context loaded every conversation
 - Hard to maintain and navigate
 - Difficult to add feature-specific docs
 
 **After** (Modular .claude/):
+
 - Core CLAUDE.md: ~135 lines
 - Detailed docs: Loaded only when relevant
 - Easy to extend with new features

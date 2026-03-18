@@ -10,6 +10,7 @@
  */
 
 import { Route, Routes } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Resume from "./pages/Resume";
@@ -22,7 +23,7 @@ import Technologies from "./pages/Technologies";
 
 function App() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/resume" element={<Resume />} />

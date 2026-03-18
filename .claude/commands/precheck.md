@@ -11,6 +11,7 @@ Run the following required checks in sequence:
 3. **Unit Tests**: !`npm run test`
 
 After running all checks:
+
 - If all checks pass, confirm that the code is ready for commit
 - If any check fails, report which checks failed and what needs to be fixed
 - Do NOT proceed until all issues are resolved

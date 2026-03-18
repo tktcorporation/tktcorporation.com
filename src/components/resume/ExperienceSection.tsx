@@ -16,6 +16,7 @@ import type {
   GroupedExperience,
   TechExtractor,
 } from "@/types/experience";
+
 import { ExperienceCard } from "./ExperienceCard";
 
 interface ExperienceSectionProps {
@@ -32,12 +33,12 @@ function ExperienceSkeleton() {
       {[1, 2].map((i) => (
         <div
           key={i}
-          className="rounded-lg p-4 md:p-6 bg-stone-50 border border-stone-200 animate-pulse"
+          className="animate-pulse rounded-lg border border-stone-200 bg-stone-50 p-4 md:p-6"
           aria-hidden="true"
         >
-          <div className="h-5 md:h-6 bg-stone-200 rounded w-1/3 mb-3 md:mb-4" />
-          <div className="h-4 bg-stone-200 rounded w-1/2 mb-2" />
-          <div className="h-4 bg-stone-200 rounded w-full" />
+          <div className="mb-3 h-5 w-1/3 rounded bg-stone-200 md:mb-4 md:h-6" />
+          <div className="mb-2 h-4 w-1/2 rounded bg-stone-200" />
+          <div className="h-4 w-full rounded bg-stone-200" />
         </div>
       ))}
     </div>
@@ -55,7 +56,7 @@ export function ExperienceSection({
     <section className="mb-12" aria-labelledby="experience-section-title">
       <h2
         id="experience-section-title"
-        className="text-lg md:text-xl font-bold text-stone-900 mb-4 md:mb-6"
+        className="mb-4 text-lg font-bold text-stone-900 md:mb-6 md:text-xl"
       >
         Professional Experience
       </h2>
@@ -66,11 +67,11 @@ export function ExperienceSection({
         <div className="relative">
           {/* シンプルなタイムラインライン */}
           <div
-            className="absolute left-[7px] md:left-[7px] top-2 bottom-2 w-px bg-stone-200"
+            className="absolute top-2 bottom-2 left-[7px] w-px bg-stone-200 md:left-[7px]"
             aria-hidden="true"
           />
           <ol
-            className="space-y-6 list-none"
+            className="list-none space-y-6"
             aria-label="Work experience timeline (most recent first)"
           >
             {groupedExperiences.map((group, index) => (

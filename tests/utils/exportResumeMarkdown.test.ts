@@ -10,6 +10,7 @@
  */
 
 import { describe, expect, it } from "vitest";
+
 import { generateResumeMarkdown } from "../../src/utils/exportResumeMarkdown";
 
 describe("generateResumeMarkdown", () => {

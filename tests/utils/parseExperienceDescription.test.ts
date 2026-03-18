@@ -70,6 +70,7 @@
  */
 
 import { describe, expect, it } from "vitest";
+
 import { parseExperienceDescription } from "../../src/utils/parseExperienceDescription";
 
 describe("parseExperienceDescription", () => {

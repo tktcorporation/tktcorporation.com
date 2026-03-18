@@ -29,6 +29,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ### 1. Gradient Overuse
 
 **Bad**:
+
 ```tsx
 // Multiple gradients competing for attention
 <div className="bg-gradient-to-r from-purple-500 to-pink-500">
@@ -37,6 +38,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Good**:
+
 ```tsx
 // One gradient for primary emphasis only
 <h1 className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -50,6 +52,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ### 2. Excessive Animation
 
 **Bad**:
+
 ```tsx
 <div className="animate-bounce">
   <span className="animate-pulse">
@@ -59,6 +62,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Good**:
+
 ```tsx
 <div className="transition-all duration-300 hover:scale-105">
   <Icon />
@@ -66,6 +70,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Rule**:
+
 - Use `transition-*` for hover/focus states
 - Use `animate-*` only for page load or state changes
 - Never combine multiple animations on nested elements
@@ -73,6 +78,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ### 3. Empty Visual Containers
 
 **Bad**:
+
 ```tsx
 <div className="border rounded-lg p-8 shadow-lg">
   <span className="text-4xl font-bold">5</span>
@@ -80,6 +86,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Good**:
+
 ```tsx
 <span className="text-lg font-semibold text-slate-300">5 projects</span>
 ```
@@ -89,6 +96,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ### 4. Inconsistent Spacing
 
 **Bad**:
+
 ```tsx
 <div className="p-3">
   <div className="mt-7 mb-2 px-5">
@@ -96,6 +104,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Good**:
+
 ```tsx
 <div className="p-4 md:p-6">
   <div className="space-y-4">
@@ -107,6 +116,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ### 5. Decoration Without Function
 
 **Bad**:
+
 ```tsx
 // Random decorative elements
 <div className="relative">
@@ -118,6 +128,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Good**:
+
 ```tsx
 <div className="bg-white/5 border border-white/10 rounded-lg">
   <Content />
@@ -129,6 +140,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ### 6. Misaligned Visual Hierarchy
 
 **Bad**:
+
 ```tsx
 // Metadata styled more prominently than content
 <div>
@@ -138,6 +150,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Good**:
+
 ```tsx
 <div>
   <h3 className="text-lg font-semibold text-slate-100">Project Title</h3>
@@ -150,6 +163,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ### 7. Inconsistent Interactive States
 
 **Bad**:
+
 ```tsx
 // Different hover patterns
 <Card className="hover:bg-blue-500 hover:scale-110" />
@@ -158,6 +172,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```
 
 **Good**:
+
 ```tsx
 // Unified hover pattern
 <Card className="hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300" />
@@ -188,18 +203,20 @@ Before writing any UI code, verify:
    - Modify only what's necessary
 
 2. **Use semantic color tokens**
+
    ```tsx
    // Prefer semantic tokens
-   className="text-foreground bg-card border-border"
+   className = "text-foreground bg-card border-border";
 
    // Over arbitrary values
-   className="text-slate-100 bg-slate-900 border-slate-700"
+   className = "text-slate-100 bg-slate-900 border-slate-700";
    ```
 
 3. **Responsive patterns follow convention**
+
    ```tsx
    // Always mobile-first with consistent breakpoints
-   className="p-4 md:p-6 text-sm md:text-base gap-4 md:gap-6"
+   className = "p-4 md:p-6 text-sm md:text-base gap-4 md:gap-6";
    ```
 
 4. **Interactive states are uniform**
@@ -217,24 +234,28 @@ Before writing any UI code, verify:
 After implementing UI changes, verify:
 
 ### Visual Consistency
+
 - [ ] Colors match existing palette (no new colors introduced)
 - [ ] Spacing uses standard scale values
 - [ ] Typography follows size hierarchy
 - [ ] Borders and radius match existing components
 
 ### Interaction Patterns
+
 - [ ] Hover states match similar elements
 - [ ] Focus states are visible (accessibility)
 - [ ] Transitions are smooth (300ms default)
 - [ ] No jarring animations
 
 ### Information Hierarchy
+
 - [ ] Most important content is most prominent
 - [ ] Metadata is visually subordinate
 - [ ] Grouping is logical (related items together)
 - [ ] Whitespace guides the eye naturally
 
 ### Simplicity Check
+
 - [ ] Can any element be removed without hurting UX?
 - [ ] Are there unnecessary borders/shadows/gradients?
 - [ ] Is animation serving a purpose?
@@ -247,10 +268,12 @@ After implementing UI changes, verify:
 ### When to Use Gradient Text
 
 **YES**:
+
 - Page titles (one per page)
 - Primary section headers (one per section)
 
 **NO**:
+
 - Body text
 - Multiple headings in same view
 - Interactive elements (buttons, links)
@@ -259,12 +282,14 @@ After implementing UI changes, verify:
 ### When to Use Animation
 
 **YES**:
+
 - Page load (staggered fade-in)
 - State transitions (collapse/expand)
 - Loading indicators
 - Hover feedback (subtle)
 
 **NO**:
+
 - Constant motion (distracting)
 - Multiple simultaneous animations
 - Decoration without purpose
@@ -273,12 +298,14 @@ After implementing UI changes, verify:
 ### When to Use Cards/Containers
 
 **YES**:
+
 - Grouping related content
 - Creating scannable lists
 - Interactive elements (clickable cards)
 - Separating distinct sections
 
 **NO**:
+
 - Single values or labels
 - Already-grouped content
 - Purely decorative wrapping
@@ -287,11 +314,13 @@ After implementing UI changes, verify:
 ### When to Use Shadows
 
 **YES**:
+
 - Hover states (elevation feedback)
 - Modals/overlays (depth)
 - Floating elements (tooltips)
 
 **NO**:
+
 - Static elements by default
 - Multiple competing shadows
 - Decorative enhancement
@@ -301,6 +330,7 @@ After implementing UI changes, verify:
 ## Common Patterns Reference
 
 ### Page Layout
+
 ```tsx
 <main className="min-h-screen bg-slate-950">
   <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12">
@@ -310,50 +340,54 @@ After implementing UI changes, verify:
 ```
 
 ### Section with Title
+
 ```tsx
 <section className="mb-8 md:mb-12">
   <h2 className="text-xl md:text-2xl font-bold text-slate-100 mb-4 md:mb-6">
     Section Title
   </h2>
-  <div className="space-y-4">
-    {/* Content */}
-  </div>
+  <div className="space-y-4">{/* Content */}</div>
 </section>
 ```
 
 ### Interactive Card
+
 ```tsx
-<div className="bg-white/5 border border-white/10 rounded-lg p-4 md:p-6
+<div
+  className="bg-white/5 border border-white/10 rounded-lg p-4 md:p-6
   hover:bg-white/10 hover:border-purple-500/50
   hover:shadow-lg hover:shadow-purple-500/20
-  transition-all duration-300 cursor-pointer">
+  transition-all duration-300 cursor-pointer"
+>
   <h3 className="text-base md:text-lg font-semibold text-slate-100">
     Card Title
   </h3>
-  <p className="text-sm text-slate-300 mt-2">
-    Description text
-  </p>
-  <span className="text-xs text-slate-400 mt-2 block">
-    Metadata
-  </span>
+  <p className="text-sm text-slate-300 mt-2">Description text</p>
+  <span className="text-xs text-slate-400 mt-2 block">Metadata</span>
 </div>
 ```
 
 ### Badge/Tag
+
 ```tsx
-<span className="inline-flex items-center px-2 py-1
+<span
+  className="inline-flex items-center px-2 py-1
   text-xs font-medium rounded-md
-  bg-purple-500/20 text-purple-300 border border-purple-500/30">
+  bg-purple-500/20 text-purple-300 border border-purple-500/30"
+>
   Label
 </span>
 ```
 
 ### Primary Button
+
 ```tsx
-<button className="px-4 py-2 rounded-md font-medium
+<button
+  className="px-4 py-2 rounded-md font-medium
   bg-purple-600 hover:bg-purple-700
   text-white transition-colors duration-200
-  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+>
   Action
 </button>
 ```
@@ -363,21 +397,25 @@ After implementing UI changes, verify:
 ## Accessibility Requirements
 
 ### Color Contrast
+
 - Text on dark backgrounds: minimum `text-slate-300` (4.5:1 ratio)
 - Interactive elements must be distinguishable
 - Don't rely on color alone for meaning
 
 ### Focus States
+
 - All interactive elements need visible focus
 - Use `focus:ring-2 focus:ring-purple-500`
 - Don't remove focus outlines
 
 ### Motion
+
 - Respect `prefers-reduced-motion`
 - Avoid auto-playing animations
 - Keep transitions under 500ms
 
 ### Semantic HTML
+
 - Use proper heading hierarchy (h1 > h2 > h3)
 - Use `<button>` for actions, `<a>` for navigation
 - Include ARIA labels where needed
@@ -397,5 +435,6 @@ After implementing UI changes, verify:
 ---
 
 **Related Documents**:
+
 - [Design System Tokens](./design-system.md)
 - [Architecture Overview](./architecture.md)

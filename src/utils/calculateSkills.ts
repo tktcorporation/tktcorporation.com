@@ -10,6 +10,7 @@
  */
 
 import type { Experience, SkillWithYears } from "@/types/experience";
+
 import { dateToMonths, getCurrentMonths } from "./formatDate";
 import { extractTechnologies } from "./languageMap";
 

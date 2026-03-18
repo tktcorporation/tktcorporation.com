@@ -28,11 +28,13 @@
 仕様をE2Eテストとして記述する。
 
 **ファイル作成**:
+
 ```bash
 tests/e2e/[feature-name].spec.ts
 ```
 
 **テンプレート**:
+
 ```typescript
 /**
  * ============================================================================
@@ -118,11 +120,13 @@ npm run test:e2e
 必要に応じてユニットテストを追加する。全部を最初に書く必要はない。
 
 **ファイル作成**:
+
 ```bash
 tests/utils/[module-name].test.ts
 ```
 
 **書き方**:
+
 ```typescript
 /**
  * ============================================================================
@@ -161,11 +165,13 @@ describe("Module Name", () => {
 テストが通るように実装を進める。
 
 **実装の順序**:
+
 1. 失敗するテストを書く（Red）
 2. 最小限の実装でテストを通す（Green）
 3. コードをきれいにする（Refactor）
 
 **進捗の見方**:
+
 ```bash
 # ユニットテスト実行
 npm run test:run
@@ -284,9 +290,9 @@ test("should display resume in simple pre tag", async ({ page }) => {
 ### 2. 進捗管理として
 
 ```typescript
-test("implemented feature", () => {});           // ✅ 完了
-test.skip("planned feature", () => {});          // 📝 未実装
-test.only("debugging this feature", () => {});   // 🔍 デバッグ中
+test("implemented feature", () => {}); // ✅ 完了
+test.skip("planned feature", () => {}); // 📝 未実装
+test.only("debugging this feature", () => {}); // 🔍 デバッグ中
 ```
 
 ### 3. ドキュメントとして
@@ -368,6 +374,7 @@ npm run test
 6. **仕様変更時はテストを更新** → コードと仕様が常に同期
 
 このプロセスを守ることで：
+
 - ✅ 仕様とコードが乖離しない
 - ✅ 進捗が可視化される
 - ✅ 設計意図が保存される

@@ -10,6 +10,7 @@
  */
 
 import { useEffect, useState } from "react";
+
 import { getDeviconClass, preloadDeviconData } from "@/data/deviconLoader";
 
 interface DeviconState {

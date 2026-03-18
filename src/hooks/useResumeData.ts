@@ -10,6 +10,7 @@
  */
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+
 import type {
   Experience,
   GroupedExperience,
@@ -19,6 +20,7 @@ import { calculateSkillsWithYears } from "@/utils/calculateSkills";
 import { groupExperiences } from "@/utils/experienceGrouping";
 import { generateResumeMarkdown } from "@/utils/exportResumeMarkdown";
 import { dateToMonths } from "@/utils/formatDate";
+
 import experiencesData from "../data/experiences.json";
 
 interface UseResumeDataResult {

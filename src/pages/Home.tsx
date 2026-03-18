@@ -12,6 +12,7 @@
 
 import { Coffee, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+
 import {
   DotPattern,
   HandArrow,
@@ -21,17 +22,17 @@ import { SOCIAL_LINKS } from "@/data/socialLinks";
 
 function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-1 flex items-center justify-center px-6 py-20">
-        <div className="max-w-xl w-full">
+    <div className="flex min-h-screen flex-col">
+      <main className="flex flex-1 items-center justify-center px-6 py-20">
+        <div className="w-full max-w-xl">
           {/* 名前とタイトル */}
           <div className="mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-stone-900 tracking-tight">
+            <h1 className="text-4xl font-bold tracking-tight text-stone-900 md:text-5xl">
               tktcorporation
             </h1>
-            <WavyUnderline className="text-blue-500 mt-2 mb-4" />
+            <WavyUnderline className="mt-2 mb-4 text-blue-500" />
             <p className="text-lg text-stone-500">Web Application Developer</p>
-            <p className="text-sm text-stone-400 mt-1">Based in Japan</p>
+            <p className="mt-1 text-sm text-stone-400">Based in Japan</p>
           </div>
 
           {/* ナビゲーション */}
@@ -40,27 +41,27 @@ function Home() {
               <li>
                 <Link
                   to="/resume"
-                  className="group flex items-center gap-2 text-stone-700 hover:text-blue-600 transition-colors duration-200"
+                  className="group flex items-center gap-2 text-stone-700 transition-colors duration-200 hover:text-blue-600"
                 >
-                  <HandArrow className="text-stone-300 group-hover:text-blue-400 transition-colors duration-200" />
+                  <HandArrow className="text-stone-300 transition-colors duration-200 group-hover:text-blue-400" />
                   <span className="text-base">Resume</span>
                 </Link>
               </li>
               <li>
                 <Link
                   to="/technologies"
-                  className="group flex items-center gap-2 text-stone-700 hover:text-blue-600 transition-colors duration-200"
+                  className="group flex items-center gap-2 text-stone-700 transition-colors duration-200 hover:text-blue-600"
                 >
-                  <HandArrow className="text-stone-300 group-hover:text-blue-400 transition-colors duration-200" />
+                  <HandArrow className="text-stone-300 transition-colors duration-200 group-hover:text-blue-400" />
                   <span className="text-base">Technologies</span>
                 </Link>
               </li>
               <li>
                 <Link
                   to="/portfolio"
-                  className="group flex items-center gap-2 text-stone-700 hover:text-blue-600 transition-colors duration-200"
+                  className="group flex items-center gap-2 text-stone-700 transition-colors duration-200 hover:text-blue-600"
                 >
-                  <HandArrow className="text-stone-300 group-hover:text-blue-400 transition-colors duration-200" />
+                  <HandArrow className="text-stone-300 transition-colors duration-200 group-hover:text-blue-400" />
                   <span className="text-base">Portfolio</span>
                 </Link>
               </li>
@@ -69,7 +70,7 @@ function Home() {
 
           {/* ソーシャルリンク */}
           <div className="mb-10">
-            <DotPattern className="text-stone-300 mb-4" />
+            <DotPattern className="mb-4 text-stone-300" />
             <div className="flex gap-5">
               {SOCIAL_LINKS.map((link) => {
                 const Icon = link.Icon;
@@ -79,10 +80,10 @@ function Home() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-stone-400 hover:text-stone-700 transition-colors duration-200"
+                    className="text-stone-400 transition-colors duration-200 hover:text-stone-700"
                     title={link.label}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="h-5 w-5" />
                   </a>
                 );
               })}
@@ -95,18 +96,18 @@ function Home() {
               href="mailto:contact@tktcorporation.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-blue-600 transition-colors duration-200 border-b border-stone-200 hover:border-blue-300 pb-0.5"
+              className="inline-flex items-center gap-1.5 border-b border-stone-200 pb-0.5 text-stone-500 transition-colors duration-200 hover:border-blue-300 hover:text-blue-600"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="h-4 w-4" />
               Contact
             </a>
             <a
               href="https://www.buymeacoffee.com/tktcorporation"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-amber-600 transition-colors duration-200 border-b border-stone-200 hover:border-amber-300 pb-0.5"
+              className="inline-flex items-center gap-1.5 border-b border-stone-200 pb-0.5 text-stone-500 transition-colors duration-200 hover:border-amber-300 hover:text-amber-600"
             >
-              <Coffee className="w-4 h-4" />
+              <Coffee className="h-4 w-4" />
               Buy me a coffee
             </a>
           </div>

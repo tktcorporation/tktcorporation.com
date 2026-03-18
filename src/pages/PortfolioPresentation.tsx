@@ -12,6 +12,7 @@
 
 import { useEffect, useState } from "react";
 import { Box, Deck, FullScreen, Progress, Slide } from "spectacle";
+
 import SpectacleExportPDF from "../components/SpectacleExportPDF";
 import {
   B2CProductManagerSlide,
