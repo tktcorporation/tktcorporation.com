@@ -5,8 +5,8 @@
  *
  * Context:
  * - Resume.tsxから分離されたコンポーネント
- * - 静的なエクスポートリンクを表示
- * - 各形式の説明を含む
+ * - ボーダーカードなし: インラインリンクとして控えめに表示
+ * - ページの主役は職歴であり、エクスポートは脇役
  */
 
 import { JsonIcon, MarkdownIcon, TextIcon } from "@/components/icons";
@@ -23,42 +23,44 @@ function ExportLink({ href, title, description, icon }: ExportLinkProps) {
     <a
       href={href}
       download
-      className="group block rounded-lg border border-stone-200 p-4 transition-colors duration-200 hover:border-stone-300"
+      className="group flex items-start gap-2.5 py-2 transition-colors duration-200"
     >
-      <div className="mb-1 flex items-center gap-2">
+      <span className="mt-0.5 shrink-0 text-stone-300 transition-colors duration-200 group-hover:text-blue-500">
         {icon}
-        <h3 className="font-medium text-stone-800 transition-colors duration-200 group-hover:text-blue-600">
+      </span>
+      <div>
+        <span className="text-sm font-medium text-stone-600 transition-colors duration-200 group-hover:text-blue-600">
           {title}
-        </h3>
+        </span>
+        <p className="text-xs text-stone-400">{description}</p>
       </div>
-      <p className="text-sm text-stone-400">{description}</p>
     </a>
   );
 }
 
 export function ExportSection() {
   return (
-    <section className="mt-14 border-t border-stone-200 pt-8">
-      <h2 className="mb-4 text-sm font-medium text-stone-500">
-        Export formats
+    <section className="mt-16 pt-8">
+      <h2 className="mb-3 text-xs font-medium tracking-wide text-stone-400 uppercase">
+        Export
       </h2>
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-4">
         <ExportLink
           href="/resume.md"
           title="Markdown"
-          description="AI-friendly format with YAML frontmatter"
+          description="AI-friendly format"
           icon={<MarkdownIcon />}
         />
         <ExportLink
           href="/resume.txt"
           title="Plain Text"
-          description="Terminal-friendly 80-character format"
+          description="Terminal-friendly"
           icon={<TextIcon />}
         />
         <ExportLink
           href="/resume.json"
           title="JSON"
-          description="Structured data with calculated fields"
+          description="Structured data"
           icon={<JsonIcon />}
         />
       </div>

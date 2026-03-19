@@ -6,45 +6,37 @@
  * Context:
  * - Resume.tsxおよびTechnologyTimelineで使用
  * - ExperienceCardのPositionBadgeも統合
- * - ミニマルデザイン: 控えめな背景色とボーダー
+ * - ボーダーなし: 背景色のみで軽く存在を示す。余白で語るデザイン。
  */
 
 import { getDeviconClass, isDeviconSupported } from "@/utils/devicon";
 
 type BadgeVariant = "blue" | "purple" | "position";
 type BadgeSize = "sm" | "md";
-type BadgeShape = "rounded" | "pill";
 
 interface TechBadgeProps {
   name: string;
   variant?: BadgeVariant;
   size?: BadgeSize;
-  shape?: BadgeShape;
   /** Deviconアイコンを表示するか（デフォルト: variant が "position" でなければ true） */
   showIcon?: boolean;
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  blue: "bg-blue-50 text-blue-700 border-blue-200",
-  purple: "bg-stone-50 text-stone-600 border-stone-200",
-  position: "bg-stone-50 text-stone-600 border-stone-200",
+  blue: "bg-blue-50/80 text-blue-700",
+  purple: "bg-stone-100/70 text-stone-600",
+  position: "text-stone-500",
 };
 
 const sizeStyles: Record<BadgeSize, string> = {
-  sm: "px-1.5 md:px-2 py-0.5 text-[10px] md:text-xs",
-  md: "px-2 md:px-3 py-0.5 md:py-1 text-xs md:text-sm",
-};
-
-const shapeStyles: Record<BadgeShape, string> = {
-  rounded: "rounded-md",
-  pill: "rounded-full",
+  sm: "px-1.5 py-0.5 text-[10px] md:text-xs",
+  md: "px-2 py-0.5 text-xs md:text-sm",
 };
 
 export function TechBadge({
   name,
   variant = "blue",
   size = "sm",
-  shape = "rounded",
   showIcon,
 }: TechBadgeProps) {
   const shouldShowIcon = showIcon ?? variant !== "position";
@@ -52,7 +44,7 @@ export function TechBadge({
 
   return (
     <span
-      className={`${variantStyles[variant]} ${sizeStyles[size]} ${shapeStyles[shape]} inline-flex items-center gap-1 border`}
+      className={`${variantStyles[variant]} ${sizeStyles[size]} inline-flex items-center gap-1 rounded-sm`}
     >
       {isSupported && (
         <i className={`${getDeviconClass(name, "plain")} text-xs md:text-sm`} />
@@ -64,7 +56,8 @@ export function TechBadge({
 
 /**
  * 職種バッジ - TechBadge の position バリアントのラッパー
+ * ボーダーなし、テキストのみで職種を控えめに表示
  */
 export function PositionBadge({ name }: { name: string }) {
-  return <TechBadge name={name} variant="position" shape="pill" />;
+  return <TechBadge name={name} variant="position" size="sm" />;
 }
