@@ -67,12 +67,12 @@ function ExperienceDetail({
       </div>
       {exp.description && (
         <>
-          <div className="mb-1.5 flex flex-wrap gap-1">
+          <div className="mb-2 flex flex-wrap gap-1">
             {extractTechTags(exp.description).map((tech) => (
               <TechBadge key={tech} name={tech} />
             ))}
           </div>
-          <div className="space-y-1 text-xs leading-relaxed text-stone-500 md:text-sm">
+          <div className="space-y-0.5 text-xs leading-relaxed text-stone-500 md:text-sm">
             {formatDescription(exp.description)}
           </div>
         </>

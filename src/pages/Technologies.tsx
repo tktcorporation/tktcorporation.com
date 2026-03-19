@@ -64,17 +64,14 @@ function Technologies() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <nav className="border-b border-stone-200 px-6 py-4">
+      <nav className="px-6 py-4">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           <Link
             to="/"
-            className="text-sm text-stone-500 transition-colors duration-200 hover:text-stone-900"
+            className="text-sm text-stone-400 transition-colors duration-200 hover:text-stone-700"
           >
             Home
           </Link>
-          <span className="text-sm font-medium text-stone-900">
-            Technologies
-          </span>
         </div>
       </nav>
 
@@ -146,14 +143,14 @@ function Technologies() {
           )}
       </main>
 
-      <footer className="mt-auto border-t border-stone-200 py-6 text-center text-xs text-stone-400">
+      <footer className="mt-auto py-8 text-center text-xs text-stone-300">
         <p>
-          © {new Date().getFullYear()} tkt | Data from{" "}
+          © {new Date().getFullYear()} tkt · Data from{" "}
           <a
             href="https://lapras.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 transition-colors duration-200 hover:text-blue-700"
+            className="text-stone-400 transition-colors duration-200 hover:text-blue-500"
           >
             LAPRAS
           </a>

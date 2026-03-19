@@ -1,20 +1,39 @@
 /**
  * Purpose:
- * スキルと技術スタックを表示するセクションコンポーネント。
- * スキル名と期間をコンパクトなインライン表示で可視化する。
+ * スキルと技術スタックをカテゴリ別に表示するセクションコンポーネント。
+ * Languages / Frameworks / Infrastructure / Databases / Tools のグループで
+ * 整理し、スキル名と期間をコンパクトなインライン表示で可視化する。
  *
  * Context:
  * - Resume.tsxから分離されたコンポーネント
  * - ボーダーなし: テキスト+薄い背景バーのみで表現
- * - 近接の原則: スキル名と期間を密着、スキル間は余白で区切る
+ * - カテゴリ別グループ化で技術スタックの全体像を把握しやすくする
  */
 
 import { useMemo } from "react";
 
 import type { SkillWithYears } from "@/types/experience";
+import { getTechnologyType } from "@/utils/languageMap";
 
 /** 進捗バーの最小月数（短すぎるバーを防ぐ） */
 const MIN_PROGRESS_BAR_MONTHS = 12;
+
+/**
+ * カテゴリ表示順と表示名の定義
+ * type値 → 表示ラベルのマッピング
+ */
+const CATEGORY_CONFIG: { types: string[]; label: string }[] = [
+  { types: ["programming"], label: "Languages" },
+  { types: ["framework", "backend", "css"], label: "Frameworks" },
+  { types: ["cloud", "infrastructure", "hosting", "ci"], label: "Infrastructure" },
+  { types: ["database"], label: "Databases" },
+  { types: ["tool", "mobile", "markup"], label: "Tools & Others" },
+];
+
+interface SkillCategory {
+  label: string;
+  skills: SkillWithYears[];
+}
 
 interface SkillsSectionProps {
   skills: SkillWithYears[];
@@ -59,12 +78,12 @@ function SkillItem({ skill, maxMonths }: SkillItemProps) {
   return (
     <li className="list-none" aria-labelledby={skillId}>
       <div className="flex items-baseline justify-between gap-2">
-        <h3
+        <h4
           id={skillId}
           className="truncate text-xs font-medium text-stone-700 md:text-sm"
         >
           {skill.name}
-        </h3>
+        </h4>
         <span className="shrink-0 text-[10px] text-stone-400 md:text-xs">
           {durationText}
         </span>
@@ -87,8 +106,46 @@ function SkillItem({ skill, maxMonths }: SkillItemProps) {
   );
 }
 
+/**
+ * スキルをカテゴリ別にグループ化
+ * getTechnologyType で各スキルの種類を判定し、CATEGORY_CONFIG に基づいて分類
+ */
+function categorizeSkills(skills: SkillWithYears[]): SkillCategory[] {
+  const categoryMap = new Map<string, SkillWithYears[]>();
+
+  for (const skill of skills) {
+    const type = getTechnologyType(skill.name);
+    let assigned = false;
+
+    for (const config of CATEGORY_CONFIG) {
+      if (config.types.includes(type)) {
+        const existing = categoryMap.get(config.label) ?? [];
+        existing.push(skill);
+        categoryMap.set(config.label, existing);
+        assigned = true;
+        break;
+      }
+    }
+
+    // 未分類のスキルは "Tools & Others" に
+    if (!assigned) {
+      const fallbackLabel = "Tools & Others";
+      const existing = categoryMap.get(fallbackLabel) ?? [];
+      existing.push(skill);
+      categoryMap.set(fallbackLabel, existing);
+    }
+  }
+
+  // CATEGORY_CONFIG の順序でカテゴリを返す（空カテゴリは除外）
+  return CATEGORY_CONFIG.map((config) => ({
+    label: config.label,
+    skills: categoryMap.get(config.label) ?? [],
+  })).filter((cat) => cat.skills.length > 0);
+}
+
 export function SkillsSection({ skills, loading = false }: SkillsSectionProps) {
   const maxMonths = useMemo(() => calculateMaxMonths(skills), [skills]);
+  const categories = useMemo(() => categorizeSkills(skills), [skills]);
 
   return (
     <section className="mb-10 md:mb-14" aria-labelledby="skills-section-title">
@@ -108,14 +165,27 @@ export function SkillsSection({ skills, loading = false }: SkillsSectionProps) {
           ))}
         </div>
       ) : (
-        <ul
-          className="grid list-none grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-          aria-label="Professional skills with experience duration"
-        >
-          {skills.map((skill) => (
-            <SkillItem key={skill.name} skill={skill} maxMonths={maxMonths} />
+        <div className="space-y-6">
+          {categories.map((category) => (
+            <div key={category.label}>
+              <h3 className="mb-2 text-xs font-medium tracking-wide text-stone-400 uppercase">
+                {category.label}
+              </h3>
+              <ul
+                className="grid list-none grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+                aria-label={`${category.label} skills`}
+              >
+                {category.skills.map((skill) => (
+                  <SkillItem
+                    key={skill.name}
+                    skill={skill}
+                    maxMonths={maxMonths}
+                  />
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </section>
   );
