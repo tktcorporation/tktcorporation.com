@@ -76,35 +76,12 @@ function createLineElement(
         </li>
       );
     case "paragraph":
-      // 「担当:」などのラベル行やプロジェクト概要は少し目立たせる
-      if (text.endsWith(":") || text.endsWith("：")) {
-        return (
-          <p
-            key={`${index}-para`}
-            className="mt-2 mb-0.5 text-xs font-medium text-stone-600 md:text-sm"
-          >
-            {text}
-          </p>
-        );
-      }
       return (
-        <p key={`${index}-para`} className="mb-1 font-medium text-stone-700">
+        <p key={`${index}-para`} className="mb-1">
           {text}
         </p>
       );
   }
-}
-
-/**
- * 技術スタック行かどうかを判定する
- * "AWS / Docker / Python" のような " / " 区切りの行を検出
- */
-function isTechStackLine(line: string): boolean {
-  const trimmed = line.trim();
-  if (!trimmed) return false;
-  // " / " で区切られた2つ以上の項目があり、各項目が短い単語である場合
-  const parts = trimmed.split(" / ");
-  return parts.length >= 2 && parts.every((p) => p.trim().length <= 30);
 }
 
 /**
@@ -115,9 +92,6 @@ function isTechStackLine(line: string): boolean {
  * - 　　■ または "    *" で始まる行 → 第3レベルのサブ項目
  * - 　○ または "  *" で始まる行 → 第2レベルの項目
  * - その他 → 段落テキスト
- *
- * 技術スタック行（"AWS / Docker / Python" 形式）は自動的にスキップする。
- * 技術情報はTechBadgeで別途表示されるため冗長。
  *
  * @param description - 変換する説明文
  * @returns Reactエレメントの配列
@@ -137,9 +111,6 @@ export function formatDescription(description: string): React.ReactElement[] {
     .map((line, index) => {
       const trimmedLine = line.trim();
       if (!trimmedLine) return null;
-
-      // 技術スタック行はスキップ（TechBadgeで表示済み）
-      if (isTechStackLine(trimmedLine)) return null;
 
       const lineType = getLineType(line);
       const text = extractLineText(line, lineType);
