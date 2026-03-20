@@ -36,9 +36,7 @@ export type TechExtractor = (description: string) => string[];
 /**
  * 説明文をReact要素にフォーマットする関数の型
  */
-export type DescriptionFormatter = (
-  description: string
-) => React.ReactElement[];
+export type DescriptionFormatter = (description: string) => React.ReactNode;
 
 // ============================================================================
 // データ型定義

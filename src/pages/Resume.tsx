@@ -22,9 +22,9 @@ import {
   SkillsSection,
 } from "@/components/resume";
 import { useResumeData } from "@/hooks/useResumeData";
+import { splitTechAndDescription } from "@/utils/extractTechFromDescription";
 import { formatDateRange } from "@/utils/formatDate";
 import { formatDescription } from "@/utils/formatDescription";
-import { extractTechnologies } from "@/utils/languageMap";
 
 function Resume() {
   const { companyGroups, skillsWithYears, resumeMarkdown, loading } =
@@ -60,7 +60,9 @@ function Resume() {
           companyGroups={companyGroups}
           loading={loading}
           formatDate={formatDateRange}
-          extractTechTags={extractTechnologies}
+          extractTechTags={(desc: string) =>
+            splitTechAndDescription(desc).technologies
+          }
           formatDescription={formatDescription}
         />
 

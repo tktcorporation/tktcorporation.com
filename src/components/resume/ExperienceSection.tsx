@@ -28,9 +28,9 @@ interface ExperienceSectionProps {
 
 function ExperienceSkeleton() {
   return (
-    <div className="space-y-10" aria-busy="true">
+    <div className="space-y-14" aria-busy="true">
       {[1, 2].map((i) => (
-        <div key={i} className="animate-pulse" aria-hidden="true">
+        <div key={i} className="animate-pulse pl-6 md:pl-8" aria-hidden="true">
           <div className="mb-2 h-5 w-1/3 rounded bg-stone-100 md:h-6" />
           <div className="mb-1.5 h-3 w-1/4 rounded bg-stone-100" />
           <div className="mt-3 h-4 w-full rounded bg-stone-50" />
@@ -61,16 +61,17 @@ export function ExperienceSection({
         <ExperienceSkeleton />
       ) : (
         <ol
-          className="list-none space-y-12 md:space-y-16"
+          className="list-none space-y-14 md:space-y-16"
           aria-label="Work experience timeline (most recent first)"
         >
-          {companyGroups.map((company) => (
+          {companyGroups.map((company, index) => (
             <CompanyGroupCard
               key={company.company_name}
               company={company}
               formatDate={formatDate}
               extractTechTags={extractTechTags}
               formatDescription={formatDescription}
+              isLast={index === companyGroups.length - 1}
             />
           ))}
         </ol>
