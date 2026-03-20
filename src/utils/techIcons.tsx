@@ -50,8 +50,8 @@ import {
   DiUbuntu,
   DiWindows,
 } from "react-icons/di";
+import { FaAws, FaDatabase } from "react-icons/fa";
 import {
-  SiAmazon,
   SiAuth0,
   SiBabel,
   SiC,
@@ -83,9 +83,8 @@ import {
   SiNestjs,
   SiNetlify,
   SiNextdotjs,
-  SiNuxtdotjs,
+  SiNuxt,
   SiOpenai,
-  SiOracle,
   SiR,
   SiReddit,
   SiRubyonrails,
@@ -144,7 +143,7 @@ const iconMap: Record<string, IconType> = {
   Angular: DiAngularSimple,
   Svelte: SiSvelte,
   "Next.js": SiNextdotjs,
-  "Nuxt.js": SiNuxtdotjs,
+  "Nuxt.js": SiNuxt,
   Gatsby: SiGatsby,
   Express: SiExpress,
   FastAPI: SiFastapi,
@@ -166,7 +165,7 @@ const iconMap: Record<string, IconType> = {
   GitHub: DiGithubBadge,
   GitLab: SiGitlab,
   Jenkins: SiJetbrains,
-  AWS: SiAmazon,
+  AWS: FaAws,
   Azure: DiWindows,
   "Google Cloud": SiGooglecloud,
   Firebase: SiGooglecloud,
@@ -180,7 +179,7 @@ const iconMap: Record<string, IconType> = {
   MongoDB: DiMongodb,
   Redis: DiRedis,
   SQLite: SiSqlite,
-  Oracle: SiOracle,
+  Oracle: FaDatabase,
   MariaDB: SiMariadb,
   Elasticsearch: SiElasticsearch,
 
