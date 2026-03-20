@@ -27,11 +27,11 @@
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@radix-ui/react-slot": "^1.2.4",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^5.1.2",
+    "@vitejs/plugin-react": "^6.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "html2canvas": "^1.4.1",
@@ -45,6 +45,7 @@
     "spectacle": "^10.2.3",
     "spectacle-renderer": "^0.0.3",
     "tailwind-merge": "^3.4.0",
+    "vite": "^8.0.1",
     "zod": "^4.2.1"
   },
   "devDependencies": {
@@ -61,7 +62,7 @@
     "simple-git-hooks": "^2.13.1",
     "tsx": "^4.21.0",
     "typescript": "5.9.3",
-    "vite-plus": "^0.1.12"
+    "vite-plus": "^0.1.13-alpha.5"
   },
   "simple-git-hooks": {
     "pre-push": "npm run check && npm run typecheck"
