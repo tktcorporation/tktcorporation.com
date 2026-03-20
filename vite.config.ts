@@ -1,7 +1,7 @@
 /**
  * Purpose:
- * Unified Vite+ configuration that replaces separate vite.config.js, vitest.config.ts,
- * and biome.json with a single configuration file.
+ * Unified Vite+ configuration for dev server, build, lint (Oxlint),
+ * format (Oxfmt), and test (Vitest) in a single file.
  *
  * Context:
  * Uses vite-plus (https://github.com/voidzero-dev/vite-plus) to unify dev server,
@@ -145,7 +145,7 @@ export default defineConfig({
     },
   },
 
-  // Oxlint configuration (replaces biome linter)
+  // Oxlint configuration
   lint: {
     ignorePatterns: [
       "dist/**",
@@ -156,7 +156,7 @@ export default defineConfig({
     ],
   },
 
-  // Oxfmt configuration (replaces biome formatter)
+  // Oxfmt configuration
   fmt: {
     printWidth: 80,
     semi: true,
