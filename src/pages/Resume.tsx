@@ -27,7 +27,7 @@ import { formatDescription } from "@/utils/formatDescription";
 import { extractTechnologies } from "@/utils/languageMap";
 
 function Resume() {
-  const { groupedExperiences, skillsWithYears, resumeMarkdown, loading } =
+  const { companyGroups, skillsWithYears, resumeMarkdown, loading } =
     useResumeData();
 
   return (
@@ -57,7 +57,7 @@ function Resume() {
         <SkillsSection skills={skillsWithYears} loading={loading} />
 
         <ExperienceSection
-          groupedExperiences={groupedExperiences}
+          companyGroups={companyGroups}
           loading={loading}
           formatDate={formatDateRange}
           extractTechTags={extractTechnologies}

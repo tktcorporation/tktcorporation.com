@@ -134,6 +134,28 @@ export interface GroupedExperience {
 }
 
 /**
+ * 会社単位でグループ化された経験
+ *
+ * 同じ organization_name を持つ GroupedExperience をまとめる。
+ * 職歴一覧で「会社ごと」に経験をまとめて表示するために使用。
+ * 新しい順にソートされた groups を持つ。
+ */
+export interface CompanyGroup {
+  /** 会社名（organization_name で集約） */
+  company_name: string;
+  /** この会社での全期間の開始年 */
+  overall_start_year: number;
+  /** この会社での全期間の開始月 */
+  overall_start_month: number;
+  /** この会社での全期間の終了年（進行中なら null） */
+  overall_end_year: number | null;
+  /** この会社での全期間の終了月 */
+  overall_end_month: number | null;
+  /** この会社での経験グループ（新しい順） */
+  groups: GroupedExperience[];
+}
+
+/**
  * 期間情報の型
  */
 export interface Period {

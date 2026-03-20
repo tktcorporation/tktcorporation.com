@@ -12,12 +12,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import type {
+  CompanyGroup,
   Experience,
   GroupedExperience,
   SkillWithYears,
 } from "@/types/experience";
 import { calculateSkillsWithYears } from "@/utils/calculateSkills";
-import { groupExperiences } from "@/utils/experienceGrouping";
+import { groupByCompany, groupExperiences } from "@/utils/experienceGrouping";
 import { generateResumeMarkdown } from "@/utils/exportResumeMarkdown";
 import { dateToMonths } from "@/utils/formatDate";
 
@@ -26,6 +27,7 @@ import experiencesData from "../data/experiences.json";
 interface UseResumeDataResult {
   experiences: Experience[];
   groupedExperiences: GroupedExperience[];
+  companyGroups: CompanyGroup[];
   skillsWithYears: SkillWithYears[];
   resumeMarkdown: string;
   loading: boolean;
@@ -50,6 +52,7 @@ export function useResumeData(): UseResumeDataResult {
   const [groupedExperiences, setGroupedExperiences] = useState<
     GroupedExperience[]
   >([]);
+  const [companyGroups, setCompanyGroups] = useState<CompanyGroup[]>([]);
   const [skillsWithYears, setSkillsWithYears] = useState<SkillWithYears[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -59,16 +62,18 @@ export function useResumeData(): UseResumeDataResult {
       experiencesData.experience_list
     );
     const grouped = groupExperiences(sortedExperiences);
+    const companies = groupByCompany(grouped);
     const skills = calculateSkillsWithYears(sortedExperiences);
 
-    return { sortedExperiences, grouped, skills };
+    return { sortedExperiences, grouped, companies, skills };
   }, []);
 
   useEffect(() => {
-    const { sortedExperiences, grouped, skills } = processData();
+    const { sortedExperiences, grouped, companies, skills } = processData();
 
     setExperiences(sortedExperiences);
     setGroupedExperiences(grouped);
+    setCompanyGroups(companies);
     setSkillsWithYears(skills);
     setLoading(false);
   }, [processData]);
@@ -84,6 +89,7 @@ export function useResumeData(): UseResumeDataResult {
   return {
     experiences,
     groupedExperiences,
+    companyGroups,
     skillsWithYears,
     resumeMarkdown,
     loading,
