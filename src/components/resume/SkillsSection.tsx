@@ -25,7 +25,10 @@ const MIN_PROGRESS_BAR_MONTHS = 12;
 const CATEGORY_CONFIG: { types: string[]; label: string }[] = [
   { types: ["programming"], label: "Languages" },
   { types: ["framework", "backend", "css"], label: "Frameworks" },
-  { types: ["cloud", "infrastructure", "hosting", "ci"], label: "Infrastructure" },
+  {
+    types: ["cloud", "infrastructure", "hosting", "ci"],
+    label: "Infrastructure",
+  },
   { types: ["database"], label: "Databases" },
   { types: ["tool", "mobile", "markup"], label: "Tools & Others" },
 ];
