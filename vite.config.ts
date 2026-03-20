@@ -11,6 +11,8 @@
 import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
+import { partytownSnippet } from "@qwik.dev/partytown/integration";
+import { partytownVite } from "@qwik.dev/partytown/utils";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite-plus";
@@ -22,6 +24,23 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    // partytownVite の型が vite-plus の PluginOption と互換しないため any でキャスト
+    partytownVite({
+      dest: resolve(__dirname, "dist", "~partytown"),
+    }) as any,
+    // Partytown の Service Worker ローダースニペットを <head> に注入
+    {
+      name: "inject-partytown-snippet",
+      transformIndexHtml() {
+        return [
+          {
+            tag: "script",
+            children: partytownSnippet(),
+            injectTo: "head" as const,
+          },
+        ];
+      },
+    },
     {
       name: "copy-404",
       closeBundle() {

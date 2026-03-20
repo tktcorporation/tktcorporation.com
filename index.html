@@ -14,12 +14,20 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-    <!-- Google Analytics 4 -->
+    <!-- Partytown: GA4 スクリプトを Web Worker で実行しメインスレッドをブロックしない -->
+    <script>
+      partytown = {
+        lib: "/~partytown/",
+        forward: ["dataLayer.push"],
+      };
+    </script>
+
+    <!-- Google Analytics 4 (Partytown 経由で Web Worker 実行) -->
     <script
-      async
+      type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-TNFY35RTNP"
     ></script>
-    <script>
+    <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
