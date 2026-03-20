@@ -223,10 +223,10 @@ const baseLanguageData = generateFromDeviconData();
 // カスタム拡張データ（Deviconにない技術や追加情報）
 const customLanguages: Record<string, LanguageInfo> = {
   // Devicon に含まれていない技術
-  Biome: {
-    name: "Biome",
+  Oxlint: {
+    name: "Oxlint",
     type: "tool",
-    aliases: ["biome"],
+    aliases: ["oxlint", "oxc"],
     color: "#60a5fa",
   },
   Vite: {

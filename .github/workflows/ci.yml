@@ -11,6 +11,6 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: install, lint, build
+      - name: install, check, build
         run: |
-          docker compose run --rm app /bin/bash -c "npm i && npm run lint && npm run build"
+          docker compose run --rm app /bin/bash -c "npm i && npm run check && npm run build"

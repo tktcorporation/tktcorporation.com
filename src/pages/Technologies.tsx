@@ -94,7 +94,7 @@ function Technologies() {
 
         {loading && (
           <div className="py-12 text-center">
-            {/* biome-ignore lint/a11y/useSemanticElements: role="status" is correct for loading spinners */}
+            {/* oxlint-ignore: role="status" is correct for loading spinners */}
             <div
               className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-stone-300 border-t-stone-600"
               role="status"

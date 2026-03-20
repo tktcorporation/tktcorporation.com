@@ -5,8 +5,8 @@
 - **Frontend Framework**: React 19 with TypeScript
 - **Unified Toolchain**: Vite+ (vite-plus) - dev server, build, lint, format, test
 - **Styling**: Tailwind CSS with `@tailwindcss/vite` plugin
-- **Linting**: Oxlint (via vite-plus, replaces Biome/ESLint)
-- **Formatting**: Oxfmt (via vite-plus, replaces Biome/Prettier)
+- **Linting**: Oxlint (via vite-plus)
+- **Formatting**: Oxfmt (via vite-plus)
 - **Testing**: Vitest (via vite-plus)
 - **Type Checking**: TypeScript with strict mode
 - **Hosting**: GitHub Pages
