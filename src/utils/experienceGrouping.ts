@@ -9,7 +9,11 @@
  * - 単体テストが容易な純粋関数として実装
  */
 
-import type { Experience, GroupedExperience } from "@/types/experience";
+import type {
+  CompanyGroup,
+  Experience,
+  GroupedExperience,
+} from "@/types/experience";
 
 import { dateToMonths } from "./formatDate";
 
@@ -169,6 +173,84 @@ export function groupExperiences(
   return groupedResults.sort((a, b) => {
     const aDate = dateToMonths(a.total_start_year, a.total_start_month);
     const bDate = dateToMonths(b.total_start_year, b.total_start_month);
+    return bDate - aDate;
+  });
+}
+
+/**
+ * GroupedExperience を会社名でさらに集約する。
+ *
+ * 同じ organization_name を持つグループをまとめ、
+ * 各会社の最も新しい経験開始日で降順ソートして返す。
+ * 会社内のグループも新しい順にソートされる。
+ */
+export function groupByCompany(
+  groupedExperiences: GroupedExperience[]
+): CompanyGroup[] {
+  const companyMap = new Map<string, GroupedExperience[]>();
+
+  for (const group of groupedExperiences) {
+    const key = group.organization_name;
+    const existing = companyMap.get(key);
+    if (existing) {
+      existing.push(group);
+    } else {
+      companyMap.set(key, [group]);
+    }
+  }
+
+  const companyGroups: CompanyGroup[] = [];
+
+  for (const [companyName, groups] of companyMap) {
+    // 会社内のグループを新しい順にソート
+    const sortedGroups = [...groups].sort((a, b) => {
+      const aDate = dateToMonths(a.total_start_year, a.total_start_month);
+      const bDate = dateToMonths(b.total_start_year, b.total_start_month);
+      return bDate - aDate;
+    });
+
+    // 全体期間を算出
+    const earliest = sortedGroups.reduce((min, g) => {
+      const d = dateToMonths(g.total_start_year, g.total_start_month);
+      return d < dateToMonths(min.total_start_year, min.total_start_month)
+        ? g
+        : min;
+    }, sortedGroups[0]);
+    const hasOngoing = sortedGroups.some((g) => g.total_end_year === null);
+    const latest = hasOngoing
+      ? null
+      : sortedGroups.reduce((max, g) => {
+          const d = dateToMonths(g.total_end_year ?? 0, g.total_end_month ?? 0);
+          const maxD = dateToMonths(
+            max.total_end_year ?? 0,
+            max.total_end_month ?? 0
+          );
+          return d > maxD ? g : max;
+        }, sortedGroups[0]);
+
+    companyGroups.push({
+      company_name: companyName,
+      overall_start_year: earliest.total_start_year,
+      overall_start_month: earliest.total_start_month,
+      overall_end_year: hasOngoing ? null : (latest?.total_end_year ?? null),
+      overall_end_month: hasOngoing ? null : (latest?.total_end_month ?? null),
+      groups: sortedGroups,
+    });
+  }
+
+  // 会社を最新経験の開始日で降順ソート
+  return companyGroups.sort((a, b) => {
+    // 最新のグループの開始日で比較
+    const aLatest = a.groups[0];
+    const bLatest = b.groups[0];
+    const aDate = dateToMonths(
+      aLatest.total_start_year,
+      aLatest.total_start_month
+    );
+    const bDate = dateToMonths(
+      bLatest.total_start_year,
+      bLatest.total_start_month
+    );
     return bDate - aDate;
   });
 }

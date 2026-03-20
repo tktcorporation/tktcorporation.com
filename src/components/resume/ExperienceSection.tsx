@@ -1,26 +1,25 @@
 /**
  * Purpose:
  * 職務経験セクション全体を表示するコンポーネント。
- * 余白リズムで経験を区切り、装飾的タイムラインは使わない。
+ * 会社単位でグルーピングし、各会社内で期間ごとの経験を表示する。
  *
  * Context:
- * - Resume.tsxから分離されたコンポーネント
- * - ローディング状態のスケルトンUIをサポート
- * - ExperienceCardを使用して各経験を表示
- * - 近接の原則: 経験間は広い余白、経験内は詰める
+ * - CompanyGroup を使い、同じ会社の経験をまとめて表示
+ * - 会社ヘッダーで大きな区切り、期間ごとの経験で小さな区切りを作る
+ * - 近接の原則: 会社間は広い余白、会社内は詰める
  */
 
 import type {
+  CompanyGroup,
   DateFormatter,
   DescriptionFormatter,
-  GroupedExperience,
   TechExtractor,
 } from "@/types/experience";
 
-import { ExperienceCard } from "./ExperienceCard";
+import { CompanyGroupCard } from "./ExperienceCard";
 
 interface ExperienceSectionProps {
-  groupedExperiences: GroupedExperience[];
+  companyGroups: CompanyGroup[];
   loading?: boolean;
   formatDate: DateFormatter;
   extractTechTags: TechExtractor;
@@ -43,7 +42,7 @@ function ExperienceSkeleton() {
 }
 
 export function ExperienceSection({
-  groupedExperiences,
+  companyGroups,
   loading = false,
   formatDate,
   extractTechTags,
@@ -62,14 +61,13 @@ export function ExperienceSection({
         <ExperienceSkeleton />
       ) : (
         <ol
-          className="list-none space-y-10 md:space-y-12"
+          className="list-none space-y-12 md:space-y-16"
           aria-label="Work experience timeline (most recent first)"
         >
-          {groupedExperiences.map((group, index) => (
-            <ExperienceCard
-              key={`${group.organization_name}-${group.total_start_year}-${group.total_start_month}`}
-              group={group}
-              index={index}
+          {companyGroups.map((company) => (
+            <CompanyGroupCard
+              key={company.company_name}
+              company={company}
               formatDate={formatDate}
               extractTechTags={extractTechTags}
               formatDescription={formatDescription}
