@@ -1,12 +1,13 @@
 /**
  * Purpose:
- * Google Analytics 4 の初期化と型安全なイベント送信を提供する。
+ * Google Analytics 4 の dataLayer 初期化と型安全なイベント送信を提供する。
  *
  * Context:
- * - index.html のインラインスクリプトから Vite モジュールに移行し、
- *   Tree-shaking・環境変数制御・TypeScript 型付けの恩恵を受ける。
- * - `import.meta.env.PROD` で本番のみロードし、開発時のノイズを排除。
- * - gtag.js は動的に <script> を挿入して非同期ロードする。
+ * - gtag.js の <script> タグは index.html に静的配置（GA 検出ツール対応のため）。
+ * - dataLayer の初期化と config 送信はこのモジュールで行い、
+ *   `import.meta.env.PROD` による環境制御と TypeScript 型付けの恩恵を受ける。
+ * - 開発環境では dataLayer を初期化しないため、gtag.js がロードされても
+ *   config イベントが送信されずデータは収集されない。
  */
 
 const GA_MEASUREMENT_ID = "G-TNFY35RTNP";
@@ -23,7 +24,8 @@ function gtag(...args: unknown[]): void {
 }
 
 /**
- * GA4 を初期化する。本番環境でのみ gtag.js をロードする。
+ * GA4 の dataLayer を初期化し、config イベントを送信する。
+ * 本番環境でのみ実行される。
  *
  * 呼び出し元: src/main.tsx (アプリ起動時に1回)
  * 不要になる条件: GA4 を廃止する場合
@@ -38,9 +40,4 @@ export function initAnalytics(): void {
 
   gtag("js", new Date());
   gtag("config", GA_MEASUREMENT_ID);
-
-  const script = document.createElement("script");
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  script.async = true;
-  document.head.appendChild(script);
 }
