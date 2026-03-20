@@ -57,5 +57,10 @@ GitHub Actions workflow runs on push to master and pull requests:
 
 1. Uses Docker Compose for consistent environment
 2. Installs dependencies
-3. Runs `npm run check` (lint + format + typecheck via vp)
+3. Runs `npm run check` (Oxlint + Oxfmt format check + TypeScript typecheck + GitHub Actions lint)
 4. Builds the project
+
+Deployment (master branch only):
+
+1. Builds the project via Docker Compose
+2. Deploys to GitHub Pages using `actions/deploy-pages`
