@@ -11,6 +11,8 @@
 import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
+import { partytownSnippet } from "@qwik.dev/partytown/integration";
+import { copyLibFiles } from "@qwik.dev/partytown/utils";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite-plus";
@@ -22,6 +24,24 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    // Partytown: ローダースニペットを <head> に注入し、ビルド時に SW ファイルをコピー
+    {
+      name: "partytown",
+      transformIndexHtml() {
+        return [
+          {
+            tag: "script",
+            children: partytownSnippet(),
+            injectTo: "head" as const,
+          },
+        ];
+      },
+      async closeBundle() {
+        const dest = resolve(__dirname, "dist", "~partytown");
+        await copyLibFiles(dest);
+        console.log("✓ Copied Partytown files to dist/~partytown/");
+      },
+    },
     {
       name: "copy-404",
       closeBundle() {

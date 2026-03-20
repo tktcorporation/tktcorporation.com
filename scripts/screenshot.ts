@@ -15,7 +15,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { type Browser, chromium, type Page } from "playwright";
-import { preview } from "vite";
+import { preview } from "vite-plus";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

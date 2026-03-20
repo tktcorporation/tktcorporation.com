@@ -1,14 +1,14 @@
 /**
  * Purpose:
- * ビルド成果物 (dist/) に GA4 タグと最適化要素が正しく含まれることを検証する。
+ * ビルド成果物に GA4 + Partytown が正しく含まれることを検証する。
  *
  * Context:
- * - GA4 は index.html にインラインで配置（Google 公式推奨の標準方式）。
- * - ビルド後も gtag スクリプト・dataLayer 初期化・preconnect・OGP が保持されることを CI で保証。
+ * - Partytown スニペットは Vite プラグインでビルド時に注入。
+ * - ~partytown/ ディレクトリに Service Worker ファイルがコピーされる。
  * - dist/ が存在しない場合はテストをスキップ（ビルド未実行時）。
  */
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
@@ -23,19 +23,30 @@ function readDistHtml(): string {
   }
 }
 
-describe("ビルド成果物検証 (dist/index.html)", () => {
+describe("ビルド成果物検証 (dist/)", () => {
   const html = readDistHtml();
   const hasDist = html.length > 0;
 
-  it.skipIf(!hasDist)("gtag.js の async script タグが含まれる", () => {
-    expect(html).toContain("googletagmanager.com/gtag/js?id=G-TNFY35RTNP");
-  });
+  it.skipIf(!hasDist)(
+    "Partytown スニペットがビルド済み HTML に注入されている",
+    () => {
+      expect(html).toContain("partytown");
+    }
+  );
 
-  it.skipIf(!hasDist)("dataLayer 初期化が含まれる", () => {
-    expect(html).toContain("window.dataLayer");
-  });
+  it.skipIf(!hasDist)(
+    "Partytown Service Worker ファイルが dist/~partytown/ に存在する",
+    () => {
+      expect(existsSync(resolve(distDir, "~partytown/partytown.js"))).toBe(
+        true
+      );
+      expect(existsSync(resolve(distDir, "~partytown/partytown-sw.js"))).toBe(
+        true
+      );
+    }
+  );
 
-  it.skipIf(!hasDist)('gtag("config") 呼び出しが含まれる', () => {
+  it.skipIf(!hasDist)("GA4 測定 ID が含まれる", () => {
     expect(html).toContain("G-TNFY35RTNP");
   });
 

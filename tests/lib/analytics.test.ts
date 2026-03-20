@@ -1,10 +1,11 @@
 /**
  * Purpose:
- * GA4 タグが index.html に正しく設置されていることを検証する。
+ * GA4 + Partytown タグが index.html に正しく設置されていることを検証する。
  *
  * Context:
- * - GA4 は index.html にインラインで配置（Google 公式推奨の標準方式）。
- * - gtag.js の async script タグと dataLayer 初期化が両方存在することを保証する。
+ * - GA4 は Partytown 経由で Web Worker 実行（メインスレッド非ブロック）。
+ * - gtag スクリプトは type="text/partytown" で配置。
+ * - Partytown の設定（lib パス、forward 設定）が正しいことを保証する。
  */
 
 import { readFileSync } from "node:fs";
@@ -17,9 +18,16 @@ const indexHtml = readFileSync(
   "utf-8"
 );
 
-describe("GA4 タグ設置検証 (index.html)", () => {
-  it("gtag.js の async script タグが含まれる", () => {
-    expect(indexHtml).toContain("googletagmanager.com/gtag/js?id=G-TNFY35RTNP");
+describe("GA4 + Partytown 設置検証 (index.html)", () => {
+  it("Partytown の設定が含まれる", () => {
+    expect(indexHtml).toContain('lib: "/~partytown/"');
+    expect(indexHtml).toContain('"dataLayer.push"');
+  });
+
+  it('gtag.js が type="text/partytown" で配置されている', () => {
+    expect(indexHtml).toMatch(
+      /type="text\/partytown"[\s\S]*?googletagmanager\.com\/gtag\/js/
+    );
   });
 
   it("dataLayer の初期化スクリプトが含まれる", () => {
