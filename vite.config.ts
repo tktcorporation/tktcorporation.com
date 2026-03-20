@@ -12,7 +12,7 @@ import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { partytownSnippet } from "@qwik.dev/partytown/integration";
-import { partytownVite } from "@qwik.dev/partytown/utils";
+import { copyLibFiles } from "@qwik.dev/partytown/utils";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite-plus";
@@ -24,13 +24,9 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    // partytownVite の型が vite-plus の PluginOption と互換しないため any でキャスト
-    partytownVite({
-      dest: resolve(__dirname, "dist", "~partytown"),
-    }) as any,
-    // Partytown の Service Worker ローダースニペットを <head> に注入
+    // Partytown: ローダースニペットを <head> に注入し、ビルド時に SW ファイルをコピー
     {
-      name: "inject-partytown-snippet",
+      name: "partytown",
       transformIndexHtml() {
         return [
           {
@@ -39,6 +35,11 @@ export default defineConfig({
             injectTo: "head" as const,
           },
         ];
+      },
+      async closeBundle() {
+        const dest = resolve(__dirname, "dist", "~partytown");
+        await copyLibFiles(dest);
+        console.log("✓ Copied Partytown files to dist/~partytown/");
       },
     },
     {
