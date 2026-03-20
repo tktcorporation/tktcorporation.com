@@ -10,19 +10,10 @@
  * - プロジェクトアサイン、転職、協業など多様な場面で使用可能
  *
  * Context:
- * - Spectacleライブラリを使用した高品質なプレゼンテーション機能
- * - デフォルトは縦スクロール表示（通常のWebページ形式）
- * - プレゼンテーションモードでSpectacle形式に切り替え可能
- * - PDF出力時に適切なレイアウトになることを想定
- * - キーボードナビゲーション対応
+ * - 縦スクロール表示（通常のWebページ形式）
  * - レスポンシブデザイン対応
- * - Appleライクなミニマルデザインで信頼性を演出
+ * - ミニマルデザインで信頼性を演出
  */
-
-import { Download, Presentation, ScrollText } from "lucide-react";
-import { lazy, Suspense, useEffect, useState } from "react";
-
-import { Button } from "@/components/ui/button";
 
 import "@/styles/animations.css";
 import {
@@ -36,21 +27,7 @@ import {
   VRLiveProductionSlide,
 } from "./PortfolioSlides";
 
-// Spectacleコンポーネントの動的インポート
-const PortfolioPresentation = lazy(() => import("./PortfolioPresentation"));
-
 const Portfolio = () => {
-  const [isPresentationMode, setIsPresentationMode] = useState(false);
-
-  // URLパラメータをチェック
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("mode") === "presentation") {
-      setIsPresentationMode(true);
-    }
-  }, []);
-
-  // スライドのコンテンツ配列
   const slides = [
     {
       id: 1,
@@ -105,160 +82,25 @@ const Portfolio = () => {
     },
   ];
 
-  // キーボードナビゲーション（プレゼンテーションモード時のみ）
-  // Note: スライドナビゲーションはSpectacleが管理するため、ここではフルスクリーンとEscapeのみ処理
-  useEffect(() => {
-    if (!isPresentationMode) return;
-
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "f" || e.key === "F") {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
-      } else if (e.key === "Escape") {
-        setIsPresentationMode(false);
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [isPresentationMode]);
-
-  const togglePresentationMode = () => {
-    setIsPresentationMode(!isPresentationMode);
-    if (isPresentationMode && document.fullscreenElement) {
-      document.exitFullscreen();
-    }
-  };
-
-  const exportToPDF = () => {
-    // Spectacleのプレゼンテーションモードを新しいウィンドウで開き、印刷ダイアログを表示
-    const url = new URL(window.location.href);
-    url.searchParams.set("mode", "presentation");
-    url.searchParams.set("exportMode", "true");
-    url.searchParams.set("printMode", "true");
-
-    // 新しいウィンドウを開く
-    const printWindow = window.open(url.toString(), "_blank");
-
-    if (!printWindow) {
-      alert(
-        "ポップアップがブロックされました。ポップアップを許可してください。"
-      );
-      return;
-    }
-
-    // 印刷ダイアログが自動的に開くようにSpectaclePDFExportコンポーネントで設定済み
-  };
-
-  // 縦スクロール表示（デフォルト）
-  if (!isPresentationMode) {
-    return (
-      <div className="bg-background text-foreground min-h-screen">
-        {/* ヘッダー */}
-        <div className="bg-background/95 sticky top-0 z-50 border-b border-stone-200 backdrop-blur-sm">
-          <div className="flex items-center justify-between p-4">
-            <h1 className="text-lg font-semibold text-stone-900">Portfolio</h1>
-            <div className="flex gap-2">
-              <Button
-                size="sm"
-                onClick={exportToPDF}
-                className="flex items-center gap-2 border border-stone-200 bg-transparent text-stone-600 transition-colors duration-200 hover:bg-stone-100"
-              >
-                <Download className="h-4 w-4" />
-                PDFダウンロード
-              </Button>
-              <Button
-                size="sm"
-                onClick={togglePresentationMode}
-                className="flex items-center gap-2 bg-stone-900 text-white transition-colors duration-200 hover:bg-stone-800"
-              >
-                <Presentation className="h-4 w-4" />
-                プレゼンテーションモード
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* スクロール可能なコンテンツ */}
-        <div id="portfolio-content" className="mx-auto max-w-6xl px-4 py-8">
-          {slides.map((slide, index) => (
-            <section
-              key={slide.id}
-              id={`slide-${index}`}
-              className="flex min-h-screen items-center justify-center py-16"
-              style={{
-                // PDF出力時のページ区切りを考慮
-                pageBreakAfter: index < slides.length - 1 ? "always" : "avoid",
-              }}
-            >
-              {slide.content}
-            </section>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  // プレゼンテーションモード（Spectacle形式）
   return (
-    <div className="bg-background min-h-screen">
-      {/* コントロールバー */}
-      <div className="bg-background/95 fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-stone-200 p-4 backdrop-blur-sm">
-        <h1 className="text-lg font-semibold text-stone-900">
-          Portfolio Presentation
-        </h1>
-        <div className="flex gap-2">
-          <Button
-            size="sm"
-            onClick={() => {
-              const url = new URL(window.location.href);
-              url.searchParams.set("exportMode", "true");
-              url.searchParams.set("printMode", "true");
-              const printWindow = window.open(url.toString(), "_blank");
-
-              if (printWindow) {
-                setTimeout(() => {
-                  alert(
-                    "新しいタブでPDFエクスポートモードが開きました。\n\nブラウザの印刷機能(Ctrl+P / Cmd+P)を使用してPDFとして保存してください。"
-                  );
-                }, 500);
-              }
-            }}
-            className="flex items-center gap-2 border border-stone-200 bg-transparent text-stone-600 transition-colors duration-200 hover:bg-stone-100"
-          >
-            <Download className="h-4 w-4" />
-            PDFエクスポート
-          </Button>
-          <Button
-            size="sm"
-            onClick={togglePresentationMode}
-            className="flex items-center gap-2 border border-stone-200 bg-transparent text-stone-600 transition-colors duration-200 hover:bg-stone-100"
-          >
-            <ScrollText className="h-4 w-4" />
-            スクロールモードに戻る
-          </Button>
+    <div className="bg-background text-foreground min-h-screen">
+      {/* ヘッダー */}
+      <div className="bg-background/95 sticky top-0 z-50 border-b border-stone-200 backdrop-blur-sm">
+        <div className="flex items-center justify-between p-4">
+          <h1 className="text-lg font-semibold text-stone-900">Portfolio</h1>
         </div>
       </div>
 
-      {/* Spectacleプレゼンテーション */}
-      <div className="pt-16">
-        <Suspense
-          fallback={
-            <div className="flex min-h-screen items-center justify-center">
-              <div className="text-stone-400">
-                プレゼンテーションを読み込み中...
-              </div>
-            </div>
-          }
-        >
-          <PortfolioPresentation />
-        </Suspense>
+      {/* スクロール可能なコンテンツ */}
+      <div id="portfolio-content" className="mx-auto max-w-6xl px-4 py-8">
+        {slides.map((slide) => (
+          <section
+            key={slide.id}
+            className="flex min-h-screen items-center justify-center py-16"
+          >
+            {slide.content}
+          </section>
+        ))}
       </div>
     </div>
   );
