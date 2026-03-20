@@ -15,11 +15,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import { initAnalytics } from "./lib/analytics";
 
 import "./styles/globals.css";
-
-initAnalytics();
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
