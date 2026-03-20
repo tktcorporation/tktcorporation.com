@@ -25,9 +25,12 @@ export { dateToMonths } from "./formatDate";
 
 /**
  * 経験のグループ化キーを生成
+ *
+ * organization_name のみで集約する。
+ * 同じ会社でのフリーランス/正社員の区別はグループ内で表示する。
  */
 export function getGroupKey(exp: Experience): string {
-  return `${exp.organization_name}|${exp.is_client_work}|${exp.client_company_name || ""}`;
+  return exp.organization_name;
 }
 
 /**
@@ -92,23 +95,53 @@ export function splitIntoConsecutiveGroups(
 }
 
 /**
- * サブグループからGroupedExperienceを生成
+ * 経験リストからGroupedExperienceを生成
+ *
+ * 最古の start と最新の end（null=進行中あり）で期間を計算する。
  */
 export function createGroupedExperience(
-  subGroup: Experience[]
+  experiences: Experience[]
 ): GroupedExperience {
-  const firstExp = subGroup[0];
-  const lastExp = subGroup[subGroup.length - 1];
+  const firstExp = experiences[0];
+
+  // 最古の開始日を見つける
+  let oldestStart = experiences[0];
+  for (const exp of experiences) {
+    if (
+      dateToMonths(exp.start_year, exp.start_month) <
+      dateToMonths(oldestStart.start_year, oldestStart.start_month)
+    ) {
+      oldestStart = exp;
+    }
+  }
+
+  // 進行中のエントリがあるか
+  const hasOngoing = experiences.some((e) => e.end_year === null);
+
+  // 最新の終了日を見つける
+  let latestEnd = experiences[0];
+  if (!hasOngoing) {
+    for (const exp of experiences) {
+      const expEnd = dateToMonths(exp.end_year ?? 0, exp.end_month ?? 0);
+      const latestEndDate = dateToMonths(
+        latestEnd.end_year ?? 0,
+        latestEnd.end_month ?? 0
+      );
+      if (expEnd > latestEndDate) {
+        latestEnd = exp;
+      }
+    }
+  }
 
   return {
     organization_name: firstExp.organization_name,
     is_client_work: firstExp.is_client_work,
     client_company_name: firstExp.client_company_name,
-    total_start_year: firstExp.start_year,
-    total_start_month: firstExp.start_month,
-    total_end_year: lastExp.end_year,
-    total_end_month: lastExp.end_month,
-    experiences: subGroup,
+    total_start_year: oldestStart.start_year,
+    total_start_month: oldestStart.start_month,
+    total_end_year: hasOngoing ? null : (latestEnd.end_year ?? null),
+    total_end_month: hasOngoing ? null : (latestEnd.end_month ?? null),
+    experiences,
   };
 }
 
@@ -155,18 +188,16 @@ export function groupExperiences(
 
   const groupedResults: GroupedExperience[] = [];
 
-  // 各組織グループを処理
+  // 各組織グループを処理（連続期間サブグルーピングを廃止し、全エントリを新しい順にソート）
   for (const groupExps of groups.values()) {
-    // 開始日順にソート
-    const sortedExps = sortExperiencesByStartDate(groupExps);
+    // 新しい順にソート
+    const sortedExps = [...groupExps].sort((a, b) => {
+      const aDate = dateToMonths(a.start_year, a.start_month);
+      const bDate = dateToMonths(b.start_year, b.start_month);
+      return bDate - aDate;
+    });
 
-    // 連続期間でサブグループ化
-    const subGroups = splitIntoConsecutiveGroups(sortedExps);
-
-    // 各サブグループをGroupedExperienceに変換
-    for (const subGroup of subGroups) {
-      groupedResults.push(createGroupedExperience(subGroup));
-    }
+    groupedResults.push(createGroupedExperience(sortedExps));
   }
 
   // 最終的に新しい順にソート

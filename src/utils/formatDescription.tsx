@@ -1,120 +1,67 @@
 /**
  * Purpose:
- * 経験の説明文をReactエレメントに変換するユーティリティ。
- * マークダウン風の記法（●、○、■など）をリスト形式に変換する。
+ * 経験の説明文をReact要素に変換するユーティリティ。
+ * react-markdown + remark-gfm で Markdown を汎用的に描画する。
  *
  * Context:
- * - LAPRASから取得した経験データの description フィールドを整形
- * - 階層構造を持つリスト表示をサポート
- * - Resume.tsx から抽出したロジックを一元管理
+ * - experiences.json の description を整形して表示
+ * - 1行目のテック行は splitTechAndDescription で除去済みの本文を受け取る
+ * - Tailwind スタイルを components prop で適用
  */
 
 import type React from "react";
+import type { Components } from "react-markdown";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+import { splitTechAndDescription } from "./extractTechFromDescription";
 
 /**
- * 説明文の各行の種類を判定するための型
+ * react-markdown の components prop に渡すスタイル定義
+ * design-system.md のトークンに準拠
  */
-type LineType = "disc" | "sub" | "circle" | "paragraph";
+const markdownComponents: Components = {
+  p: ({ children }) => (
+    <p className="mb-1.5 text-xs leading-relaxed text-stone-500 md:text-sm">
+      {children}
+    </p>
+  ),
+  ul: ({ children }) => (
+    <ul className="ml-4 list-disc space-y-0.5">{children}</ul>
+  ),
+  li: ({ children }) => (
+    <li className="text-xs leading-relaxed text-stone-500 md:text-sm">
+      {children}
+    </li>
+  ),
+  strong: ({ children }) => (
+    <strong className="font-medium text-stone-600">{children}</strong>
+  ),
+};
 
 /**
- * 行の種類を判定する
- */
-function getLineType(line: string): LineType {
-  if (line.startsWith("●") || line.startsWith("*")) {
-    return "disc";
-  }
-  if (line.startsWith("　　■") || line.startsWith("    *")) {
-    return "sub";
-  }
-  if (line.startsWith("　○") || line.startsWith("  *")) {
-    return "circle";
-  }
-  return "paragraph";
-}
-
-/**
- * 行のプレフィックスを除去してテキストを取得する
- */
-function extractLineText(line: string, lineType: LineType): string {
-  switch (lineType) {
-    case "disc":
-      return line.substring(1).trim();
-    case "sub":
-      return line.replace(/^[　■\s*]+/, "");
-    case "circle":
-      return line.replace(/^[　○\s*]+/, "");
-    case "paragraph":
-      return line.trim();
-  }
-}
-
-/**
- * 行の種類に応じたReact要素を生成する
- */
-function createLineElement(
-  text: string,
-  lineType: LineType,
-  index: number
-): React.ReactElement {
-  switch (lineType) {
-    case "disc":
-      return (
-        <li key={`${index}-disc`} className="ml-4 list-disc">
-          {text}
-        </li>
-      );
-    case "sub":
-      return (
-        <li key={`${index}-sub`} className="list-circle ml-8 text-sm">
-          {text}
-        </li>
-      );
-    case "circle":
-      return (
-        <li key={`${index}-circle`} className="list-circle ml-6">
-          {text}
-        </li>
-      );
-    case "paragraph":
-      return (
-        <p key={`${index}-para`} className="mb-1">
-          {text}
-        </p>
-      );
-  }
-}
-
-/**
- * 経験の説明文をReactエレメントの配列に変換する
+ * 経験の説明文をReact要素に変換する
  *
- * 対応する記法:
- * - ● または * で始まる行 → 第1レベルのリスト項目
- * - 　　■ または "    *" で始まる行 → 第3レベルのサブ項目
- * - 　○ または "  *" で始まる行 → 第2レベルの項目
- * - その他 → 段落テキスト
+ * description 全体を受け取り、1行目のテック行を除去した本文を
+ * react-markdown で描画する。
  *
  * @param description - 変換する説明文
- * @returns Reactエレメントの配列
+ * @returns React要素
  */
-export function formatDescription(description: string): React.ReactElement[] {
+export function formatDescription(description: string): React.ReactNode {
   if (!description) {
-    if (process.env.NODE_ENV === "development") {
-      console.warn(
-        "formatDescription: received empty or undefined description"
-      );
-    }
-    return [];
+    return null;
   }
 
-  return description
-    .split("\n")
-    .map((line, index) => {
-      const trimmedLine = line.trim();
-      if (!trimmedLine) return null;
+  const { body } = splitTechAndDescription(description);
 
-      const lineType = getLineType(line);
-      const text = extractLineText(line, lineType);
-      return createLineElement(text, lineType, index);
-    })
-    .filter(Boolean) as React.ReactElement[];
+  if (!body.trim()) {
+    return null;
+  }
+
+  return (
+    <Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+      {body}
+    </Markdown>
+  );
 }
