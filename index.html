@@ -14,12 +14,19 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-    <!-- Google Analytics 4: スクリプトは静的に配置し GA 検出ツールに対応。
-         dataLayer 初期化・config 送信は src/lib/analytics.ts で行う。 -->
+    <!-- Google Analytics 4 -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-TNFY35RTNP"
     ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-TNFY35RTNP");
+    </script>
 
     <!-- OGP / Twitter Card -->
     <meta property="og:type" content="website" />
