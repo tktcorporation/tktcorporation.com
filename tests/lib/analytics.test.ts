@@ -1,64 +1,37 @@
 /**
  * Purpose:
- * GA4 初期化ロジック (initAnalytics) のテスト。
- * dataLayer の初期化と config イベント送信が正しく行われることを保証する。
+ * GA4 タグが index.html に正しく設置されていることを検証する。
  *
  * Context:
- * - gtag.js の <script> タグは index.html に静的配置。
- * - initAnalytics() は dataLayer 初期化と config 送信のみ担当。
- * - import.meta.env.PROD の切り替えで本番/開発の挙動が変わることを検証。
+ * - GA4 は index.html にインラインで配置（Google 公式推奨の標準方式）。
+ * - gtag.js の async script タグと dataLayer 初期化が両方存在することを保証する。
  */
 
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
-describe("initAnalytics", () => {
-  beforeEach(() => {
-    // DOM をクリーンな状態にする
-    delete (window as Record<string, unknown>).dataLayer;
-    delete (window as Record<string, unknown>).gtag;
+import { describe, expect, it } from "vitest";
+
+const indexHtml = readFileSync(
+  resolve(import.meta.dirname, "../../index.html"),
+  "utf-8"
+);
+
+describe("GA4 タグ設置検証 (index.html)", () => {
+  it("gtag.js の async script タグが含まれる", () => {
+    expect(indexHtml).toContain("googletagmanager.com/gtag/js?id=G-TNFY35RTNP");
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-    vi.unstubAllEnvs();
+  it("dataLayer の初期化スクリプトが含まれる", () => {
+    expect(indexHtml).toContain("window.dataLayer = window.dataLayer || []");
   });
 
-  it("本番環境で window.dataLayer と window.gtag を設定する", async () => {
-    vi.stubEnv("PROD", true);
-
-    const { initAnalytics } = await import("@/lib/analytics");
-    initAnalytics();
-
-    expect(window.dataLayer).toBeDefined();
-    expect(Array.isArray(window.dataLayer)).toBe(true);
-    expect(typeof window.gtag).toBe("function");
+  it('gtag("config") 呼び出しが含まれる', () => {
+    expect(indexHtml).toContain('gtag("config", "G-TNFY35RTNP")');
   });
 
-  it("本番環境で dataLayer に初期イベント (js, config) をプッシュする", async () => {
-    vi.stubEnv("PROD", true);
-
-    const { initAnalytics } = await import("@/lib/analytics");
-    initAnalytics();
-
-    // dataLayer には [["js", Date], ["config", "G-..."]] が入る
-    expect(window.dataLayer.length).toBeGreaterThanOrEqual(2);
-
-    const jsEvent = window.dataLayer[0] as unknown[];
-    expect(jsEvent[0]).toBe("js");
-    expect(jsEvent[1]).toBeInstanceOf(Date);
-
-    const configEvent = window.dataLayer[1] as unknown[];
-    expect(configEvent[0]).toBe("config");
-    expect(configEvent[1]).toBe("G-TNFY35RTNP");
-  });
-
-  it("開発環境では何も実行しない", async () => {
-    vi.stubEnv("PROD", false);
-
-    const { initAnalytics } = await import("@/lib/analytics");
-    initAnalytics();
-
-    expect(window.dataLayer).toBeUndefined();
-    expect(window.gtag).toBeUndefined();
+  it("preconnect ヒントが含まれる", () => {
+    expect(indexHtml).toContain('rel="preconnect"');
+    expect(indexHtml).toContain("https://www.googletagmanager.com");
   });
 });
