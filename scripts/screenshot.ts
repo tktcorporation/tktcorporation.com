@@ -6,7 +6,7 @@
  *
  * Context:
  * - CI/CDパイプラインでのPRプレビュー生成
- * - ローカルHTTPサーバーでビルド成果物を配信
+ * - Vite preview でビルド成果物を配信
  * - Playwrightによる高品質なスクリーンショット生成
  * - エラーハンドリングと適切なリソースクリーンアップ
  */
@@ -14,32 +14,27 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import httpServer from "http-server";
 import { type Browser, chromium, type Page } from "playwright";
+import { preview } from "vite";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const outDir = path.join(__dirname, "..", "dist");
 const output = path.join(__dirname, "..", "pr-screenshot.jpg");
-
-const server = httpServer.createServer({ root: outDir });
 
 const takeScreenshot = async (): Promise<void> => {
   let browser: Browser | null = null;
+  let server: Awaited<ReturnType<typeof preview>> | null = null;
 
   try {
-    await new Promise<void>((resolve) => {
-      server.listen(3000, () => {
-        console.log("Server started on http://localhost:3000");
-        resolve();
-      });
-    });
+    server = await preview({ preview: { port: 3000, strictPort: true } });
+    const address = server.resolvedUrls?.local?.[0] ?? "http://localhost:3000";
+    console.log(`Server started on ${address}`);
 
     browser = await chromium.launch();
     const page: Page = await browser.newPage();
 
-    await page.goto("http://localhost:3000");
+    await page.goto(address);
     await page.setViewportSize({ width: 1024, height: 768 });
 
     await page.screenshot({
@@ -57,7 +52,9 @@ const takeScreenshot = async (): Promise<void> => {
     if (browser) {
       await browser.close();
     }
-    server.close();
+    if (server) {
+      await server.close();
+    }
   }
 };
 
