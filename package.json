@@ -24,6 +24,7 @@
     "test:all": "npm run test:run && npm run test:e2e",
     "test:display": "tsx scripts/test-display.ts",
     "update:lapras": "tsx scripts/update-lapras-data.ts",
+    "update:experiences": "tsx scripts/update-experiences.ts",
     "knip": "knip"
   },
   "dependencies": {
