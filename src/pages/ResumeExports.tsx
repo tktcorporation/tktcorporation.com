@@ -7,10 +7,13 @@
  * - Generates export content on-the-fly during development
  * - Displays content in readable format for both humans and AI agents
  * - Works in both dev server and production build
- * - Mimics Claude Docs' simple pre-tag approach
+ * - markdown タイプは react-markdown でレンダリングし改行・見出し等を正しく表示
+ * - text/json タイプは pre タグで生テキスト表示
  */
 
 import { useMemo } from "react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { calculateSkillsWithYears } from "@/utils/calculateSkills";
 import { generateResumeJson } from "@/utils/exportResumeJson";
@@ -43,6 +46,14 @@ export function ResumeExport({ type }: ResumeExportProps) {
       }
     }
   }, [type]);
+
+  if (type === "markdown") {
+    return (
+      <div className="prose prose-stone mx-auto max-w-3xl px-6 py-8">
+        <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
+      </div>
+    );
+  }
 
   return (
     <pre style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>

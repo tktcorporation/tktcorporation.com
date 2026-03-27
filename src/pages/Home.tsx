@@ -4,7 +4,7 @@
  * ソーシャルメディアへのリンクと他のページへのナビゲーションを提供する。
  *
  * Context:
- * - 個人のポートフォリオサイトのエントリーポイント
+ * - 個人サイトのエントリーポイント
  * - ミニマルなデザインに手書き風イラストでアクセントを加える
  * - タイポグラフィ主導の情報階層
  * - 余白を活かしたクリーンなレイアウト
@@ -54,15 +54,6 @@ function Home() {
                 >
                   <HandArrow className="text-stone-300 transition-colors duration-200 group-hover:text-blue-400" />
                   <span className="text-base">Technologies</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/portfolio"
-                  className="group flex items-center gap-2 text-stone-700 transition-colors duration-200 hover:text-blue-600"
-                >
-                  <HandArrow className="text-stone-300 transition-colors duration-200 group-hover:text-blue-400" />
-                  <span className="text-base">Portfolio</span>
                 </Link>
               </li>
             </ul>
