@@ -49,7 +49,7 @@ export function ResumeExport({ type }: ResumeExportProps) {
 
   if (type === "markdown") {
     return (
-      <div className="mx-auto max-w-3xl px-6 py-8 text-stone-700">
+      <div className="prose prose-stone mx-auto max-w-3xl px-6 py-8">
         <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
       </div>
     );
