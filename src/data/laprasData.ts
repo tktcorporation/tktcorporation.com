@@ -1,40 +1,31 @@
 /**
  * Purpose:
- * LAPRASのデータを読み込み、バリデーションを行って
- * 型安全な形でアプリケーション全体に提供する。
+ * LAPRAS公開APIからデータを動的に取得し、バリデーションを行って
+ * 型安全な形でアプリケーションに提供する。
  *
  * Context:
- * - src/data/lapras-data.jsonから静的データを読み込み
+ * - クライアントサイドで https://lapras.com/public/tktcorporation.json を直接fetch
  * - Zodスキーマでバリデーションして型安全性を保証
- * - エラーハンドリングを含む2つのアクセス方法を提供
+ * - 静的JSONの事前生成が不要になり、常に最新データを表示できる
  */
 
-import laprasDataJson from "./lapras-data.json";
 import { type LaprasData, LaprasDataSchema } from "./laprasSchema";
 
-/**
- * Get validated LAPRAS data
- * @throws {Error} If the data doesn't match the schema
- */
-export function getLaprasData(): LaprasData {
-  try {
-    // Validate the JSON data against the schema
-    const validatedData = LaprasDataSchema.parse(laprasDataJson);
-    return validatedData;
-  } catch (error) {
-    console.error("Failed to validate LAPRAS data:", error);
-    throw new Error("Invalid LAPRAS data format");
-  }
-}
+const LAPRAS_API_URL = "https://lapras.com/public/tktcorporation.json";
 
 /**
- * Get LAPRAS data safely (returns null on error)
+ * LAPRAS公開APIからデータを取得してバリデーションする。
+ * publicエンドポイントのため認証不要。
  */
-export function getLaprasDataSafe(): LaprasData | null {
-  try {
-    return getLaprasData();
-  } catch (error) {
-    console.error("Failed to load LAPRAS data:", error);
-    return null;
+export async function fetchLaprasData(): Promise<LaprasData> {
+  const response = await fetch(LAPRAS_API_URL);
+
+  if (!response.ok) {
+    throw new Error(
+      `LAPRAS APIの取得に失敗しました: ${response.status} ${response.statusText}`
+    );
   }
+
+  const rawData = await response.json();
+  return LaprasDataSchema.parse(rawData);
 }

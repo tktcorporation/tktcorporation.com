@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import { DotPattern, WavyUnderline } from "@/components/illustrations";
 
 import { TechnologyTimeline } from "../components/TechnologyTimeline";
-import { getLaprasDataSafe } from "../data/laprasData";
+import { fetchLaprasData } from "../data/laprasData";
 import type { LaprasData } from "../data/laprasSchema";
 import { useLaprasActivities } from "../hooks/useLaprasActivities";
 import { getTechIcon } from "../utils/techIcons";
@@ -34,17 +34,12 @@ function Technologies() {
     loading: activitiesLoading,
   } = useLaprasActivities(laprasData);
 
-  const fetchLaprasData = useCallback(() => {
+  const loadData = useCallback(async () => {
     try {
       setLoading(true);
-      const data = getLaprasDataSafe();
-
-      if (!data) {
-        throw new Error("LAPRASデータの読み込みに失敗しました");
-      }
-
-      setLaprasData(data);
       setError(null);
+      const data = await fetchLaprasData();
+      setLaprasData(data);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -57,14 +52,12 @@ function Technologies() {
   }, []);
 
   const handleRetry = useCallback(() => {
-    setError(null);
-    setLoading(true);
-    fetchLaprasData();
-  }, [fetchLaprasData]);
+    loadData();
+  }, [loadData]);
 
   useEffect(() => {
-    fetchLaprasData();
-  }, [fetchLaprasData]);
+    loadData();
+  }, [loadData]);
 
   return (
     <div className="flex min-h-screen flex-col">
