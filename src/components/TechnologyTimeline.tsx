@@ -179,10 +179,17 @@ export function TechnologyTimeline({
                       href={group.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-baseline gap-3 rounded-md px-1 py-1.5 transition-colors duration-200 hover:bg-stone-50"
+                      className="group flex items-start gap-3 rounded-md px-1 py-1.5 transition-colors duration-200 hover:bg-stone-50"
                     >
-                      <span className="min-w-0 flex-1 truncate text-sm text-stone-700 transition-colors duration-200 group-hover:text-stone-900">
-                        {group.repository}
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm text-stone-700 transition-colors duration-200 group-hover:text-stone-900">
+                          {group.repository}
+                        </span>
+                        {group.description && (
+                          <span className="block truncate text-xs text-stone-400">
+                            {group.description}
+                          </span>
+                        )}
                       </span>
                       <span className="flex flex-shrink-0 items-center gap-2 text-xs text-stone-300">
                         {group.language && (
