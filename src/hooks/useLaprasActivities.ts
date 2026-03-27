@@ -23,6 +23,25 @@ import type {
 
 export type TimeSpan = "1month" | "6months" | "1year";
 
+/**
+ * 過去1年間のトレンドサマリー。
+ * ページ上部のハイライトセクションで使用する。
+ */
+export interface TrendSummary {
+  topLanguages: Array<{ name: string; count: number; ratio: number }>;
+  activeRepoCount: number;
+  totalCommits: number;
+  totalPRs: number;
+  articleCount: number;
+  eventCount: number;
+  topRepos: Array<{
+    name: string;
+    language?: string;
+    activityCount: number;
+    url: string;
+  }>;
+}
+
 export interface RepositoryGroup {
   repository: string;
   description?: string;
@@ -387,6 +406,109 @@ function processActivities(
 }
 
 // ============================================================================
+// トレンド計算
+// ============================================================================
+
+/**
+ * 過去1年間のアクティビティからトレンドサマリーを計算
+ */
+function computeTrendSummary(laprasData: LaprasData): TrendSummary {
+  const now = new Date();
+  const oneYearAgo = new Date(now);
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+
+  const activities = laprasData.activities || [];
+  const repoMap = createRepoMap(laprasData.github_repositories);
+
+  const repoActivity = new Map<
+    string,
+    { commits: number; prs: number; language?: string; url: string }
+  >();
+  let totalCommits = 0;
+  let totalPRs = 0;
+  const langCount: Record<string, number> = {};
+
+  for (const activity of activities) {
+    const date = new Date(activity.date);
+    if (date < oneYearAgo || date > now) continue;
+
+    if (activity.type === "github" || activity.type === "github_pr") {
+      const repo = repoMap.get(activity.title);
+      if (!repoActivity.has(activity.title)) {
+        repoActivity.set(activity.title, {
+          commits: 0,
+          prs: 0,
+          language: repo?.language,
+          url: activity.url,
+        });
+        if (repo?.languages) {
+          for (const lang of repo.languages) {
+            langCount[lang.name] = (langCount[lang.name] || 0) + 1;
+          }
+        }
+      }
+      const entry = repoActivity.get(activity.title)!;
+      if (activity.type === "github_pr") {
+        entry.prs++;
+        totalPRs++;
+      } else {
+        entry.commits++;
+        totalCommits++;
+      }
+    }
+  }
+
+  // 記事数
+  let articleCount = 0;
+  for (const a of laprasData.qiita_articles) {
+    if (new Date(a.updated_at) >= oneYearAgo) articleCount++;
+  }
+  for (const a of laprasData.zenn_articles) {
+    if (new Date(a.posted_at) >= oneYearAgo) articleCount++;
+  }
+
+  // イベント数
+  let eventCount = 0;
+  for (const activity of activities) {
+    if (activity.type === "connpass" && new Date(activity.date) >= oneYearAgo) {
+      eventCount++;
+    }
+  }
+
+  // 言語ランキング
+  const maxLangCount = Math.max(...Object.values(langCount), 1);
+  const topLanguages = Object.entries(langCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([name, count]) => ({
+      name,
+      count,
+      ratio: count / maxLangCount,
+    }));
+
+  // トップリポジトリ
+  const topRepos = Array.from(repoActivity.entries())
+    .map(([name, data]) => ({
+      name,
+      language: data.language,
+      activityCount: data.commits + data.prs,
+      url: data.url,
+    }))
+    .sort((a, b) => b.activityCount - a.activityCount)
+    .slice(0, 5);
+
+  return {
+    topLanguages,
+    activeRepoCount: repoActivity.size,
+    totalCommits,
+    totalPRs,
+    articleCount,
+    eventCount,
+    topRepos,
+  };
+}
+
+// ============================================================================
 // カスタムフック
 // ============================================================================
 
@@ -394,6 +516,7 @@ export function useLaprasActivities(data: LaprasData | null) {
   const [timelineEntries, setTimelineEntries] = useState<TimelineEntry[]>([]);
   const [timeSpan, setTimeSpan] = useState<TimeSpan>("1month");
   const [loading, setLoading] = useState(false);
+  const [trendSummary, setTrendSummary] = useState<TrendSummary | null>(null);
 
   const process = useCallback(
     (laprasData: LaprasData, span: TimeSpan): TimelineEntry[] => {
@@ -408,6 +531,7 @@ export function useLaprasActivities(data: LaprasData | null) {
     setLoading(true);
     const entries = process(data, timeSpan);
     setTimelineEntries(entries);
+    setTrendSummary(computeTrendSummary(data));
     setLoading(false);
   }, [data, timeSpan, process]);
 
@@ -415,6 +539,7 @@ export function useLaprasActivities(data: LaprasData | null) {
     timelineEntries,
     timeSpan,
     setTimeSpan,
+    trendSummary,
     loading,
   };
 }

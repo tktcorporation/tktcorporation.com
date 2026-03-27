@@ -1,22 +1,25 @@
 /**
  * Purpose:
- * 技術スタックと活動履歴を時系列で表示するページ。
- * LAPRASデータを基に、期間ごとの活動をタイムライン形式で
- * 視覚化し、技術的な成長と興味の変遷を表現する。
+ * 技術活動の全体像を「トレンド + タイムライン」で提示するページ。
+ * 直近1年のハイライトを大きな余白とタイポグラフィで伝え、
+ * 詳細はフラットなタイムラインで深掘りできる構成。
  *
  * Context:
- * - カスタムフックとコンポーネントに処理を分離
- * - 1ヶ月、6ヶ月、1年単位での表示切り替えをサポート
- * - ミニマルなライトテーマのタイムライン表示
+ * - Dia/Arc風: 余白で語る、洗練されつつワクワクするデザイン
+ * - トレンドセクションで直近の全体像を一目で把握
+ * - タイムラインで時系列の詳細を確認
  */
 
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { DotPattern, WavyUnderline } from "@/components/illustrations";
+
 import { TechnologyTimeline } from "../components/TechnologyTimeline";
 import { getLaprasDataSafe } from "../data/laprasData";
 import type { LaprasData } from "../data/laprasSchema";
 import { useLaprasActivities } from "../hooks/useLaprasActivities";
+import { getTechIcon } from "../utils/techIcons";
 
 function Technologies() {
   const [laprasData, setLaprasData] = useState<LaprasData | null>(null);
@@ -27,6 +30,7 @@ function Technologies() {
     timelineEntries,
     timeSpan,
     setTimeSpan,
+    trendSummary,
     loading: activitiesLoading,
   } = useLaprasActivities(laprasData);
 
@@ -75,75 +79,178 @@ function Technologies() {
         </div>
       </nav>
 
-      <main className="mx-auto w-full max-w-3xl flex-grow px-6 py-12">
-        <header className="mb-8">
-          <h1 className="mb-2 text-2xl font-bold tracking-tight text-stone-900 md:text-3xl">
+      <main className="mx-auto w-full max-w-3xl flex-grow px-6 py-16 md:py-24">
+        {/* ヒーローヘッダー — 余白たっぷり */}
+        <header className="mb-20">
+          <h1 className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
             Activities
           </h1>
-          {laprasData && (
-            <div className="flex gap-4 text-sm text-stone-400">
-              <span>{laprasData.github_repositories.length} repositories</span>
-              <span>
-                {laprasData.qiita_articles.length +
-                  laprasData.zenn_articles.length}{" "}
-                articles
-              </span>
-            </div>
-          )}
+          <WavyUnderline className="mt-2 text-blue-400" />
+          <p className="mt-4 text-sm text-stone-400">
+            What I&apos;ve been building, writing, and attending.
+          </p>
         </header>
 
         {loading && (
-          <div className="py-12 text-center">
-            {/* oxlint-ignore: role="status" is correct for loading spinners */}
+          <div className="py-24 text-center">
             <div
-              className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-stone-300 border-t-stone-600"
+              className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-stone-200 border-t-stone-500"
               role="status"
               aria-label="データを読み込み中"
             />
-            <p className="mt-4 text-sm text-stone-400" aria-live="polite">
-              技術データを読み込み中...
-            </p>
           </div>
         )}
 
         {error && (
-          <div className="py-12 text-center" role="alert">
-            <p className="mb-4 text-sm text-red-600">エラー: {error}</p>
+          <div className="py-24 text-center" role="alert">
+            <p className="mb-4 text-sm text-stone-500">{error}</p>
             <button
               type="button"
               onClick={handleRetry}
-              className="rounded-md border border-stone-300 px-4 py-2 text-sm transition-colors duration-200 hover:bg-stone-50"
+              className="text-sm text-stone-400 underline transition-colors duration-200 hover:text-stone-700"
               aria-label="データの再読み込み"
             >
-              再試行
+              Retry
             </button>
           </div>
         )}
 
-        {!loading &&
-          !error &&
-          !activitiesLoading &&
-          timelineEntries.length > 0 && (
-            <TechnologyTimeline
-              entries={timelineEntries}
-              timeSpan={timeSpan}
-              onTimeSpanChange={setTimeSpan}
-            />
-          )}
+        {!loading && !error && !activitiesLoading && trendSummary && (
+          <>
+            {/* ===== Recent Trends ===== */}
+            <section className="mb-24">
+              <div className="mb-8 flex items-center gap-3">
+                <h2 className="text-xs font-medium tracking-widest text-stone-400 uppercase">
+                  Past 12 Months
+                </h2>
+                <DotPattern className="text-stone-200" />
+              </div>
 
-        {!loading &&
-          !error &&
-          !activitiesLoading &&
-          timelineEntries.length === 0 && (
-            <div className="py-12 text-center">
-              <p className="text-sm text-stone-400">
-                表示可能な活動データがありません
-              </p>
-            </div>
-          )}
+              {/* キー数値 — 大きな数字、余白で区切る */}
+              <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-4">
+                <div>
+                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                    {trendSummary.activeRepoCount}
+                  </p>
+                  <p className="mt-1 text-xs text-stone-400">Repositories</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                    {trendSummary.totalPRs}
+                  </p>
+                  <p className="mt-1 text-xs text-stone-400">Pull Requests</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                    {trendSummary.articleCount}
+                  </p>
+                  <p className="mt-1 text-xs text-stone-400">Articles</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                    {trendSummary.eventCount}
+                  </p>
+                  <p className="mt-1 text-xs text-stone-400">Events</p>
+                </div>
+              </div>
+
+              {/* トップ言語 — ミニマルバー */}
+              {trendSummary.topLanguages.length > 0 && (
+                <div className="mb-12">
+                  <h3 className="mb-4 text-xs font-medium text-stone-400">
+                    Top Languages
+                  </h3>
+                  <div className="space-y-3">
+                    {trendSummary.topLanguages.map((lang) => {
+                      const Icon = getTechIcon(lang.name);
+                      return (
+                        <div
+                          key={lang.name}
+                          className="flex items-center gap-3"
+                        >
+                          <span className="flex w-24 items-center gap-1.5 text-sm text-stone-600">
+                            {Icon && (
+                              <Icon className="h-4 w-4 text-stone-400" />
+                            )}
+                            {lang.name}
+                          </span>
+                          <div className="h-1 flex-1 overflow-hidden rounded-full bg-stone-100">
+                            <div
+                              className="h-full rounded-full bg-blue-400 transition-all duration-200"
+                              style={{ width: `${lang.ratio * 100}%` }}
+                            />
+                          </div>
+                          <span className="w-8 text-right text-xs text-stone-300">
+                            {lang.count}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* トップリポジトリ */}
+              {trendSummary.topRepos.length > 0 && (
+                <div>
+                  <h3 className="mb-4 text-xs font-medium text-stone-400">
+                    Most Active
+                  </h3>
+                  <div className="space-y-1">
+                    {trendSummary.topRepos.map((repo) => (
+                      <a
+                        key={repo.name}
+                        href={repo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-baseline gap-3 rounded-md px-1 py-1.5 transition-colors duration-200 hover:bg-stone-50"
+                      >
+                        <span className="min-w-0 flex-1 truncate text-sm text-stone-700 transition-colors duration-200 group-hover:text-stone-900">
+                          {repo.name}
+                        </span>
+                        <span className="flex-shrink-0 text-xs text-stone-300">
+                          {repo.language && (
+                            <span className="mr-2 text-stone-400">
+                              {repo.language}
+                            </span>
+                          )}
+                          {repo.activityCount} activities
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* ===== Timeline ===== */}
+            <section>
+              <div className="mb-12 flex items-center gap-3">
+                <h2 className="text-xs font-medium tracking-widest text-stone-400 uppercase">
+                  Timeline
+                </h2>
+                <div className="h-px flex-1 bg-stone-100" />
+              </div>
+
+              {timelineEntries.length > 0 && (
+                <TechnologyTimeline
+                  entries={timelineEntries}
+                  timeSpan={timeSpan}
+                  onTimeSpanChange={setTimeSpan}
+                />
+              )}
+
+              {timelineEntries.length === 0 && (
+                <p className="text-sm text-stone-400">
+                  No activity data available.
+                </p>
+              )}
+            </section>
+          </>
+        )}
       </main>
 
-      <footer className="mt-auto py-8 text-center text-xs text-stone-300">
+      <footer className="mt-auto py-12 text-center text-xs text-stone-300">
         <p>
           © {new Date().getFullYear()} tkt · Data from{" "}
           <a
