@@ -239,6 +239,33 @@ describe("generateResumeMarkdown", () => {
     });
   });
 
+  describe("Line Breaks", () => {
+    it("should use double newlines between Duration and Position for proper markdown rendering", () => {
+      const result = generateResumeMarkdown(mockExperiences, mockSkills);
+      // Duration and Position should be separated by a blank line (double newline)
+      // so that standard Markdown renderers treat them as separate paragraphs
+      expect(result).toMatch(/\*\*Duration\*\*:.*\n\n\*\*Position\*\*:/);
+    });
+
+    it("should not have single newlines between metadata fields in experience entries", () => {
+      const result = generateResumeMarkdown(mockExperiences, mockSkills);
+      // Each metadata field (Duration, Position, Technologies) should end with \n\n
+      // to ensure line breaks render correctly without trailing spaces
+      const durationLines = result.match(/\*\*Duration\*\*:.*\n/g);
+      if (durationLines) {
+        for (const line of durationLines) {
+          // After the Duration line, the next character should be a newline (i.e., \n\n)
+          const idx = result.indexOf(line);
+          const afterLine = result.substring(
+            idx + line.length,
+            idx + line.length + 1
+          );
+          expect(afterLine).toBe("\n");
+        }
+      }
+    });
+  });
+
   describe("Markdown Validity", () => {
     it("should have proper markdown headers hierarchy", () => {
       const result = generateResumeMarkdown(mockExperiences, mockSkills);
