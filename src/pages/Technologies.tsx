@@ -6,6 +6,7 @@
  *
  * Context:
  * - Dia/Arc風: 余白で語る、洗練されつつワクワクするデザイン
+ * - グラフセクションで活動の推移・密度を可視化
  * - トレンドセクションで直近の全体像を一目で把握
  * - タイムラインで時系列の詳細を確認
  */
@@ -13,6 +14,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { ActivityBarChart } from "@/components/ActivityBarChart";
+import { ActivityHeatmap } from "@/components/ActivityHeatmap";
 import { DotPattern, WavyUnderline } from "@/components/illustrations";
 
 import { TechnologyTimeline } from "../components/TechnologyTimeline";
@@ -115,139 +118,169 @@ function Technologies() {
           </div>
         )}
 
-        {!loading && !error && !activitiesLoading && trendSummary && (
-          <>
-            {/* ===== Recent Trends ===== */}
-            <section className="mb-24">
-              <div className="mb-8 flex items-center gap-3">
-                <h2 className="text-xs font-medium tracking-widest text-stone-400 uppercase">
-                  Past 12 Months
-                </h2>
-                <DotPattern className="text-stone-200" />
-              </div>
+        {!loading &&
+          !error &&
+          !activitiesLoading &&
+          trendSummary &&
+          laprasData && (
+            <>
+              {/* ===== Activity Graphs ===== */}
+              <section className="mb-24">
+                <div className="mb-8 flex items-center gap-3">
+                  <h2 className="text-xs font-medium tracking-widest text-stone-400 uppercase">
+                    Activity Overview
+                  </h2>
+                  <DotPattern className="text-stone-200" />
+                </div>
 
-              {/* キー数値 — 大きな数字、余白で区切る */}
-              <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-4">
-                <div>
-                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
-                    {trendSummary.activeRepoCount}
-                  </p>
-                  <p className="mt-1 text-xs text-stone-400">Repositories</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
-                    {trendSummary.totalPRs}
-                  </p>
-                  <p className="mt-1 text-xs text-stone-400">Pull Requests</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
-                    {trendSummary.articleCount}
-                  </p>
-                  <p className="mt-1 text-xs text-stone-400">Articles</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
-                    {trendSummary.eventCount}
-                  </p>
-                  <p className="mt-1 text-xs text-stone-400">Events</p>
-                </div>
-              </div>
-
-              {/* トップ言語 — ミニマルバー */}
-              {trendSummary.topLanguages.length > 0 && (
+                {/* 月次アクティビティ棒グラフ */}
                 <div className="mb-12">
                   <h3 className="mb-4 text-xs font-medium text-stone-400">
-                    Top Languages
+                    Monthly Activity
                   </h3>
-                  <div className="space-y-3">
-                    {trendSummary.topLanguages.map((lang) => {
-                      const Icon = getTechIcon(lang.name);
-                      return (
-                        <div
-                          key={lang.name}
-                          className="flex items-center gap-3"
-                        >
-                          <span className="flex w-24 items-center gap-1.5 text-sm text-stone-600">
-                            {Icon && (
-                              <Icon className="h-4 w-4 text-stone-400" />
-                            )}
-                            {lang.name}
-                          </span>
-                          <div className="h-1 flex-1 overflow-hidden rounded-full bg-stone-100">
-                            <div
-                              className="h-full rounded-full bg-blue-400 transition-all duration-200"
-                              style={{ width: `${lang.ratio * 100}%` }}
-                            />
-                          </div>
-                          <span className="w-8 text-right text-xs text-stone-300">
-                            {lang.count}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <ActivityBarChart activities={laprasData.activities} />
                 </div>
-              )}
 
-              {/* トップリポジトリ */}
-              {trendSummary.topRepos.length > 0 && (
+                {/* コントリビューションヒートマップ */}
                 <div>
                   <h3 className="mb-4 text-xs font-medium text-stone-400">
-                    Most Active
+                    Contribution Heatmap
                   </h3>
-                  <div className="space-y-1">
-                    {trendSummary.topRepos.map((repo) => (
-                      <a
-                        key={repo.name}
-                        href={repo.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-baseline gap-3 rounded-md px-1 py-1.5 transition-colors duration-200 hover:bg-stone-50"
-                      >
-                        <span className="min-w-0 flex-1 truncate text-sm text-stone-700 transition-colors duration-200 group-hover:text-stone-900">
-                          {repo.name}
-                        </span>
-                        <span className="flex-shrink-0 text-xs text-stone-300">
-                          {repo.language && (
-                            <span className="mr-2 text-stone-400">
-                              {repo.language}
-                            </span>
-                          )}
-                          {repo.activityCount} activities
-                        </span>
-                      </a>
-                    ))}
+                  <ActivityHeatmap activities={laprasData.activities} />
+                </div>
+              </section>
+
+              {/* ===== Recent Trends ===== */}
+              <section className="mb-24">
+                <div className="mb-8 flex items-center gap-3">
+                  <h2 className="text-xs font-medium tracking-widest text-stone-400 uppercase">
+                    Past 12 Months
+                  </h2>
+                  <DotPattern className="text-stone-200" />
+                </div>
+
+                {/* キー数値 — 大きな数字、余白で区切る */}
+                <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-4">
+                  <div>
+                    <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                      {trendSummary.activeRepoCount}
+                    </p>
+                    <p className="mt-1 text-xs text-stone-400">Repositories</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                      {trendSummary.totalPRs}
+                    </p>
+                    <p className="mt-1 text-xs text-stone-400">Pull Requests</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                      {trendSummary.articleCount}
+                    </p>
+                    <p className="mt-1 text-xs text-stone-400">Articles</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                      {trendSummary.eventCount}
+                    </p>
+                    <p className="mt-1 text-xs text-stone-400">Events</p>
                   </div>
                 </div>
-              )}
-            </section>
 
-            {/* ===== Timeline ===== */}
-            <section>
-              <div className="mb-12 flex items-center gap-3">
-                <h2 className="text-xs font-medium tracking-widest text-stone-400 uppercase">
-                  Timeline
-                </h2>
-                <div className="h-px flex-1 bg-stone-100" />
-              </div>
+                {/* トップ言語 — ミニマルバー */}
+                {trendSummary.topLanguages.length > 0 && (
+                  <div className="mb-12">
+                    <h3 className="mb-4 text-xs font-medium text-stone-400">
+                      Top Languages
+                    </h3>
+                    <div className="space-y-3">
+                      {trendSummary.topLanguages.map((lang) => {
+                        const Icon = getTechIcon(lang.name);
+                        return (
+                          <div
+                            key={lang.name}
+                            className="flex items-center gap-3"
+                          >
+                            <span className="flex w-24 items-center gap-1.5 text-sm text-stone-600">
+                              {Icon && (
+                                <Icon className="h-4 w-4 text-stone-400" />
+                              )}
+                              {lang.name}
+                            </span>
+                            <div className="h-1 flex-1 overflow-hidden rounded-full bg-stone-100">
+                              <div
+                                className="h-full rounded-full bg-blue-400 transition-all duration-200"
+                                style={{ width: `${lang.ratio * 100}%` }}
+                              />
+                            </div>
+                            <span className="w-8 text-right text-xs text-stone-300">
+                              {lang.count}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
 
-              {timelineEntries.length > 0 && (
-                <TechnologyTimeline
-                  entries={timelineEntries}
-                  timeSpan={timeSpan}
-                  onTimeSpanChange={setTimeSpan}
-                />
-              )}
+                {/* トップリポジトリ */}
+                {trendSummary.topRepos.length > 0 && (
+                  <div>
+                    <h3 className="mb-4 text-xs font-medium text-stone-400">
+                      Most Active
+                    </h3>
+                    <div className="space-y-1">
+                      {trendSummary.topRepos.map((repo) => (
+                        <a
+                          key={repo.name}
+                          href={repo.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex items-baseline gap-3 rounded-md px-1 py-1.5 transition-colors duration-200 hover:bg-stone-50"
+                        >
+                          <span className="min-w-0 flex-1 truncate text-sm text-stone-700 transition-colors duration-200 group-hover:text-stone-900">
+                            {repo.name}
+                          </span>
+                          <span className="flex-shrink-0 text-xs text-stone-300">
+                            {repo.language && (
+                              <span className="mr-2 text-stone-400">
+                                {repo.language}
+                              </span>
+                            )}
+                            {repo.activityCount} activities
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </section>
 
-              {timelineEntries.length === 0 && (
-                <p className="text-sm text-stone-400">
-                  No activity data available.
-                </p>
-              )}
-            </section>
-          </>
-        )}
+              {/* ===== Timeline ===== */}
+              <section>
+                <div className="mb-12 flex items-center gap-3">
+                  <h2 className="text-xs font-medium tracking-widest text-stone-400 uppercase">
+                    Timeline
+                  </h2>
+                  <div className="h-px flex-1 bg-stone-100" />
+                </div>
+
+                {timelineEntries.length > 0 && (
+                  <TechnologyTimeline
+                    entries={timelineEntries}
+                    timeSpan={timeSpan}
+                    onTimeSpanChange={setTimeSpan}
+                  />
+                )}
+
+                {timelineEntries.length === 0 && (
+                  <p className="text-sm text-stone-400">
+                    No activity data available.
+                  </p>
+                )}
+              </section>
+            </>
+          )}
       </main>
 
       <footer className="mt-auto py-12 text-center text-xs text-stone-300">
