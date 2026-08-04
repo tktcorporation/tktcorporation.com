@@ -2,12 +2,11 @@
  * Purpose:
  * 職務経歴書を表示するページ。
  * LAPRASから取得した経験データを基に、視覚的に分かりやすい形で
- * キャリアの経歴とスキルセットを提示する。
+ * キャリアの経歴を提示する。
  *
  * Context:
  * - 経験を組織別・期間別にグループ化して表示
- * - 技術スタックを自動的に抽出してハイライト
- * - スキルの習熟度を期間ベースで計算・可視化
+ * - 技術スタックは各経歴から抽出してハイライト（専用スキル一覧は持たない）
  * - ミニマルなライトテーマ、タイポグラフィと余白主導のデザイン
  * - ボーダーは構造上必須の箇所のみ（ナビの下線のみ残す）
  */
@@ -16,19 +15,14 @@ import { Link } from "react-router-dom";
 
 import { CopyResumeButton } from "@/components/CopyResumeButton";
 import { WavyUnderline } from "@/components/illustrations";
-import {
-  ExperienceSection,
-  ExportSection,
-  SkillsSection,
-} from "@/components/resume";
+import { ExperienceSection, ExportSection } from "@/components/resume";
 import { useResumeData } from "@/hooks/useResumeData";
 import { splitTechAndDescription } from "@/utils/extractTechFromDescription";
 import { formatDateRange } from "@/utils/formatDate";
 import { formatDescription } from "@/utils/formatDescription";
 
 function Resume() {
-  const { companyGroups, skillsWithYears, resumeMarkdown, loading } =
-    useResumeData();
+  const { companyGroups, resumeMarkdown, loading } = useResumeData();
 
   return (
     <div className="bg-background flex min-h-screen flex-col">
@@ -53,8 +47,6 @@ function Resume() {
           </div>
           <WavyUnderline className="text-blue-400" />
         </header>
-
-        <SkillsSection skills={skillsWithYears} loading={loading} />
 
         <ExperienceSection
           companyGroups={companyGroups}
