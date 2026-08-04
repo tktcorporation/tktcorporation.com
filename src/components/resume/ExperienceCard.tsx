@@ -7,7 +7,7 @@
  * Context:
  * - CompanyGroup を受け取り、会社単位でまとめて表示
  * - タイムラインUI: 縦線 + ドットマーカーで時系列を表現
- * - 各ロールの詳細（技術タグ・説明）はデフォルトで閉じたアコーディオン
+ * - 閉じた状態でも職種・役職・期間は常に表示し、説明のみアコーディオンで開閉
  * - design-system.md のトークンに準拠
  */
 
@@ -21,7 +21,10 @@ import type {
   Experience,
   TechExtractor,
 } from "@/types/experience";
-import { getDisplayPositionName } from "@/types/experience";
+import {
+  getAllPositionNames,
+  getDisplayPositionName,
+} from "@/types/experience";
 
 import { TechBadge } from "./TechBadge";
 
@@ -41,9 +44,73 @@ interface RoleEntryProps {
   formatDescription: DescriptionFormatter;
 }
 
+interface RoleSummaryProps {
+  exp: Experience;
+  formatDate: DateFormatter;
+  expanded?: boolean;
+  showToggle?: boolean;
+}
+
+/**
+ * 閉じた状態でも見せる職種・役職・期間のサマリー
+ */
+function RoleSummary({
+  exp,
+  formatDate,
+  expanded = false,
+  showToggle = false,
+}: RoleSummaryProps) {
+  const roleNames = getAllPositionNames(exp);
+  const roleLabel =
+    roleNames.length > 0 ? roleNames.join(" · ") : getDisplayPositionName(exp);
+  const jobCategory = exp.position_name.trim();
+  const showJobCategory =
+    jobCategory.length > 0 && !roleNames.includes(jobCategory);
+  const dateLabel = formatDate(
+    exp.start_year,
+    exp.start_month,
+    exp.end_year,
+    exp.end_month
+  );
+
+  return (
+    <span className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between md:gap-3">
+      <span className="flex min-w-0 flex-col gap-0.5">
+        <span className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          {showToggle && (
+            <ChevronDown
+              aria-hidden="true"
+              className={`h-3.5 w-3.5 shrink-0 text-stone-300 transition-all duration-200 ${
+                expanded ? "rotate-180 text-stone-400" : ""
+              }`}
+            />
+          )}
+          <span className="text-sm font-medium">{roleLabel}</span>
+          {exp.is_client_work && exp.client_company_name && (
+            <span className="text-[10px] text-stone-400">業務委託</span>
+          )}
+        </span>
+        {showJobCategory && (
+          <span className="flex items-baseline gap-x-2">
+            {showToggle && (
+              <span className="inline-block h-3.5 w-3.5 shrink-0" />
+            )}
+            <span className="text-[10px] text-stone-400 md:text-xs">
+              {jobCategory}
+            </span>
+          </span>
+        )}
+      </span>
+      <span className="shrink-0 font-mono text-[10px] text-stone-400 md:text-xs">
+        {dateLabel}
+      </span>
+    </span>
+  );
+}
+
 /**
  * 個別の経験（ロール）をタイムラインエントリとして表示。
- * 詳細がある場合はデフォルト閉じのアコーディオンにする。
+ * 職種・役職は常に表示し、説明のみデフォルト閉じのアコーディオンにする。
  */
 function RoleEntry({
   exp,
@@ -53,13 +120,6 @@ function RoleEntry({
 }: RoleEntryProps) {
   const [expanded, setExpanded] = useState(false);
   const hasDetails = Boolean(exp.description?.trim());
-  const positionName = getDisplayPositionName(exp);
-  const dateLabel = formatDate(
-    exp.start_year,
-    exp.start_month,
-    exp.end_year,
-    exp.end_month
-  );
   const panelId = `role-details-${exp.id}`;
 
   return (
@@ -76,23 +136,12 @@ function RoleEntry({
             onClick={() => setExpanded((value) => !value)}
             className="w-full rounded-sm text-left text-stone-700 transition-colors duration-200 hover:text-stone-900 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-400"
           >
-            <span className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between md:gap-3">
-              <span className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                <ChevronDown
-                  aria-hidden="true"
-                  className={`h-3.5 w-3.5 shrink-0 text-stone-300 transition-all duration-200 ${
-                    expanded ? "rotate-180 text-stone-400" : ""
-                  }`}
-                />
-                <span className="text-sm font-medium">{positionName}</span>
-                {exp.is_client_work && exp.client_company_name && (
-                  <span className="text-[10px] text-stone-400">業務委託</span>
-                )}
-              </span>
-              <span className="shrink-0 font-mono text-[10px] text-stone-400 md:text-xs">
-                {dateLabel}
-              </span>
-            </span>
+            <RoleSummary
+              exp={exp}
+              formatDate={formatDate}
+              expanded={expanded}
+              showToggle
+            />
           </button>
 
           {expanded && (
@@ -109,18 +158,8 @@ function RoleEntry({
           )}
         </div>
       ) : (
-        <div className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between md:gap-3">
-          <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
-            <h4 className="text-sm font-medium text-stone-700">
-              {positionName}
-            </h4>
-            {exp.is_client_work && exp.client_company_name && (
-              <span className="text-[10px] text-stone-400">業務委託</span>
-            )}
-          </div>
-          <p className="shrink-0 font-mono text-[10px] text-stone-400 md:text-xs">
-            {dateLabel}
-          </p>
+        <div className="text-stone-700">
+          <RoleSummary exp={exp} formatDate={formatDate} />
         </div>
       )}
     </div>

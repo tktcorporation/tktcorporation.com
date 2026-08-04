@@ -2,6 +2,7 @@
  * Purpose:
  * CompanyGroupCard の職歴詳細アコーディオン挙動を検証する。
  * 詳細はデフォルトで閉じ、展開操作で説明が表示されることを保証する。
+ * 閉じた状態でも職種・役職は参照できることを保証する。
  */
 
 import { fireEvent, render, screen } from "@testing-library/react";
@@ -84,6 +85,37 @@ describe("CompanyGroupCard", () => {
     expect(screen.queryByText("TypeScript")).toBeNull();
   });
 
+  it("閉じた状態でも複数の役職と職種が見えること", () => {
+    const company = createCompany([
+      createExperience({
+        id: 1,
+        description: "TypeScriptでWebアプリを開発した",
+        position_name: "ソフトウェアエンジニア",
+        positions: [
+          { id: 1, job_position_name: "Webアプリケーションエンジニア" },
+          { id: 2, job_position_name: "プロダクトマネージャー" },
+        ],
+      }),
+    ]);
+
+    render(
+      <CompanyGroupCard
+        company={company}
+        formatDate={formatDate}
+        extractTechTags={() => ["TypeScript"]}
+        formatDescription={(desc) => <p>{desc}</p>}
+      />
+    );
+
+    expect(
+      screen.getByRole("button", {
+        name: /Webアプリケーションエンジニア · プロダクトマネージャー/,
+      })
+    ).toBeTruthy();
+    expect(screen.getByText("ソフトウェアエンジニア")).toBeTruthy();
+    expect(screen.queryByText("TypeScriptでWebアプリを開発した")).toBeNull();
+  });
+
   it("アコーディオンを開くと詳細説明が表示されること", () => {
     const company = createCompany([
       createExperience({
@@ -131,8 +163,6 @@ describe("CompanyGroupCard", () => {
     expect(
       screen.queryByRole("button", { name: /ソフトウェアエンジニア/ })
     ).toBeNull();
-    expect(
-      screen.getByRole("heading", { name: "ソフトウェアエンジニア" })
-    ).toBeTruthy();
+    expect(screen.getByText("ソフトウェアエンジニア")).toBeTruthy();
   });
 });
