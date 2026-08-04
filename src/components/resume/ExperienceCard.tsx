@@ -7,8 +7,12 @@
  * Context:
  * - CompanyGroup を受け取り、会社単位でまとめて表示
  * - タイムラインUI: 縦線 + ドットマーカーで時系列を表現
+ * - 各ロールの詳細（技術タグ・説明）はデフォルトで閉じたアコーディオン
  * - design-system.md のトークンに準拠
  */
+
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 import type {
   CompanyGroup,
@@ -38,7 +42,8 @@ interface RoleEntryProps {
 }
 
 /**
- * 個別の経験（ロール）をタイムラインエントリとして表示
+ * 個別の経験（ロール）をタイムラインエントリとして表示。
+ * 詳細がある場合はデフォルト閉じのアコーディオンにする。
  */
 function RoleEntry({
   exp,
@@ -46,41 +51,77 @@ function RoleEntry({
   extractTechTags,
   formatDescription,
 }: RoleEntryProps) {
+  const [expanded, setExpanded] = useState(false);
+  const hasDetails = Boolean(exp.description?.trim());
+  const positionName = getDisplayPositionName(exp);
+  const dateLabel = formatDate(
+    exp.start_year,
+    exp.start_month,
+    exp.end_year,
+    exp.end_month
+  );
+  const panelId = `role-details-${exp.id}`;
+
   return (
     <div className="relative pl-6 md:pl-8">
       {/* ロールドット */}
       <div className="absolute top-2 left-[3px] h-1.5 w-1.5 rounded-full bg-stone-300" />
 
-      <div className="mb-1 flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between">
-        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          <h4 className="text-sm font-medium text-stone-700">
-            {getDisplayPositionName(exp)}
-          </h4>
-          {exp.is_client_work && exp.client_company_name && (
-            <span className="text-[10px] text-stone-400">業務委託</span>
+      {hasDetails ? (
+        <div>
+          <button
+            type="button"
+            aria-expanded={expanded}
+            aria-controls={expanded ? panelId : undefined}
+            onClick={() => setExpanded((value) => !value)}
+            className="w-full rounded-sm text-left text-stone-700 transition-colors duration-200 hover:text-stone-900 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-400"
+          >
+            <span className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between md:gap-3">
+              <span className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                <ChevronDown
+                  aria-hidden="true"
+                  className={`h-3.5 w-3.5 shrink-0 text-stone-300 transition-all duration-200 ${
+                    expanded ? "rotate-180 text-stone-400" : ""
+                  }`}
+                />
+                <span className="text-sm font-medium">{positionName}</span>
+                {exp.is_client_work && exp.client_company_name && (
+                  <span className="text-[10px] text-stone-400">業務委託</span>
+                )}
+              </span>
+              <span className="shrink-0 font-mono text-[10px] text-stone-400 md:text-xs">
+                {dateLabel}
+              </span>
+            </span>
+          </button>
+
+          {expanded && (
+            <div id={panelId} className="mt-1.5">
+              <div className="mb-1.5 flex flex-wrap gap-1">
+                {extractTechTags(exp.description).map((tech) => (
+                  <TechBadge key={tech} name={tech} />
+                ))}
+              </div>
+              <div className="space-y-1 text-xs leading-relaxed text-stone-500 md:text-sm">
+                {formatDescription(exp.description)}
+              </div>
+            </div>
           )}
         </div>
-        <p className="shrink-0 font-mono text-[10px] text-stone-400 md:text-xs">
-          {formatDate(
-            exp.start_year,
-            exp.start_month,
-            exp.end_year,
-            exp.end_month
-          )}
-        </p>
-      </div>
-
-      {exp.description && (
-        <>
-          <div className="mb-1.5 flex flex-wrap gap-1">
-            {extractTechTags(exp.description).map((tech) => (
-              <TechBadge key={tech} name={tech} />
-            ))}
+      ) : (
+        <div className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:justify-between md:gap-3">
+          <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <h4 className="text-sm font-medium text-stone-700">
+              {positionName}
+            </h4>
+            {exp.is_client_work && exp.client_company_name && (
+              <span className="text-[10px] text-stone-400">業務委託</span>
+            )}
           </div>
-          <div className="space-y-1 text-xs leading-relaxed text-stone-500 md:text-sm">
-            {formatDescription(exp.description)}
-          </div>
-        </>
+          <p className="shrink-0 font-mono text-[10px] text-stone-400 md:text-xs">
+            {dateLabel}
+          </p>
+        </div>
       )}
     </div>
   );
@@ -139,7 +180,7 @@ export function CompanyGroupCard({
         </header>
 
         {/* ロール一覧 */}
-        <div className="space-y-8">
+        <div className="space-y-5 md:space-y-6">
           {allExperiences.map((exp) => (
             <RoleEntry
               key={exp.id}
