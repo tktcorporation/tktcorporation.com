@@ -1,10 +1,10 @@
 {
   "name": "tktcorporation",
   "description": "SWE",
-  "e_score": 4.18,
+  "e_score": 4.22,
   "b_score": 3.48,
-  "i_score": 3.49,
-  "iconimage_url": "https://media.scout.lapras.com/media/CACHE/images/lapras_person/avatar/4ccf1ceafb3048008f7bd17ed188262e/tktcorporation_icon/ecba51ddc1540f1d9ef79aa79e412948.jpg?Expires=1774614259&Signature=WIID57Db~-6imwjPNPpeDiFlLuH2UtJn1d5NgFR3Ag2b0rEUd32UVreOTeV1ItS0Qr9G3dPhBFybAyMzRSsy56s4kMRUNnT5bomaDM2vwjPrEjeqitQ9m8OovF~K9bPSkr4wr9u-x8BjXEbNEKzogPb1PuOzYC3UM3jwsiKqxHlEsdxvmtf6TTom7cpxol4TEAq3JM3WaysQTDFlPi2Guf-kxlJWYFBMAFm-dZ9dOCL1-VtETVLTxF~hriDk67ipcxDmahFcJO4FL1RMDYFQ-XXVs7UdY-0IZgP3YlW9fhn~3BnHAWlNvvVBtYmg8dwOpJP9eiPneyyYpUa~HOnIfg__&Key-Pair-Id=K1WIWXB00Y0RX8",
+  "i_score": 3.5,
+  "iconimage_url": "https://media.scout.lapras.com/media/CACHE/images/lapras_person/avatar/4ccf1ceafb3048008f7bd17ed188262e/tktcorporation_icon/ecba51ddc1540f1d9ef79aa79e412948.jpg?Expires=1785857443&Signature=TyUJHbumh1y~IcLhqWIzvrMqMonX4J4fGS6wRSSaN6JleK~zqOOLytj63RE~AEHclh-BKdEVMPmQkkSz08TzpbOpPCwUbD8GsdKzFvsVWW50VZeaLDYTnmRA9Qf0QXKM3ijf9IUAxAsQDvGNhfQPIJojEDfcZMXlD7reArr9RfMnflwVvil5UaEG3CISjS~~nysXHRJjMGI~ZLfKQEekrG3238UOloTeuUCAj5Cgs37hGoZZLcU1-JyDM72Lq0WXktxzr~t027TNg6DqaXmzRakRF0WwCsE13MADTk7BEuhqHKR4BjYEeuaUHAj9RFssQ-cbTeX3RrfI5SK6rsDdGg__&Key-Pair-Id=K1WIWXB00Y0RX8",
   "qiita_articles": [
     {
       "title": "`refusing to allow an OAuth App to create or update workflow` を解決する",
@@ -941,6 +941,12 @@
   ],
   "zenn_articles": [
     {
+      "title": ".claude/や.mcp.jsonを双方向同期するCLIツール「ziku」",
+      "url": "https://zenn.dev/tktcorporation/articles/ziku-bidirectional-template-manager",
+      "tags": [],
+      "posted_at": "2026-04-08T01:47:02"
+    },
+    {
       "title": "AI を使った開発で実践していること",
       "url": "https://zenn.dev/tktcorporation/articles/ai-development-practices",
       "tags": [],
@@ -1066,8 +1072,16 @@
       "language": "Rust",
       "languages": [
         {
+          "name": "TypeScript",
+          "bytes": 13854
+        },
+        {
           "name": "Dockerfile",
-          "bytes": 1518
+          "bytes": 1317
+        },
+        {
+          "name": "Shell",
+          "bytes": 13979
         },
         {
           "name": "RenderScript",
@@ -1075,16 +1089,20 @@
         },
         {
           "name": "Rust",
-          "bytes": 104906
+          "bytes": 151975
         },
         {
           "name": "Makefile",
-          "bytes": 1555
+          "bytes": 1549
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 5331
         }
       ],
-      "contributions": 794,
+      "contributions": 834,
       "contributions_url": "https://github.com/tktcorporation/discord-tts-bot/commits?author=tktcorporation",
-      "contributors_count": 7,
+      "contributors_count": 8,
       "contributors_url": "https://github.com/tktcorporation/discord-tts-bot/graphs/contributors",
       "forks": 1,
       "stargazers_url": "https://github.com/tktcorporation/discord-tts-bot/stargazers"
@@ -1125,7 +1143,7 @@
       "languages": [
         {
           "name": "TypeScript",
-          "bytes": 1837613
+          "bytes": 2368742
         },
         {
           "name": "Dockerfile",
@@ -1133,27 +1151,74 @@
         },
         {
           "name": "Shell",
-          "bytes": 16970
+          "bytes": 31514
         },
         {
           "name": "CSS",
-          "bytes": 10565
+          "bytes": 13989
         },
         {
-          "name": "HTML",
-          "bytes": 1323
+          "name": "Rust",
+          "bytes": 121938
         },
         {
           "name": "JavaScript",
-          "bytes": 114951
+          "bytes": 83942
+        },
+        {
+          "name": "HTML",
+          "bytes": 1355
         }
       ],
-      "contributions": 980,
+      "contributions": 1073,
       "contributions_url": "https://github.com/tktcorporation/vrchat-albums/commits?author=tktcorporation",
       "contributors_count": 2,
       "contributors_url": "https://github.com/tktcorporation/vrchat-albums/graphs/contributors",
       "forks": 1,
       "stargazers_url": "https://github.com/tktcorporation/vrchat-albums/stargazers"
+    },
+    {
+      "id": 969483475,
+      "title": "tktcorporation/clip-filepaths",
+      "url": "https://github.com/tktcorporation/clip-filepaths",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "📋 Copy multiple file paths (including images) to clipboard - A cross platform utility.",
+      "stargazers_count": 13,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 15487
+        },
+        {
+          "name": "Dockerfile",
+          "bytes": 474
+        },
+        {
+          "name": "Shell",
+          "bytes": 4292
+        },
+        {
+          "name": "Rust",
+          "bytes": 58352
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 12477
+        },
+        {
+          "name": "Just",
+          "bytes": 5434
+        }
+      ],
+      "contributions": 63,
+      "contributions_url": "https://github.com/tktcorporation/clip-filepaths/commits?author=tktcorporation",
+      "contributors_count": 4,
+      "contributors_url": "https://github.com/tktcorporation/clip-filepaths/graphs/contributors",
+      "forks": 2,
+      "stargazers_url": "https://github.com/tktcorporation/clip-filepaths/stargazers"
     },
     {
       "id": 200996660,
@@ -1218,49 +1283,6 @@
       "stargazers_url": "https://github.com/lapras-inc/lapras-score-v2/stargazers"
     },
     {
-      "id": 969483475,
-      "title": "tktcorporation/clip-filepaths",
-      "url": "https://github.com/tktcorporation/clip-filepaths",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "📋 Copy multiple file paths (including images) to clipboard - A cross platform utility.",
-      "stargazers_count": 11,
-      "language": "Rust",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 15487
-        },
-        {
-          "name": "Dockerfile",
-          "bytes": 474
-        },
-        {
-          "name": "Shell",
-          "bytes": 4292
-        },
-        {
-          "name": "Rust",
-          "bytes": 57724
-        },
-        {
-          "name": "JavaScript",
-          "bytes": 12477
-        },
-        {
-          "name": "Just",
-          "bytes": 5434
-        }
-      ],
-      "contributions": 61,
-      "contributions_url": "https://github.com/tktcorporation/clip-filepaths/commits?author=tktcorporation",
-      "contributors_count": 4,
-      "contributors_url": "https://github.com/tktcorporation/clip-filepaths/graphs/contributors",
-      "forks": 2,
-      "stargazers_url": "https://github.com/tktcorporation/clip-filepaths/stargazers"
-    },
-    {
       "id": 334205965,
       "title": "tktcorporation/dotfiles",
       "url": "https://github.com/tktcorporation/dotfiles",
@@ -1272,17 +1294,21 @@
       "language": "Shell",
       "languages": [
         {
-          "name": "Shell",
-          "bytes": 112853
+          "name": "Ruby",
+          "bytes": 2144
         },
         {
-          "name": "AppleScript",
-          "bytes": 1512
+          "name": "Shell",
+          "bytes": 31689
+        },
+        {
+          "name": "Go Template",
+          "bytes": 7751
         }
       ],
-      "contributions": 216,
+      "contributions": 262,
       "contributions_url": "https://github.com/tktcorporation/dotfiles/commits?author=tktcorporation",
-      "contributors_count": 11,
+      "contributors_count": 12,
       "contributors_url": "https://github.com/tktcorporation/dotfiles/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/tktcorporation/dotfiles/stargazers"
@@ -1296,30 +1322,30 @@
       "is_owner": true,
       "description": "simple profile site.",
       "stargazers_count": 0,
-      "language": "HTML",
+      "language": "TypeScript",
       "languages": [
         {
           "name": "TypeScript",
-          "bytes": 282352
-        },
-        {
-          "name": "HTML",
-          "bytes": 461291
-        },
-        {
-          "name": "CSS",
-          "bytes": 6634
+          "bytes": 241457
         },
         {
           "name": "Shell",
-          "bytes": 3269
+          "bytes": 7523
+        },
+        {
+          "name": "HTML",
+          "bytes": 4154
+        },
+        {
+          "name": "CSS",
+          "bytes": 3253
         },
         {
           "name": "JavaScript",
-          "bytes": 14692
+          "bytes": 9546
         }
       ],
-      "contributions": 243,
+      "contributions": 283,
       "contributions_url": "https://github.com/tktcorporation/tktcorporation.com/commits?author=tktcorporation",
       "contributors_count": 6,
       "contributors_url": "https://github.com/tktcorporation/tktcorporation.com/graphs/contributors",
@@ -1335,22 +1361,18 @@
       "is_owner": true,
       "description": "Bi-directional dev environment template CLI — scaffold, sync, and push improvements back to your templates",
       "stargazers_count": 0,
-      "language": "TypeScript",
+      "language": "Shell",
       "languages": [
         {
-          "name": "TypeScript",
-          "bytes": 409505
-        },
-        {
           "name": "Shell",
-          "bytes": 19292
+          "bytes": 24333
         },
         {
           "name": "JavaScript",
-          "bytes": 3907
+          "bytes": 1657
         }
       ],
-      "contributions": 289,
+      "contributions": 367,
       "contributions_url": "https://github.com/tktcorporation/.github/commits?author=tktcorporation",
       "contributors_count": 4,
       "contributors_url": "https://github.com/tktcorporation/.github/graphs/contributors",
@@ -1381,12 +1403,47 @@
           "bytes": 2339
         }
       ],
-      "contributions": 241,
+      "contributions": 242,
       "contributions_url": "https://github.com/tktcorporation/ateaparty/commits?author=tktcorporation",
       "contributors_count": 4,
       "contributors_url": "https://github.com/tktcorporation/ateaparty/graphs/contributors",
       "forks": 1,
       "stargazers_url": "https://github.com/tktcorporation/ateaparty/stargazers"
+    },
+    {
+      "id": 1158592894,
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "iOS alarm app built with Expo that requires completing tasks before dismissing the alarm",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 715733
+        },
+        {
+          "name": "Shell",
+          "bytes": 24059
+        },
+        {
+          "name": "Swift",
+          "bytes": 16219
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 16236
+        }
+      ],
+      "contributions": 240,
+      "contributions_url": "https://github.com/tktcorporation/good-morning/commits?author=tktcorporation",
+      "contributors_count": 4,
+      "contributors_url": "https://github.com/tktcorporation/good-morning/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/good-morning/stargazers"
     },
     {
       "id": 166921547,
@@ -1444,6 +1501,49 @@
       "stargazers_url": "https://github.com/tktcorporation/linebot-messaging/stargazers"
     },
     {
+      "id": 1168605196,
+      "title": "tktcorporation/cross-recorder",
+      "url": "https://github.com/tktcorporation/cross-recorder",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Cross-platform desktop audio recorder — record mic & system audio simultaneously into separate WAV tracks. Built with Electrobun, React, and ScreenCaptureKit.",
+      "stargazers_count": 2,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 311076
+        },
+        {
+          "name": "Shell",
+          "bytes": 28366
+        },
+        {
+          "name": "Swift",
+          "bytes": 14392
+        },
+        {
+          "name": "CSS",
+          "bytes": 1836
+        },
+        {
+          "name": "HTML",
+          "bytes": 319
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 14600
+        }
+      ],
+      "contributions": 105,
+      "contributions_url": "https://github.com/tktcorporation/cross-recorder/commits?author=tktcorporation",
+      "contributors_count": 4,
+      "contributors_url": "https://github.com/tktcorporation/cross-recorder/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/cross-recorder/stargazers"
+    },
+    {
       "id": 678370537,
       "title": "tktcorporation/vrchat-join-recorder",
       "url": "https://github.com/tktcorporation/vrchat-join-recorder",
@@ -1485,37 +1585,6 @@
       "contributors_url": "https://github.com/tktcorporation/vrchat-join-recorder/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/tktcorporation/vrchat-join-recorder/stargazers"
-    },
-    {
-      "id": 1158592894,
-      "title": "tktcorporation/good-morning",
-      "url": "https://github.com/tktcorporation/good-morning",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "iOS alarm app built with Expo that requires completing tasks before dismissing the alarm",
-      "stargazers_count": 0,
-      "language": "TypeScript",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 447438
-        },
-        {
-          "name": "Shell",
-          "bytes": 9293
-        },
-        {
-          "name": "JavaScript",
-          "bytes": 4436
-        }
-      ],
-      "contributions": 195,
-      "contributions_url": "https://github.com/tktcorporation/good-morning/commits?author=tktcorporation",
-      "contributors_count": 3,
-      "contributors_url": "https://github.com/tktcorporation/good-morning/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/good-morning/stargazers"
     },
     {
       "id": 927787249,
@@ -1586,6 +1655,76 @@
       "contributors_url": "https://github.com/tktcorporation/coc-manager/graphs/contributors",
       "forks": 1,
       "stargazers_url": "https://github.com/tktcorporation/coc-manager/stargazers"
+    },
+    {
+      "id": 1195953775,
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A bi-directional dev environment template that evolves with you.",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 841125
+        },
+        {
+          "name": "Shell",
+          "bytes": 15415
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 3908
+        }
+      ],
+      "contributions": 144,
+      "contributions_url": "https://github.com/tktcorporation/ziku/commits?author=tktcorporation",
+      "contributors_count": 4,
+      "contributors_url": "https://github.com/tktcorporation/ziku/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/ziku/stargazers"
+    },
+    {
+      "id": 1146535304,
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "https://sim-game.netlify.app/",
+      "stargazers_count": 1,
+      "language": "Rust",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 4972
+        },
+        {
+          "name": "HTML",
+          "bytes": 36164
+        },
+        {
+          "name": "Shell",
+          "bytes": 19576
+        },
+        {
+          "name": "Rust",
+          "bytes": 1864651
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 3303
+        }
+      ],
+      "contributions": 136,
+      "contributions_url": "https://github.com/tktcorporation/cli-sim-game-escape/commits?author=tktcorporation",
+      "contributors_count": 3,
+      "contributors_url": "https://github.com/tktcorporation/cli-sim-game-escape/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/cli-sim-game-escape/stargazers"
     },
     {
       "id": 759931174,
@@ -1826,6 +1965,76 @@
       "stargazers_url": "https://github.com/tktcorporation/youtube_to_m3u8/stargazers"
     },
     {
+      "id": 872699643,
+      "title": "tktcorporation/food-shop-search",
+      "url": "https://github.com/tktcorporation/food-shop-search",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "GoogleMap より簡単にごはん処を見つける",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 150611
+        },
+        {
+          "name": "CSS",
+          "bytes": 8951
+        },
+        {
+          "name": "Shell",
+          "bytes": 7310
+        },
+        {
+          "name": "HTML",
+          "bytes": 2120
+        },
+        {
+          "name": "Python",
+          "bytes": 58948
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2775
+        }
+      ],
+      "contributions": 78,
+      "contributions_url": "https://github.com/tktcorporation/food-shop-search/commits?author=tktcorporation",
+      "contributors_count": 4,
+      "contributors_url": "https://github.com/tktcorporation/food-shop-search/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/food-shop-search/stargazers"
+    },
+    {
+      "id": 1120313528,
+      "title": "tktcorporation/vrchat-udonsharp-linter",
+      "url": "https://github.com/tktcorporation/vrchat-udonsharp-linter",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "A static analyzer and linter for VRChat UdonSharp scripts",
+      "stargazers_count": 0,
+      "language": "C#",
+      "languages": [
+        {
+          "name": "C#",
+          "bytes": 227329
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 1384
+        }
+      ],
+      "contributions": 62,
+      "contributions_url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/commits?author=tktcorporation",
+      "contributors_count": 5,
+      "contributors_url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/graphs/contributors",
+      "forks": 1,
+      "stargazers_url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/stargazers"
+    },
+    {
       "id": 258518635,
       "title": "tktcorporation/Runner",
       "url": "https://github.com/tktcorporation/Runner",
@@ -1869,90 +2078,43 @@
       "stargazers_url": "https://github.com/tktcorporation/Runner/stargazers"
     },
     {
-      "id": 872699643,
-      "title": "tktcorporation/food-shop-search",
-      "url": "https://github.com/tktcorporation/food-shop-search",
+      "id": 925522971,
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai",
       "is_oss": false,
       "is_fork": false,
       "is_owner": true,
-      "description": "GoogleMap より簡単にごはん処を見つける",
+      "description": "あ茶会 告知投稿の文面検査",
       "stargazers_count": 0,
       "language": "TypeScript",
       "languages": [
         {
           "name": "TypeScript",
-          "bytes": 138369
-        },
-        {
-          "name": "CSS",
-          "bytes": 8951
+          "bytes": 123890
         },
         {
           "name": "Shell",
-          "bytes": 7310
+          "bytes": 13389
         },
         {
           "name": "HTML",
-          "bytes": 2120
+          "bytes": 442
         },
         {
-          "name": "Python",
-          "bytes": 58948
+          "name": "CSS",
+          "bytes": 161
         },
         {
           "name": "JavaScript",
-          "bytes": 2775
+          "bytes": 1033
         }
       ],
-      "contributions": 72,
-      "contributions_url": "https://github.com/tktcorporation/food-shop-search/commits?author=tktcorporation",
+      "contributions": 69,
+      "contributions_url": "https://github.com/tktcorporation/tweet-validator-for-achakai/commits?author=tktcorporation",
       "contributors_count": 4,
-      "contributors_url": "https://github.com/tktcorporation/food-shop-search/graphs/contributors",
+      "contributors_url": "https://github.com/tktcorporation/tweet-validator-for-achakai/graphs/contributors",
       "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/food-shop-search/stargazers"
-    },
-    {
-      "id": 1168605196,
-      "title": "tktcorporation/cross-recorder",
-      "url": "https://github.com/tktcorporation/cross-recorder",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "Cross-platform desktop audio recorder — record mic & system audio simultaneously into separate WAV tracks. Built with Electrobun, React, and ScreenCaptureKit.",
-      "stargazers_count": 0,
-      "language": "TypeScript",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 204226
-        },
-        {
-          "name": "Shell",
-          "bytes": 8830
-        },
-        {
-          "name": "Swift",
-          "bytes": 7832
-        },
-        {
-          "name": "CSS",
-          "bytes": 955
-        },
-        {
-          "name": "HTML",
-          "bytes": 319
-        },
-        {
-          "name": "JavaScript",
-          "bytes": 8798
-        }
-      ],
-      "contributions": 86,
-      "contributions_url": "https://github.com/tktcorporation/cross-recorder/commits?author=tktcorporation",
-      "contributors_count": 3,
-      "contributors_url": "https://github.com/tktcorporation/cross-recorder/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/cross-recorder/stargazers"
+      "stargazers_url": "https://github.com/tktcorporation/tweet-validator-for-achakai/stargazers"
     },
     {
       "id": 1178409493,
@@ -2111,37 +2273,6 @@
       "stargazers_url": "https://github.com/tktcorporation/jiro-spell-generator/stargazers"
     },
     {
-      "id": 1146535304,
-      "title": "tktcorporation/cli-sim-game-escape",
-      "url": "https://github.com/tktcorporation/cli-sim-game-escape",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "https://sim-game.netlify.app/",
-      "stargazers_count": 0,
-      "language": "Rust",
-      "languages": [
-        {
-          "name": "HTML",
-          "bytes": 7165
-        },
-        {
-          "name": "Shell",
-          "bytes": 5442
-        },
-        {
-          "name": "Rust",
-          "bytes": 889748
-        }
-      ],
-      "contributions": 68,
-      "contributions_url": "https://github.com/tktcorporation/cli-sim-game-escape/commits?author=tktcorporation",
-      "contributors_count": 3,
-      "contributors_url": "https://github.com/tktcorporation/cli-sim-game-escape/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/cli-sim-game-escape/stargazers"
-    },
-    {
       "id": 191776602,
       "title": "tktcorporation/sam-cli_typescript_template",
       "url": "https://github.com/tktcorporation/sam-cli_typescript_template",
@@ -2212,72 +2343,6 @@
       "stargazers_url": "https://github.com/tktcorporation/neptune/stargazers"
     },
     {
-      "id": 925522971,
-      "title": "tktcorporation/tweet-validator-for-achakai",
-      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "あ茶会 告知投稿の文面検査",
-      "stargazers_count": 0,
-      "language": "TypeScript",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 70647
-        },
-        {
-          "name": "Shell",
-          "bytes": 3269
-        },
-        {
-          "name": "HTML",
-          "bytes": 442
-        },
-        {
-          "name": "CSS",
-          "bytes": 161
-        },
-        {
-          "name": "JavaScript",
-          "bytes": 2678
-        }
-      ],
-      "contributions": 46,
-      "contributions_url": "https://github.com/tktcorporation/tweet-validator-for-achakai/commits?author=tktcorporation",
-      "contributors_count": 4,
-      "contributors_url": "https://github.com/tktcorporation/tweet-validator-for-achakai/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/tweet-validator-for-achakai/stargazers"
-    },
-    {
-      "id": 1120313528,
-      "title": "tktcorporation/vrchat-udonsharp-linter",
-      "url": "https://github.com/tktcorporation/vrchat-udonsharp-linter",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "A static analyzer and linter for VRChat UdonSharp scripts",
-      "stargazers_count": 0,
-      "language": "C#",
-      "languages": [
-        {
-          "name": "C#",
-          "bytes": 132914
-        },
-        {
-          "name": "JavaScript",
-          "bytes": 1384
-        }
-      ],
-      "contributions": 54,
-      "contributions_url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/commits?author=tktcorporation",
-      "contributors_count": 3,
-      "contributors_url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/stargazers"
-    },
-    {
       "id": 283191885,
       "title": "tktcorporation/tktcorporation",
       "url": "https://github.com/tktcorporation/tktcorporation",
@@ -2343,10 +2408,10 @@
         },
         {
           "name": "JavaScript",
-          "bytes": 4441
+          "bytes": 4471
         }
       ],
-      "contributions": 25,
+      "contributions": 26,
       "contributions_url": "https://github.com/tktcorporation/node-actionlint/commits?author=tktcorporation",
       "contributors_count": 4,
       "contributors_url": "https://github.com/tktcorporation/node-actionlint/graphs/contributors",
@@ -2428,6 +2493,45 @@
       "stargazers_url": "https://github.com/tktcorporation/simple-query-builder/stargazers"
     },
     {
+      "id": 1186930849,
+      "title": "tktcorporation/VantageMail",
+      "url": "https://github.com/tktcorporation/VantageMail",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 369585
+        },
+        {
+          "name": "HCL",
+          "bytes": 4587
+        },
+        {
+          "name": "Shell",
+          "bytes": 17630
+        },
+        {
+          "name": "CSS",
+          "bytes": 2267
+        },
+        {
+          "name": "HTML",
+          "bytes": 440
+        }
+      ],
+      "contributions": 83,
+      "contributions_url": "https://github.com/tktcorporation/VantageMail/commits?author=tktcorporation",
+      "contributors_count": 1,
+      "contributors_url": "https://github.com/tktcorporation/VantageMail/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/VantageMail/stargazers"
+    },
+    {
       "id": 278968774,
       "title": "tktcorporation/typescript-docker-template",
       "url": "https://github.com/tktcorporation/typescript-docker-template",
@@ -2488,6 +2592,41 @@
       "contributors_url": "https://github.com/lapras-inc/gather-tag-game/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/lapras-inc/gather-tag-game/stargazers"
+    },
+    {
+      "id": 980581879,
+      "title": "tktcorporation/jasrac-report",
+      "url": "https://github.com/tktcorporation/jasrac-report",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "JASRAC作品コード検索・申請",
+      "stargazers_count": 1,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 206356
+        },
+        {
+          "name": "Shell",
+          "bytes": 7523
+        },
+        {
+          "name": "CSS",
+          "bytes": 4960
+        },
+        {
+          "name": "HTML",
+          "bytes": 2275
+        }
+      ],
+      "contributions": 34,
+      "contributions_url": "https://github.com/tktcorporation/jasrac-report/commits?author=tktcorporation",
+      "contributors_count": 2,
+      "contributors_url": "https://github.com/tktcorporation/jasrac-report/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/jasrac-report/stargazers"
     },
     {
       "id": 405289667,
@@ -2620,6 +2759,49 @@
       "contributors_url": "https://github.com/tktcorporation/cognito-test/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/tktcorporation/cognito-test/stargazers"
+    },
+    {
+      "id": 1199536559,
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "MoonBit",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 10196
+        },
+        {
+          "name": "CSS",
+          "bytes": 43153
+        },
+        {
+          "name": "Shell",
+          "bytes": 7636
+        },
+        {
+          "name": "HTML",
+          "bytes": 1034
+        },
+        {
+          "name": "MoonBit",
+          "bytes": 341287
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 17620
+        }
+      ],
+      "contributions": 36,
+      "contributions_url": "https://github.com/tktcorporation/adv-game-candy/commits?author=tktcorporation",
+      "contributors_count": 2,
+      "contributors_url": "https://github.com/tktcorporation/adv-game-candy/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/adv-game-candy/stargazers"
     },
     {
       "id": 294386514,
@@ -2844,6 +3026,33 @@
       "stargazers_url": "https://github.com/tktcorporation/meeting-time-tracker/stargazers"
     },
     {
+      "id": 1013260454,
+      "title": "tktcorporation/zenn-contents",
+      "url": "https://github.com/tktcorporation/zenn-contents",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 15063
+        },
+        {
+          "name": "Shell",
+          "bytes": 5451
+        }
+      ],
+      "contributions": 32,
+      "contributions_url": "https://github.com/tktcorporation/zenn-contents/commits?author=tktcorporation",
+      "contributors_count": 2,
+      "contributors_url": "https://github.com/tktcorporation/zenn-contents/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/zenn-contents/stargazers"
+    },
+    {
       "id": 190838718,
       "title": "tktcorporation/spa-sample",
       "url": "https://github.com/tktcorporation/spa-sample",
@@ -2951,6 +3160,41 @@
       "contributors_url": "https://github.com/tktcorporation/html-stations/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/tktcorporation/html-stations/stargazers"
+    },
+    {
+      "id": 1030766230,
+      "title": "tktcorporation/draft-monorepo",
+      "url": "https://github.com/tktcorporation/draft-monorepo",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 37025
+        },
+        {
+          "name": "CSS",
+          "bytes": 963
+        },
+        {
+          "name": "HTML",
+          "bytes": 340
+        },
+        {
+          "name": "Shell",
+          "bytes": 273
+        }
+      ],
+      "contributions": 30,
+      "contributions_url": "https://github.com/tktcorporation/draft-monorepo/commits?author=tktcorporation",
+      "contributors_count": 2,
+      "contributors_url": "https://github.com/tktcorporation/draft-monorepo/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/draft-monorepo/stargazers"
     },
     {
       "id": 423253855,
@@ -3095,6 +3339,41 @@
       "contributors_url": "https://github.com/tktcorporation/audible-overlay/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/tktcorporation/audible-overlay/stargazers"
+    },
+    {
+      "id": 1177667015,
+      "title": "quest-maker/QuestMaker",
+      "url": "https://github.com/quest-maker/QuestMaker",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": false,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "HTML",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 41903
+        },
+        {
+          "name": "HTML",
+          "bytes": 89322
+        },
+        {
+          "name": "Shell",
+          "bytes": 5451
+        },
+        {
+          "name": "CSS",
+          "bytes": 1804
+        }
+      ],
+      "contributions": 27,
+      "contributions_url": "https://github.com/quest-maker/QuestMaker/commits?author=tktcorporation",
+      "contributors_count": 2,
+      "contributors_url": "https://github.com/quest-maker/QuestMaker/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/quest-maker/QuestMaker/stargazers"
     },
     {
       "id": 910026761,
@@ -3499,6 +3778,29 @@
       "stargazers_url": "https://github.com/tktcorporation/ObonHackathonBackend/stargazers"
     },
     {
+      "id": 1304707140,
+      "title": "tktcorporation/maniau",
+      "url": "https://github.com/tktcorporation/maniau",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "",
+      "stargazers_count": 0,
+      "language": "Swift",
+      "languages": [
+        {
+          "name": "Swift",
+          "bytes": 46926
+        }
+      ],
+      "contributions": 31,
+      "contributions_url": "https://github.com/tktcorporation/maniau/commits?author=tktcorporation",
+      "contributors_count": 1,
+      "contributors_url": "https://github.com/tktcorporation/maniau/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/maniau/stargazers"
+    },
+    {
       "id": 384346779,
       "title": "tktcorporation/discord-links-transfer-bot",
       "url": "https://github.com/tktcorporation/discord-links-transfer-bot",
@@ -3524,76 +3826,6 @@
       "contributors_url": "https://github.com/tktcorporation/discord-links-transfer-bot/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/tktcorporation/discord-links-transfer-bot/stargazers"
-    },
-    {
-      "id": 1030766230,
-      "title": "tktcorporation/draft-monorepo",
-      "url": "https://github.com/tktcorporation/draft-monorepo",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "",
-      "stargazers_count": 0,
-      "language": "TypeScript",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 35527
-        },
-        {
-          "name": "CSS",
-          "bytes": 963
-        },
-        {
-          "name": "HTML",
-          "bytes": 340
-        },
-        {
-          "name": "Shell",
-          "bytes": 273
-        }
-      ],
-      "contributions": 29,
-      "contributions_url": "https://github.com/tktcorporation/draft-monorepo/commits?author=tktcorporation",
-      "contributors_count": 1,
-      "contributors_url": "https://github.com/tktcorporation/draft-monorepo/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/draft-monorepo/stargazers"
-    },
-    {
-      "id": 1177667015,
-      "title": "tktcorporation/QuestMaker",
-      "url": "https://github.com/tktcorporation/QuestMaker",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "",
-      "stargazers_count": 0,
-      "language": "HTML",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 41805
-        },
-        {
-          "name": "HTML",
-          "bytes": 89322
-        },
-        {
-          "name": "Shell",
-          "bytes": 11200
-        },
-        {
-          "name": "CSS",
-          "bytes": 1804
-        }
-      ],
-      "contributions": 18,
-      "contributions_url": "https://github.com/tktcorporation/QuestMaker/commits?author=tktcorporation",
-      "contributors_count": 2,
-      "contributors_url": "https://github.com/tktcorporation/QuestMaker/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/QuestMaker/stargazers"
     },
     {
       "id": 344419970,
@@ -3805,6 +4037,41 @@
       "stargazers_url": "https://github.com/tktcorporation/markdown-to-image-web/stargazers"
     },
     {
+      "id": 946054815,
+      "title": "tktcorporation/Japanese-Invoice-Generator",
+      "url": "https://github.com/tktcorporation/Japanese-Invoice-Generator",
+      "is_oss": false,
+      "is_fork": false,
+      "is_owner": true,
+      "description": "Created with StackBlitz ⚡️",
+      "stargazers_count": 0,
+      "language": "TypeScript",
+      "languages": [
+        {
+          "name": "TypeScript",
+          "bytes": 61915
+        },
+        {
+          "name": "CSS",
+          "bytes": 1742
+        },
+        {
+          "name": "HTML",
+          "bytes": 372
+        },
+        {
+          "name": "JavaScript",
+          "bytes": 2225
+        }
+      ],
+      "contributions": 14,
+      "contributions_url": "https://github.com/tktcorporation/Japanese-Invoice-Generator/commits?author=tktcorporation",
+      "contributors_count": 2,
+      "contributors_url": "https://github.com/tktcorporation/Japanese-Invoice-Generator/graphs/contributors",
+      "forks": 0,
+      "stargazers_url": "https://github.com/tktcorporation/Japanese-Invoice-Generator/stargazers"
+    },
+    {
       "id": 915726431,
       "title": "tktcorporation/vrc-world-join-preview",
       "url": "https://github.com/tktcorporation/vrc-world-join-preview",
@@ -3902,29 +4169,6 @@
       "stargazers_url": "https://github.com/tktcorporation/honkit-uml-template/stargazers"
     },
     {
-      "id": 1013260454,
-      "title": "tktcorporation/zenn-contents",
-      "url": "https://github.com/tktcorporation/zenn-contents",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "",
-      "stargazers_count": 0,
-      "language": "TypeScript",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 15063
-        }
-      ],
-      "contributions": 13,
-      "contributions_url": "https://github.com/tktcorporation/zenn-contents/commits?author=tktcorporation",
-      "contributors_count": 2,
-      "contributors_url": "https://github.com/tktcorporation/zenn-contents/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/zenn-contents/stargazers"
-    },
-    {
       "id": 741974998,
       "title": "tktcorporation/lapras-career-histories-manager",
       "url": "https://github.com/tktcorporation/lapras-career-histories-manager",
@@ -3968,37 +4212,6 @@
       "contributors_url": "https://github.com/tktcorporation/ZeroPolygonAvatar/graphs/contributors",
       "forks": 0,
       "stargazers_url": "https://github.com/tktcorporation/ZeroPolygonAvatar/stargazers"
-    },
-    {
-      "id": 980581879,
-      "title": "tktcorporation/jasrac-report",
-      "url": "https://github.com/tktcorporation/jasrac-report",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "JASRAC作品コード検索・申請",
-      "stargazers_count": 1,
-      "language": "TypeScript",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 203428
-        },
-        {
-          "name": "CSS",
-          "bytes": 4844
-        },
-        {
-          "name": "HTML",
-          "bytes": 2390
-        }
-      ],
-      "contributions": 15,
-      "contributions_url": "https://github.com/tktcorporation/jasrac-report/commits?author=tktcorporation",
-      "contributors_count": 1,
-      "contributors_url": "https://github.com/tktcorporation/jasrac-report/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/jasrac-report/stargazers"
     },
     {
       "id": 1016280924,
@@ -4181,145 +4394,6 @@
       "contributors_url": "https://github.com/tktcorporation/heroku_test/graphs/contributors",
       "forks": 1,
       "stargazers_url": "https://github.com/tktcorporation/heroku_test/stargazers"
-    },
-    {
-      "id": 286056975,
-      "title": "tktcorporation/terraform-practice",
-      "url": "https://github.com/tktcorporation/terraform-practice",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "",
-      "stargazers_count": 0,
-      "language": "HCL",
-      "languages": [
-        {
-          "name": "HCL",
-          "bytes": 2280
-        },
-        {
-          "name": "Makefile",
-          "bytes": 417
-        }
-      ],
-      "contributions": 16,
-      "contributions_url": "https://github.com/tktcorporation/terraform-practice/commits?author=tktcorporation",
-      "contributors_count": 1,
-      "contributors_url": "https://github.com/tktcorporation/terraform-practice/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/terraform-practice/stargazers"
-    },
-    {
-      "id": 873337885,
-      "title": "tktcorporation/audio-monitor-web-remix",
-      "url": "https://github.com/tktcorporation/audio-monitor-web-remix",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "Audio Monitor with visualize, PiP",
-      "stargazers_count": 0,
-      "language": "TypeScript",
-      "languages": [
-        {
-          "name": "TypeScript",
-          "bytes": 41399
-        },
-        {
-          "name": "HTML",
-          "bytes": 677
-        },
-        {
-          "name": "CSS",
-          "bytes": 179
-        },
-        {
-          "name": "JavaScript",
-          "bytes": 989
-        }
-      ],
-      "contributions": 16,
-      "contributions_url": "https://github.com/tktcorporation/audio-monitor-web-remix/commits?author=tktcorporation",
-      "contributors_count": 1,
-      "contributors_url": "https://github.com/tktcorporation/audio-monitor-web-remix/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/audio-monitor-web-remix/stargazers"
-    },
-    {
-      "id": 316563452,
-      "title": "tktcorporation/mdbook-sample",
-      "url": "https://github.com/tktcorporation/mdbook-sample",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "",
-      "stargazers_count": 0,
-      "language": "Dockerfile",
-      "languages": [
-        {
-          "name": "Dockerfile",
-          "bytes": 755
-        },
-        {
-          "name": "Makefile",
-          "bytes": 57
-        }
-      ],
-      "contributions": 15,
-      "contributions_url": "https://github.com/tktcorporation/mdbook-sample/commits?author=tktcorporation",
-      "contributors_count": 1,
-      "contributors_url": "https://github.com/tktcorporation/mdbook-sample/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/mdbook-sample/stargazers"
-    },
-    {
-      "id": 357996269,
-      "title": "tktcorporation/aws-android-sdk-appsync-sandbox",
-      "url": "https://github.com/tktcorporation/aws-android-sdk-appsync-sandbox",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "",
-      "stargazers_count": 0,
-      "language": "Kotlin",
-      "languages": [
-        {
-          "name": "Dockerfile",
-          "bytes": 304
-        },
-        {
-          "name": "Kotlin",
-          "bytes": 13967
-        }
-      ],
-      "contributions": 15,
-      "contributions_url": "https://github.com/tktcorporation/aws-android-sdk-appsync-sandbox/commits?author=tktcorporation",
-      "contributors_count": 1,
-      "contributors_url": "https://github.com/tktcorporation/aws-android-sdk-appsync-sandbox/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/aws-android-sdk-appsync-sandbox/stargazers"
-    },
-    {
-      "id": 188569989,
-      "title": "tktcorporation/marcof_texts_generater",
-      "url": "https://github.com/tktcorporation/marcof_texts_generater",
-      "is_oss": false,
-      "is_fork": false,
-      "is_owner": true,
-      "description": "",
-      "stargazers_count": 4,
-      "language": "Python",
-      "languages": [
-        {
-          "name": "Python",
-          "bytes": 30791
-        }
-      ],
-      "contributions": 4,
-      "contributions_url": "https://github.com/tktcorporation/marcof_texts_generater/commits?author=tktcorporation",
-      "contributors_count": 1,
-      "contributors_url": "https://github.com/tktcorporation/marcof_texts_generater/graphs/contributors",
-      "forks": 0,
-      "stargazers_url": "https://github.com/tktcorporation/marcof_texts_generater/stargazers"
     }
   ],
   "activities": [
@@ -4330,14 +4404,1148 @@
       "type": "connpass"
     },
     {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-08-04T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-08-03T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-08-03T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-udonsharp-linter",
+      "url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-08-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-08-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-08-01T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-08-01T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/game-sandbox-tsx",
+      "url": "https://github.com/tktcorporation/game-sandbox-tsx/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-22T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-22T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-udonsharp-linter",
+      "url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-21T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-udonsharp-linter",
+      "url": "https://github.com/tktcorporation/vrchat-udonsharp-linter/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-20T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-20T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-19T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-19T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-19T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/maniau",
+      "url": "https://github.com/tktcorporation/maniau",
+      "date": "2026-07-18T16:43:26",
+      "type": "github"
+    },
+    {
+      "title": "tktcorporation/cross-recorder",
+      "url": "https://github.com/tktcorporation/cross-recorder/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-17T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-14T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "lapras-inc/lapras-mcp-server-internal",
+      "url": "https://github.com/lapras-inc/lapras-mcp-server-internal/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-14T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-13T00:00:00",
+      "type": "github_pr"
+    },
+    {
       "title": "tktcorporation/vrchat-albums",
       "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
-      "date": "2026-03-24T00:00:00",
+      "date": "2026-07-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-10T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/game-sandbox-tsx",
+      "url": "https://github.com/tktcorporation/game-sandbox-tsx/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-10T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-05T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/draft-monorepo",
+      "url": "https://github.com/tktcorporation/draft-monorepo/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-07-01T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-28T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-28T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/game-sandbox-tsx",
+      "url": "https://github.com/tktcorporation/game-sandbox-tsx/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-25T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/game-sandbox-tsx",
+      "url": "https://github.com/tktcorporation/game-sandbox-tsx/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-25T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/video-caption",
+      "url": "https://github.com/tktcorporation/video-caption/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-24T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-24T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-23T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/video-caption",
+      "url": "https://github.com/tktcorporation/video-caption/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-23T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-22T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cross-recorder",
+      "url": "https://github.com/tktcorporation/cross-recorder/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-22T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-21T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-20T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cross-recorder",
+      "url": "https://github.com/tktcorporation/cross-recorder/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-19T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-18T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cross-recorder",
+      "url": "https://github.com/tktcorporation/cross-recorder/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-18T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-18T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-15T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-14T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-14T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-06-01T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-31T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-31T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-31T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-28T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "面接ってどう見られてる？CTO・採用人事が質問の裏側を解説",
+      "url": "https://lapras.connpass.com/event/392409/",
+      "date": "2026-05-26T00:00:00",
+      "type": "connpass"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-23T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-23T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-22T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-18T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-17T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-17T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-15T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "徳丸先生はバイブコーディング製サービスの脆弱性を見抜けるのか",
+      "url": "https://lapras.connpass.com/event/391099/",
+      "date": "2026-05-13T00:00:00",
+      "type": "connpass"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-13T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-10T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-09T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-08T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-07T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-05T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-04T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-04T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-04T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-03T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-05-01T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/clip-filepaths",
+      "url": "https://github.com/tktcorporation/clip-filepaths/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-28T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/VantageMail",
+      "url": "https://github.com/tktcorporation/VantageMail/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-28T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/node-actionlint",
+      "url": "https://github.com/tktcorporation/node-actionlint/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/VantageMail",
+      "url": "https://github.com/tktcorporation/VantageMail/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-25T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/VantageMail",
+      "url": "https://github.com/tktcorporation/VantageMail/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-25T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-24T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "lapras-inc/frontend-config",
+      "url": "https://github.com/lapras-inc/frontend-config/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-22T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-21T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/VantageMail",
+      "url": "https://github.com/tktcorporation/VantageMail/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-21T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-19T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-19T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-19T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-18T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-17T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-17T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/food-shop-search",
+      "url": "https://github.com/tktcorporation/food-shop-search/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-16T00:00:00",
       "type": "github_pr"
     },
     {
       "title": "tktcorporation/discord-tts-bot",
       "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-16T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-15T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-15T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-15T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/Japanese-Invoice-Generator",
+      "url": "https://github.com/tktcorporation/Japanese-Invoice-Generator/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-15T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-14T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-13T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-13T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-13T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-13T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-12T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tweet-validator-for-achakai",
+      "url": "https://github.com/tktcorporation/tweet-validator-for-achakai/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/clip-filepaths",
+      "url": "https://github.com/tktcorporation/clip-filepaths/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/QuestMaker",
+      "url": "https://github.com/tktcorporation/QuestMaker/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-11T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/dotfiles",
+      "url": "https://github.com/tktcorporation/dotfiles/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-10T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-09T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": ".claude/や.mcp.jsonを双方向同期するCLIツール「ziku」",
+      "url": "https://zenn.dev/tktcorporation/articles/ziku-bidirectional-template-manager",
+      "date": "2026-04-08T01:47:02",
+      "type": "zenn"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-08T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-08T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-08T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-08T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-07T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-07T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-07T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-07T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/food-shop-search",
+      "url": "https://github.com/tktcorporation/food-shop-search/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-06T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-05T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-05T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-05T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-05T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-05T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/good-morning",
+      "url": "https://github.com/tktcorporation/good-morning/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-04T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/food-shop-search",
+      "url": "https://github.com/tktcorporation/food-shop-search/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-04T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-04T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-03T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tktcorporation.com",
+      "url": "https://github.com/tktcorporation/tktcorporation.com/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-03T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-03T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy",
+      "date": "2026-04-02T21:56:47",
+      "type": "github"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cli-sim-game-escape",
+      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/adv-game-candy",
+      "url": "https://github.com/tktcorporation/adv-game-candy/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-02T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-01T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-04-01T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "職務経歴書はどう見られている？公開添削で知る採用担当目線",
+      "url": "https://lapras.connpass.com/event/388527/",
+      "date": "2026-03-31T00:00:00",
+      "type": "connpass"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-31T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku",
+      "date": "2026-03-30T17:20:17",
+      "type": "github"
+    },
+    {
+      "title": "tktcorporation/ziku",
+      "url": "https://github.com/tktcorporation/ziku/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cross-recorder",
+      "url": "https://github.com/tktcorporation/cross-recorder/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/VantageMail",
+      "url": "https://github.com/tktcorporation/VantageMail/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-30T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-29T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/discord-tts-bot",
+      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-28T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tktcorporation.com",
+      "url": "https://github.com/tktcorporation/tktcorporation.com/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-27T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/jasrac-report",
+      "url": "https://github.com/tktcorporation/jasrac-report/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-27T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/.github",
+      "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-26T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/tktcorporation.com",
+      "url": "https://github.com/tktcorporation/tktcorporation.com/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-25T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/discord-tts-bot",
+      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-25T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/cross-recorder",
+      "url": "https://github.com/tktcorporation/cross-recorder/pulls?q=is:pr+author:tktcorporation",
+      "date": "2026-03-25T00:00:00",
+      "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/vrchat-albums",
+      "url": "https://github.com/tktcorporation/vrchat-albums/pulls?q=is:pr+author:tktcorporation",
       "date": "2026-03-24T00:00:00",
       "type": "github_pr"
     },
@@ -4394,6 +5602,12 @@
       "url": "https://github.com/tktcorporation/.github/pulls?q=is:pr+author:tktcorporation",
       "date": "2026-03-21T00:00:00",
       "type": "github_pr"
+    },
+    {
+      "title": "tktcorporation/VantageMail",
+      "url": "https://github.com/tktcorporation/VantageMail",
+      "date": "2026-03-20T15:29:10",
+      "type": "github"
     },
     {
       "title": "tktcorporation/tktcorporation.com",
@@ -4580,12 +5794,6 @@
       "url": "https://github.com/tktcorporation/ateaparty/pulls?q=is:pr+author:tktcorporation",
       "date": "2026-03-11T00:00:00",
       "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/QuestMaker",
-      "url": "https://github.com/tktcorporation/QuestMaker",
-      "date": "2026-03-10T17:51:02",
-      "type": "github"
     },
     {
       "title": "tktcorporation/vrchat-udonsharp-linter",
@@ -4872,12 +6080,6 @@
     {
       "title": "tktcorporation/food-shop-search",
       "url": "https://github.com/tktcorporation/food-shop-search/pulls?q=is:pr+author:tktcorporation",
-      "date": "2026-02-17T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/cli-sim-game-escape",
-      "url": "https://github.com/tktcorporation/cli-sim-game-escape/pulls?q=is:pr+author:tktcorporation",
       "date": "2026-02-17T00:00:00",
       "type": "github_pr"
     },
@@ -6208,6 +7410,12 @@
       "type": "connpass"
     },
     {
+      "title": "tktcorporation/Japanese-Invoice-Generator",
+      "url": "https://github.com/tktcorporation/Japanese-Invoice-Generator",
+      "date": "2025-03-10T23:38:56",
+      "type": "github"
+    },
+    {
       "title": "tktcorporation/unofficial-sanrio-vfes-timetable-importer",
       "url": "https://github.com/tktcorporation/unofficial-sanrio-vfes-timetable-importer/pulls?q=is:pr+author:tktcorporation",
       "date": "2025-03-10T00:00:00",
@@ -6608,12 +7816,6 @@
       "url": "https://github.com/tktcorporation/vrchat-photo-journey/pulls?q=is:pr+author:tktcorporation",
       "date": "2024-10-19T00:00:00",
       "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/audio-monitor-web-remix",
-      "url": "https://github.com/tktcorporation/audio-monitor-web-remix",
-      "date": "2024-10-16T11:01:58",
-      "type": "github"
     },
     {
       "title": "tktcorporation/food-shop-search",
@@ -7274,120 +8476,6 @@
       "url": "https://github.com/tktcorporation/vrchat-join-recorder",
       "date": "2023-08-14T20:54:54",
       "type": "github"
-    },
-    {
-      "title": "tktcorporation/ateaparty-form-to-sheet",
-      "url": "https://github.com/tktcorporation/ateaparty-form-to-sheet/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-07-02T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "エンジニアのスループットを最大化する「リモートワーク設計」～ソフト面とハード面のリデザイン～",
-      "url": "https://lapras.connpass.com/event/285988/",
-      "date": "2023-06-27T00:00:00",
-      "type": "connpass"
-    },
-    {
-      "title": "tktcorporation/ateaparty-manager",
-      "url": "https://github.com/tktcorporation/ateaparty-manager/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-06-24T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/ateaparty",
-      "url": "https://github.com/tktcorporation/ateaparty/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-06-23T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/ateaparty-manager",
-      "url": "https://github.com/tktcorporation/ateaparty-manager/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-06-17T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/ateaparty-manager",
-      "url": "https://github.com/tktcorporation/ateaparty-manager/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-06-06T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/discord-tts-bot",
-      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-06-02T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/ateaparty-manager",
-      "url": "https://github.com/tktcorporation/ateaparty-manager/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-05-28T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/ateaparty-manager",
-      "url": "https://github.com/tktcorporation/ateaparty-manager/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-05-27T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/ateaparty-manager",
-      "url": "https://github.com/tktcorporation/ateaparty-manager/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-05-22T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "lapras-inc/lapras-frontend",
-      "url": "https://github.com/lapras-inc/lapras-frontend/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-05-19T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "lapras-inc/lapras-frontend",
-      "url": "https://github.com/lapras-inc/lapras-frontend/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-05-18T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/ateaparty-manager",
-      "url": "https://github.com/tktcorporation/ateaparty-manager/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-05-14T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/discord-tts-bot",
-      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-04-14T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "4/11（火）クラウド、ChatGPTなど最新技術を学ぶ「DevelopersIO Day One」",
-      "url": "https://classmethod.connpass.com/event/276869/",
-      "date": "2023-04-11T00:00:00",
-      "type": "connpass"
-    },
-    {
-      "title": "tktcorporation/discord-tts-bot",
-      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-04-11T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/discord-tts-bot",
-      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-04-10T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/discord-tts-bot",
-      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-04-09T00:00:00",
-      "type": "github_pr"
-    },
-    {
-      "title": "tktcorporation/discord-tts-bot",
-      "url": "https://github.com/tktcorporation/discord-tts-bot/pulls?q=is:pr+author:tktcorporation",
-      "date": "2023-04-05T00:00:00",
-      "type": "github_pr"
     }
   ],
   "events": [
@@ -7398,6 +8486,30 @@
       "is_organizer": false,
       "is_presenter": false,
       "status": 1
+    },
+    {
+      "title": "面接ってどう見られてる？CTO・採用人事が質問の裏側を解説",
+      "url": "https://lapras.connpass.com/event/392409/",
+      "date": "2026-05-26T00:00:00",
+      "is_organizer": false,
+      "is_presenter": true,
+      "status": 1
+    },
+    {
+      "title": "徳丸先生はバイブコーディング製サービスの脆弱性を見抜けるのか",
+      "url": "https://lapras.connpass.com/event/391099/",
+      "date": "2026-05-13T00:00:00",
+      "is_organizer": false,
+      "is_presenter": false,
+      "status": 1
+    },
+    {
+      "title": "職務経歴書はどう見られている？公開添削で知る採用担当目線",
+      "url": "https://lapras.connpass.com/event/388527/",
+      "date": "2026-03-31T00:00:00",
+      "is_organizer": false,
+      "is_presenter": true,
+      "status": 0
     },
     {
       "title": "ITエンジニア達の「偏愛リモート環境」お披露目会",
@@ -7888,16 +9000,16 @@
       "status": 1
     },
     {
-      "title": "【オンライン】メルカリ・メルペイ・ヤフートップ・PayPayフリマのiOSエンジニア対談",
-      "url": "https://mercari.connpass.com/event/176368/",
+      "title": "#withコロナの採用どうしてる？",
+      "url": "https://lapras.connpass.com/event/175167/",
       "date": "2020-05-27T00:00:00",
       "is_organizer": false,
       "is_presenter": false,
       "status": 1
     },
     {
-      "title": "#withコロナの採用どうしてる？",
-      "url": "https://lapras.connpass.com/event/175167/",
+      "title": "【オンライン】メルカリ・メルペイ・ヤフートップ・PayPayフリマのiOSエンジニア対談",
+      "url": "https://mercari.connpass.com/event/176368/",
       "date": "2020-05-27T00:00:00",
       "is_organizer": false,
       "is_presenter": false,
@@ -7936,20 +9048,20 @@
       "status": 1
     },
     {
-      "title": "エンジニアリングmeetup　～エンジニアが語る新サービス「modeloy」の裏側～",
-      "url": "https://aidemy.connpass.com/event/175286/",
-      "date": "2020-05-08T00:00:00",
-      "is_organizer": false,
-      "is_presenter": false,
-      "status": 1
-    },
-    {
       "title": "Remote.py #1 【オンライン】",
       "url": "https://lapras.connpass.com/event/174515/",
       "date": "2020-05-08T00:00:00",
       "is_organizer": false,
       "is_presenter": false,
       "status": 2
+    },
+    {
+      "title": "エンジニアリングmeetup　～エンジニアが語る新サービス「modeloy」の裏側～",
+      "url": "https://aidemy.connpass.com/event/175286/",
+      "date": "2020-05-08T00:00:00",
+      "is_organizer": false,
+      "is_presenter": false,
+      "status": 1
     },
     {
       "title": "テスト駆動開発(TDD)オンライン勉強会 #1 「ライブコーディングで体感するTDD基礎」",
