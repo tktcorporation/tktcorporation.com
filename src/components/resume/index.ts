@@ -9,5 +9,4 @@
 export { CompanyGroupCard } from "./ExperienceCard";
 export { ExperienceSection } from "./ExperienceSection";
 export { ExportSection } from "./ExportSection";
-export { SkillsSection } from "./SkillsSection";
 export { TechBadge } from "./TechBadge";

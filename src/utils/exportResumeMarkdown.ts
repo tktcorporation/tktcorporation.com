@@ -351,7 +351,7 @@ function generateExperienceSection(experiences: Experience[]): string {
         : exp.organization_name;
 
     section += `### ${companyName} | ${getDisplayPositionName(exp)}\n\n`;
-    section += `**Duration**: ${formatExpDateRange(exp)}\n`;
+    section += `**Duration**: ${formatExpDateRange(exp)}\n\n`;
 
     const positions = exp.positions.map((p) => p.job_position_name).join(", ");
     section += `**Position**: ${positions}\n\n`;

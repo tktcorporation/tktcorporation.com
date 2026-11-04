@@ -1,12 +1,12 @@
 /**
  * Purpose:
  * 職務経歴書データの取得・加工を行うカスタムフック。
- * 経験データのグループ化、スキル計算、Markdown生成を一元管理する。
+ * 経験データのグループ化と Markdown 生成を一元管理する。
  *
  * Context:
  * - Resume.tsxから分離されたデータ処理ロジック
  * - グループ化ロジックは utils/experienceGrouping.ts に抽出
- * - 同じロジックを他のコンポーネントでも再利用可能
+ * - スキル期間の算出はエクスポート用 Markdown 生成のため内部で行う
  */
 
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -15,7 +15,6 @@ import type {
   CompanyGroup,
   Experience,
   GroupedExperience,
-  SkillWithYears,
 } from "@/types/experience";
 import { calculateSkillsWithYears } from "@/utils/calculateSkills";
 import { groupByCompany, groupExperiences } from "@/utils/experienceGrouping";
@@ -28,7 +27,6 @@ interface UseResumeDataResult {
   experiences: Experience[];
   groupedExperiences: GroupedExperience[];
   companyGroups: CompanyGroup[];
-  skillsWithYears: SkillWithYears[];
   resumeMarkdown: string;
   loading: boolean;
 }
@@ -53,7 +51,6 @@ export function useResumeData(): UseResumeDataResult {
     GroupedExperience[]
   >([]);
   const [companyGroups, setCompanyGroups] = useState<CompanyGroup[]>([]);
-  const [skillsWithYears, setSkillsWithYears] = useState<SkillWithYears[]>([]);
   const [loading, setLoading] = useState(true);
 
   // データ処理をメモ化
@@ -63,34 +60,32 @@ export function useResumeData(): UseResumeDataResult {
     );
     const grouped = groupExperiences(sortedExperiences);
     const companies = groupByCompany(grouped);
-    const skills = calculateSkillsWithYears(sortedExperiences);
 
-    return { sortedExperiences, grouped, companies, skills };
+    return { sortedExperiences, grouped, companies };
   }, []);
 
   useEffect(() => {
-    const { sortedExperiences, grouped, companies, skills } = processData();
+    const { sortedExperiences, grouped, companies } = processData();
 
     setExperiences(sortedExperiences);
     setGroupedExperiences(grouped);
     setCompanyGroups(companies);
-    setSkillsWithYears(skills);
     setLoading(false);
   }, [processData]);
 
-  // AI用Markdown生成
+  // AI用Markdown生成（スキル一覧はエクスポート用途のみ）
   const resumeMarkdown = useMemo(() => {
-    if (skillsWithYears.length === 0 || experiences.length === 0) {
+    if (experiences.length === 0) {
       return "";
     }
-    return generateResumeMarkdown(experiences, skillsWithYears);
-  }, [experiences, skillsWithYears]);
+    const skills = calculateSkillsWithYears(experiences);
+    return generateResumeMarkdown(experiences, skills);
+  }, [experiences]);
 
   return {
     experiences,
     groupedExperiences,
     companyGroups,
-    skillsWithYears,
     resumeMarkdown,
     loading,
   };

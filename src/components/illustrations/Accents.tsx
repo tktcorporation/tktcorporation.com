@@ -23,13 +23,13 @@ export function WavyUnderline({ className = "" }: AccentProps) {
     <svg
       className={className}
       width="120"
-      height="8"
-      viewBox="0 0 120 8"
+      height="12"
+      viewBox="0 0 120 12"
       fill="none"
       aria-hidden="true"
     >
       <path
-        d="M2 5.5C8 2 14 2 20 5.5C26 9 32 9 38 5.5C44 2 50 2 56 5.5C62 9 68 9 74 5.5C80 2 86 2 92 5.5C98 9 104 9 110 5.5C113 3.8 116 3 118 3"
+        d="M2 6.5C8 3 14 3 20 6.5C26 10 32 10 38 6.5C44 3 50 3 56 6.5C62 10 68 10 74 6.5C80 3 86 3 92 6.5C98 10 104 10 110 6.5C113 4.8 116 4 118 4"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
