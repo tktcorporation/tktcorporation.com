@@ -64,3 +64,13 @@ Deployment (master branch only):
 
 1. Builds the project via Docker Compose
 2. Deploys to GitHub Pages using `actions/deploy-pages`
+
+### E2E environment
+
+Run `npx playwright install chromium --with-deps` before the first E2E run.
+`npm run test:e2e` starts the development server on 5173 and builds/starts a
+production preview on 5175. Both ports must be available in CI; local runs may
+reuse an existing server. To use an installed Chromium in a managed environment,
+set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium`.
+The page tests stub only external icon CSS and analytics endpoints; application
+errors remain test failures. Production export tests read raw HTTP responses.

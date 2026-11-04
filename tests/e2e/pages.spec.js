@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // テストするページのリスト
 const pages = [
@@ -97,63 +97,27 @@ for (const page of pages) {
 
     // Technologiesページの特別なテスト
     if (page.path === "/technologies") {
-      test("should handle API failures gracefully on Technologies page", async ({
+      test("should use bundled activities when the LAPRAS API is unavailable", async ({
         page: playwright,
       }) => {
-        // ネットワークをブロックしてAPIエラーをシミュレート
+        const requests = [];
         await playwright.route(
           "**/lapras.com/public/tktcorporation.json",
           (route) => {
-            route.abort("failed");
+            requests.push(route.request().url());
+            return route.abort("failed");
           }
         );
-
         await playwright.goto(page.path);
-
-        // エラーメッセージが適切に表示されるかチェック
-        await expect(playwright.locator('[role="alert"]')).toBeVisible({
-          timeout: 10000,
-        });
-
-        // 再試行ボタンが表示されるかチェック
         await expect(
-          playwright.locator('button:has-text("再試行")')
+          playwright.getByRole("heading", { name: "Activities", exact: true })
         ).toBeVisible();
-
-        console.log("✅ Technologies page handles API failures gracefully");
-      });
-
-      test("should show loading state on Technologies page", async ({
-        page: playwright,
-      }) => {
-        await playwright.goto(page.path);
-
-        // ローディングスピナーまたはテキストが表示されるかチェック（短時間）
-        const loadingSpinner = playwright.locator('[role="status"]');
-        const loadingText = playwright.locator('text="技術データを読み込み中"');
-        const loadingVisible =
-          (await loadingSpinner.isVisible()) || (await loadingText.isVisible());
-
-        // ローディング状態が確認できない場合でも、最終的にコンテンツが表示されればOK
-        if (!loadingVisible) {
-          console.log(
-            "Loading state not captured (too fast), checking final content..."
-          );
-        }
-
-        // 最終的にコンテンツまたはエラーメッセージが表示されるまで待機
-        await playwright.waitForFunction(
-          () => {
-            const loadingElement = document.querySelector('[role="status"]');
-            const errorElement = document.querySelector('[role="alert"]');
-            const contentElement = document.querySelector("section");
-
-            return !loadingElement || errorElement || contentElement;
-          },
-          { timeout: 15000 }
+        await expect(playwright.locator('[role="status"]')).toHaveCount(0);
+        await expect(playwright.locator('[role="alert"]')).toHaveCount(0);
+        await expect(playwright.locator("main")).toContainText(
+          "What I've been building"
         );
-
-        console.log("✅ Technologies page loading behavior verified");
+        expect(requests).toHaveLength(0);
       });
     }
   });
