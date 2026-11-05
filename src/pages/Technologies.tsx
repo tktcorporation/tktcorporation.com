@@ -11,7 +11,7 @@
  * - タイムラインで時系列の詳細を確認
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { ActivityBarChart } from "@/components/ActivityBarChart";
@@ -25,9 +25,13 @@ import { useLaprasActivities } from "../hooks/useLaprasActivities";
 import { getTechIcon } from "../utils/techIcons";
 
 function Technologies() {
-  const [laprasData, setLaprasData] = useState<LaprasData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [laprasData, setLaprasData] = useState<LaprasData | null>(
+    getLaprasDataSafe
+  );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(
+    laprasData ? null : "LAPRASデータの読み込みに失敗しました"
+  );
 
   const {
     timelineEntries,
@@ -62,10 +66,6 @@ function Technologies() {
   const handleRetry = useCallback(() => {
     setError(null);
     setLoading(true);
-    fetchLaprasData();
-  }, [fetchLaprasData]);
-
-  useEffect(() => {
     fetchLaprasData();
   }, [fetchLaprasData]);
 

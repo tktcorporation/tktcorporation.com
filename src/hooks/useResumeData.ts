@@ -9,7 +9,7 @@
  * - スキル期間の算出はエクスポート用 Markdown 生成のため内部で行う
  */
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import type {
   CompanyGroup,
@@ -46,32 +46,16 @@ const sortExperiencesByDate = (experiences: Experience[]): Experience[] => {
  * 職務経歴書データを取得・加工するカスタムフック
  */
 export function useResumeData(): UseResumeDataResult {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-  const [groupedExperiences, setGroupedExperiences] = useState<
-    GroupedExperience[]
-  >([]);
-  const [companyGroups, setCompanyGroups] = useState<CompanyGroup[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // データ処理をメモ化
-  const processData = useCallback(() => {
-    const sortedExperiences = sortExperiencesByDate(
-      experiencesData.experience_list
-    );
-    const grouped = groupExperiences(sortedExperiences);
-    const companies = groupByCompany(grouped);
-
-    return { sortedExperiences, grouped, companies };
+  // Bundled JSON is available during both static rendering and client rendering.
+  const { experiences, groupedExperiences, companyGroups } = useMemo(() => {
+    const experiences = sortExperiencesByDate(experiencesData.experience_list);
+    const groupedExperiences = groupExperiences(experiences);
+    return {
+      experiences,
+      groupedExperiences,
+      companyGroups: groupByCompany(groupedExperiences),
+    };
   }, []);
-
-  useEffect(() => {
-    const { sortedExperiences, grouped, companies } = processData();
-
-    setExperiences(sortedExperiences);
-    setGroupedExperiences(grouped);
-    setCompanyGroups(companies);
-    setLoading(false);
-  }, [processData]);
 
   // AI用Markdown生成（スキル一覧はエクスポート用途のみ）
   const resumeMarkdown = useMemo(() => {
@@ -87,6 +71,6 @@ export function useResumeData(): UseResumeDataResult {
     groupedExperiences,
     companyGroups,
     resumeMarkdown,
-    loading,
+    loading: false,
   };
 }

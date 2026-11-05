@@ -132,9 +132,7 @@ export function ActivityHeatmap({ activities }: ActivityHeatmapProps) {
               rx={2}
               className={getColorClass(day.count)}
             >
-              <title>
-                {toDateKey(day.date)}: {day.count} activities
-              </title>
+              <title>{`${toDateKey(day.date)}: ${day.count} activities`}</title>
             </rect>
           ))
         )}
