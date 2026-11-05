@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "vp build",
+    "build": "vp build && tsx scripts/prerender.tsx",
     "preview": "vp preview",
     "check": "vp check && npm run lint:actions && npm run check:node-types",
     "check:node-types": "tsx scripts/check-node-types-version.ts",

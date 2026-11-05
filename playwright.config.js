@@ -23,12 +23,12 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      testIgnore: "**/resume-files.spec.ts",
+      testIgnore: ["**/resume-files.spec.ts", "**/search-pages.spec.ts"],
       use: { ...devices["Desktop Chrome"] },
     },
     {
       name: "production-exports",
-      testMatch: "**/resume-files.spec.ts",
+      testMatch: ["**/resume-files.spec.ts", "**/search-pages.spec.ts"],
       use: { baseURL: "http://localhost:5175" },
     },
   ],

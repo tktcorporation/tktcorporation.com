@@ -25,5 +25,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-# Sitemap location (if you add one in the future)
-# Sitemap: https://tktcorporation.com/sitemap.xml
+Sitemap: https://tktcorporation.com/sitemap.xml

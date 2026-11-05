@@ -11,6 +11,7 @@
 
 import { Route, Routes } from "react-router-dom";
 
+import { PageMetadata } from "./components/PageMetadata";
 import Home from "./pages/Home";
 import Resume from "./pages/Resume";
 import {
@@ -23,6 +24,7 @@ import Technologies from "./pages/Technologies";
 function App() {
   return (
     <div className="bg-background min-h-screen">
+      <PageMetadata />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/resume" element={<Resume />} />

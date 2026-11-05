@@ -11,7 +11,7 @@
  * - 処理ロジックは小さな関数に分割されている
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { getNormalizedName } from "@/utils/languageMap";
 
@@ -513,33 +513,21 @@ function computeTrendSummary(laprasData: LaprasData): TrendSummary {
 // ============================================================================
 
 export function useLaprasActivities(data: LaprasData | null) {
-  const [timelineEntries, setTimelineEntries] = useState<TimelineEntry[]>([]);
   const [timeSpan, setTimeSpan] = useState<TimeSpan>("1month");
-  const [loading, setLoading] = useState(false);
-  const [trendSummary, setTrendSummary] = useState<TrendSummary | null>(null);
-
-  const process = useCallback(
-    (laprasData: LaprasData, span: TimeSpan): TimelineEntry[] => {
-      return processActivities(laprasData, span);
-    },
-    []
+  // These are synchronous calculations over bundled data, not network requests.
+  const timelineEntries = useMemo(
+    () => (data ? processActivities(data, timeSpan) : []),
+    [data, timeSpan]
   );
-
-  useEffect(() => {
-    if (!data) return;
-
-    setLoading(true);
-    const entries = process(data, timeSpan);
-    setTimelineEntries(entries);
-    setTrendSummary(computeTrendSummary(data));
-    setLoading(false);
-  }, [data, timeSpan, process]);
-
+  const trendSummary = useMemo(
+    () => (data ? computeTrendSummary(data) : null),
+    [data]
+  );
   return {
     timelineEntries,
     timeSpan,
     setTimeSpan,
     trendSummary,
-    loading,
+    loading: false,
   };
 }
