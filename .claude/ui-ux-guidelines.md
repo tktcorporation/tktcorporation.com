@@ -80,7 +80,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 **Bad**:
 
 ```tsx
-<div className="border rounded-lg p-8 shadow-lg">
+<div className="rounded-lg border p-8 shadow-lg">
   <span className="text-4xl font-bold">5</span>
 </div>
 ```
@@ -120,9 +120,9 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 ```tsx
 // Random decorative elements
 <div className="relative">
-  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
-  <div className="absolute bottom-0 left-0 w-24 h-24 bg-pink-500/20 rounded-full blur-2xl" />
-  <div className="absolute ...more decorations..." />
+  <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-purple-500/20 blur-3xl" />
+  <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-pink-500/20 blur-2xl" />
+  <div className="...more decorations... absolute" />
   <Content />
 </div>
 ```
@@ -130,7 +130,7 @@ This document provides rules and constraints for AI agents implementing UI/UX ch
 **Good**:
 
 ```tsx
-<div className="bg-white/5 border border-white/10 rounded-lg">
+<div className="rounded-lg border border-white/10 bg-white/5">
   <Content />
 </div>
 ```
@@ -333,7 +333,7 @@ After implementing UI changes, verify:
 
 ```tsx
 <main className="min-h-screen bg-slate-950">
-  <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12">
+  <div className="mx-auto max-w-5xl px-4 py-8 md:px-6 md:py-12">
     {/* Content */}
   </div>
 </main>
@@ -343,7 +343,7 @@ After implementing UI changes, verify:
 
 ```tsx
 <section className="mb-8 md:mb-12">
-  <h2 className="text-xl md:text-2xl font-bold text-slate-100 mb-4 md:mb-6">
+  <h2 className="mb-4 text-xl font-bold text-slate-100 md:mb-6 md:text-2xl">
     Section Title
   </h2>
   <div className="space-y-4">{/* Content */}</div>
@@ -353,28 +353,19 @@ After implementing UI changes, verify:
 ### Interactive Card
 
 ```tsx
-<div
-  className="bg-white/5 border border-white/10 rounded-lg p-4 md:p-6
-  hover:bg-white/10 hover:border-purple-500/50
-  hover:shadow-lg hover:shadow-purple-500/20
-  transition-all duration-300 cursor-pointer"
->
-  <h3 className="text-base md:text-lg font-semibold text-slate-100">
+<div className="cursor-pointer rounded-lg border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:border-purple-500/50 hover:bg-white/10 hover:shadow-lg hover:shadow-purple-500/20 md:p-6">
+  <h3 className="text-base font-semibold text-slate-100 md:text-lg">
     Card Title
   </h3>
-  <p className="text-sm text-slate-300 mt-2">Description text</p>
-  <span className="text-xs text-slate-400 mt-2 block">Metadata</span>
+  <p className="mt-2 text-sm text-slate-300">Description text</p>
+  <span className="mt-2 block text-xs text-slate-400">Metadata</span>
 </div>
 ```
 
 ### Badge/Tag
 
 ```tsx
-<span
-  className="inline-flex items-center px-2 py-1
-  text-xs font-medium rounded-md
-  bg-purple-500/20 text-purple-300 border border-purple-500/30"
->
+<span className="inline-flex items-center rounded-md border border-purple-500/30 bg-purple-500/20 px-2 py-1 text-xs font-medium text-purple-300">
   Label
 </span>
 ```
@@ -382,12 +373,7 @@ After implementing UI changes, verify:
 ### Primary Button
 
 ```tsx
-<button
-  className="px-4 py-2 rounded-md font-medium
-  bg-purple-600 hover:bg-purple-700
-  text-white transition-colors duration-200
-  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
->
+<button className="rounded-md bg-purple-600 px-4 py-2 font-medium text-white transition-colors duration-200 hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:outline-none">
   Action
 </button>
 ```
