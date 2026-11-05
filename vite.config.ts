@@ -27,6 +27,8 @@ export default defineConfig({
     // Partytown: ローダースニペットを <head> に注入し、ビルド時に SW ファイルをコピー
     {
       name: "partytown",
+      // Analytics workers are deployed with the build; dev has no SW assets.
+      apply: "build",
       transformIndexHtml() {
         return [
           {

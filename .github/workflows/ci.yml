@@ -14,3 +14,17 @@ jobs:
       - name: install, check, build
         run: |
           docker compose run --rm app /bin/bash -c "npm i && npm run check && npm run build"
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install chromium --with-deps
+      - run: npm run test:e2e
+      - run: npm run test:run
